@@ -4,4 +4,4 @@ Official repository for **BEHAVE: Functional Behavior Modeling Enables Self-Impr
 
 ## Release
 
-Code and datasets will be available before **October 14, 2026** (Sorry for the delay, the author is at COLM).
+Code and datasets will be available before **October 18, 2026** (Sorry for the delay).
