@@ -1,0 +1,6 @@
+Integer/fixed-capacity adaptation; not the unmodified upstream library.
+Upstream selected files, authors and revisions are identified in source.json.
+The original license/copyright notices are retained in LICENSE and the source archive.
+Selected license for this adaptation: Unlicense.
+Modifications: explicit finite domains, packed hardware interface and reset semantics.
+https://github.com/libtom/libtommath@95d80fd8229d05dd6cb4ec88bc8d4f5377ff00ef:bn_mp_sqrt.c

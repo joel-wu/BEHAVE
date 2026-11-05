@@ -1,0 +1,78 @@
+--- a/src/V3Assert.cpp
++++ b/src/V3Assert.cpp
+@@ -492,8 +492,13 @@
+ 
+     AstNodeStmt* newFireAssert(const AstNodeStmt* nodep, VAssertDirectiveType directiveType,
+                                VAssertType assertType, const string& message,
+-                               AstNodeExpr* exprsp = nullptr) {
++                               AstNodeExpr* exprsp = nullptr, AstNodeStmt* observerp = nullptr) {
+         AstNodeStmt* bodysp = newFireAssertUnchecked(nodep, message, exprsp);
++        if (observerp) {
++            AstNodeStmt* const callbackp = observerp->cloneTree(false);
++            callbackp->addNext(bodysp);
++            bodysp = callbackp;
++        }
+         bodysp = newIfAssertOn(bodysp, directiveType, assertType);
+         return bodysp;
+     }
+@@ -822,6 +827,19 @@
+ 
+     //========== Case assertions
+     void visit(AstCase* nodep) override {
++        // The source observer's reserved call is metadata, not a source action.
++        // Move it into each existing failure action, inside the asserts-on
++        // gate. Conditions, case dispatch, post-body checks and early exits
++        // keep the compiler's original order; no predicate is reevaluated.
++        AstStmtExpr* observerp = nullptr;
++        if (AstStmtExpr* const nextp = VN_CAST(nodep->nextp(), StmtExpr)) {
++            if (const AstNodeFTaskRef* const callp = VN_CAST(nextp->exprp(), NodeFTaskRef)) {
++                if (callp->name() == AstNode::encodeName("__behave_native_event_case_failure")) {
++                    observerp = nextp;
++                    observerp->unlinkFrBack();
++                }
++            }
++        }
+         // Introduce temporary variable for AstCase if needed - it is done here and not in V3Case
+         // because this phase is before V3Scope and V3Case is not. Doing it before V3Scope ensures
+         // that V3Scope will take care of a scope creation
+@@ -874,7 +892,7 @@
+                         newFireAssert(nodep, VAssertDirectiveType::VIOLATION_CASE, assertType,
+                                       nodep->pragmaString() + ", but non-match found" + valFmt,
+                                       valFmt.empty() ? nullptr
+-                                                     : nodep->exprp()->cloneTreePure(false))});
++                                                     : nodep->exprp()->cloneTreePure(false), observerp)});
+                 }
+             }
+             if (nodep->parallelPragma() || nodep->uniquePragma() || nodep->unique0Pragma()) {
+@@ -944,11 +962,11 @@
+                         zeroIfp->addThensp(
+                             newFireAssert(nodep, VAssertDirectiveType::VIOLATION_CASE, assertType,
+                                           pragmaStr + ", but none matched" + valFmt,
+-                                          valFmt.empty() ? nullptr : exprp->cloneTreePure(false)));
++                                          valFmt.empty() ? nullptr : exprp->cloneTreePure(false), observerp));
+                     zeroIfp->addElsesp(
+                         newFireAssert(nodep, VAssertDirectiveType::VIOLATION_CASE, assertType,
+                                       pragmaStr + ", but multiple matches found" + valFmt,
+-                                      valFmt.empty() ? nullptr : exprp->cloneTreePure(false)));
++                                      valFmt.empty() ? nullptr : exprp->cloneTreePure(false), observerp));
+                     ohotIfp->addThensp(zeroIfp);
+                     ohotIfp->isBoundsCheck(true);  // To avoid LATCH warning
+                     ohotIfp->branchPred(VBranchPred::BP_UNLIKELY);
+@@ -956,6 +974,7 @@
+                 }
+             }
+         }
++        if (observerp) VL_DO_DANGLING(pushDeletep(observerp), observerp);
+     }
+ 
+     void visit(AstFuture* nodep) override {
+--- a/src/V3Options.cpp
++++ b/src/V3Options.cpp
+@@ -1107,6 +1107,7 @@
+     ver += " (behave-loop-report-1)";
+     ver += " (behave-call-effects-2)";
+     ver += " (behave-helper-nba-1)";
+     ver += " (behave-assert-actions-1)";
++    ver += " (behave-case-failures-3)";
+     ver += " rev " + cvtToStr(DTVERSION_rev);
+     return ver;

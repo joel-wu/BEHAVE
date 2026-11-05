@@ -1,0 +1,556 @@
+{
+  "version": "task-contract/16",
+  "endpoints": [
+    {
+      "name": "in",
+      "direction": "in",
+      "fields": [
+        {
+          "name": "in_clip",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_clip"
+        },
+        {
+          "name": "in_dw00",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_dw00"
+        },
+        {
+          "name": "in_dw01",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_dw01"
+        },
+        {
+          "name": "in_dw02",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_dw02"
+        },
+        {
+          "name": "in_dw03",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_dw03"
+        },
+        {
+          "name": "in_dw04",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_dw04"
+        },
+        {
+          "name": "in_dw10",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_dw10"
+        },
+        {
+          "name": "in_dw11",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_dw11"
+        },
+        {
+          "name": "in_dw12",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_dw12"
+        },
+        {
+          "name": "in_dw13",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_dw13"
+        },
+        {
+          "name": "in_dw14",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_dw14"
+        },
+        {
+          "name": "in_dw20",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_dw20"
+        },
+        {
+          "name": "in_dw21",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_dw21"
+        },
+        {
+          "name": "in_dw22",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_dw22"
+        },
+        {
+          "name": "in_dw23",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_dw23"
+        },
+        {
+          "name": "in_dw24",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_dw24"
+        },
+        {
+          "name": "in_dw30",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_dw30"
+        },
+        {
+          "name": "in_dw31",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_dw31"
+        },
+        {
+          "name": "in_dw32",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_dw32"
+        },
+        {
+          "name": "in_dw33",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_dw33"
+        },
+        {
+          "name": "in_dw34",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_dw34"
+        },
+        {
+          "name": "in_dw40",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_dw40"
+        },
+        {
+          "name": "in_dw41",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_dw41"
+        },
+        {
+          "name": "in_dw42",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_dw42"
+        },
+        {
+          "name": "in_dw43",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_dw43"
+        },
+        {
+          "name": "in_dw44",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_dw44"
+        },
+        {
+          "name": "in_p00",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_p00"
+        },
+        {
+          "name": "in_p01",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_p01"
+        },
+        {
+          "name": "in_p02",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_p02"
+        },
+        {
+          "name": "in_p03",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_p03"
+        },
+        {
+          "name": "in_p04",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_p04"
+        },
+        {
+          "name": "in_p10",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_p10"
+        },
+        {
+          "name": "in_p11",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_p11"
+        },
+        {
+          "name": "in_p12",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_p12"
+        },
+        {
+          "name": "in_p13",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_p13"
+        },
+        {
+          "name": "in_p14",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_p14"
+        },
+        {
+          "name": "in_p20",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_p20"
+        },
+        {
+          "name": "in_p21",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_p21"
+        },
+        {
+          "name": "in_p22",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_p22"
+        },
+        {
+          "name": "in_p23",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_p23"
+        },
+        {
+          "name": "in_p24",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_p24"
+        },
+        {
+          "name": "in_p30",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_p30"
+        },
+        {
+          "name": "in_p31",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_p31"
+        },
+        {
+          "name": "in_p32",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_p32"
+        },
+        {
+          "name": "in_p33",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_p33"
+        },
+        {
+          "name": "in_p34",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_p34"
+        },
+        {
+          "name": "in_p40",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_p40"
+        },
+        {
+          "name": "in_p41",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_p41"
+        },
+        {
+          "name": "in_p42",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_p42"
+        },
+        {
+          "name": "in_p43",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_p43"
+        },
+        {
+          "name": "in_p44",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_p44"
+        },
+        {
+          "name": "in_rthres0",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_rthres0"
+        },
+        {
+          "name": "in_rthres1",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_rthres1"
+        },
+        {
+          "name": "in_rthres2",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_rthres2"
+        },
+        {
+          "name": "in_rw0",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_rw0"
+        },
+        {
+          "name": "in_rw1",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_rw1"
+        },
+        {
+          "name": "in_rw2",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_rw2"
+        },
+        {
+          "name": "in_rw3",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_rw3"
+        }
+      ],
+      "adapter": {
+        "name": "ready-valid",
+        "version": 1,
+        "environment_controls": [
+          "in_valid"
+        ],
+        "artifact_controls": [
+          "in_ready"
+        ],
+        "monitor_state": [
+          "outstanding",
+          "stall_cycles"
+        ]
+      },
+      "clock": "clk",
+      "matching": "ordered",
+      "identifier": null,
+      "max_outstanding": null,
+      "response_deadline": null,
+      "answers_per_transaction": null,
+      "terminal_quiescence": null,
+      "reset_policy": null,
+      "kind": "transaction"
+    },
+    {
+      "name": "out",
+      "direction": "out",
+      "fields": [
+        {
+          "name": "out_pixel",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "out_pixel"
+        }
+      ],
+      "adapter": {
+        "name": "ready-valid",
+        "version": 1,
+        "environment_controls": [
+          "out_ready"
+        ],
+        "artifact_controls": [
+          "out_valid"
+        ],
+        "monitor_state": [
+          "outstanding",
+          "stall_cycles"
+        ]
+      },
+      "clock": "clk",
+      "matching": "ordered",
+      "identifier": null,
+      "max_outstanding": null,
+      "response_deadline": null,
+      "answers_per_transaction": null,
+      "terminal_quiescence": null,
+      "reset_policy": null,
+      "kind": "transaction"
+    }
+  ],
+  "clocks": [
+    {
+      "name": "clk",
+      "clock": "clk",
+      "edge": "rising",
+      "reset": "rst",
+      "reset_active_low": false,
+      "reset_hold_cycles": 3,
+      "reset_restores": null
+    }
+  ],
+  "memories": [],
+  "protocol_instances": [],
+  "observation_goals": [],
+  "transaction_monitors": [],
+  "latency_goals": [],
+  "operation_rules": [],
+  "source_read_rules": [],
+  "authority": "task",
+  "source": "declared by signal_processing_isp_aux_bnf",
+  "physical_value_layout": "packed-value/1"
+}

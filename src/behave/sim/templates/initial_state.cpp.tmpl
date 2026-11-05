@@ -1,0 +1,162 @@
+// Analysis-only access to Verilator's registered source storage.
+// Top-level VPI ports can be mirrors, so they are not register write targets.
+// No generated C++ member names or candidate-specific offsets are used here.
+#include "verilated.h"
+#include "verilated_sym_props.h"
+#include <climits>
+#include <cstdlib>
+#include <cstring>
+#include <string>
+#include <vector>
+
+namespace {
+struct Register {
+    const VerilatedVar* variable = nullptr;
+    void* data = nullptr;
+};
+
+int locate(const std::string& top, const std::string& name, Register& result) {
+    std::vector<int> indices;
+    std::string base = name;
+    while (!base.empty() && base.back() == ']') {
+        const auto start = base.rfind('[');
+        if (start == std::string::npos) break;
+        char* end = nullptr;
+        const auto index = std::strtol(base.c_str() + start + 1, &end, 10);
+        if (end == base.c_str() + start + 1 || end != base.c_str() + base.size() - 1
+            || index < INT_MIN || index > INT_MAX) break;
+        indices.insert(indices.begin(), static_cast<int>(index));
+        base.resize(start);
+    }
+    // Try the exact field spelling too: an escaped identifier can contain brackets.
+    for (int form = 0; form < (indices.empty() ? 1 : 2); ++form) {
+        const std::string field = form == 0 ? name : base;
+        for (const auto& root : {top, "TOP." + top}) {
+            const auto full = root + "." + field;
+            for (auto dot = root.size(); dot != std::string::npos; dot = full.find('.', dot + 1)) {
+                const auto* scope = Verilated::threadContextp()->scopeFind(full.substr(0, dot).c_str());
+                const auto* var = scope ? scope->varFind(full.substr(dot + 1).c_str()) : nullptr;
+                if (!var) continue;
+                const int count = form == 0 ? 0 : static_cast<int>(indices.size());
+                if (var->udims() != count) continue;
+                void* data = var->datap();
+                for (int dim = 0; data && dim < count; ++dim)
+                    data = var->datapAdjustIndex(data, dim + 1, indices[dim]);
+                if (!data) continue;
+                if (result.data && result.data != data) return 5;
+                result = {var, data};
+            }
+        }
+    }
+    return result.data ? 0 : 1;
+}
+enum class StorageRole { Register, Input, CompilerInputAlias, Observation };
+
+int storage(const char* top, const char* name, int width, Register& target, StorageRole role) {
+    if (!top || !name || width < 1) return 2;
+    const int error = locate(top, name, target);
+    if (error) return error;
+    const auto* var = target.variable;
+    if (var->entBits() != static_cast<unsigned>(width)
+        || !var->isPublicRW() || var->isParam()) return 2;
+    if (role == StorageRole::Input) {
+        // Flattened module-input storage can be directionless; its separate
+        // top-level port retains the compiler-owned input direction and width.
+        bool declared_input = var->vldir() == VLVD_IN;
+        for (const auto& root : {std::string("TOP"), std::string(top)}) {
+            const auto* scope = Verilated::threadContextp()->scopeFind(root.c_str());
+            const auto* port = scope ? scope->varFind(name) : nullptr;
+            declared_input |= port && port->vldir() == VLVD_IN
+                && port->entBits() == static_cast<unsigned>(width);
+        }
+        if (!declared_input) return 2;
+    } else if (role == StorageRole::Register
+               && (var->isContinuously() || var->isNet() || var->vldir() == VLVD_IN)) return 2;
+    const auto type = var->vltype();
+    if (type != VLVT_UINT8 && type != VLVT_UINT16 && type != VLVT_UINT32
+        && type != VLVT_UINT64 && type != VLVT_WDATA) return 3;
+    return 0;
+}
+
+int write_storage(const char* top, const char* name, int width, const char* bits, StorageRole role) {
+    Register target;
+    const int error = storage(top, name, width, target, role);
+    if (error) return error;
+    const auto type = target.variable->vltype();
+    if (!bits) return 0;
+    if (std::strlen(bits) != static_cast<size_t>(width)) return 4;
+    for (int bit = 0; bit < width; ++bit)
+        if (bits[bit] != '0' && bits[bit] != '1') return 4;
+    if (type == VLVT_WDATA) {
+        auto* words = static_cast<IData*>(target.data);
+        std::memset(words, 0, sizeof(IData) * ((width + 31) / 32));
+        for (int bit = 0; bit < width; ++bit)
+            if (bits[width - bit - 1] == '1') words[bit / 32] |= IData{1} << (bit % 32);
+    } else {
+        uint64_t value = 0;
+        for (int bit = 0; bit < width; ++bit) value = (value << 1) | (bits[bit] - '0');
+        switch (type) {
+        case VLVT_UINT8:  *static_cast<CData*>(target.data) = value; break;
+        case VLVT_UINT16: *static_cast<SData*>(target.data) = value; break;
+        case VLVT_UINT32: *static_cast<IData*>(target.data) = value; break;
+        case VLVT_UINT64: *static_cast<QData*>(target.data) = value; break;
+        default: return 3;
+        }
+    }
+    return 0;
+}
+
+// Read the same storage before first eval; VPI output mirrors may still be stale.
+int read_storage(const char* top, const char* name, int width, char* bits, StorageRole role) {
+    Register target;
+    const int error = storage(top, name, width, target, role);
+    if (error) return error;
+    if (!bits) return 4;
+    const auto type = target.variable->vltype();
+    uint64_t value = 0;
+    switch (type) {
+    case VLVT_UINT8:  value = *static_cast<CData*>(target.data); break;
+    case VLVT_UINT16: value = *static_cast<SData*>(target.data); break;
+    case VLVT_UINT32: value = *static_cast<IData*>(target.data); break;
+    case VLVT_UINT64: value = *static_cast<QData*>(target.data); break;
+    default: break;
+    }
+    const auto* words = static_cast<const IData*>(target.data);
+    for (int bit = 0; bit < width; ++bit)
+        bits[width - bit - 1] = '0' + (type == VLVT_WDATA
+            ? ((words[bit / 32] >> (bit % 32)) & 1) : ((value >> bit) & 1));
+    bits[width] = '\0';
+    return 0;
+}
+}
+
+// bits == nullptr is a side-effect-free preflight. Otherwise write one bit pattern.
+extern "C" int behave_initial_state_v1(const char* top, const char* name, int width, const char* bits) {
+    return write_storage(top, name, width, bits, StorageRole::Register);
+}
+extern "C" int behave_initial_state_read_v1(const char* top, const char* name, int width, char* bits) {
+    return read_storage(top, name, width, bits, StorageRole::Register);
+}
+// Construction inputs have both top-level VPI pins and internal source storage.
+// Permit only registered input ports, never output wires or arbitrary nets.
+extern "C" int behave_initial_input_v1(const char* top, const char* name, int width, const char* bits) {
+    return write_storage(top, name, width, bits, StorageRole::Input);
+}
+extern "C" int behave_initial_input_read_v1(const char* top, const char* name, int width, char* bits) {
+    return read_storage(top, name, width, bits, StorageRole::Input);
+}
+// Internal construction only: these destinations come from the frozen source
+// compiler's collapsed-input-net map, never from public register choices. The
+// driver derives their bits from checked top-level input slices. Flattening can
+// erase a child's port direction, so the compiler binding owns that admission.
+extern "C" int behave_initial_alias_v1(const char* top, const char* name, int width, const char* bits) {
+    return write_storage(top, name, width, bits, StorageRole::CompilerInputAlias);
+}
+extern "C" int behave_initial_alias_read_v1(const char* top, const char* name, int width, char* bits) {
+    return read_storage(top, name, width, bits, StorageRole::CompilerInputAlias);
+}
+// Passive capture may include derived storage. There is deliberately no write
+// entry point for this role; the exact owner later selects writable registers.
+extern "C" int behave_observation_read_v1(const char* top, const char* name, int width, char* bits) {
+    return read_storage(top, name, width, bits, StorageRole::Observation);
+}

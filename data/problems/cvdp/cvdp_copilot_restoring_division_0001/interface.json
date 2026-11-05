@@ -1,0 +1,122 @@
+{
+  "version": "task-contract/8",
+  "endpoints": [
+    {
+      "name": "in",
+      "direction": "in",
+      "fields": [
+        {
+          "name": "start",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "start"
+        },
+        {
+          "name": "dividend",
+          "type": {
+            "width": 6,
+            "signed": false
+          },
+          "port": "dividend"
+        },
+        {
+          "name": "divisor",
+          "type": {
+            "width": 6,
+            "signed": false
+          },
+          "port": "divisor"
+        }
+      ],
+      "adapter": {
+        "name": "sampled-edge",
+        "version": 1,
+        "environment_controls": [],
+        "artifact_controls": [],
+        "monitor_state": []
+      },
+      "clock": "clk",
+      "matching": "ordered",
+      "identifier": null,
+      "max_outstanding": null,
+      "response_deadline": null,
+      "answers_per_transaction": null,
+      "terminal_quiescence": null,
+      "reset_policy": null,
+      "kind": "transaction"
+    },
+    {
+      "name": "out",
+      "direction": "out",
+      "fields": [
+        {
+          "name": "quotient",
+          "type": {
+            "width": 6,
+            "signed": false
+          },
+          "port": "quotient"
+        },
+        {
+          "name": "remainder",
+          "type": {
+            "width": 6,
+            "signed": false
+          },
+          "port": "remainder"
+        },
+        {
+          "name": "valid",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "valid"
+        }
+      ],
+      "adapter": {
+        "name": "sampled-edge",
+        "version": 1,
+        "environment_controls": [],
+        "artifact_controls": [],
+        "monitor_state": []
+      },
+      "clock": "clk",
+      "matching": "ordered",
+      "identifier": null,
+      "max_outstanding": null,
+      "response_deadline": null,
+      "answers_per_transaction": 1,
+      "terminal_quiescence": null,
+      "reset_policy": null,
+      "kind": "transaction"
+    }
+  ],
+  "clocks": [
+    {
+      "name": "clk",
+      "clock": "clk",
+      "edge": "rising",
+      "reset": "rst",
+      "reset_active_low": true,
+      "reset_hold_cycles": 3,
+      "reset_restores": true
+    }
+  ],
+  "memories": [],
+  "protocol_instances": [
+    {
+      "name": "compute",
+      "endpoints": [
+        "in",
+        "out"
+      ],
+      "mapping": "direct/1"
+    }
+  ],
+  "authority": "task",
+  "source": "Native CVDP clock semantics; batch101 records source completions",
+  "physical_value_layout": "packed-value/1"
+}

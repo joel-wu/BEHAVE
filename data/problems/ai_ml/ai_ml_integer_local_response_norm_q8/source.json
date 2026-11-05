@@ -1,0 +1,22 @@
+{
+  "id": "ai_ml_integer_local_response_norm_q8",
+  "source_kind": "ai_ml",
+  "name": "LocalResponseNormQ8",
+  "family": "local_response_norm_q8",
+  "tier": 2,
+  "license": "Apache-2.0",
+  "provenance": [
+    {
+      "repository": "https://github.com/onnx/onnx",
+      "revision": "57b9c6a4f6eebb09ae1b34cfb632078518f72832",
+      "license": "Apache-2.0",
+      "file": "onnx/reference/ops/op_lrn.py",
+      "symbol": "LRN normalization formula; channel loop corrected to the public operator definition",
+      "sha256": "462a583ca121557b345abae870de11ba83e3b7295b1c27b573cea17d48406204",
+      "url": "https://github.com/onnx/onnx/blob/57b9c6a4f6eebb09ae1b34cfb632078518f72832/onnx/reference/ops/op_lrn.py",
+      "license_file": "data/licenses/onnx_onnx/LICENSE"
+    }
+  ],
+  "adaptation": "Cross-channel local response normalization on NCHW [1,5,2,2] signed INT8 feature values.\n\nFor each channel c and spatial location p independently, S[c,p] is the sum of X[j,p]^2 for j=max(0,c-1)..min(4,c+1), inclusive. Missing edge channels contribute zero; the normalization constant does not change at channel edges. Return Y[c,p]=round_nearest_ties_away(256*16384*X[c,p]/(16384+S[c,p])). Output has the same NCHW order, twenty signed INT16 lanes in units 1/256. This is ONNX LRN with size=3, bias=1, alpha=3/16384 and beta=1, followed by explicit fixed-point rounding. There is no square root, subtraction of a channel mean, or spatial pooling. All twenty outputs are required. The denominator is always positive and all outputs fit INT16. The pinned Python reference has a loop-bound defect (batch count used instead of channel count); this task implements all channels according to the LRN operator definition, not that defect.",
+  "difficulty": "medium"
+}

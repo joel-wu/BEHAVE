@@ -1,0 +1,22 @@
+--- a/src/V3Const.cpp
++++ b/src/V3Const.cpp
+@@ -4358,7 +4358,8 @@
+     TREEOP ("AstCond{$condp.isNeqZero,    $thenp, $elsep}", "replaceWChild(nodep,$thenp)");
+     TREEOPA("AstCond{$condp.isZero,       $thenp.castConst, $elsep.castConst}", "replaceWChild(nodep,$elsep)");
+     TREEOPA("AstCond{$condp.isNeqZero,    $thenp.castConst, $elsep.castConst}", "replaceWChild(nodep,$thenp)");
+-    TREEOP ("AstCond{$condp, operandsSame($thenp,,$elsep)}","replaceWChild(nodep,$thenp)");
++    // Equal values do not make an evaluated condition's side effects dispensable.
++    TREEOP ("AstCond{$condp->isPure(), operandsSame($thenp,,$elsep)}","replaceWChild(nodep,$thenp)");
+     TREEOP ("AstCond{$condp, matchCondCond(nodep)}", "DONE")  // Same condition then skip
+     // This visit function here must allow for short-circuiting.
+     TREEOPS("AstCond{$condp.isZero}",           "replaceWIteratedThs(nodep)");
+--- a/src/V3Options.cpp
++++ b/src/V3Options.cpp
+@@ -1100,6 +1100,7 @@
+ 
+ string V3Options::version() VL_PURE {
+     string ver = PACKAGE_STRING;
++    ver += " (behave-condition-effects-2)";
+     ver += " rev " + cvtToStr(DTVERSION_rev);
+     return ver;
+ }

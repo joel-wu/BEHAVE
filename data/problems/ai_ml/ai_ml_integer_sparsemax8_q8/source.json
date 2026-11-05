@@ -1,0 +1,22 @@
+{
+  "id": "ai_ml_integer_sparsemax8_q8",
+  "source_kind": "ai_ml",
+  "name": "Sparsemax8Q8",
+  "family": "sparsemax8_q8",
+  "tier": 2,
+  "license": "MIT",
+  "provenance": [
+    {
+      "repository": "https://github.com/deep-spin/entmax",
+      "revision": "c2bec6d5e7d649cba7766c2172d89123ec2a6d70",
+      "license": "MIT",
+      "file": "entmax/activations.py",
+      "symbol": "_sparsemax_threshold_and_support / SparsemaxFunction.forward",
+      "sha256": "3fcf9a940a468bddb8926d2c7f14be439feea3f3fd30c6478dedd83a652ca318",
+      "url": "https://github.com/deep-spin/entmax/blob/c2bec6d5e7d649cba7766c2172d89123ec2a6d70/entmax/activations.py",
+      "license_file": "data/licenses/deep-spin_entmax/LICENSE"
+    }
+  ],
+  "adaptation": "Project eight Q8 logits onto the probability simplex using Sparsemax, with explicit final Q16 rounding.\n\nInput raw x[i] is signed INT16, representing x[i]/256. Sort raw values descending as z[1..8]. Let k be the largest j with 256+j*z[j]>sum(z[1..j]); k always exists. Let S=sum(z[1..k]). The exact probability is p[i]=max(0,(k*x[i]-S+256)/(256*k)). Output unsigned 17-bit lane i is nearest-even(65536*p[i]), at bit 17*i. Bits 136+i record exact positive support (p[i]>0), before rounding. No softmax/exponential is used. Independent final lane rounding may change the sum of stored probabilities slightly; do not renormalize it. This preserves entmax Sparsemax threshold/support semantics with fixed Q8 inputs and Q16 boundary encoding.",
+  "difficulty": "medium"
+}

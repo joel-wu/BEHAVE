@@ -1,0 +1,1116 @@
+{
+  "version": "task-contract/16",
+  "endpoints": [
+    {
+      "name": "in",
+      "direction": "in",
+      "fields": [
+        {
+          "name": "in_a0",
+          "type": {
+            "width": 8,
+            "signed": false
+          },
+          "port": "in_a0"
+        },
+        {
+          "name": "in_a1",
+          "type": {
+            "width": 8,
+            "signed": false
+          },
+          "port": "in_a1"
+        },
+        {
+          "name": "in_a10",
+          "type": {
+            "width": 8,
+            "signed": false
+          },
+          "port": "in_a10"
+        },
+        {
+          "name": "in_a11",
+          "type": {
+            "width": 8,
+            "signed": false
+          },
+          "port": "in_a11"
+        },
+        {
+          "name": "in_a12",
+          "type": {
+            "width": 8,
+            "signed": false
+          },
+          "port": "in_a12"
+        },
+        {
+          "name": "in_a13",
+          "type": {
+            "width": 8,
+            "signed": false
+          },
+          "port": "in_a13"
+        },
+        {
+          "name": "in_a14",
+          "type": {
+            "width": 8,
+            "signed": false
+          },
+          "port": "in_a14"
+        },
+        {
+          "name": "in_a15",
+          "type": {
+            "width": 8,
+            "signed": false
+          },
+          "port": "in_a15"
+        },
+        {
+          "name": "in_a16",
+          "type": {
+            "width": 8,
+            "signed": false
+          },
+          "port": "in_a16"
+        },
+        {
+          "name": "in_a17",
+          "type": {
+            "width": 8,
+            "signed": false
+          },
+          "port": "in_a17"
+        },
+        {
+          "name": "in_a18",
+          "type": {
+            "width": 8,
+            "signed": false
+          },
+          "port": "in_a18"
+        },
+        {
+          "name": "in_a19",
+          "type": {
+            "width": 8,
+            "signed": false
+          },
+          "port": "in_a19"
+        },
+        {
+          "name": "in_a2",
+          "type": {
+            "width": 8,
+            "signed": false
+          },
+          "port": "in_a2"
+        },
+        {
+          "name": "in_a20",
+          "type": {
+            "width": 8,
+            "signed": false
+          },
+          "port": "in_a20"
+        },
+        {
+          "name": "in_a21",
+          "type": {
+            "width": 8,
+            "signed": false
+          },
+          "port": "in_a21"
+        },
+        {
+          "name": "in_a22",
+          "type": {
+            "width": 8,
+            "signed": false
+          },
+          "port": "in_a22"
+        },
+        {
+          "name": "in_a23",
+          "type": {
+            "width": 8,
+            "signed": false
+          },
+          "port": "in_a23"
+        },
+        {
+          "name": "in_a24",
+          "type": {
+            "width": 8,
+            "signed": false
+          },
+          "port": "in_a24"
+        },
+        {
+          "name": "in_a25",
+          "type": {
+            "width": 8,
+            "signed": false
+          },
+          "port": "in_a25"
+        },
+        {
+          "name": "in_a26",
+          "type": {
+            "width": 8,
+            "signed": false
+          },
+          "port": "in_a26"
+        },
+        {
+          "name": "in_a27",
+          "type": {
+            "width": 8,
+            "signed": false
+          },
+          "port": "in_a27"
+        },
+        {
+          "name": "in_a28",
+          "type": {
+            "width": 8,
+            "signed": false
+          },
+          "port": "in_a28"
+        },
+        {
+          "name": "in_a29",
+          "type": {
+            "width": 8,
+            "signed": false
+          },
+          "port": "in_a29"
+        },
+        {
+          "name": "in_a3",
+          "type": {
+            "width": 8,
+            "signed": false
+          },
+          "port": "in_a3"
+        },
+        {
+          "name": "in_a30",
+          "type": {
+            "width": 8,
+            "signed": false
+          },
+          "port": "in_a30"
+        },
+        {
+          "name": "in_a31",
+          "type": {
+            "width": 8,
+            "signed": false
+          },
+          "port": "in_a31"
+        },
+        {
+          "name": "in_a32",
+          "type": {
+            "width": 8,
+            "signed": false
+          },
+          "port": "in_a32"
+        },
+        {
+          "name": "in_a33",
+          "type": {
+            "width": 8,
+            "signed": false
+          },
+          "port": "in_a33"
+        },
+        {
+          "name": "in_a34",
+          "type": {
+            "width": 8,
+            "signed": false
+          },
+          "port": "in_a34"
+        },
+        {
+          "name": "in_a35",
+          "type": {
+            "width": 8,
+            "signed": false
+          },
+          "port": "in_a35"
+        },
+        {
+          "name": "in_a36",
+          "type": {
+            "width": 8,
+            "signed": false
+          },
+          "port": "in_a36"
+        },
+        {
+          "name": "in_a37",
+          "type": {
+            "width": 8,
+            "signed": false
+          },
+          "port": "in_a37"
+        },
+        {
+          "name": "in_a38",
+          "type": {
+            "width": 8,
+            "signed": false
+          },
+          "port": "in_a38"
+        },
+        {
+          "name": "in_a39",
+          "type": {
+            "width": 8,
+            "signed": false
+          },
+          "port": "in_a39"
+        },
+        {
+          "name": "in_a4",
+          "type": {
+            "width": 8,
+            "signed": false
+          },
+          "port": "in_a4"
+        },
+        {
+          "name": "in_a40",
+          "type": {
+            "width": 8,
+            "signed": false
+          },
+          "port": "in_a40"
+        },
+        {
+          "name": "in_a41",
+          "type": {
+            "width": 8,
+            "signed": false
+          },
+          "port": "in_a41"
+        },
+        {
+          "name": "in_a42",
+          "type": {
+            "width": 8,
+            "signed": false
+          },
+          "port": "in_a42"
+        },
+        {
+          "name": "in_a43",
+          "type": {
+            "width": 8,
+            "signed": false
+          },
+          "port": "in_a43"
+        },
+        {
+          "name": "in_a44",
+          "type": {
+            "width": 8,
+            "signed": false
+          },
+          "port": "in_a44"
+        },
+        {
+          "name": "in_a45",
+          "type": {
+            "width": 8,
+            "signed": false
+          },
+          "port": "in_a45"
+        },
+        {
+          "name": "in_a46",
+          "type": {
+            "width": 8,
+            "signed": false
+          },
+          "port": "in_a46"
+        },
+        {
+          "name": "in_a47",
+          "type": {
+            "width": 8,
+            "signed": false
+          },
+          "port": "in_a47"
+        },
+        {
+          "name": "in_a48",
+          "type": {
+            "width": 8,
+            "signed": false
+          },
+          "port": "in_a48"
+        },
+        {
+          "name": "in_a49",
+          "type": {
+            "width": 8,
+            "signed": false
+          },
+          "port": "in_a49"
+        },
+        {
+          "name": "in_a5",
+          "type": {
+            "width": 8,
+            "signed": false
+          },
+          "port": "in_a5"
+        },
+        {
+          "name": "in_a50",
+          "type": {
+            "width": 8,
+            "signed": false
+          },
+          "port": "in_a50"
+        },
+        {
+          "name": "in_a51",
+          "type": {
+            "width": 8,
+            "signed": false
+          },
+          "port": "in_a51"
+        },
+        {
+          "name": "in_a52",
+          "type": {
+            "width": 8,
+            "signed": false
+          },
+          "port": "in_a52"
+        },
+        {
+          "name": "in_a53",
+          "type": {
+            "width": 8,
+            "signed": false
+          },
+          "port": "in_a53"
+        },
+        {
+          "name": "in_a54",
+          "type": {
+            "width": 8,
+            "signed": false
+          },
+          "port": "in_a54"
+        },
+        {
+          "name": "in_a55",
+          "type": {
+            "width": 8,
+            "signed": false
+          },
+          "port": "in_a55"
+        },
+        {
+          "name": "in_a56",
+          "type": {
+            "width": 8,
+            "signed": false
+          },
+          "port": "in_a56"
+        },
+        {
+          "name": "in_a57",
+          "type": {
+            "width": 8,
+            "signed": false
+          },
+          "port": "in_a57"
+        },
+        {
+          "name": "in_a58",
+          "type": {
+            "width": 8,
+            "signed": false
+          },
+          "port": "in_a58"
+        },
+        {
+          "name": "in_a59",
+          "type": {
+            "width": 8,
+            "signed": false
+          },
+          "port": "in_a59"
+        },
+        {
+          "name": "in_a6",
+          "type": {
+            "width": 8,
+            "signed": false
+          },
+          "port": "in_a6"
+        },
+        {
+          "name": "in_a60",
+          "type": {
+            "width": 8,
+            "signed": false
+          },
+          "port": "in_a60"
+        },
+        {
+          "name": "in_a61",
+          "type": {
+            "width": 8,
+            "signed": false
+          },
+          "port": "in_a61"
+        },
+        {
+          "name": "in_a62",
+          "type": {
+            "width": 8,
+            "signed": false
+          },
+          "port": "in_a62"
+        },
+        {
+          "name": "in_a63",
+          "type": {
+            "width": 8,
+            "signed": false
+          },
+          "port": "in_a63"
+        },
+        {
+          "name": "in_a7",
+          "type": {
+            "width": 8,
+            "signed": false
+          },
+          "port": "in_a7"
+        },
+        {
+          "name": "in_a8",
+          "type": {
+            "width": 8,
+            "signed": false
+          },
+          "port": "in_a8"
+        },
+        {
+          "name": "in_a9",
+          "type": {
+            "width": 8,
+            "signed": false
+          },
+          "port": "in_a9"
+        },
+        {
+          "name": "in_b0",
+          "type": {
+            "width": 8,
+            "signed": false
+          },
+          "port": "in_b0"
+        },
+        {
+          "name": "in_b1",
+          "type": {
+            "width": 8,
+            "signed": false
+          },
+          "port": "in_b1"
+        },
+        {
+          "name": "in_b10",
+          "type": {
+            "width": 8,
+            "signed": false
+          },
+          "port": "in_b10"
+        },
+        {
+          "name": "in_b11",
+          "type": {
+            "width": 8,
+            "signed": false
+          },
+          "port": "in_b11"
+        },
+        {
+          "name": "in_b12",
+          "type": {
+            "width": 8,
+            "signed": false
+          },
+          "port": "in_b12"
+        },
+        {
+          "name": "in_b13",
+          "type": {
+            "width": 8,
+            "signed": false
+          },
+          "port": "in_b13"
+        },
+        {
+          "name": "in_b14",
+          "type": {
+            "width": 8,
+            "signed": false
+          },
+          "port": "in_b14"
+        },
+        {
+          "name": "in_b15",
+          "type": {
+            "width": 8,
+            "signed": false
+          },
+          "port": "in_b15"
+        },
+        {
+          "name": "in_b16",
+          "type": {
+            "width": 8,
+            "signed": false
+          },
+          "port": "in_b16"
+        },
+        {
+          "name": "in_b17",
+          "type": {
+            "width": 8,
+            "signed": false
+          },
+          "port": "in_b17"
+        },
+        {
+          "name": "in_b18",
+          "type": {
+            "width": 8,
+            "signed": false
+          },
+          "port": "in_b18"
+        },
+        {
+          "name": "in_b19",
+          "type": {
+            "width": 8,
+            "signed": false
+          },
+          "port": "in_b19"
+        },
+        {
+          "name": "in_b2",
+          "type": {
+            "width": 8,
+            "signed": false
+          },
+          "port": "in_b2"
+        },
+        {
+          "name": "in_b20",
+          "type": {
+            "width": 8,
+            "signed": false
+          },
+          "port": "in_b20"
+        },
+        {
+          "name": "in_b21",
+          "type": {
+            "width": 8,
+            "signed": false
+          },
+          "port": "in_b21"
+        },
+        {
+          "name": "in_b22",
+          "type": {
+            "width": 8,
+            "signed": false
+          },
+          "port": "in_b22"
+        },
+        {
+          "name": "in_b23",
+          "type": {
+            "width": 8,
+            "signed": false
+          },
+          "port": "in_b23"
+        },
+        {
+          "name": "in_b24",
+          "type": {
+            "width": 8,
+            "signed": false
+          },
+          "port": "in_b24"
+        },
+        {
+          "name": "in_b25",
+          "type": {
+            "width": 8,
+            "signed": false
+          },
+          "port": "in_b25"
+        },
+        {
+          "name": "in_b26",
+          "type": {
+            "width": 8,
+            "signed": false
+          },
+          "port": "in_b26"
+        },
+        {
+          "name": "in_b27",
+          "type": {
+            "width": 8,
+            "signed": false
+          },
+          "port": "in_b27"
+        },
+        {
+          "name": "in_b28",
+          "type": {
+            "width": 8,
+            "signed": false
+          },
+          "port": "in_b28"
+        },
+        {
+          "name": "in_b29",
+          "type": {
+            "width": 8,
+            "signed": false
+          },
+          "port": "in_b29"
+        },
+        {
+          "name": "in_b3",
+          "type": {
+            "width": 8,
+            "signed": false
+          },
+          "port": "in_b3"
+        },
+        {
+          "name": "in_b30",
+          "type": {
+            "width": 8,
+            "signed": false
+          },
+          "port": "in_b30"
+        },
+        {
+          "name": "in_b31",
+          "type": {
+            "width": 8,
+            "signed": false
+          },
+          "port": "in_b31"
+        },
+        {
+          "name": "in_b32",
+          "type": {
+            "width": 8,
+            "signed": false
+          },
+          "port": "in_b32"
+        },
+        {
+          "name": "in_b33",
+          "type": {
+            "width": 8,
+            "signed": false
+          },
+          "port": "in_b33"
+        },
+        {
+          "name": "in_b34",
+          "type": {
+            "width": 8,
+            "signed": false
+          },
+          "port": "in_b34"
+        },
+        {
+          "name": "in_b35",
+          "type": {
+            "width": 8,
+            "signed": false
+          },
+          "port": "in_b35"
+        },
+        {
+          "name": "in_b36",
+          "type": {
+            "width": 8,
+            "signed": false
+          },
+          "port": "in_b36"
+        },
+        {
+          "name": "in_b37",
+          "type": {
+            "width": 8,
+            "signed": false
+          },
+          "port": "in_b37"
+        },
+        {
+          "name": "in_b38",
+          "type": {
+            "width": 8,
+            "signed": false
+          },
+          "port": "in_b38"
+        },
+        {
+          "name": "in_b39",
+          "type": {
+            "width": 8,
+            "signed": false
+          },
+          "port": "in_b39"
+        },
+        {
+          "name": "in_b4",
+          "type": {
+            "width": 8,
+            "signed": false
+          },
+          "port": "in_b4"
+        },
+        {
+          "name": "in_b40",
+          "type": {
+            "width": 8,
+            "signed": false
+          },
+          "port": "in_b40"
+        },
+        {
+          "name": "in_b41",
+          "type": {
+            "width": 8,
+            "signed": false
+          },
+          "port": "in_b41"
+        },
+        {
+          "name": "in_b42",
+          "type": {
+            "width": 8,
+            "signed": false
+          },
+          "port": "in_b42"
+        },
+        {
+          "name": "in_b43",
+          "type": {
+            "width": 8,
+            "signed": false
+          },
+          "port": "in_b43"
+        },
+        {
+          "name": "in_b44",
+          "type": {
+            "width": 8,
+            "signed": false
+          },
+          "port": "in_b44"
+        },
+        {
+          "name": "in_b45",
+          "type": {
+            "width": 8,
+            "signed": false
+          },
+          "port": "in_b45"
+        },
+        {
+          "name": "in_b46",
+          "type": {
+            "width": 8,
+            "signed": false
+          },
+          "port": "in_b46"
+        },
+        {
+          "name": "in_b47",
+          "type": {
+            "width": 8,
+            "signed": false
+          },
+          "port": "in_b47"
+        },
+        {
+          "name": "in_b48",
+          "type": {
+            "width": 8,
+            "signed": false
+          },
+          "port": "in_b48"
+        },
+        {
+          "name": "in_b49",
+          "type": {
+            "width": 8,
+            "signed": false
+          },
+          "port": "in_b49"
+        },
+        {
+          "name": "in_b5",
+          "type": {
+            "width": 8,
+            "signed": false
+          },
+          "port": "in_b5"
+        },
+        {
+          "name": "in_b50",
+          "type": {
+            "width": 8,
+            "signed": false
+          },
+          "port": "in_b50"
+        },
+        {
+          "name": "in_b51",
+          "type": {
+            "width": 8,
+            "signed": false
+          },
+          "port": "in_b51"
+        },
+        {
+          "name": "in_b52",
+          "type": {
+            "width": 8,
+            "signed": false
+          },
+          "port": "in_b52"
+        },
+        {
+          "name": "in_b53",
+          "type": {
+            "width": 8,
+            "signed": false
+          },
+          "port": "in_b53"
+        },
+        {
+          "name": "in_b54",
+          "type": {
+            "width": 8,
+            "signed": false
+          },
+          "port": "in_b54"
+        },
+        {
+          "name": "in_b55",
+          "type": {
+            "width": 8,
+            "signed": false
+          },
+          "port": "in_b55"
+        },
+        {
+          "name": "in_b56",
+          "type": {
+            "width": 8,
+            "signed": false
+          },
+          "port": "in_b56"
+        },
+        {
+          "name": "in_b57",
+          "type": {
+            "width": 8,
+            "signed": false
+          },
+          "port": "in_b57"
+        },
+        {
+          "name": "in_b58",
+          "type": {
+            "width": 8,
+            "signed": false
+          },
+          "port": "in_b58"
+        },
+        {
+          "name": "in_b59",
+          "type": {
+            "width": 8,
+            "signed": false
+          },
+          "port": "in_b59"
+        },
+        {
+          "name": "in_b6",
+          "type": {
+            "width": 8,
+            "signed": false
+          },
+          "port": "in_b6"
+        },
+        {
+          "name": "in_b60",
+          "type": {
+            "width": 8,
+            "signed": false
+          },
+          "port": "in_b60"
+        },
+        {
+          "name": "in_b61",
+          "type": {
+            "width": 8,
+            "signed": false
+          },
+          "port": "in_b61"
+        },
+        {
+          "name": "in_b62",
+          "type": {
+            "width": 8,
+            "signed": false
+          },
+          "port": "in_b62"
+        },
+        {
+          "name": "in_b63",
+          "type": {
+            "width": 8,
+            "signed": false
+          },
+          "port": "in_b63"
+        },
+        {
+          "name": "in_b7",
+          "type": {
+            "width": 8,
+            "signed": false
+          },
+          "port": "in_b7"
+        },
+        {
+          "name": "in_b8",
+          "type": {
+            "width": 8,
+            "signed": false
+          },
+          "port": "in_b8"
+        },
+        {
+          "name": "in_b9",
+          "type": {
+            "width": 8,
+            "signed": false
+          },
+          "port": "in_b9"
+        }
+      ],
+      "adapter": {
+        "name": "ready-valid",
+        "version": 1,
+        "environment_controls": [
+          "in_valid"
+        ],
+        "artifact_controls": [
+          "in_ready"
+        ],
+        "monitor_state": [
+          "outstanding",
+          "stall_cycles"
+        ]
+      },
+      "clock": "clk",
+      "matching": "ordered",
+      "identifier": null,
+      "max_outstanding": null,
+      "response_deadline": null,
+      "answers_per_transaction": null,
+      "terminal_quiescence": null,
+      "reset_policy": null,
+      "kind": "transaction"
+    },
+    {
+      "name": "out",
+      "direction": "out",
+      "fields": [
+        {
+          "name": "out_distance",
+          "type": {
+            "width": 22,
+            "signed": false
+          },
+          "port": "out_distance"
+        }
+      ],
+      "adapter": {
+        "name": "ready-valid",
+        "version": 1,
+        "environment_controls": [
+          "out_ready"
+        ],
+        "artifact_controls": [
+          "out_valid"
+        ],
+        "monitor_state": [
+          "outstanding",
+          "stall_cycles"
+        ]
+      },
+      "clock": "clk",
+      "matching": "ordered",
+      "identifier": null,
+      "max_outstanding": null,
+      "response_deadline": null,
+      "answers_per_transaction": null,
+      "terminal_quiescence": null,
+      "reset_policy": null,
+      "kind": "transaction"
+    }
+  ],
+  "clocks": [
+    {
+      "name": "clk",
+      "clock": "clk",
+      "edge": "rising",
+      "reset": "rst",
+      "reset_active_low": false,
+      "reset_hold_cycles": 3,
+      "reset_restores": null
+    }
+  ],
+  "memories": [],
+  "protocol_instances": [],
+  "observation_goals": [],
+  "transaction_monitors": [],
+  "latency_goals": [],
+  "operation_rules": [],
+  "source_read_rules": [],
+  "authority": "task",
+  "source": "declared by data_systems_distance_l2_distance_int8_d64",
+  "physical_value_layout": "packed-value/1"
+}

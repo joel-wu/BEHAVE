@@ -1,0 +1,31 @@
+diff --git a/include/slang/analysis/AnalysisOptions.h b/include/slang/analysis/AnalysisOptions.h
+--- a/include/slang/analysis/AnalysisOptions.h
++++ b/include/slang/analysis/AnalysisOptions.h
+@@ -70,5 +70,11 @@
+     ContAssignUsesLSPs = 1 << 8,
++
++    /// Inline task-body reads and drivers in always_comb / always_latch.
++    /// This is an explicit execution-backend convention, not the default LRM
++    /// task sensitivity. Reuse the function call analysis, including its
++    /// original symbol bindings, local exclusions and driven-range subtraction.
++    InlineCombTaskCalls = 1 << 9,
+ };
+-SLANG_BITMASK(AnalysisFlags, ContAssignUsesLSPs)
++SLANG_BITMASK(AnalysisFlags, InlineCombTaskCalls)
+ 
+ /// Contains various options that can control analysis behavior.
+diff --git a/source/analysis/AnalysisManager.cpp b/source/analysis/AnalysisManager.cpp
+--- a/source/analysis/AnalysisManager.cpp
++++ b/source/analysis/AnalysisManager.cpp
+@@ -158,4 +158,10 @@
++    const auto* procedure = containingSymbol.as_if<ProceduralBlockSymbol>();
++    const bool inlineTasks = procedure &&
++        (procedure->procedureKind == ProceduralBlockKind::AlwaysComb ||
++         procedure->procedureKind == ProceduralBlockKind::AlwaysLatch) &&
++        hasFlag(AnalysisFlags::InlineCombTaskCalls);
+     if (expr.isSystemCall() || expr.thisClass() ||
+-        expr.getSubroutineKind() != SubroutineKind::Function) {
++        (expr.getSubroutineKind() != SubroutineKind::Function &&
++         !(inlineTasks && expr.getSubroutineKind() == SubroutineKind::Task))) {
+         return;
+     }

@@ -1,0 +1,212 @@
+{
+  "version": "task-contract/16",
+  "endpoints": [
+    {
+      "name": "in",
+      "direction": "in",
+      "fields": [
+        {
+          "name": "in_input_1",
+          "type": {
+            "width": 8,
+            "signed": false
+          },
+          "port": "in_input_1"
+        },
+        {
+          "name": "in_input_1_mult",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_input_1_mult"
+        },
+        {
+          "name": "in_input_1_offset",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_input_1_offset"
+        },
+        {
+          "name": "in_input_1_shift",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_input_1_shift"
+        },
+        {
+          "name": "in_input_2",
+          "type": {
+            "width": 8,
+            "signed": false
+          },
+          "port": "in_input_2"
+        },
+        {
+          "name": "in_input_2_mult",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_input_2_mult"
+        },
+        {
+          "name": "in_input_2_offset",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_input_2_offset"
+        },
+        {
+          "name": "in_input_2_shift",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_input_2_shift"
+        },
+        {
+          "name": "in_left_shift",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_left_shift"
+        },
+        {
+          "name": "in_out_activation_max",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_out_activation_max"
+        },
+        {
+          "name": "in_out_activation_min",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_out_activation_min"
+        },
+        {
+          "name": "in_out_mult",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_out_mult"
+        },
+        {
+          "name": "in_out_offset",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_out_offset"
+        },
+        {
+          "name": "in_out_shift",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_out_shift"
+        }
+      ],
+      "adapter": {
+        "name": "ready-valid",
+        "version": 1,
+        "environment_controls": [
+          "in_valid"
+        ],
+        "artifact_controls": [
+          "in_ready"
+        ],
+        "monitor_state": [
+          "outstanding",
+          "stall_cycles"
+        ]
+      },
+      "clock": "clk",
+      "matching": "ordered",
+      "identifier": null,
+      "max_outstanding": null,
+      "response_deadline": null,
+      "answers_per_transaction": null,
+      "terminal_quiescence": null,
+      "reset_policy": null,
+      "kind": "transaction"
+    },
+    {
+      "name": "out",
+      "direction": "out",
+      "fields": [
+        {
+          "name": "out_error",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "out_error"
+        },
+        {
+          "name": "out_output",
+          "type": {
+            "width": 8,
+            "signed": false
+          },
+          "port": "out_output"
+        }
+      ],
+      "adapter": {
+        "name": "ready-valid",
+        "version": 1,
+        "environment_controls": [
+          "out_ready"
+        ],
+        "artifact_controls": [
+          "out_valid"
+        ],
+        "monitor_state": [
+          "outstanding",
+          "stall_cycles"
+        ]
+      },
+      "clock": "clk",
+      "matching": "ordered",
+      "identifier": null,
+      "max_outstanding": null,
+      "response_deadline": null,
+      "answers_per_transaction": null,
+      "terminal_quiescence": null,
+      "reset_policy": null,
+      "kind": "transaction"
+    }
+  ],
+  "clocks": [
+    {
+      "name": "clk",
+      "clock": "clk",
+      "edge": "rising",
+      "reset": "rst",
+      "reset_active_low": false,
+      "reset_hold_cycles": 3,
+      "reset_restores": null
+    }
+  ],
+  "memories": [],
+  "protocol_instances": [],
+  "observation_goals": [],
+  "transaction_monitors": [],
+  "latency_goals": [],
+  "operation_rules": [],
+  "source_read_rules": [],
+  "authority": "task",
+  "source": "declared by signal_processing_cnn_elementwise_arm_elementwise_add_s8",
+  "physical_value_layout": "packed-value/1"
+}

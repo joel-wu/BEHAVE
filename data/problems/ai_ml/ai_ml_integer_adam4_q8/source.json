@@ -1,0 +1,22 @@
+{
+  "id": "ai_ml_integer_adam4_q8",
+  "source_kind": "ai_ml",
+  "name": "Adam4Q8",
+  "family": "adam4_q8",
+  "tier": 2,
+  "license": "BSD-3-Clause",
+  "provenance": [
+    {
+      "repository": "https://github.com/pytorch/pytorch",
+      "revision": "a8d6afb511a69687bbb2b7e88a3cf67917e1697e",
+      "license": "BSD-3-Clause",
+      "file": "torch/optim/adam.py",
+      "symbol": "_single_tensor_adam moment update and bias corrections",
+      "sha256": "bed22e29e5525e91329616ed8b9267afb77217e6eb1e5ac61e6ffff5d8384758",
+      "url": "https://github.com/pytorch/pytorch/blob/a8d6afb511a69687bbb2b7e88a3cf67917e1697e/torch/optim/adam.py",
+      "license_file": "data/licenses/pytorch_pytorch/LICENSE"
+    }
+  ],
+  "adaptation": "One bias-corrected four-parameter Adam update with bounded explicit state.\n\nRNE is nearest integer with ties to even. Clip16 saturates to [-32768,32767]. All state is explicitly passed in and returned, not hidden between requests. p,g,m are INT16 Q8; v is UINT32 Q16. Let t=1+in_step_minus1 (1..8), A=2^t, B=A-1. Both beta coefficients are 1/2, learning rate is 1/16, epsilon 1/256. Compute mnew=RNE((m+g)/2), vnew=floor((v+g*g)/2), vhat=floor(vnew*A/B), d=floor(sqrt(vhat))+1, delta=RNE(16*mnew*A/(B*d)), pnew=Clip16(p-delta). Output pnew[4] at 16*i, mnew[4] at 64+16*i, and vnew[4] at 128+32*i. No clipping occurs before the exact vhat calculation (which can exceed 32 bits); vnew always fits UINT32. The declared moment quantization, integer square root and final saturation specialize Adam to fixed-point storage; this is not AdamW, AMSGrad or a claim of bit identity with floating-point Adam.",
+  "difficulty": "challenge"
+}

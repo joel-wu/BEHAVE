@@ -1,0 +1,276 @@
+{
+  "version": "task-contract/16",
+  "endpoints": [
+    {
+      "name": "in",
+      "direction": "in",
+      "fields": [
+        {
+          "name": "in_destination_address",
+          "type": {
+            "width": 64,
+            "signed": false
+          },
+          "port": "in_destination_address"
+        },
+        {
+          "name": "in_destination_line",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_destination_line"
+        },
+        {
+          "name": "in_destination_surface",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_destination_surface"
+        },
+        {
+          "name": "in_destination_type",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "in_destination_type"
+        },
+        {
+          "name": "in_line_repeat",
+          "type": {
+            "width": 14,
+            "signed": false
+          },
+          "port": "in_line_repeat"
+        },
+        {
+          "name": "in_line_size",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_line_size"
+        },
+        {
+          "name": "in_source_address",
+          "type": {
+            "width": 64,
+            "signed": false
+          },
+          "port": "in_source_address"
+        },
+        {
+          "name": "in_source_line",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_source_line"
+        },
+        {
+          "name": "in_source_surface",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_source_surface"
+        },
+        {
+          "name": "in_source_type",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "in_source_type"
+        },
+        {
+          "name": "in_surface_repeat",
+          "type": {
+            "width": 14,
+            "signed": false
+          },
+          "port": "in_surface_repeat"
+        }
+      ],
+      "adapter": {
+        "name": "ready-valid",
+        "version": 1,
+        "environment_controls": [
+          "in_valid"
+        ],
+        "artifact_controls": [
+          "in_ready"
+        ],
+        "monitor_state": [
+          "outstanding",
+          "stall_cycles"
+        ]
+      },
+      "clock": "clk",
+      "matching": "ordered",
+      "identifier": null,
+      "max_outstanding": null,
+      "response_deadline": null,
+      "answers_per_transaction": null,
+      "terminal_quiescence": null,
+      "reset_policy": null,
+      "kind": "transaction"
+    },
+    {
+      "name": "out",
+      "direction": "out",
+      "fields": [
+        {
+          "name": "out_destination_address",
+          "type": {
+            "width": 64,
+            "signed": false
+          },
+          "port": "out_destination_address"
+        },
+        {
+          "name": "out_destination_line",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "out_destination_line"
+        },
+        {
+          "name": "out_destination_surface",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "out_destination_surface"
+        },
+        {
+          "name": "out_destination_type",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "out_destination_type"
+        },
+        {
+          "name": "out_enable",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "out_enable"
+        },
+        {
+          "name": "out_illegal",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "out_illegal"
+        },
+        {
+          "name": "out_line",
+          "type": {
+            "width": 27,
+            "signed": false
+          },
+          "port": "out_line"
+        },
+        {
+          "name": "out_line_repeat",
+          "type": {
+            "width": 13,
+            "signed": false
+          },
+          "port": "out_line_repeat"
+        },
+        {
+          "name": "out_source_address",
+          "type": {
+            "width": 64,
+            "signed": false
+          },
+          "port": "out_source_address"
+        },
+        {
+          "name": "out_source_line",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "out_source_line"
+        },
+        {
+          "name": "out_source_surface",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "out_source_surface"
+        },
+        {
+          "name": "out_source_type",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "out_source_type"
+        },
+        {
+          "name": "out_surface_repeat",
+          "type": {
+            "width": 13,
+            "signed": false
+          },
+          "port": "out_surface_repeat"
+        }
+      ],
+      "adapter": {
+        "name": "ready-valid",
+        "version": 1,
+        "environment_controls": [
+          "out_ready"
+        ],
+        "artifact_controls": [
+          "out_valid"
+        ],
+        "monitor_state": [
+          "outstanding",
+          "stall_cycles"
+        ]
+      },
+      "clock": "clk",
+      "matching": "ordered",
+      "identifier": null,
+      "max_outstanding": null,
+      "response_deadline": null,
+      "answers_per_transaction": null,
+      "terminal_quiescence": null,
+      "reset_policy": null,
+      "kind": "transaction"
+    }
+  ],
+  "clocks": [
+    {
+      "name": "clk",
+      "clock": "clk",
+      "edge": "rising",
+      "reset": "rst",
+      "reset_active_low": false,
+      "reset_hold_cycles": 3,
+      "reset_restores": null
+    }
+  ],
+  "memories": [],
+  "protocol_instances": [],
+  "observation_goals": [],
+  "transaction_monitors": [],
+  "latency_goals": [],
+  "operation_rules": [],
+  "source_read_rules": [],
+  "authority": "task",
+  "source": "declared by ai_ml_arch_dma_dma_strided_2d",
+  "physical_value_layout": "packed-value/1"
+}

@@ -1,0 +1,32 @@
+{
+  "id": "ai_ml_integer_kmeans_centroids8x4",
+  "source_kind": "ai_ml",
+  "name": "KMeansCentroids8x4",
+  "family": "kmeans_centroids8x4",
+  "tier": 2,
+  "license": "BSD-3-Clause",
+  "provenance": [
+    {
+      "repository": "https://github.com/scikit-learn/scikit-learn",
+      "revision": "156ef141f3b270edb06c8ae9af37c55253c0aabe",
+      "license": "BSD-3-Clause",
+      "file": "sklearn/cluster/_k_means_common.pyx",
+      "symbol": "_average_centers",
+      "sha256": "3aa9b4f3cebd60bb5f6d69a67068b473ad84b8c816d8f3e86e430fc6955e8470",
+      "url": "https://github.com/scikit-learn/scikit-learn/blob/156ef141f3b270edb06c8ae9af37c55253c0aabe/sklearn/cluster/_k_means_common.pyx",
+      "license_file": "data/licenses/scikit-learn_scikit-learn/COPYING"
+    },
+    {
+      "repository": "https://github.com/scikit-learn/scikit-learn",
+      "revision": "156ef141f3b270edb06c8ae9af37c55253c0aabe",
+      "license": "BSD-3-Clause",
+      "file": "sklearn/cluster/_k_means_lloyd.pyx",
+      "symbol": "assigned-point centroid accumulation",
+      "sha256": "bb62d8f46cbae469582edca0c1ff392d5d1a599591d30838271d0b652cff0447",
+      "url": "https://github.com/scikit-learn/scikit-learn/blob/156ef141f3b270edb06c8ae9af37c55253c0aabe/sklearn/cluster/_k_means_lloyd.pyx",
+      "license_file": "data/licenses/scikit-learn_scikit-learn/COPYING"
+    }
+  ],
+  "adaptation": "Update four integer centroids from eight assigned four-dimensional INT8 observations.\n\nEach active mask bit selects one point; its two-bit label is the assigned cluster. Sum every active observation in its assigned cluster and divide each coordinate by the cluster count, rounding nearest with ties away from zero. Return sixteen signed INT16 centroid coordinates, cluster-major, then four unsigned four-bit counts at 256+4*c. An empty cluster retains its supplied previous INT16 centroid, not zero or a relocated point. Assignments are input, so this is the M-step/centroid reduction rather than nearest-center search. The empty-cluster retention and integer rounding are explicit adaptations of sklearn Lloyd center averaging; the source may relocate empty clusters and works in floating point.",
+  "difficulty": "medium"
+}

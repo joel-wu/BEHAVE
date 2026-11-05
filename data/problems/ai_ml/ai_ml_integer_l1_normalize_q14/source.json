@@ -1,0 +1,22 @@
+{
+  "id": "ai_ml_integer_l1_normalize_q14",
+  "source_kind": "ai_ml",
+  "name": "L1NormalizeQ14",
+  "family": "l1_normalize_q14",
+  "tier": 2,
+  "license": "Apache-2.0",
+  "provenance": [
+    {
+      "repository": "https://github.com/onnx/onnx",
+      "revision": "57b9c6a4f6eebb09ae1b34cfb632078518f72832",
+      "license": "Apache-2.0",
+      "file": "onnx/reference/ops/aionnxml/op_normalizer.py",
+      "symbol": "Normalizer.norm_l1",
+      "sha256": "72ed83a5083462177c24e669efc4361ede6698394385fd6597d76da1e127a183",
+      "url": "https://github.com/onnx/onnx/blob/57b9c6a4f6eebb09ae1b34cfb632078518f72832/onnx/reference/ops/aionnxml/op_normalizer.py",
+      "license_file": "data/licenses/onnx_onnx/LICENSE"
+    }
+  ],
+  "adaptation": "Normalize one row of eight signed INT16 samples by its L1 norm. Let D=sum(abs(X[i])), including abs(-32768)=32768. If D=0 emit eight zero lanes. Otherwise output each 16384*X[i]/D rounded to nearest integer with ties away from zero. Outputs are signed INT16 Q2.14: real +1 is raw 16384, not 32767. Retain all intermediate bits; no saturation or wrapping is necessary. The source row-wise L1 normalization and zero-row behavior are retained; exact rational arithmetic and one final Q2.14 rounding replace float arithmetic.",
+  "difficulty": "medium"
+}

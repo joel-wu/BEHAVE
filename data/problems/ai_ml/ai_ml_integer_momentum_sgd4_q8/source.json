@@ -1,0 +1,22 @@
+{
+  "id": "ai_ml_integer_momentum_sgd4_q8",
+  "source_kind": "ai_ml",
+  "name": "MomentumSGD4Q8",
+  "family": "momentum_sgd4_q8",
+  "tier": 2,
+  "license": "BSD-3-Clause",
+  "provenance": [
+    {
+      "repository": "https://github.com/pytorch/pytorch",
+      "revision": "a8d6afb511a69687bbb2b7e88a3cf67917e1697e",
+      "license": "BSD-3-Clause",
+      "file": "torch/optim/sgd.py",
+      "symbol": "_single_tensor_sgd",
+      "sha256": "18f302f579eb81d8102ccd8ff6c71c12f181f22154c9de4f076aeb415bd7f62d",
+      "url": "https://github.com/pytorch/pytorch/blob/a8d6afb511a69687bbb2b7e88a3cf67917e1697e/torch/optim/sgd.py",
+      "license_file": "data/licenses/pytorch_pytorch/LICENSE"
+    }
+  ],
+  "adaptation": "One four-parameter momentum SGD update in Q8 storage.\n\nRNE is nearest integer with ties to even. Clip16 saturates to [-32768,32767]. All state is explicitly passed in and returned, not hidden between requests. Parameter p, gradient g and existing momentum m are signed INT16 raw values in units 1/256. Momentum coefficient is 3/4, learning rate 1/16, dampening and weight decay zero. If first=1 set mnew=g; otherwise mnew=Clip16(RNE((3*m+4*g)/4)). For ordinary momentum delta=RNE(mnew/16). For Nesterov delta=RNE((4*g+3*mnew)/64). Then pnew=Clip16(p-delta). Output pnew[4] followed by mnew[4], all INT16. Only the stated storage rounding/saturation differs from floating-point SGD; Nesterov uses the updated momentum, and first ignores the supplied old buffer.",
+  "difficulty": "medium"
+}

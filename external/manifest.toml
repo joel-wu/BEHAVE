@@ -1,0 +1,45 @@
+# Source revisions and local patches captured from the experimental runtimes.
+# Training entries were checked against the native environment on 2026-10-14;
+# installed distribution versions are in infra/train/native_runtime.json.
+# Apply each component's patch series once to its pinned commit. These combined
+# training patches already include the Slime bootstrap changes present locally;
+# do not apply the bootstrap's patch series a second time. This is source
+# provenance, not a certified installer or a lock of compiled CUDA artifacts.
+
+[slime]
+upstream = "https://github.com/THUDM/slime.git"
+commit = "a3f500977f33b82de6ac0414c0c43abfe656c3e0"
+patches = []
+
+[sglang]
+upstream = "https://github.com/sgl-project/sglang.git"
+commit = "0b3bb0cbe31873994c9f989fddfe2f87ca839fdd"
+patches = ["0001-training-runtime.patch"]
+patch_sha256 = { "0001-training-runtime.patch" = "39824840ecaafc84b62184dc53f4eb5a48dc9660882e5918cacfb335e22c9f08" }
+notes = "Training checkout: 66 tracked changes and four additional source files. Not the separate evaluation checkout."
+
+[megatron-lm]
+upstream = "https://github.com/NVIDIA/Megatron-LM.git"
+commit = "1dcf0dafa884ad52ffb243625717a3471643e087"
+patches = ["0001-training-runtime.patch"]
+patch_sha256 = { "0001-training-runtime.patch" = "44bbdda1d4414e39deaf4575d4d62a402d226f058a79f479afdfa31474e8ab56" }
+notes = "Combined experimental changes to 21 files, including Slime bootstrap patches."
+
+[apex]
+upstream = "https://github.com/NVIDIA/apex.git"
+commit = "10417aceddd7d5d05d7cbf7b0fc2daad1105f8b4"
+patches = []
+notes = "Observed clean source checkout. The installed compiled extension still requires binary/build provenance."
+
+# Eval adapters use tools.setup_pipeline_sources; their pins are unchanged.
+[chipmate]
+upstream = "https://github.com/zhongkaiyu/ChipMATE.git"
+commit = "d94087b5159aea482648b26398a2ffb164246671"
+patches = ["0001-sandbox-verifier-hook.patch", "0002-full-repair-context.patch", "0003-verifier-correctness-and-diagnostics.patch"]
+license = "Apache-2.0"
+
+[mage]
+upstream = "https://github.com/stable-lab/MAGE.git"
+commit = "90c96366c518d32bd7b81703bdef3cc46eeaeaf9"
+patches = ["0001-shared-transport.patch", "0002-declared-editor-action.patch", "0003-remove-assumed-reference.patch", "0004-failure-handling.patch"]
+license = "MIT"

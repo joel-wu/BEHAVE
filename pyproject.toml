@@ -1,0 +1,136 @@
+[build-system]
+# Pin the build backend for reproducible wheels.
+requires = ["setuptools==83.0.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "behave"
+version = "0.1.0"
+description = "BEHAVE: functional behavior modeling for hardware design and verification agents."
+requires-python = ">=3.11,<3.13"
+
+# Shared model transport uses the standard library. Jinja renders native model
+# chat templates; external-method validation/rendering belongs to pipelines.
+dependencies = [
+    "jinja2>=3.1",
+]
+
+[project.optional-dependencies]
+pipelines = ["pydantic>=2.13.3", "rich==13.9.4"]
+# Source-text preparation runs in the control environment, independently of
+# Torch/SGLang. Match the tokenizer implementation in the reviewed native stack.
+raw = ["tokenizers==0.22.2"]
+# Python solver used by the finite symbolic encodings.  It is separate from
+# the external EDA programs so the exact-Behavior lane can run without an RTL
+# toolchain.
+solver = [
+    "z3-solver==4.16.0.0",
+]
+
+# Verification stack. The EDA binaries (verilator, yosys, iverilog) are not
+# available from PyPI and are installed by scripts/setup_eda.sh.
+eda = [
+    # Replay templates and analysis engines depend on these versions.
+    "cocotb==2.0.1",
+    "z3-solver==4.16.0.0",
+    "crosshair-tool==0.0.103",
+    "coverage>=7.10.7",
+    "hypothesis>=6.141.1",
+    # Reference oracle for the floating-point library tests.
+    "numpy>=2.0",
+]
+
+# Python dependencies for the target reinforcement-learning stack. Supported
+# accelerator-specific provisioning and the external training components are
+# documented in infra/train/README.md. This extra alone does not install
+# the native training environment.
+train = [
+    "ray[default]>=2.9",
+    "transformers>=4.51",
+    "datasets",
+    "accelerate",
+    "wandb",
+    "tensorboard",
+]
+
+dev = [
+    "pytest>=8.4.2",
+    "pytest-asyncio>=0.23",
+    "pytest-xdist>=3.6",
+    "ruff>=0.3",
+]
+
+# Frozen reference-numeric behavior used by dataset regression tests, not a
+# solver/runtime dependency. Install alongside dev (and eda where requested).
+dataset-tests = [
+    "fxpmath==0.4.9",
+    "numpy>=2.0",
+]
+
+[project.scripts]
+behave-infra = "behave.cli.__main__:main"
+behave-eval = "behave.eval.__main__:main"
+behave-train = "behave.train.__main__:main"
+behave-trainer = "behave.cli.trainer:main"
+behave-data = "behave.data.__main__:main"
+behave-inspect = "behave.cli.inspect:main"
+behave-release = "behave.cli.release:main"
+
+[project.entry-points."sglang.srt.plugins"]
+behave_qwen_tools = "behave.agent.providers.sglang_tools:register_qwen_tools"
+behave_tokenize_workers = "behave.agent.providers.sglang_tokenize:register_tokenize_workers"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+behave = [
+    "sim/templates/*.tmpl",
+    "sim/rtl/*.cpp",
+    "agent/prompts/*.md",
+    "agent/prompts/**/*.md",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+asyncio_mode = "auto"
+# Extends rather than replaces the default ignore list; ".*" keeps caches such
+# as .hypothesis out of collection.
+norecursedirs = [".*", "build", "dist", "*.egg", "work", "data", "external"]
+markers = [
+    "pipelines: requires optional external-method dependencies or pinned ChipMate/MAGE sources",
+    "cluster_training: opt-in fixed-world multi-node lane in explicit existing Slurm allocations",
+    "native_training: opt-in native framework lane with an explicit pinned trainer interpreter",
+    "gpu_training: opt-in allocated GPU/NCCL lane; never inferred from CUDA availability",
+    "locked_env: checks the installed environment against the complete pinned eda+dev lock",
+    "solver: requires the optional z3-solver Python package",
+    "eda(*tools): requires the named external EDA tools; no arguments means the complete toolchain",
+    "isolation: requires the production namespace isolation backend",
+    "cosim: compatibility marker for tests requiring both the complete EDA toolchain and production isolation",
+    "dataset: population test that reads whole problem sets from data/problems",
+]
+
+[tool.ruff]
+target-version = "py311"
+line-length = 120
+exclude = ["external", "work", "data", ".venv"]
+
+# These modules are process and trust boundaries: they must turn arbitrary
+# exceptions raised by submitted models, optional engines, or dying tool
+# processes into typed outcomes.  Keeping the exceptions broad is part of that
+# boundary rather than accidental error suppression.
+[tool.ruff.lint.per-file-ignores]
+"src/behave/sim/authority.py" = ["BLE001", "S110"]
+"src/behave/sim/backends.py" = ["BLE001"]
+"src/behave/sim/engines/behavior/dual/__init__.py" = ["BLE001", "S110"]
+"src/behave/sim/engines/behavior/dual/explorer.py" = ["BLE001", "S112"]
+"src/behave/sim/engines/rtl/dual/engine.py" = ["BLE001"]
+"src/behave/sim/rtl/site_target.py" = ["BLE001"]
+"tests/sim/test_evaluation_policy.py" = ["B018"]
+"tests/sim/test_external_memory_product.py" = ["RUF012"]
+"tests/sim/test_goals.py" = ["S102"]
+"tests/sim/test_internal_arrays.py" = ["PLR0124"]
+"tests/sim/test_relation_domain.py" = ["RUF012"]
+"tests/sim/test_snapshot_reconciliation.py" = ["BLE001", "S110"]
+"tests/sim/test_source_model.py" = ["B018"]
+"tests/sim/test_wave1_closure.py" = ["RUF012"]

@@ -1,0 +1,208 @@
+{
+  "version": "task-contract/8",
+  "endpoints": [
+    {
+      "name": "in",
+      "direction": "in",
+      "fields": [
+        {
+          "name": "clk_in_level",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "clk_in_level"
+        },
+        {
+          "name": "reset_level",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "reset_level"
+        },
+        {
+          "name": "addr_from_up",
+          "type": {
+            "width": 24,
+            "signed": false
+          },
+          "port": "addr_from_up"
+        },
+        {
+          "name": "rd_n_from_up",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "rd_n_from_up"
+        },
+        {
+          "name": "wr_n_from_up",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "wr_n_from_up"
+        },
+        {
+          "name": "bus_term_from_up",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "bus_term_from_up"
+        }
+      ],
+      "adapter": {
+        "name": "combinational-settled",
+        "version": 1,
+        "environment_controls": [],
+        "artifact_controls": [],
+        "monitor_state": []
+      },
+      "clock": null,
+      "matching": "ordered",
+      "identifier": null,
+      "max_outstanding": null,
+      "response_deadline": null,
+      "answers_per_transaction": null,
+      "terminal_quiescence": null,
+      "reset_policy": null,
+      "kind": "transaction"
+    },
+    {
+      "name": "out",
+      "direction": "out",
+      "fields": [
+        {
+          "name": "addr",
+          "type": {
+            "width": 13,
+            "signed": false
+          },
+          "port": "addr"
+        },
+        {
+          "name": "ba",
+          "type": {
+            "width": 2,
+            "signed": false
+          },
+          "port": "ba"
+        },
+        {
+          "name": "clk",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "clk"
+        },
+        {
+          "name": "cke",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "cke"
+        },
+        {
+          "name": "cs_n",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "cs_n"
+        },
+        {
+          "name": "ras_n",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "ras_n"
+        },
+        {
+          "name": "cas_n",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "cas_n"
+        },
+        {
+          "name": "we_n",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "we_n"
+        },
+        {
+          "name": "dqm",
+          "type": {
+            "width": 2,
+            "signed": false
+          },
+          "port": "dqm"
+        },
+        {
+          "name": "dram_init_done",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "dram_init_done"
+        },
+        {
+          "name": "dram_busy",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "dram_busy"
+        },
+        {
+          "name": "rd_dat_from_dram_ready",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "rd_dat_from_dram_ready"
+        }
+      ],
+      "adapter": {
+        "name": "combinational-settled",
+        "version": 1,
+        "environment_controls": [],
+        "artifact_controls": [],
+        "monitor_state": []
+      },
+      "clock": null,
+      "matching": "ordered",
+      "identifier": null,
+      "max_outstanding": null,
+      "response_deadline": null,
+      "answers_per_transaction": 1,
+      "terminal_quiescence": null,
+      "reset_policy": null,
+      "kind": "transaction"
+    }
+  ],
+  "clocks": [],
+  "memories": [],
+  "protocol_instances": [
+    {
+      "name": "compute",
+      "endpoints": [
+        "in",
+        "out"
+      ],
+      "mapping": "direct/1"
+    }
+  ],
+  "authority": "task",
+  "source": "Source-native storage with explicit settled phase-level observation and documented startup; batch2147 audit",
+  "physical_value_layout": "packed-value/1"
+}

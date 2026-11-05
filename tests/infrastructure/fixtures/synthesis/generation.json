@@ -1,0 +1,17 @@
+{
+  "base_settings": "tests/infrastructure/fixtures/synthesis/pilot.json",
+  "generation_only": true,
+  "acquired_updates": 0,
+  "raw_updates": 0,
+  "generation_target": {"admitted_tasks": 20, "max_batches": 2},
+  "acquisition_workers": 5,
+  "acquisition_limits": {"max_tasks": 3, "max_observations": 24},
+  "role_attempts": {
+    "source_acquirer": {"max_turns": 100},
+    "task_author": {"max_turns": 100},
+    "spec_reader": {"max_turns": 100},
+    "source_reviewer": {"max_turns": 100}
+  },
+  "output_preview_bytes": 32768,
+  "cpus": 90
+}

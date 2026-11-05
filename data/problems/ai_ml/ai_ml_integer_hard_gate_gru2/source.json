@@ -1,0 +1,22 @@
+{
+  "id": "ai_ml_integer_hard_gate_gru2",
+  "source_kind": "ai_ml",
+  "name": "HardGateGRU2",
+  "family": "hard_gate_gru2",
+  "tier": 2,
+  "license": "Apache-2.0",
+  "provenance": [
+    {
+      "repository": "https://github.com/onnx/onnx",
+      "revision": "57b9c6a4f6eebb09ae1b34cfb632078518f72832",
+      "license": "Apache-2.0",
+      "file": "onnx/reference/ops/op_gru.py",
+      "symbol": "CommonGRU._step, h_default and H update",
+      "sha256": "a2abad55e14cb7759adf74e86a3d16aba4ed978bed01ed934dcba417300c0be7",
+      "url": "https://github.com/onnx/onnx/blob/57b9c6a4f6eebb09ae1b34cfb632078518f72832/onnx/reference/ops/op_gru.py",
+      "license_file": "data/licenses/onnx_onnx/LICENSE"
+    }
+  ],
+  "adaptation": "A complete two-input/two-hidden-unit recurrent GRU step with persistent state H[2], initially zero. This is an explicitly fixed-point HARD-gate adaptation of the source GRU recurrence (linear_before_reset=0), not floating sigmoid/tanh ONNX numerical equivalence. X, H and each weight are signed INT8 in units 1/128. W and R each contain twelve INT8 values: three row-major 2x2 matrices in z,r,h order, index 4*g+2*i+j. Bias contains six INT16 values in units 1/128, index 2*g+i; it represents the sum of input and recurrent biases. Let A(n,d) round n/d to nearest integer with ties away from zero. Read old H (or [0,0] if in_clear=1). For g in {z,r}, P_g[i]=128*b_g[i]+sum_j(W_g[i,j]*X[j]+R_g[i,j]*H[j]); G_g[i]=clip(A(P_g[i],512)+64,0,128). These are hard-sigmoid gates clip(real/4+1/2,0,1). Set V[j]=A(G_r[j]*H[j],128); then C[i]=clip(A(128*b_h[i]+sum_j(W_h[i,j]*X[j]+R_h[i,j]*V[j]),128),-128,127). C is a clipped linear candidate, not tanh. Finally Hnew[i]=clip(A((128-G_z[i])*C[i]+G_z[i]*H[i],128),-128,127). All gates and candidate lanes use the same old state; update both hidden lanes simultaneously and return them. Round at exactly the stated points. Parameters may change between calls and are consumed with that call. Clear discards old state before computing this request; it does not suppress its response.",
+  "difficulty": "challenge"
+}

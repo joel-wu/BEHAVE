@@ -1,0 +1,24 @@
+{
+  "id": "signal_processing_integer_cic3_decimate4",
+  "source_kind": "signal_processing",
+  "name": "CIC3Decimate4",
+  "family": "cic3_decimate4",
+  "tier": 2,
+  "license": "MIT",
+  "contribution_license": "Apache-2.0",
+  "provenance": [
+    {
+      "repository": "https://github.com/alexforencich/verilog-dsp",
+      "revision": "67c3ed7be5dc88c375780257caa0fffdd27a63dd",
+      "license": "MIT",
+      "file": "rtl/cic_decimator.v",
+      "symbol": "cic_decimator; integrator/decimator/comb architecture",
+      "url": "https://github.com/alexforencich/verilog-dsp/blob/67c3ed7be5dc88c375780257caa0fffdd27a63dd/rtl/cic_decimator.v",
+      "sha256": "96ca19baa5b914e1574a700e14719e3ae47cc34f2ff23bd62caca3fc6fdbbc86",
+      "license_file": "data/licenses/alexforencich_verilog-dsp/COPYING",
+      "license_sha256": "2a7dffbcb31cdbf2bf368099806958e7ad93dacd6bfb8e6bcd9e898babc55269"
+    }
+  ],
+  "adaptation": "Retain the generic integrator/decimator/comb architecture, fix N=3, R=4, M=1, signed 16-bit samples and exact signed 22-bit output. Four logical samples form one transaction, with output at the fourth sample and zero prehistory. The explicit FIR definition fixes phase independently of the upstream pipeline. Internal modulo-32 arithmetic and the transaction schedule are BEHAVE adaptations; this is not cycle-exact reuse of cic_decimator.v.",
+  "difficulty": "medium"
+}

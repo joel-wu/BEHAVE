@@ -1,0 +1,114 @@
+{
+  "version": "task-contract/8",
+  "endpoints": [
+    {
+      "name": "in",
+      "direction": "in",
+      "fields": [
+        {
+          "name": "ena",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "ena"
+        }
+      ],
+      "adapter": {
+        "name": "sampled-edge",
+        "version": 1,
+        "environment_controls": [],
+        "artifact_controls": [],
+        "monitor_state": []
+      },
+      "clock": "clk",
+      "matching": "ordered",
+      "identifier": null,
+      "max_outstanding": null,
+      "response_deadline": null,
+      "answers_per_transaction": null,
+      "terminal_quiescence": null,
+      "reset_policy": null,
+      "kind": "transaction"
+    },
+    {
+      "name": "out",
+      "direction": "out",
+      "fields": [
+        {
+          "name": "pm",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "pm"
+        },
+        {
+          "name": "hh",
+          "type": {
+            "width": 8,
+            "signed": false
+          },
+          "port": "hh"
+        },
+        {
+          "name": "mm",
+          "type": {
+            "width": 8,
+            "signed": false
+          },
+          "port": "mm"
+        },
+        {
+          "name": "ss",
+          "type": {
+            "width": 8,
+            "signed": false
+          },
+          "port": "ss"
+        }
+      ],
+      "adapter": {
+        "name": "sampled-edge",
+        "version": 1,
+        "environment_controls": [],
+        "artifact_controls": [],
+        "monitor_state": []
+      },
+      "clock": "clk",
+      "matching": "ordered",
+      "identifier": null,
+      "max_outstanding": null,
+      "response_deadline": null,
+      "answers_per_transaction": 1,
+      "terminal_quiescence": null,
+      "reset_policy": null,
+      "kind": "transaction"
+    }
+  ],
+  "clocks": [
+    {
+      "name": "clk",
+      "clock": "clk",
+      "edge": "rising",
+      "reset": "reset",
+      "reset_active_low": false,
+      "reset_hold_cycles": 3,
+      "reset_restores": true
+    }
+  ],
+  "memories": [],
+  "protocol_instances": [
+    {
+      "name": "compute",
+      "endpoints": [
+        "in",
+        "out"
+      ],
+      "mapping": "direct/1"
+    }
+  ],
+  "authority": "task",
+  "source": "Native VerilogEval clock semantics; batch99 records source completions",
+  "physical_value_layout": "packed-value/1"
+}

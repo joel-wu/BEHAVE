@@ -1,0 +1,22 @@
+{
+  "id": "ai_ml_integer_compress_rows8x2",
+  "source_kind": "ai_ml",
+  "name": "CompressRows8x2",
+  "family": "compress_rows8x2",
+  "tier": 1,
+  "license": "Apache-2.0",
+  "provenance": [
+    {
+      "repository": "https://github.com/onnx/onnx",
+      "revision": "57b9c6a4f6eebb09ae1b34cfb632078518f72832",
+      "license": "Apache-2.0",
+      "file": "onnx/reference/ops/op_compress.py",
+      "symbol": "Compress._run",
+      "sha256": "74ae82e3c077f3ca084b9176bd8a01e068b5a8044badbec4fe58d5518a100196",
+      "url": "https://github.com/onnx/onnx/blob/57b9c6a4f6eebb09ae1b34cfb632078518f72832/onnx/reference/ops/op_compress.py",
+      "license_file": "data/licenses/onnx_onnx/LICENSE"
+    }
+  ],
+  "adaptation": "Filter a row-major 8x2 byte matrix along axis zero. Keep row i iff mask bit i is one, preserving original row order. Pack the selected two-byte rows consecutively in the low 128 output bits and zero every unused byte. Bits [131:128] contain the count of selected rows, 0..8. A zero mask returns an entirely zero output record, not a missing transaction. This is the complete stable Compress operator with a fixed-capacity, count-bearing representation of its variable-length result.",
+  "difficulty": "basic"
+}

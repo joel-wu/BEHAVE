@@ -1,0 +1,104 @@
+{
+  "version": "task-contract/8",
+  "endpoints": [
+    {
+      "name": "in",
+      "direction": "in",
+      "fields": [
+        {
+          "name": "fetch_rdata_i",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "fetch_rdata_i"
+        },
+        {
+          "name": "fetch_pc_i",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "fetch_pc_i"
+        },
+        {
+          "name": "fetch_valid_i",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "fetch_valid_i"
+        }
+      ],
+      "adapter": {
+        "name": "combinational-settled",
+        "version": 1,
+        "environment_controls": [],
+        "artifact_controls": [],
+        "monitor_state": []
+      },
+      "clock": null,
+      "matching": "ordered",
+      "identifier": null,
+      "max_outstanding": null,
+      "response_deadline": null,
+      "answers_per_transaction": null,
+      "terminal_quiescence": null,
+      "reset_policy": null,
+      "kind": "transaction"
+    },
+    {
+      "name": "out",
+      "direction": "out",
+      "fields": [
+        {
+          "name": "predict_branch_taken_o",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "predict_branch_taken_o"
+        },
+        {
+          "name": "predict_branch_pc_o",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "predict_branch_pc_o"
+        }
+      ],
+      "adapter": {
+        "name": "combinational-settled",
+        "version": 1,
+        "environment_controls": [],
+        "artifact_controls": [],
+        "monitor_state": []
+      },
+      "clock": null,
+      "matching": "ordered",
+      "identifier": null,
+      "max_outstanding": null,
+      "response_deadline": null,
+      "answers_per_transaction": 1,
+      "terminal_quiescence": null,
+      "reset_policy": null,
+      "kind": "transaction"
+    }
+  ],
+  "clocks": [],
+  "memories": [],
+  "protocol_instances": [
+    {
+      "name": "compute",
+      "endpoints": [
+        "in",
+        "out"
+      ],
+      "mapping": "direct/1"
+    }
+  ],
+  "authority": "task",
+  "source": "cvdp native combinational interface; original material archived in batch101",
+  "physical_value_layout": "packed-value/1"
+}

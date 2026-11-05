@@ -1,0 +1,1 @@
+Use read_file to read input.txt. Use write_file to create output.txt containing exactly that text followed by the literal :checked, with no newline. After the write tool succeeds, reply Done without any more tool calls. Do not guess the input.

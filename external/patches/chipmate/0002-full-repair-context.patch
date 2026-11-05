@@ -1,0 +1,38 @@
+diff --git a/chipmate/prompts.py b/chipmate/prompts.py
+index bc0cc7e..792de57 100644
+--- a/chipmate/prompts.py
++++ b/chipmate/prompts.py
+@@ -62,15 +62,12 @@ def build_v_prompt(question, turn_idx, v_history, v_error):
+         parts = []
+         for i, prev in enumerate(recent):
+             label = f"Attempt {len(valid) - len(recent) + i + 1}"
+-            if len(prev) > 1500:
+-                prev = prev[:1500] + "\n// ...(code truncated)..."
+             parts.append(f"{label}:\n```verilog\n{prev}\n```")
+         if parts:
+             previous_code = "Your previous Verilog attempts:\n" + "\n\n".join(parts) + "\n\n"
+     previous_error_log = ""
+     if turn_idx > 0 and v_error:
+-        err = v_error if len(v_error) <= 2000 else v_error[:2000] + "\n...(truncated)..."
+-        previous_error_log = f"Previous verification error:\n{err}\n\n"
++        previous_error_log = f"Previous verification error:\n{v_error}\n\n"
+     refine = ("Please refine your Verilog code to improve correctness and quality. "
+               "You MUST output the complete module code in ```verilog``` blocks.\n\n") if turn_idx > 0 else ""
+     return V_PROMPT_TEMPLATE.format(
+@@ -90,15 +87,12 @@ def build_p_prompt(question, turn_idx, p_history, p_error):
+         parts = []
+         for i, prev in enumerate(recent):
+             label = f"Attempt {len(valid) - len(recent) + i + 1}"
+-            if len(prev) > 1500:
+-                prev = prev[:1500] + "\n# ...(code truncated)..."
+             parts.append(f"{label}:\n```python\n{prev}\n```")
+         if parts:
+             previous_code = "Your previous Python attempts:\n" + "\n\n".join(parts) + "\n\n"
+     previous_error_log = ""
+     if turn_idx > 0 and p_error:
+-        err = p_error if len(p_error) <= 2000 else p_error[:2000] + "\n...(truncated)..."
+-        previous_error_log = f"Previous verification error:\n{err}\n\n"
++        previous_error_log = f"Previous verification error:\n{p_error}\n\n"
+     refine = ("Please refine your Python code based on the mismatch feedback above. "
+               "Output complete class TopModule in ```python``` blocks.\n\n") if turn_idx > 0 else ""
+     return P_PROMPT_TEMPLATE.format(

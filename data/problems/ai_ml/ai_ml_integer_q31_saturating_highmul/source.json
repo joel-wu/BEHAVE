@@ -1,0 +1,22 @@
+{
+  "id": "ai_ml_integer_q31_saturating_highmul",
+  "source_kind": "ai_ml",
+  "name": "Q31SaturatingHighMul",
+  "family": "q31_saturating_highmul",
+  "tier": 1,
+  "license": "Apache-2.0",
+  "provenance": [
+    {
+      "repository": "https://github.com/google/gemmlowp",
+      "revision": "16e8662c34917be0065110bfcd9cc27d30f52fdf",
+      "license": "Apache-2.0",
+      "file": "fixedpoint/fixedpoint.h",
+      "symbol": "SaturatingRoundingDoublingHighMul<int32_t>",
+      "sha256": "f1b11e756ba138b42abd2f39095fd4d740a26b10ff1a8c682c2eb4d273658cf6",
+      "url": "https://github.com/google/gemmlowp/blob/16e8662c34917be0065110bfcd9cc27d30f52fdf/fixedpoint/fixedpoint.h",
+      "license_file": "data/licenses/google_gemmlowp/LICENSE"
+    }
+  ],
+  "adaptation": "Four independent signed INT32 lane pairs. Return H(a[i],b[i]) in signed INT32 lanes, including the saturating (-2^31)*(-2^31) case.\n\nDefine H(a,b) for signed 32-bit a,b as follows: if both equal\n-2^31, H=2^31-1. Otherwise set p=a*b in signed 64-bit precision and\nn=2^30 for p>=0, or n=1-2^30 for p<0; H=trunc_toward_zero((p+n)/2^31).\nDefine R(x,e)=floor(x/2^e)+[r>t], with r=x mod 2^e in [0,2^e),\nt=floor((2^e-1)/2)+[x<0]. This is nearest-integer rounding, ties away\nfrom zero (including e=0 as the identity). These are two separate rounding\nsteps, not a fused division. Clip8 saturates to [-128,127].",
+  "difficulty": "basic"
+}

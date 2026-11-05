@@ -1,0 +1,924 @@
+{
+  "version": "task-contract/16",
+  "endpoints": [
+    {
+      "name": "in",
+      "direction": "in",
+      "fields": [
+        {
+          "name": "A_log_0",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "A_log_0"
+        },
+        {
+          "name": "A_log_1",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "A_log_1"
+        },
+        {
+          "name": "A_log_10",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "A_log_10"
+        },
+        {
+          "name": "A_log_11",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "A_log_11"
+        },
+        {
+          "name": "A_log_12",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "A_log_12"
+        },
+        {
+          "name": "A_log_13",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "A_log_13"
+        },
+        {
+          "name": "A_log_14",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "A_log_14"
+        },
+        {
+          "name": "A_log_15",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "A_log_15"
+        },
+        {
+          "name": "A_log_2",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "A_log_2"
+        },
+        {
+          "name": "A_log_3",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "A_log_3"
+        },
+        {
+          "name": "A_log_4",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "A_log_4"
+        },
+        {
+          "name": "A_log_5",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "A_log_5"
+        },
+        {
+          "name": "A_log_6",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "A_log_6"
+        },
+        {
+          "name": "A_log_7",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "A_log_7"
+        },
+        {
+          "name": "A_log_8",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "A_log_8"
+        },
+        {
+          "name": "A_log_9",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "A_log_9"
+        },
+        {
+          "name": "D_param",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "D_param"
+        },
+        {
+          "name": "conv1d_bias",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "conv1d_bias"
+        },
+        {
+          "name": "conv1d_weight_0",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "conv1d_weight_0"
+        },
+        {
+          "name": "conv1d_weight_1",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "conv1d_weight_1"
+        },
+        {
+          "name": "conv1d_weight_2",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "conv1d_weight_2"
+        },
+        {
+          "name": "conv1d_weight_3",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "conv1d_weight_3"
+        },
+        {
+          "name": "dt_proj_bias",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "dt_proj_bias"
+        },
+        {
+          "name": "dt_proj_weight",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "dt_proj_weight"
+        },
+        {
+          "name": "in_conv_state_0",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_conv_state_0"
+        },
+        {
+          "name": "in_conv_state_1",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_conv_state_1"
+        },
+        {
+          "name": "in_conv_state_2",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_conv_state_2"
+        },
+        {
+          "name": "in_conv_state_3",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_conv_state_3"
+        },
+        {
+          "name": "in_hidden_state",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_hidden_state"
+        },
+        {
+          "name": "in_proj_bias_x",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_proj_bias_x"
+        },
+        {
+          "name": "in_proj_bias_z",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_proj_bias_z"
+        },
+        {
+          "name": "in_proj_weight_x",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_proj_weight_x"
+        },
+        {
+          "name": "in_proj_weight_z",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_proj_weight_z"
+        },
+        {
+          "name": "in_ssm_state_0",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_ssm_state_0"
+        },
+        {
+          "name": "in_ssm_state_1",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_ssm_state_1"
+        },
+        {
+          "name": "in_ssm_state_10",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_ssm_state_10"
+        },
+        {
+          "name": "in_ssm_state_11",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_ssm_state_11"
+        },
+        {
+          "name": "in_ssm_state_12",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_ssm_state_12"
+        },
+        {
+          "name": "in_ssm_state_13",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_ssm_state_13"
+        },
+        {
+          "name": "in_ssm_state_14",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_ssm_state_14"
+        },
+        {
+          "name": "in_ssm_state_15",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_ssm_state_15"
+        },
+        {
+          "name": "in_ssm_state_2",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_ssm_state_2"
+        },
+        {
+          "name": "in_ssm_state_3",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_ssm_state_3"
+        },
+        {
+          "name": "in_ssm_state_4",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_ssm_state_4"
+        },
+        {
+          "name": "in_ssm_state_5",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_ssm_state_5"
+        },
+        {
+          "name": "in_ssm_state_6",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_ssm_state_6"
+        },
+        {
+          "name": "in_ssm_state_7",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_ssm_state_7"
+        },
+        {
+          "name": "in_ssm_state_8",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_ssm_state_8"
+        },
+        {
+          "name": "in_ssm_state_9",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_ssm_state_9"
+        },
+        {
+          "name": "out_proj_bias",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "out_proj_bias"
+        },
+        {
+          "name": "out_proj_weight",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "out_proj_weight"
+        },
+        {
+          "name": "x_proj_weight_B_0",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "x_proj_weight_B_0"
+        },
+        {
+          "name": "x_proj_weight_B_1",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "x_proj_weight_B_1"
+        },
+        {
+          "name": "x_proj_weight_B_10",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "x_proj_weight_B_10"
+        },
+        {
+          "name": "x_proj_weight_B_11",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "x_proj_weight_B_11"
+        },
+        {
+          "name": "x_proj_weight_B_12",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "x_proj_weight_B_12"
+        },
+        {
+          "name": "x_proj_weight_B_13",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "x_proj_weight_B_13"
+        },
+        {
+          "name": "x_proj_weight_B_14",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "x_proj_weight_B_14"
+        },
+        {
+          "name": "x_proj_weight_B_15",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "x_proj_weight_B_15"
+        },
+        {
+          "name": "x_proj_weight_B_2",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "x_proj_weight_B_2"
+        },
+        {
+          "name": "x_proj_weight_B_3",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "x_proj_weight_B_3"
+        },
+        {
+          "name": "x_proj_weight_B_4",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "x_proj_weight_B_4"
+        },
+        {
+          "name": "x_proj_weight_B_5",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "x_proj_weight_B_5"
+        },
+        {
+          "name": "x_proj_weight_B_6",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "x_proj_weight_B_6"
+        },
+        {
+          "name": "x_proj_weight_B_7",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "x_proj_weight_B_7"
+        },
+        {
+          "name": "x_proj_weight_B_8",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "x_proj_weight_B_8"
+        },
+        {
+          "name": "x_proj_weight_B_9",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "x_proj_weight_B_9"
+        },
+        {
+          "name": "x_proj_weight_C_0",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "x_proj_weight_C_0"
+        },
+        {
+          "name": "x_proj_weight_C_1",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "x_proj_weight_C_1"
+        },
+        {
+          "name": "x_proj_weight_C_10",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "x_proj_weight_C_10"
+        },
+        {
+          "name": "x_proj_weight_C_11",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "x_proj_weight_C_11"
+        },
+        {
+          "name": "x_proj_weight_C_12",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "x_proj_weight_C_12"
+        },
+        {
+          "name": "x_proj_weight_C_13",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "x_proj_weight_C_13"
+        },
+        {
+          "name": "x_proj_weight_C_14",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "x_proj_weight_C_14"
+        },
+        {
+          "name": "x_proj_weight_C_15",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "x_proj_weight_C_15"
+        },
+        {
+          "name": "x_proj_weight_C_2",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "x_proj_weight_C_2"
+        },
+        {
+          "name": "x_proj_weight_C_3",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "x_proj_weight_C_3"
+        },
+        {
+          "name": "x_proj_weight_C_4",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "x_proj_weight_C_4"
+        },
+        {
+          "name": "x_proj_weight_C_5",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "x_proj_weight_C_5"
+        },
+        {
+          "name": "x_proj_weight_C_6",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "x_proj_weight_C_6"
+        },
+        {
+          "name": "x_proj_weight_C_7",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "x_proj_weight_C_7"
+        },
+        {
+          "name": "x_proj_weight_C_8",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "x_proj_weight_C_8"
+        },
+        {
+          "name": "x_proj_weight_C_9",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "x_proj_weight_C_9"
+        },
+        {
+          "name": "x_proj_weight_dt",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "x_proj_weight_dt"
+        }
+      ],
+      "adapter": {
+        "name": "ready-valid",
+        "version": 1,
+        "environment_controls": [
+          "in_valid"
+        ],
+        "artifact_controls": [
+          "in_ready"
+        ],
+        "monitor_state": [
+          "outstanding",
+          "stall_cycles"
+        ]
+      },
+      "clock": "clk",
+      "matching": "ordered",
+      "identifier": null,
+      "max_outstanding": null,
+      "response_deadline": null,
+      "answers_per_transaction": null,
+      "terminal_quiescence": null,
+      "reset_policy": null,
+      "kind": "transaction"
+    },
+    {
+      "name": "out",
+      "direction": "out",
+      "fields": [
+        {
+          "name": "out_conv_state_0",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "out_conv_state_0"
+        },
+        {
+          "name": "out_conv_state_1",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "out_conv_state_1"
+        },
+        {
+          "name": "out_conv_state_2",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "out_conv_state_2"
+        },
+        {
+          "name": "out_conv_state_3",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "out_conv_state_3"
+        },
+        {
+          "name": "out_hidden_state",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "out_hidden_state"
+        },
+        {
+          "name": "out_ssm_state_0",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "out_ssm_state_0"
+        },
+        {
+          "name": "out_ssm_state_1",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "out_ssm_state_1"
+        },
+        {
+          "name": "out_ssm_state_10",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "out_ssm_state_10"
+        },
+        {
+          "name": "out_ssm_state_11",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "out_ssm_state_11"
+        },
+        {
+          "name": "out_ssm_state_12",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "out_ssm_state_12"
+        },
+        {
+          "name": "out_ssm_state_13",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "out_ssm_state_13"
+        },
+        {
+          "name": "out_ssm_state_14",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "out_ssm_state_14"
+        },
+        {
+          "name": "out_ssm_state_15",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "out_ssm_state_15"
+        },
+        {
+          "name": "out_ssm_state_2",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "out_ssm_state_2"
+        },
+        {
+          "name": "out_ssm_state_3",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "out_ssm_state_3"
+        },
+        {
+          "name": "out_ssm_state_4",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "out_ssm_state_4"
+        },
+        {
+          "name": "out_ssm_state_5",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "out_ssm_state_5"
+        },
+        {
+          "name": "out_ssm_state_6",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "out_ssm_state_6"
+        },
+        {
+          "name": "out_ssm_state_7",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "out_ssm_state_7"
+        },
+        {
+          "name": "out_ssm_state_8",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "out_ssm_state_8"
+        },
+        {
+          "name": "out_ssm_state_9",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "out_ssm_state_9"
+        }
+      ],
+      "adapter": {
+        "name": "ready-valid",
+        "version": 1,
+        "environment_controls": [
+          "out_ready"
+        ],
+        "artifact_controls": [
+          "out_valid"
+        ],
+        "monitor_state": [
+          "outstanding",
+          "stall_cycles"
+        ]
+      },
+      "clock": "clk",
+      "matching": "ordered",
+      "identifier": null,
+      "max_outstanding": null,
+      "response_deadline": null,
+      "answers_per_transaction": null,
+      "terminal_quiescence": null,
+      "reset_policy": null,
+      "kind": "transaction"
+    }
+  ],
+  "clocks": [
+    {
+      "name": "clk",
+      "clock": "clk",
+      "edge": "rising",
+      "reset": "rst",
+      "reset_active_low": false,
+      "reset_hold_cycles": 3,
+      "reset_restores": null
+    }
+  ],
+  "memories": [],
+  "protocol_instances": [],
+  "observation_goals": [],
+  "transaction_monitors": [],
+  "latency_goals": [],
+  "operation_rules": [],
+  "source_read_rules": [],
+  "authority": "task",
+  "source": "declared by ai_ml_ssm_mamba_mamba_recurrent_step",
+  "physical_value_layout": "packed-value/1"
+}

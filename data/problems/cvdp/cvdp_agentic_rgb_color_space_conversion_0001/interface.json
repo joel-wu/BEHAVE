@@ -1,0 +1,170 @@
+{
+  "version": "task-contract/8",
+  "endpoints": [
+    {
+      "name": "in",
+      "direction": "in",
+      "fields": [
+        {
+          "name": "rst",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "rst"
+        },
+        {
+          "name": "we",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "we"
+        },
+        {
+          "name": "waddr",
+          "type": {
+            "width": 8,
+            "signed": false
+          },
+          "port": "waddr"
+        },
+        {
+          "name": "wdata",
+          "type": {
+            "width": 25,
+            "signed": false
+          },
+          "port": "wdata"
+        },
+        {
+          "name": "valid_in",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "valid_in"
+        },
+        {
+          "name": "r_component",
+          "type": {
+            "width": 8,
+            "signed": false
+          },
+          "port": "r_component"
+        },
+        {
+          "name": "g_component",
+          "type": {
+            "width": 8,
+            "signed": false
+          },
+          "port": "g_component"
+        },
+        {
+          "name": "b_component",
+          "type": {
+            "width": 8,
+            "signed": false
+          },
+          "port": "b_component"
+        }
+      ],
+      "adapter": {
+        "name": "sampled-edge",
+        "version": 1,
+        "environment_controls": [],
+        "artifact_controls": [],
+        "monitor_state": []
+      },
+      "clock": "clk",
+      "matching": "ordered",
+      "identifier": null,
+      "max_outstanding": null,
+      "response_deadline": null,
+      "answers_per_transaction": null,
+      "terminal_quiescence": null,
+      "reset_policy": null,
+      "kind": "transaction"
+    },
+    {
+      "name": "out",
+      "direction": "out",
+      "fields": [
+        {
+          "name": "h_component",
+          "type": {
+            "width": 12,
+            "signed": false
+          },
+          "port": "h_component"
+        },
+        {
+          "name": "s_component",
+          "type": {
+            "width": 13,
+            "signed": false
+          },
+          "port": "s_component"
+        },
+        {
+          "name": "v_component",
+          "type": {
+            "width": 12,
+            "signed": false
+          },
+          "port": "v_component"
+        },
+        {
+          "name": "valid_out",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "valid_out"
+        }
+      ],
+      "adapter": {
+        "name": "sampled-edge",
+        "version": 1,
+        "environment_controls": [],
+        "artifact_controls": [],
+        "monitor_state": []
+      },
+      "clock": "clk",
+      "matching": "ordered",
+      "identifier": null,
+      "max_outstanding": null,
+      "response_deadline": null,
+      "answers_per_transaction": 1,
+      "terminal_quiescence": null,
+      "reset_policy": null,
+      "kind": "transaction"
+    }
+  ],
+  "clocks": [
+    {
+      "name": "clk",
+      "clock": "clk",
+      "edge": "rising",
+      "reset": "init_reset",
+      "reset_active_low": false,
+      "reset_hold_cycles": 3,
+      "reset_restores": true
+    }
+  ],
+  "memories": [],
+  "protocol_instances": [
+    {
+      "name": "compute",
+      "endpoints": [
+        "in",
+        "out"
+      ],
+      "mapping": "direct/1"
+    }
+  ],
+  "authority": "task",
+  "source": "CVDP programmable RGB-HSV pipeline; explicit completions in batch2133",
+  "physical_value_layout": "packed-value/1"
+}

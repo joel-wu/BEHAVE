@@ -1,0 +1,22 @@
+{
+  "id": "ai_ml_integer_packed_s4_s8_dot16",
+  "source_kind": "ai_ml",
+  "name": "PackedS4S8Dot16",
+  "family": "packed_s4_s8_dot16",
+  "tier": 1,
+  "license": "Apache-2.0",
+  "provenance": [
+    {
+      "repository": "https://github.com/ARM-software/CMSIS-NN",
+      "revision": "22080c68d040c98139e6cb1549473e3149735f4d",
+      "license": "Apache-2.0",
+      "file": "Source/NNSupportFunctions/arm_nn_mat_mult_nt_t_s4.c",
+      "symbol": "arm_nn_mat_mult_nt_t_s4/packed weight dot product",
+      "sha256": "204ff005966621ee26dd631b41e56b332c0c21b4025531544f2f23d99bcbd536",
+      "url": "https://github.com/ARM-software/CMSIS-NN/blob/22080c68d040c98139e6cb1549473e3149735f4d/Source/NNSupportFunctions/arm_nn_mat_mult_nt_t_s4.c",
+      "license_file": "data/licenses/ARM-software_CMSIS-NN/LICENSE"
+    }
+  ],
+  "adaptation": "Sixteen signed two's-complement INT4 weights w[i] occupy bits 4*i; sixteen signed INT8 activations x[i] occupy bits 8*i. Return the signed INT32 result bias+sum(w[i]*x[i]), bias is signed INT16. No overflow is possible. Low nibble precedes high nibble; all sixteen products contribute. This is the packed-weight dot-product core, not a full requantized layer.",
+  "difficulty": "basic"
+}

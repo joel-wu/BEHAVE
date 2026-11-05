@@ -1,0 +1,332 @@
+{
+  "version": "task-contract/16",
+  "endpoints": [
+    {
+      "name": "in",
+      "direction": "in",
+      "fields": [
+        {
+          "name": "in_k0_0",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_k0_0"
+        },
+        {
+          "name": "in_k0_1",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_k0_1"
+        },
+        {
+          "name": "in_k0_2",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_k0_2"
+        },
+        {
+          "name": "in_k0_3",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_k0_3"
+        },
+        {
+          "name": "in_k1_0",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_k1_0"
+        },
+        {
+          "name": "in_k1_1",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_k1_1"
+        },
+        {
+          "name": "in_k1_2",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_k1_2"
+        },
+        {
+          "name": "in_k1_3",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_k1_3"
+        },
+        {
+          "name": "in_k2_0",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_k2_0"
+        },
+        {
+          "name": "in_k2_1",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_k2_1"
+        },
+        {
+          "name": "in_k2_2",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_k2_2"
+        },
+        {
+          "name": "in_k2_3",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_k2_3"
+        },
+        {
+          "name": "in_k3_0",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_k3_0"
+        },
+        {
+          "name": "in_k3_1",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_k3_1"
+        },
+        {
+          "name": "in_k3_2",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_k3_2"
+        },
+        {
+          "name": "in_k3_3",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_k3_3"
+        },
+        {
+          "name": "in_mask0",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_mask0"
+        },
+        {
+          "name": "in_mask1",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_mask1"
+        },
+        {
+          "name": "in_mask2",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_mask2"
+        },
+        {
+          "name": "in_mask3",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_mask3"
+        },
+        {
+          "name": "in_mask_valid",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "in_mask_valid"
+        },
+        {
+          "name": "in_q0",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_q0"
+        },
+        {
+          "name": "in_q1",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_q1"
+        },
+        {
+          "name": "in_q2",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_q2"
+        },
+        {
+          "name": "in_q3",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_q3"
+        },
+        {
+          "name": "in_scaling",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_scaling"
+        },
+        {
+          "name": "in_softcap",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_softcap"
+        }
+      ],
+      "adapter": {
+        "name": "ready-valid",
+        "version": 1,
+        "environment_controls": [
+          "in_valid"
+        ],
+        "artifact_controls": [
+          "in_ready"
+        ],
+        "monitor_state": [
+          "outstanding",
+          "stall_cycles"
+        ]
+      },
+      "clock": "clk",
+      "matching": "ordered",
+      "identifier": null,
+      "max_outstanding": null,
+      "response_deadline": null,
+      "answers_per_transaction": null,
+      "terminal_quiescence": null,
+      "reset_policy": null,
+      "kind": "transaction"
+    },
+    {
+      "name": "out",
+      "direction": "out",
+      "fields": [
+        {
+          "name": "out_attn0",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "out_attn0"
+        },
+        {
+          "name": "out_attn1",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "out_attn1"
+        },
+        {
+          "name": "out_attn2",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "out_attn2"
+        },
+        {
+          "name": "out_attn3",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "out_attn3"
+        }
+      ],
+      "adapter": {
+        "name": "ready-valid",
+        "version": 1,
+        "environment_controls": [
+          "out_ready"
+        ],
+        "artifact_controls": [
+          "out_valid"
+        ],
+        "monitor_state": [
+          "outstanding",
+          "stall_cycles"
+        ]
+      },
+      "clock": "clk",
+      "matching": "ordered",
+      "identifier": null,
+      "max_outstanding": null,
+      "response_deadline": null,
+      "answers_per_transaction": null,
+      "terminal_quiescence": null,
+      "reset_policy": null,
+      "kind": "transaction"
+    }
+  ],
+  "clocks": [
+    {
+      "name": "clk",
+      "clock": "clk",
+      "edge": "rising",
+      "reset": "rst",
+      "reset_active_low": false,
+      "reset_hold_cycles": 3,
+      "reset_restores": null
+    }
+  ],
+  "memories": [],
+  "protocol_instances": [],
+  "observation_goals": [],
+  "transaction_monitors": [],
+  "latency_goals": [],
+  "operation_rules": [],
+  "source_read_rules": [],
+  "authority": "task",
+  "source": "declared by ai_ml_tx_attn_sdpa_gemma2_sdpa_softcap_attn",
+  "physical_value_layout": "packed-value/1"
+}

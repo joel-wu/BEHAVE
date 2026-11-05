@@ -1,0 +1,22 @@
+{
+  "id": "ai_ml_integer_col2im_overlap3x3",
+  "source_kind": "ai_ml",
+  "name": "Col2ImOverlap3x3",
+  "family": "col2im_overlap3x3",
+  "tier": 2,
+  "license": "Apache-2.0",
+  "provenance": [
+    {
+      "repository": "https://github.com/onnx/onnx",
+      "revision": "57b9c6a4f6eebb09ae1b34cfb632078518f72832",
+      "license": "Apache-2.0",
+      "file": "onnx/reference/ops/op_col2im.py",
+      "symbol": "_col2im_naive_implementation_2d",
+      "sha256": "7a7acf794b1203c59b7bec29caaabf4d95734c98ae99b94d18f532f6035d8d2e",
+      "url": "https://github.com/onnx/onnx/blob/57b9c6a4f6eebb09ae1b34cfb632078518f72832/onnx/reference/ops/op_col2im.py",
+      "license_file": "data/licenses/onnx_onnx/LICENSE"
+    }
+  ],
+  "adaptation": "Fold four overlapping 2x2 patches into a 3x3 single-channel image with stride 1, no padding and dilation 1. The sixteen input INT8 cells form an ONNX column matrix [kernel_element, patch_index] of shape [4,4]. Kernel element k=2*i+j and patch p=2*h+w are row-major; cell (k,p) occupies byte 4*k+p. It contributes to output location (h+i,w+j). Sum every overlapping contribution, do not average or overwrite. Output is all nine row-major signed INT16 sums; there is no overflow in this domain.",
+  "difficulty": "medium"
+}

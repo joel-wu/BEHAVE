@@ -1,0 +1,104 @@
+{
+  "version": "task-contract/8",
+  "endpoints": [
+    {
+      "name": "in",
+      "direction": "in",
+      "fields": [
+        {
+          "name": "scancode",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "scancode"
+        }
+      ],
+      "adapter": {
+        "name": "combinational-settled",
+        "version": 1,
+        "environment_controls": [],
+        "artifact_controls": [],
+        "monitor_state": []
+      },
+      "clock": null,
+      "matching": "ordered",
+      "identifier": null,
+      "max_outstanding": null,
+      "response_deadline": null,
+      "answers_per_transaction": null,
+      "terminal_quiescence": null,
+      "reset_policy": null,
+      "kind": "transaction"
+    },
+    {
+      "name": "out",
+      "direction": "out",
+      "fields": [
+        {
+          "name": "left",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "left"
+        },
+        {
+          "name": "down",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "down"
+        },
+        {
+          "name": "right",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "right"
+        },
+        {
+          "name": "up",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "up"
+        }
+      ],
+      "adapter": {
+        "name": "combinational-settled",
+        "version": 1,
+        "environment_controls": [],
+        "artifact_controls": [],
+        "monitor_state": []
+      },
+      "clock": null,
+      "matching": "ordered",
+      "identifier": null,
+      "max_outstanding": null,
+      "response_deadline": null,
+      "answers_per_transaction": 1,
+      "terminal_quiescence": null,
+      "reset_policy": null,
+      "kind": "transaction"
+    }
+  ],
+  "clocks": [],
+  "memories": [],
+  "protocol_instances": [
+    {
+      "name": "compute",
+      "endpoints": [
+        "in",
+        "out"
+      ],
+      "mapping": "direct/1"
+    }
+  ],
+  "authority": "task",
+  "source": "VerilogEval native combinational interface; original material archived in batch97",
+  "physical_value_layout": "packed-value/1"
+}

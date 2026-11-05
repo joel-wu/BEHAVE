@@ -1,0 +1,22 @@
+{
+  "id": "ai_ml_integer_beam_expand4x8",
+  "source_kind": "ai_ml",
+  "name": "BeamExpand4x8",
+  "family": "beam_expand4x8",
+  "tier": 2,
+  "license": "Apache-2.0",
+  "provenance": [
+    {
+      "repository": "https://github.com/huggingface/transformers",
+      "revision": "052e652d6d53c2b26ffde87e039b723949a53493",
+      "license": "Apache-2.0",
+      "file": "src/transformers/generation/beam_search.py",
+      "symbol": "BeamSearchScorer.process live beam / EOS separation",
+      "sha256": "ac68ca36628f6bad4f382904879566667f6851aa8cdde209d635e1927ec23d85",
+      "url": "https://github.com/huggingface/transformers/blob/052e652d6d53c2b26ffde87e039b723949a53493/src/transformers/generation/beam_search.py",
+      "license_file": "data/licenses/huggingface_transformers/LICENSE"
+    }
+  ],
+  "adaptation": "One exact beam-expansion selection step, retaining live continuations and a separate terminal candidate.\n\nThere are four parent beams and eight tokens. Parent scores and per-parent token increments are signed INT16 in common units. Parent b has score at bits 16*b of in_beam_scores and is valid iff bit b of in_beam_mask is one. Its token t increment occupies bits 16*(8*b+t) of in_token_scores (parent-major order). in_eos is the EOS token index. Valid parents expand to score=parent+increment (signed INT17). Select the best four non-EOS expansions, score descending, ties by parent then token ascending. Each 22-bit slot packs parent[1:0], token[4:2], score[21:5]; count occupies bits 88..90. Separately return the best EOS expansion, ties by lower parent index: parent at 91..92, score at 93..109, valid at 110. No valid parents returns all zero. Unused live slots are zero. This specializes beam candidate ranking; there is no softmax, length penalty, cross-step terminal archive or complete generation loop.",
+  "difficulty": "medium"
+}

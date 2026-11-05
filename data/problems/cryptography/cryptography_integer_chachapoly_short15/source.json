@@ -1,0 +1,42 @@
+{
+  "id": "cryptography_integer_chachapoly_short15",
+  "source_kind": "cryptography",
+  "name": "ChaChaPolyShort15",
+  "family": "chachapoly_short15",
+  "tier": 2,
+  "license": "Apache-2.0",
+  "provenance": [
+    {
+      "repository": "https://github.com/Mbed-TLS/mbedtls",
+      "revision": "107ea89daaefb9867ea9121002fbbdf926780e98",
+      "license": "Apache-2.0",
+      "file": "library/chachapoly.c",
+      "symbol": "mbedtls_chachapoly_encrypt_and_tag / finish",
+      "sha256": "c1c7770ea6098bd480eae14094215d0df3cd05c3cbdd7f4386822b3d3cb5b30a",
+      "url": "https://github.com/Mbed-TLS/mbedtls/blob/107ea89daaefb9867ea9121002fbbdf926780e98/library/chachapoly.c",
+      "license_file": "data/licenses/Mbed-TLS_mbedtls/LICENSE"
+    },
+    {
+      "repository": "https://github.com/Mbed-TLS/mbedtls",
+      "revision": "107ea89daaefb9867ea9121002fbbdf926780e98",
+      "license": "Apache-2.0",
+      "file": "library/chacha20.c",
+      "symbol": "chacha20_block",
+      "sha256": "53300418d833bda5c999a3dce3d174d19ebeb1908c4ee1f94c63afe4439a9abd",
+      "url": "https://github.com/Mbed-TLS/mbedtls/blob/107ea89daaefb9867ea9121002fbbdf926780e98/library/chacha20.c",
+      "license_file": "data/licenses/Mbed-TLS_mbedtls/LICENSE"
+    },
+    {
+      "repository": "https://github.com/Mbed-TLS/mbedtls",
+      "revision": "107ea89daaefb9867ea9121002fbbdf926780e98",
+      "license": "Apache-2.0",
+      "file": "library/poly1305.c",
+      "symbol": "poly1305_process / compute_mac",
+      "sha256": "0b75e7bad92aef2248529d89c1e2bcec1b62058e02b29e49232a244b063d8d86",
+      "url": "https://github.com/Mbed-TLS/mbedtls/blob/107ea89daaefb9867ea9121002fbbdf926780e98/library/poly1305.c",
+      "license_file": "data/licenses/Mbed-TLS_mbedtls/LICENSE"
+    }
+  ],
+  "adaptation": "Complete IETF ChaCha20-Poly1305 authenticated encryption for 0..15 bytes of AAD and plaintext.\n\nAll byte strings have byte zero in their least significant byte. Key is 32 bytes, nonce 12 bytes; A=in_aad_length and L=in_length. Ignore later AAD/plaintext bytes. Generate ChaCha20 block counter 0 and use its first 32 bytes as the Poly1305 one-time key. Encrypt the first L plaintext bytes by xor with ChaCha20 block counter 1. MAC AAD || pad16(AAD) || ciphertext || pad16(ciphertext) || LE64(A) || LE64(L), where pad16 appends zero bytes up to a 16-byte boundary and adds none to an empty/aligned string. Return zero-padded 15-byte ciphertext in bits 0..119 and the 16-byte tag in bits 120..247. This is encryption plus authentication, not decryption/tag verification. Nonce uniqueness and side-channel guarantees are outside this functional task.\n\nChaCha20 words are little-endian uint32. Initial words are 61707865,3320646e,79622d32,6b206574, eight key words, counter, three nonce words. Quarter-round (a,b,c,d): a+=b; d=ROTL(d xor a,16); c+=d; b=ROTL(b xor c,12); a+=b; d=ROTL(d xor a,8); c+=d; b=ROTL(b xor c,7), with sums mod 2^32. Ten double rounds each apply QR to (0,4,8,12),(1,5,9,13),(2,6,10,14),(3,7,11,15), then (0,5,10,15),(1,6,11,12),(2,7,8,13),(3,4,9,14). Add initial words back and serialize.\n\nPoly1305 interprets key halves little-endian: r=key_low128 & 0x0ffffffc0ffffffc0ffffffc0fffffff, s=key_high128. Start h=0; for each full MAC-input block b, h=((h+LE128(b)+2^128)*r) mod (2^130-5). Tag=(h+s) mod 2^128, serialized little-endian. The length block is always present, including A=L=0.",
+  "difficulty": "challenge"
+}

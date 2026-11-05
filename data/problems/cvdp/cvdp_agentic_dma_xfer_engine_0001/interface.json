@@ -1,0 +1,178 @@
+{
+  "version": "task-contract/8",
+  "endpoints": [
+    {
+      "name": "in",
+      "direction": "in",
+      "fields": [
+        {
+          "name": "addr",
+          "type": {
+            "width": 4,
+            "signed": false
+          },
+          "port": "addr"
+        },
+        {
+          "name": "we",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "we"
+        },
+        {
+          "name": "wd",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "wd"
+        },
+        {
+          "name": "dma_req",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "dma_req"
+        },
+        {
+          "name": "bus_grant",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "bus_grant"
+        },
+        {
+          "name": "rd_m",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "rd_m"
+        }
+      ],
+      "adapter": {
+        "name": "sampled-edge",
+        "version": 1,
+        "environment_controls": [],
+        "artifact_controls": [],
+        "monitor_state": []
+      },
+      "clock": "clk",
+      "matching": "ordered",
+      "identifier": null,
+      "max_outstanding": null,
+      "response_deadline": null,
+      "answers_per_transaction": null,
+      "terminal_quiescence": null,
+      "reset_policy": null,
+      "kind": "transaction"
+    },
+    {
+      "name": "out",
+      "direction": "out",
+      "fields": [
+        {
+          "name": "rd",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "rd"
+        },
+        {
+          "name": "bus_req",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "bus_req"
+        },
+        {
+          "name": "bus_lock",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "bus_lock"
+        },
+        {
+          "name": "addr_m",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "addr_m"
+        },
+        {
+          "name": "we_m",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "we_m"
+        },
+        {
+          "name": "wd_m",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "wd_m"
+        },
+        {
+          "name": "size_m",
+          "type": {
+            "width": 2,
+            "signed": false
+          },
+          "port": "size_m"
+        }
+      ],
+      "adapter": {
+        "name": "sampled-edge",
+        "version": 1,
+        "environment_controls": [],
+        "artifact_controls": [],
+        "monitor_state": []
+      },
+      "clock": "clk",
+      "matching": "ordered",
+      "identifier": null,
+      "max_outstanding": null,
+      "response_deadline": null,
+      "answers_per_transaction": 1,
+      "terminal_quiescence": null,
+      "reset_policy": null,
+      "kind": "transaction"
+    }
+  ],
+  "clocks": [
+    {
+      "name": "clk",
+      "clock": "clk",
+      "edge": "rising",
+      "reset": "rstn",
+      "reset_active_low": true,
+      "reset_hold_cycles": 3,
+      "reset_restores": true
+    }
+  ],
+  "memories": [],
+  "protocol_instances": [
+    {
+      "name": "compute",
+      "endpoints": [
+        "in",
+        "out"
+      ],
+      "mapping": "direct/1"
+    }
+  ],
+  "authority": "task",
+  "source": "Native CVDP clock semantics; batch2121 records source completions",
+  "physical_value_layout": "packed-value/1"
+}

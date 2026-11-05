@@ -1,0 +1,154 @@
+{
+  "version": "task-contract/8",
+  "endpoints": [
+    {
+      "name": "in",
+      "direction": "in",
+      "fields": [
+        {
+          "name": "cfg_wr_in",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "cfg_wr_in"
+        },
+        {
+          "name": "cfg_addr_in",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "cfg_addr_in"
+        },
+        {
+          "name": "cfg_data_wr_in",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "cfg_data_wr_in"
+        },
+        {
+          "name": "axis_tready_in",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "axis_tready_in"
+        }
+      ],
+      "adapter": {
+        "name": "sampled-edge",
+        "version": 1,
+        "environment_controls": [],
+        "artifact_controls": [],
+        "monitor_state": []
+      },
+      "clock": "clk_in",
+      "matching": "ordered",
+      "identifier": null,
+      "max_outstanding": null,
+      "response_deadline": null,
+      "answers_per_transaction": null,
+      "terminal_quiescence": null,
+      "reset_policy": null,
+      "kind": "transaction"
+    },
+    {
+      "name": "out",
+      "direction": "out",
+      "fields": [
+        {
+          "name": "cfg_data_rd_out",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "cfg_data_rd_out"
+        },
+        {
+          "name": "interrupt_out",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "interrupt_out"
+        },
+        {
+          "name": "axis_tvalid_out",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "axis_tvalid_out"
+        },
+        {
+          "name": "axis_tdata_out",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "axis_tdata_out"
+        },
+        {
+          "name": "axis_tstrb_out",
+          "type": {
+            "width": 4,
+            "signed": false
+          },
+          "port": "axis_tstrb_out"
+        },
+        {
+          "name": "axis_tlast_out",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "axis_tlast_out"
+        }
+      ],
+      "adapter": {
+        "name": "sampled-edge",
+        "version": 1,
+        "environment_controls": [],
+        "artifact_controls": [],
+        "monitor_state": []
+      },
+      "clock": "clk_in",
+      "matching": "ordered",
+      "identifier": null,
+      "max_outstanding": null,
+      "response_deadline": null,
+      "answers_per_transaction": 1,
+      "terminal_quiescence": null,
+      "reset_policy": null,
+      "kind": "transaction"
+    }
+  ],
+  "clocks": [
+    {
+      "name": "clk_in",
+      "clock": "clk_in",
+      "edge": "rising",
+      "reset": "rst_in",
+      "reset_active_low": false,
+      "reset_hold_cycles": 3,
+      "reset_restores": true
+    }
+  ],
+  "memories": [],
+  "protocol_instances": [
+    {
+      "name": "compute",
+      "endpoints": [
+        "in",
+        "out"
+      ],
+      "mapping": "direct/1"
+    }
+  ],
+  "authority": "task",
+  "source": "Native CVDP clock semantics; batch2124 records source completions",
+  "physical_value_layout": "packed-value/1"
+}

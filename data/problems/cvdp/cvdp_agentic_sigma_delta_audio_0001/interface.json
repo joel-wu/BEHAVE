@@ -1,0 +1,112 @@
+{
+  "version": "task-contract/8",
+  "endpoints": [
+    {
+      "name": "in",
+      "direction": "in",
+      "fields": [
+        {
+          "name": "clk_sig_level",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "clk_sig_level"
+        },
+        {
+          "name": "clk_en_sig",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "clk_en_sig"
+        },
+        {
+          "name": "load_data_sum",
+          "type": {
+            "width": 15,
+            "signed": false
+          },
+          "port": "load_data_sum"
+        },
+        {
+          "name": "read_data_sum",
+          "type": {
+            "width": 15,
+            "signed": false
+          },
+          "port": "read_data_sum"
+        }
+      ],
+      "adapter": {
+        "name": "combinational-settled",
+        "version": 1,
+        "environment_controls": [],
+        "artifact_controls": [],
+        "monitor_state": []
+      },
+      "clock": null,
+      "matching": "ordered",
+      "identifier": null,
+      "max_outstanding": null,
+      "response_deadline": null,
+      "answers_per_transaction": null,
+      "terminal_quiescence": null,
+      "reset_policy": null,
+      "kind": "transaction"
+    },
+    {
+      "name": "out",
+      "direction": "out",
+      "fields": [
+        {
+          "name": "left_sig",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "left_sig"
+        },
+        {
+          "name": "right_sig",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "right_sig"
+        }
+      ],
+      "adapter": {
+        "name": "combinational-settled",
+        "version": 1,
+        "environment_controls": [],
+        "artifact_controls": [],
+        "monitor_state": []
+      },
+      "clock": null,
+      "matching": "ordered",
+      "identifier": null,
+      "max_outstanding": null,
+      "response_deadline": null,
+      "answers_per_transaction": 1,
+      "terminal_quiescence": null,
+      "reset_policy": null,
+      "kind": "transaction"
+    }
+  ],
+  "clocks": [],
+  "memories": [],
+  "protocol_instances": [
+    {
+      "name": "compute",
+      "endpoints": [
+        "in",
+        "out"
+      ],
+      "mapping": "direct/1"
+    }
+  ],
+  "authority": "task",
+  "source": "Source-native storage with explicit settled phase-level observation and documented startup; batch2143 audit",
+  "physical_value_layout": "packed-value/1"
+}

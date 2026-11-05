@@ -1,0 +1,106 @@
+{
+  "version": "task-contract/8",
+  "endpoints": [
+    {
+      "name": "in",
+      "direction": "in",
+      "fields": [
+        {
+          "name": "tdata",
+          "type": {
+            "width": 8,
+            "signed": false
+          },
+          "port": "tdata"
+        },
+        {
+          "name": "tvalid",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "tvalid"
+        }
+      ],
+      "adapter": {
+        "name": "sampled-edge",
+        "version": 1,
+        "environment_controls": [],
+        "artifact_controls": [],
+        "monitor_state": []
+      },
+      "clock": "aclk",
+      "matching": "ordered",
+      "identifier": null,
+      "max_outstanding": null,
+      "response_deadline": null,
+      "answers_per_transaction": null,
+      "terminal_quiescence": null,
+      "reset_policy": null,
+      "kind": "transaction"
+    },
+    {
+      "name": "out",
+      "direction": "out",
+      "fields": [
+        {
+          "name": "tready",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "tready"
+        },
+        {
+          "name": "TX",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "TX"
+        }
+      ],
+      "adapter": {
+        "name": "sampled-edge",
+        "version": 1,
+        "environment_controls": [],
+        "artifact_controls": [],
+        "monitor_state": []
+      },
+      "clock": "aclk",
+      "matching": "ordered",
+      "identifier": null,
+      "max_outstanding": null,
+      "response_deadline": null,
+      "answers_per_transaction": 1,
+      "terminal_quiescence": null,
+      "reset_policy": null,
+      "kind": "transaction"
+    }
+  ],
+  "clocks": [
+    {
+      "name": "aclk",
+      "clock": "aclk",
+      "edge": "rising",
+      "reset": "aresetn",
+      "reset_active_low": true,
+      "reset_hold_cycles": 3,
+      "reset_restores": true
+    }
+  ],
+  "memories": [],
+  "protocol_instances": [
+    {
+      "name": "compute",
+      "endpoints": [
+        "in",
+        "out"
+      ],
+      "mapping": "direct/1"
+    }
+  ],
+  "authority": "task",
+  "source": "Native CVDP clock semantics; batch109 records source completions",
+  "physical_value_layout": "packed-value/1"
+}

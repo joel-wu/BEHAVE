@@ -1,0 +1,188 @@
+{
+  "version": "task-contract/16",
+  "endpoints": [
+    {
+      "name": "in",
+      "direction": "in",
+      "fields": [
+        {
+          "name": "in_a_cc_0",
+          "type": {
+            "width": 64,
+            "signed": false
+          },
+          "port": "in_a_cc_0"
+        },
+        {
+          "name": "in_a_cc_m1",
+          "type": {
+            "width": 64,
+            "signed": false
+          },
+          "port": "in_a_cc_m1"
+        },
+        {
+          "name": "in_a_cc_p1",
+          "type": {
+            "width": 64,
+            "signed": false
+          },
+          "port": "in_a_cc_p1"
+        },
+        {
+          "name": "in_a_ce_0",
+          "type": {
+            "width": 64,
+            "signed": false
+          },
+          "port": "in_a_ce_0"
+        },
+        {
+          "name": "in_a_ce_m1",
+          "type": {
+            "width": 64,
+            "signed": false
+          },
+          "port": "in_a_ce_m1"
+        },
+        {
+          "name": "in_a_ce_p1",
+          "type": {
+            "width": 64,
+            "signed": false
+          },
+          "port": "in_a_ce_p1"
+        },
+        {
+          "name": "in_a_cw_0",
+          "type": {
+            "width": 64,
+            "signed": false
+          },
+          "port": "in_a_cw_0"
+        },
+        {
+          "name": "in_a_cw_m1",
+          "type": {
+            "width": 64,
+            "signed": false
+          },
+          "port": "in_a_cw_m1"
+        },
+        {
+          "name": "in_a_cw_p1",
+          "type": {
+            "width": 64,
+            "signed": false
+          },
+          "port": "in_a_cw_p1"
+        },
+        {
+          "name": "in_periodic_collapse",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "in_periodic_collapse"
+        }
+      ],
+      "adapter": {
+        "name": "ready-valid",
+        "version": 1,
+        "environment_controls": [
+          "in_valid"
+        ],
+        "artifact_controls": [
+          "in_ready"
+        ],
+        "monitor_state": [
+          "outstanding",
+          "stall_cycles"
+        ]
+      },
+      "clock": "clk",
+      "matching": "ordered",
+      "identifier": null,
+      "max_outstanding": null,
+      "response_deadline": null,
+      "answers_per_transaction": null,
+      "terminal_quiescence": null,
+      "reset_policy": null,
+      "kind": "transaction"
+    },
+    {
+      "name": "out",
+      "direction": "out",
+      "fields": [
+        {
+          "name": "out_ac_cc",
+          "type": {
+            "width": 64,
+            "signed": false
+          },
+          "port": "out_ac_cc"
+        },
+        {
+          "name": "out_ac_ce",
+          "type": {
+            "width": 64,
+            "signed": false
+          },
+          "port": "out_ac_ce"
+        },
+        {
+          "name": "out_ac_cw",
+          "type": {
+            "width": 64,
+            "signed": false
+          },
+          "port": "out_ac_cw"
+        }
+      ],
+      "adapter": {
+        "name": "ready-valid",
+        "version": 1,
+        "environment_controls": [
+          "out_ready"
+        ],
+        "artifact_controls": [
+          "out_valid"
+        ],
+        "monitor_state": [
+          "outstanding",
+          "stall_cycles"
+        ]
+      },
+      "clock": "clk",
+      "matching": "ordered",
+      "identifier": null,
+      "max_outstanding": null,
+      "response_deadline": null,
+      "answers_per_transaction": null,
+      "terminal_quiescence": null,
+      "reset_policy": null,
+      "kind": "transaction"
+    }
+  ],
+  "clocks": [
+    {
+      "name": "clk",
+      "clock": "clk",
+      "edge": "rising",
+      "reset": "rst",
+      "reset_active_low": false,
+      "reset_hold_cycles": 3,
+      "reset_restores": null
+    }
+  ],
+  "memories": [],
+  "protocol_instances": [],
+  "observation_goals": [],
+  "transaction_monitors": [],
+  "latency_goals": [],
+  "operation_rules": [],
+  "source_read_rules": [],
+  "authority": "task",
+  "source": "declared by numeric_pool_stencil_pde_cyclic_reduction",
+  "physical_value_layout": "packed-value/1"
+}

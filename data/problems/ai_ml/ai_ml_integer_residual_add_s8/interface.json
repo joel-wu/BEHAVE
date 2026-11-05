@@ -1,0 +1,208 @@
+{
+  "version": "task-contract/8",
+  "endpoints": [
+    {
+      "name": "in",
+      "direction": "in",
+      "fields": [
+        {
+          "name": "in_a",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_a"
+        },
+        {
+          "name": "in_b",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_b"
+        },
+        {
+          "name": "in_weights",
+          "type": {
+            "width": 128,
+            "signed": false
+          },
+          "port": "in_weights"
+        },
+        {
+          "name": "in_bias",
+          "type": {
+            "width": 64,
+            "signed": false
+          },
+          "port": "in_bias"
+        },
+        {
+          "name": "in_offset_a",
+          "type": {
+            "width": 9,
+            "signed": false
+          },
+          "port": "in_offset_a"
+        },
+        {
+          "name": "in_offset_b",
+          "type": {
+            "width": 9,
+            "signed": false
+          },
+          "port": "in_offset_b"
+        },
+        {
+          "name": "in_mult_a",
+          "type": {
+            "width": 31,
+            "signed": false
+          },
+          "port": "in_mult_a"
+        },
+        {
+          "name": "in_mult_b",
+          "type": {
+            "width": 31,
+            "signed": false
+          },
+          "port": "in_mult_b"
+        },
+        {
+          "name": "in_mult_out",
+          "type": {
+            "width": 31,
+            "signed": false
+          },
+          "port": "in_mult_out"
+        },
+        {
+          "name": "in_shift_a",
+          "type": {
+            "width": 5,
+            "signed": false
+          },
+          "port": "in_shift_a"
+        },
+        {
+          "name": "in_shift_b",
+          "type": {
+            "width": 5,
+            "signed": false
+          },
+          "port": "in_shift_b"
+        },
+        {
+          "name": "in_shift_out",
+          "type": {
+            "width": 5,
+            "signed": false
+          },
+          "port": "in_shift_out"
+        },
+        {
+          "name": "in_left_shift",
+          "type": {
+            "width": 3,
+            "signed": false
+          },
+          "port": "in_left_shift"
+        },
+        {
+          "name": "in_zero_out",
+          "type": {
+            "width": 8,
+            "signed": false
+          },
+          "port": "in_zero_out"
+        }
+      ],
+      "adapter": {
+        "name": "ready-valid",
+        "version": 1,
+        "environment_controls": [
+          "in_valid"
+        ],
+        "artifact_controls": [
+          "in_ready"
+        ],
+        "monitor_state": [
+          "outstanding",
+          "stall_cycles"
+        ]
+      },
+      "clock": "clk",
+      "matching": "ordered",
+      "identifier": null,
+      "max_outstanding": null,
+      "response_deadline": null,
+      "answers_per_transaction": null,
+      "terminal_quiescence": null,
+      "reset_policy": "clears",
+      "kind": "transaction"
+    },
+    {
+      "name": "out",
+      "direction": "out",
+      "fields": [
+        {
+          "name": "out_values",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "out_values"
+        }
+      ],
+      "adapter": {
+        "name": "ready-valid",
+        "version": 1,
+        "environment_controls": [
+          "out_ready"
+        ],
+        "artifact_controls": [
+          "out_valid"
+        ],
+        "monitor_state": [
+          "outstanding",
+          "stall_cycles"
+        ]
+      },
+      "clock": "clk",
+      "matching": "ordered",
+      "identifier": null,
+      "max_outstanding": null,
+      "response_deadline": null,
+      "answers_per_transaction": 1,
+      "terminal_quiescence": null,
+      "reset_policy": "clears",
+      "kind": "transaction"
+    }
+  ],
+  "clocks": [
+    {
+      "name": "clk",
+      "clock": "clk",
+      "edge": "rising",
+      "reset": "rst",
+      "reset_active_low": false,
+      "reset_hold_cycles": 3,
+      "reset_restores": null
+    }
+  ],
+  "memories": [],
+  "protocol_instances": [
+    {
+      "name": "compute",
+      "endpoints": [
+        "in",
+        "out"
+      ],
+      "mapping": "direct/1"
+    }
+  ],
+  "authority": "task",
+  "source": "Integer adaptation; see source.json.",
+  "physical_value_layout": "packed-value/1"
+}

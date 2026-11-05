@@ -1,0 +1,125 @@
+diff --git a/src/mage/agent.py b/src/mage/agent.py
+index 1fd3730..c8c1d20 100644
+--- a/src/mage/agent.py
++++ b/src/mage/agent.py
+@@ -4,7 +4,7 @@ import sys
+ import traceback
+ from typing import List, Tuple
+ 
+-from llama_index.core.llms import LLM
++from typing import Any as LLM
+ 
+ from .log_utils import get_logger, set_log_dir, switch_log_to_file, switch_log_to_stdout
+ from .rtl_editor import RTLEditor
+@@ -12,7 +12,7 @@ from .rtl_generator import RTLGenerator
+ from .sim_judge import SimJudge
+ from .sim_reviewer import SimReviewer
+ from .tb_generator import TBGenerator
+-from .token_counter import TokenCounter, TokenCounterCached
++from behave.pipelines.mage_transport import AttemptInterrupted, TokenCounter, TokenCounterCached
+ 
+ logger = get_logger(__name__)
+ 
+@@ -250,6 +250,8 @@ class TopAgent:
+             self.token_counter.log_token_stats()
+             with open(f"{self.output_dir_per_run}/properly_finished.tag", "w") as f:
+                 f.write("1")
++        except AttemptInterrupted:
++            raise
+         except Exception:
+             exc_info = sys.exc_info()
+             traceback.print_exception(*exc_info)
+diff --git a/src/mage/rtl_editor.py b/src/mage/rtl_editor.py
+index 1af12fe..9892c04 100644
+--- a/src/mage/rtl_editor.py
++++ b/src/mage/rtl_editor.py
+@@ -2,13 +2,13 @@ import json
+ from inspect import signature
+ from typing import Any, Dict, List, Tuple
+ 
+-from llama_index.core.base.llms.types import ChatMessage, ChatResponse, MessageRole
++from behave.pipelines.mage_transport import ChatMessage, ChatResponse, MessageRole
+ from pydantic import BaseModel
+ 
+ from .log_utils import get_logger
+ from .prompts import ORDER_PROMPT
+ from .sim_reviewer import SimReviewer, check_syntax
+-from .token_counter import TokenCounter, TokenCounterCached
++from behave.pipelines.mage_transport import TokenCounter, TokenCounterCached
+ 
+ logger = get_logger(__name__)
+ 
+diff --git a/src/mage/rtl_generator.py b/src/mage/rtl_generator.py
+index 77bba72..9b5ccaf 100644
+--- a/src/mage/rtl_generator.py
++++ b/src/mage/rtl_generator.py
+@@ -1,14 +1,13 @@
+ import json
+ from typing import Dict, List, Tuple
+ 
+-from llama_index.core.base.llms.types import ChatMessage, ChatResponse, MessageRole
++from behave.pipelines.mage_transport import ChatMessage, ChatResponse, MessageRole
+ from pydantic import BaseModel
+ 
+ from .log_utils import get_logger
+ from .prompts import FAILED_TRIAL_PROMPT, ORDER_PROMPT, RTL_4_SHOT_EXAMPLES
+ from .sim_reviewer import check_syntax
+-from .token_counter import TokenCounter, TokenCounterCached
+-from .utils import add_lineno
++from behave.pipelines.mage_transport import TokenCounter, TokenCounterCached, add_lineno
+ 
+ logger = get_logger(__name__)
+ 
+diff --git a/src/mage/sim_judge.py b/src/mage/sim_judge.py
+index 121fa35..eccbbb9 100644
+--- a/src/mage/sim_judge.py
++++ b/src/mage/sim_judge.py
+@@ -1,13 +1,12 @@
+ import json
+ from typing import Dict, List
+ 
+-from llama_index.core.base.llms.types import ChatMessage, ChatResponse, MessageRole
++from behave.pipelines.mage_transport import ChatMessage, ChatResponse, MessageRole
+ from pydantic import BaseModel
+ 
+ from .log_utils import get_logger
+ from .prompts import ORDER_PROMPT
+-from .token_counter import TokenCounter, TokenCounterCached
+-from .utils import add_lineno
++from behave.pipelines.mage_transport import TokenCounter, TokenCounterCached, add_lineno
+ 
+ logger = get_logger(__name__)
+ 
+diff --git a/src/mage/sim_reviewer.py b/src/mage/sim_reviewer.py
+index 38c80af..34aea7d 100644
+--- a/src/mage/sim_reviewer.py
++++ b/src/mage/sim_reviewer.py
+@@ -3,7 +3,7 @@ import os
+ import re
+ from typing import Dict, List, Tuple
+ 
+-from .bash_tools import CommandResult, run_bash_command
++from behave.pipelines.mage_transport import CommandResult, run_bash_command
+ from .benchmark_read_helper import TypeBenchmark
+ from .log_utils import get_logger, set_log_dir
+ 
+diff --git a/src/mage/tb_generator.py b/src/mage/tb_generator.py
+index 8fd8012..8d37b0f 100644
+--- a/src/mage/tb_generator.py
++++ b/src/mage/tb_generator.py
+@@ -1,13 +1,12 @@
+ import json
+ from typing import Dict, List, Tuple
+ 
+-from llama_index.core.base.llms.types import ChatMessage, ChatResponse, MessageRole
++from behave.pipelines.mage_transport import ChatMessage, ChatResponse, MessageRole
+ from pydantic import BaseModel
+ 
+ from .log_utils import get_logger
+ from .prompts import FAILED_TRIAL_PROMPT, ORDER_PROMPT, TB_4_SHOT_EXAMPLES
+-from .token_counter import TokenCounter, TokenCounterCached
+-from .utils import add_lineno
++from behave.pipelines.mage_transport import TokenCounter, TokenCounterCached, add_lineno
+ 
+ logger = get_logger(__name__)
+ 

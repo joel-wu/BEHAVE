@@ -1,0 +1,22 @@
+{
+  "id": "ai_ml_integer_dense_backward2x4x3",
+  "source_kind": "ai_ml",
+  "name": "DenseBackward2x4x3",
+  "family": "dense_backward2x4x3",
+  "tier": 2,
+  "license": "BSD-3-Clause",
+  "provenance": [
+    {
+      "repository": "https://github.com/pytorch/pytorch",
+      "revision": "a8d6afb511a69687bbb2b7e88a3cf67917e1697e",
+      "license": "BSD-3-Clause",
+      "file": "tools/autograd/derivatives.yaml",
+      "symbol": "linear / linear_backward",
+      "sha256": "af95550569859ad5dae95ad7f1ea25cd42521a51f6ffd435a7ec870fe5a26690",
+      "url": "https://github.com/pytorch/pytorch/blob/a8d6afb511a69687bbb2b7e88a3cf67917e1697e/tools/autograd/derivatives.yaml",
+      "license_file": "data/licenses/pytorch_pytorch/LICENSE"
+    }
+  ],
+  "adaptation": "Complete input, weight and bias gradients of a small dense layer.\n\nForward Y=X*W^T+b has X[2,4], W[3,4], Y[2,3]. X,W and supplied upstream G=dL/dY are signed INT8. Return exact dX=G*W ([2,4] INT32), dW=G^T*X ([3,4] INT32) and db=sum_batch G ([3] INT16). All tensors are row-major. dX occupies bits 0..255, dW 256..639 and db 640..687. No averaging over batch, transpose omission, saturation or optimizer update is permitted. This is the linear backward chain rule evaluated on integer operands; gradients are exact integers, not INT8-quantized derivatives.",
+  "difficulty": "medium"
+}

@@ -1,0 +1,22 @@
+SIM ?= verilator
+TOPLEVEL_LANG ?= verilog
+VERILOG_SOURCES = $(PWD)/rtl.sv
+TOPLEVEL = {top_module}
+MODULE = {tb_module}
+
+# Assertions execute their original actions with or without goal observation.
+EXTRA_ARGS += -Wno-WIDTH -Wno-fatal --assert --threads 1
+{verilator_coverage}
+{verilator_visibility}
+{verilator_initial_state}
+{verilator_native_events}
+
+# Simulator defaults do not declare the design's mathematical initial support.
+# Exact audits must validate the recorded initial state against that support.
+
+# Each replay owns one CPU; the upstream main leaves the runtime context at
+# host parallelism even when the generated model is single threaded.
+override VERILATOR_CPP := /runtime/cocotb-main.cpp
+EXTRA_ARGS += -CFLAGS "-I$(shell cocotb-config --share)/lib/verilator"
+
+include $(shell cocotb-config --makefiles)/Makefile.sim

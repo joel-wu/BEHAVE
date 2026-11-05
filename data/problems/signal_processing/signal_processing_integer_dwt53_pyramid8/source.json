@@ -1,0 +1,22 @@
+{
+  "id": "signal_processing_integer_dwt53_pyramid8",
+  "source_kind": "signal_processing",
+  "name": "DWT53Pyramid8",
+  "family": "dwt53_pyramid8",
+  "tier": 2,
+  "license": "BSD-2-Clause",
+  "provenance": [
+    {
+      "repository": "https://github.com/uclouvain/openjpeg",
+      "revision": "210a8a5690d0da66f02d49420d7176a21ef409dc",
+      "license": "BSD-2-Clause",
+      "file": "src/lib/openjp2/dwt.c",
+      "symbol": "opj_dwt_encode_and_deinterleave_h_one_row, even=true, widths 8/4/2",
+      "sha256": "2aaea513c0c84922e7488f3556525e6f6538f5ca9e6cf77d8db525768559aef8",
+      "url": "https://github.com/uclouvain/openjpeg/blob/210a8a5690d0da66f02d49420d7176a21ef409dc/src/lib/openjp2/dwt.c",
+      "license_file": "data/licenses/uclouvain_openjpeg/LICENSE"
+    }
+  ],
+  "adaptation": "Three-level reversible integer 5/3 wavelet decomposition of eight signed INT16 samples.\n\nInput sample i occupies bits 16*i +: 16, least-significant sample first. Begin with A equal to these eight signed values. For active lengths n=8,4,2, let m=n/2, E[j]=A[2*j] and O[j]=A[2*j+1] for j=0..m-1. First compute all details D[j]=O[j]-floor((E[j]+E[min(j+1,m-1)])/2). Then compute all lowpass values L[j]=E[j]+floor((D[max(j-1,0)]+D[j]+2)/4). Replace the first n values of A by L followed by D; keep all later values unchanged. This is whole-sample symmetric boundary extension, with the first sample on an even coordinate.\n\nReturn all eight coefficients as signed INT32 lanes, in order [L3,D3,D2[0],D2[1],D1[0],D1[1],D1[2],D1[3]]. Division rounds toward negative infinity, not toward zero. There is no saturation or modular intermediate arithmetic; INT32 is sufficient for this INT16 eight-sample, three-level domain. All input bits matter. This composes the pinned OpenJPEG reversible horizontal 5/3 transform at three resolutions; it is not the irreversible 9/7 transform, quantization, or a complete JPEG 2000 codec.",
+  "difficulty": "medium"
+}

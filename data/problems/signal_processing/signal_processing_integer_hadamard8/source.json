@@ -1,0 +1,28 @@
+{
+  "id": "signal_processing_integer_hadamard8",
+  "source_kind": "signal_processing",
+  "name": "Hadamard8",
+  "family": "hadamard8",
+  "tier": 2,
+  "license": "BSD-3-Clause",
+  "contribution_license": "Apache-2.0",
+  "provenance": [
+    {
+      "repository": "https://github.com/scipy/scipy",
+      "revision": "b1296b9b4393e251511fe8fdd3e58c22a1124899",
+      "license": "BSD-3-Clause",
+      "file": "scipy/linalg/_special_matrices.py",
+      "symbol": "hadamard",
+      "lines": [
+        216,
+        272
+      ],
+      "url": "https://github.com/scipy/scipy/blob/b1296b9b4393e251511fe8fdd3e58c22a1124899/scipy/linalg/_special_matrices.py#L216-L272",
+      "sha256": "d1c9c29c10f8a8ff29f51c7974d3d41a845095faeaa4b4f4e7af8b59ea79e94a",
+      "license_file": "data/licenses/scipy_scipy/LICENSE.txt",
+      "license_sha256": "221e59f5e910fd7f94e44f0dac77436a11338c285c6346232e4a850a50da0e94"
+    }
+  ],
+  "adaptation": "Apply SciPy's natural-order Sylvester H8 matrix to eight signed 16-bit samples. Exact signed 19-bit results, no normalization or rounding. Matrix construction is the source basis; packed vector transformation, ready/valid and reset are BEHAVE additions, not the original Python API.",
+  "difficulty": "medium"
+}

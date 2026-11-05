@@ -1,0 +1,114 @@
+{
+  "version": "task-contract/7",
+  "endpoints": [
+    {
+      "name": "in",
+      "direction": "in",
+      "fields": [
+        {
+          "name": "bypass",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "bypass"
+        },
+        {
+          "name": "data_in",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "data_in"
+        },
+        {
+          "name": "swizzle_map_flat",
+          "type": {
+            "width": 8,
+            "signed": false
+          },
+          "port": "swizzle_map_flat"
+        }
+      ],
+      "adapter": {
+        "name": "sampled-edge",
+        "version": 1,
+        "environment_controls": [],
+        "artifact_controls": [],
+        "monitor_state": []
+      },
+      "clock": "clk",
+      "matching": "ordered",
+      "identifier": null,
+      "max_outstanding": null,
+      "response_deadline": null,
+      "answers_per_transaction": null,
+      "terminal_quiescence": null,
+      "reset_policy": "clears",
+      "kind": "transaction"
+    },
+    {
+      "name": "out",
+      "direction": "out",
+      "fields": [
+        {
+          "name": "data_out",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "data_out"
+        },
+        {
+          "name": "parity_error",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "parity_error"
+        }
+      ],
+      "adapter": {
+        "name": "sampled-edge",
+        "version": 1,
+        "environment_controls": [],
+        "artifact_controls": [],
+        "monitor_state": []
+      },
+      "clock": "clk",
+      "matching": "ordered",
+      "identifier": null,
+      "max_outstanding": null,
+      "response_deadline": null,
+      "answers_per_transaction": 1,
+      "terminal_quiescence": null,
+      "reset_policy": "clears",
+      "kind": "transaction"
+    }
+  ],
+  "clocks": [
+    {
+      "name": "clk",
+      "clock": "clk",
+      "edge": "rising",
+      "reset": "rst_n",
+      "reset_active_low": true,
+      "reset_hold_cycles": 3,
+      "reset_restores": null
+    }
+  ],
+  "memories": [],
+  "protocol_instances": [
+    {
+      "name": "compute",
+      "endpoints": [
+        "in",
+        "out"
+      ],
+      "mapping": "direct/1"
+    }
+  ],
+  "authority": "task",
+  "source": "CVDP native specification restoration: cvdp_agentic_swizzler_0001",
+  "physical_value_layout": "packed-value/1"
+}

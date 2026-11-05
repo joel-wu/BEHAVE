@@ -1,0 +1,1 @@
+Develop a synthesizable RTL implementation for the supplied hardware task. Read the specification before implementing. Follow its numerical, state, reset, protocol, and timing requirements. The specification and supplied public files are read-only reference inputs.

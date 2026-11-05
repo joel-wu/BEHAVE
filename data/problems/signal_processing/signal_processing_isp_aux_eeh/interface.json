@@ -1,0 +1,388 @@
+{
+  "version": "task-contract/16",
+  "endpoints": [
+    {
+      "name": "in",
+      "direction": "in",
+      "fields": [
+        {
+          "name": "in_emclip0",
+          "type": {
+            "width": 16,
+            "signed": true
+          },
+          "port": "in_emclip0"
+        },
+        {
+          "name": "in_emclip1",
+          "type": {
+            "width": 16,
+            "signed": true
+          },
+          "port": "in_emclip1"
+        },
+        {
+          "name": "in_f00",
+          "type": {
+            "width": 8,
+            "signed": true
+          },
+          "port": "in_f00"
+        },
+        {
+          "name": "in_f01",
+          "type": {
+            "width": 8,
+            "signed": true
+          },
+          "port": "in_f01"
+        },
+        {
+          "name": "in_f02",
+          "type": {
+            "width": 8,
+            "signed": true
+          },
+          "port": "in_f02"
+        },
+        {
+          "name": "in_f03",
+          "type": {
+            "width": 8,
+            "signed": true
+          },
+          "port": "in_f03"
+        },
+        {
+          "name": "in_f04",
+          "type": {
+            "width": 8,
+            "signed": true
+          },
+          "port": "in_f04"
+        },
+        {
+          "name": "in_f10",
+          "type": {
+            "width": 8,
+            "signed": true
+          },
+          "port": "in_f10"
+        },
+        {
+          "name": "in_f11",
+          "type": {
+            "width": 8,
+            "signed": true
+          },
+          "port": "in_f11"
+        },
+        {
+          "name": "in_f12",
+          "type": {
+            "width": 8,
+            "signed": true
+          },
+          "port": "in_f12"
+        },
+        {
+          "name": "in_f13",
+          "type": {
+            "width": 8,
+            "signed": true
+          },
+          "port": "in_f13"
+        },
+        {
+          "name": "in_f14",
+          "type": {
+            "width": 8,
+            "signed": true
+          },
+          "port": "in_f14"
+        },
+        {
+          "name": "in_f20",
+          "type": {
+            "width": 8,
+            "signed": true
+          },
+          "port": "in_f20"
+        },
+        {
+          "name": "in_f21",
+          "type": {
+            "width": 8,
+            "signed": true
+          },
+          "port": "in_f21"
+        },
+        {
+          "name": "in_f22",
+          "type": {
+            "width": 8,
+            "signed": true
+          },
+          "port": "in_f22"
+        },
+        {
+          "name": "in_f23",
+          "type": {
+            "width": 8,
+            "signed": true
+          },
+          "port": "in_f23"
+        },
+        {
+          "name": "in_f24",
+          "type": {
+            "width": 8,
+            "signed": true
+          },
+          "port": "in_f24"
+        },
+        {
+          "name": "in_gain0",
+          "type": {
+            "width": 16,
+            "signed": true
+          },
+          "port": "in_gain0"
+        },
+        {
+          "name": "in_gain1",
+          "type": {
+            "width": 16,
+            "signed": true
+          },
+          "port": "in_gain1"
+        },
+        {
+          "name": "in_p00",
+          "type": {
+            "width": 8,
+            "signed": false
+          },
+          "port": "in_p00"
+        },
+        {
+          "name": "in_p01",
+          "type": {
+            "width": 8,
+            "signed": false
+          },
+          "port": "in_p01"
+        },
+        {
+          "name": "in_p02",
+          "type": {
+            "width": 8,
+            "signed": false
+          },
+          "port": "in_p02"
+        },
+        {
+          "name": "in_p03",
+          "type": {
+            "width": 8,
+            "signed": false
+          },
+          "port": "in_p03"
+        },
+        {
+          "name": "in_p04",
+          "type": {
+            "width": 8,
+            "signed": false
+          },
+          "port": "in_p04"
+        },
+        {
+          "name": "in_p10",
+          "type": {
+            "width": 8,
+            "signed": false
+          },
+          "port": "in_p10"
+        },
+        {
+          "name": "in_p11",
+          "type": {
+            "width": 8,
+            "signed": false
+          },
+          "port": "in_p11"
+        },
+        {
+          "name": "in_p12",
+          "type": {
+            "width": 8,
+            "signed": false
+          },
+          "port": "in_p12"
+        },
+        {
+          "name": "in_p13",
+          "type": {
+            "width": 8,
+            "signed": false
+          },
+          "port": "in_p13"
+        },
+        {
+          "name": "in_p14",
+          "type": {
+            "width": 8,
+            "signed": false
+          },
+          "port": "in_p14"
+        },
+        {
+          "name": "in_p20",
+          "type": {
+            "width": 8,
+            "signed": false
+          },
+          "port": "in_p20"
+        },
+        {
+          "name": "in_p21",
+          "type": {
+            "width": 8,
+            "signed": false
+          },
+          "port": "in_p21"
+        },
+        {
+          "name": "in_p22",
+          "type": {
+            "width": 8,
+            "signed": false
+          },
+          "port": "in_p22"
+        },
+        {
+          "name": "in_p23",
+          "type": {
+            "width": 8,
+            "signed": false
+          },
+          "port": "in_p23"
+        },
+        {
+          "name": "in_p24",
+          "type": {
+            "width": 8,
+            "signed": false
+          },
+          "port": "in_p24"
+        },
+        {
+          "name": "in_thres0",
+          "type": {
+            "width": 16,
+            "signed": true
+          },
+          "port": "in_thres0"
+        },
+        {
+          "name": "in_thres1",
+          "type": {
+            "width": 16,
+            "signed": true
+          },
+          "port": "in_thres1"
+        }
+      ],
+      "adapter": {
+        "name": "ready-valid",
+        "version": 1,
+        "environment_controls": [
+          "in_valid"
+        ],
+        "artifact_controls": [
+          "in_ready"
+        ],
+        "monitor_state": [
+          "outstanding",
+          "stall_cycles"
+        ]
+      },
+      "clock": "clk",
+      "matching": "ordered",
+      "identifier": null,
+      "max_outstanding": null,
+      "response_deadline": null,
+      "answers_per_transaction": null,
+      "terminal_quiescence": null,
+      "reset_policy": null,
+      "kind": "transaction"
+    },
+    {
+      "name": "out",
+      "direction": "out",
+      "fields": [
+        {
+          "name": "out_ee_pixel",
+          "type": {
+            "width": 8,
+            "signed": false
+          },
+          "port": "out_ee_pixel"
+        },
+        {
+          "name": "out_em_value",
+          "type": {
+            "width": 17,
+            "signed": false
+          },
+          "port": "out_em_value"
+        }
+      ],
+      "adapter": {
+        "name": "ready-valid",
+        "version": 1,
+        "environment_controls": [
+          "out_ready"
+        ],
+        "artifact_controls": [
+          "out_valid"
+        ],
+        "monitor_state": [
+          "outstanding",
+          "stall_cycles"
+        ]
+      },
+      "clock": "clk",
+      "matching": "ordered",
+      "identifier": null,
+      "max_outstanding": null,
+      "response_deadline": null,
+      "answers_per_transaction": null,
+      "terminal_quiescence": null,
+      "reset_policy": null,
+      "kind": "transaction"
+    }
+  ],
+  "clocks": [
+    {
+      "name": "clk",
+      "clock": "clk",
+      "edge": "rising",
+      "reset": "rst",
+      "reset_active_low": false,
+      "reset_hold_cycles": 3,
+      "reset_restores": null
+    }
+  ],
+  "memories": [],
+  "protocol_instances": [],
+  "observation_goals": [],
+  "transaction_monitors": [],
+  "latency_goals": [],
+  "operation_rules": [],
+  "source_read_rules": [],
+  "authority": "task",
+  "source": "declared by signal_processing_isp_aux_eeh",
+  "physical_value_layout": "packed-value/1"
+}

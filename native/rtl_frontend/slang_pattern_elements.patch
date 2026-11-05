@@ -1,0 +1,12 @@
+--- a/source/ast/expressions/AssignmentExpressions.cpp
++++ b/source/ast/expressions/AssignmentExpressions.cpp
+@@ -1667,4 +1667,9 @@
+ void StructuredAssignmentPatternExpression::serializeTo(ASTSerializer& serializer) const {
++    // Preserve the compiler's typed, left-to-right expansion separately from
++    // source setters, whose spans still own source-event declarations.
++    serializer.startArray("resolvedElements");
++    for (auto elem : elements()) serializer.serialize(*elem);
++    serializer.endArray();
+     if (defaultSetter)
+         serializer.write("defaultSetter", *defaultSetter);
+ 

@@ -1,0 +1,206 @@
+{
+  "version": "task-contract/16",
+  "endpoints": [
+    {
+      "name": "in",
+      "direction": "in",
+      "fields": [
+        {
+          "name": "in_alpha",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_alpha"
+        },
+        {
+          "name": "in_beta",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_beta"
+        },
+        {
+          "name": "in_row",
+          "type": {
+            "width": 8,
+            "signed": false
+          },
+          "port": "in_row"
+        }
+      ],
+      "adapter": {
+        "name": "ready-valid",
+        "version": 1,
+        "environment_controls": [
+          "in_valid"
+        ],
+        "artifact_controls": [
+          "in_ready"
+        ],
+        "monitor_state": [
+          "outstanding",
+          "stall_cycles"
+        ]
+      },
+      "clock": "clk",
+      "matching": "ordered",
+      "identifier": null,
+      "max_outstanding": null,
+      "response_deadline": null,
+      "answers_per_transaction": null,
+      "terminal_quiescence": null,
+      "reset_policy": null,
+      "kind": "transaction"
+    },
+    {
+      "name": "out",
+      "direction": "out",
+      "fields": [
+        {
+          "name": "out_y0",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "out_y0"
+        },
+        {
+          "name": "out_y1",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "out_y1"
+        },
+        {
+          "name": "out_y2",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "out_y2"
+        },
+        {
+          "name": "out_y3",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "out_y3"
+        }
+      ],
+      "adapter": {
+        "name": "ready-valid",
+        "version": 1,
+        "environment_controls": [
+          "out_ready"
+        ],
+        "artifact_controls": [
+          "out_valid"
+        ],
+        "monitor_state": [
+          "outstanding",
+          "stall_cycles"
+        ]
+      },
+      "clock": "clk",
+      "matching": "ordered",
+      "identifier": null,
+      "max_outstanding": null,
+      "response_deadline": null,
+      "answers_per_transaction": null,
+      "terminal_quiescence": null,
+      "reset_policy": null,
+      "kind": "transaction"
+    }
+  ],
+  "clocks": [
+    {
+      "name": "clk",
+      "clock": "clk",
+      "edge": "rising",
+      "reset": "rst",
+      "reset_active_low": false,
+      "reset_hold_cycles": 3,
+      "reset_restores": null
+    }
+  ],
+  "memories": [
+    {
+      "name": "a_val",
+      "addr_width": 10,
+      "data_width": 16,
+      "clock": "clk",
+      "ports": [
+        {
+          "id": null,
+          "kind": "r"
+        }
+      ],
+      "protocol": "external-memory/read-first-request-ready-valid-run-latency-one-slot-response/no-write-priority/index-mix-junk/cancel-on-domain-reset/3"
+    },
+    {
+      "name": "b_vec",
+      "addr_width": 10,
+      "data_width": 64,
+      "clock": "clk",
+      "ports": [
+        {
+          "id": null,
+          "kind": "r"
+        }
+      ],
+      "protocol": "external-memory/read-first-request-ready-valid-run-latency-one-slot-response/no-write-priority/index-mix-junk/cancel-on-domain-reset/3"
+    },
+    {
+      "name": "col_idx",
+      "addr_width": 10,
+      "data_width": 8,
+      "clock": "clk",
+      "ports": [
+        {
+          "id": null,
+          "kind": "r"
+        }
+      ],
+      "protocol": "external-memory/read-first-request-ready-valid-run-latency-one-slot-response/no-write-priority/index-mix-junk/cancel-on-domain-reset/3"
+    },
+    {
+      "name": "row_ptr",
+      "addr_width": 9,
+      "data_width": 9,
+      "clock": "clk",
+      "ports": [
+        {
+          "id": null,
+          "kind": "r"
+        }
+      ],
+      "protocol": "external-memory/read-first-request-ready-valid-run-latency-one-slot-response/no-write-priority/index-mix-junk/cancel-on-domain-reset/3"
+    },
+    {
+      "name": "x_vec",
+      "addr_width": 10,
+      "data_width": 64,
+      "clock": "clk",
+      "ports": [
+        {
+          "id": null,
+          "kind": "r"
+        }
+      ],
+      "protocol": "external-memory/read-first-request-ready-valid-run-latency-one-slot-response/no-write-priority/index-mix-junk/cancel-on-domain-reset/3"
+    }
+  ],
+  "protocol_instances": [],
+  "observation_goals": [],
+  "transaction_monitors": [],
+  "latency_goals": [],
+  "operation_rules": [],
+  "source_read_rules": [],
+  "authority": "task",
+  "source": "declared by numeric_pool_sparse_linalg_csr_matvec",
+  "physical_value_layout": "packed-value/1"
+}

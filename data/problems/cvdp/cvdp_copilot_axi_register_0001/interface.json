@@ -1,0 +1,242 @@
+{
+  "version": "task-contract/8",
+  "endpoints": [
+    {
+      "name": "in",
+      "direction": "in",
+      "fields": [
+        {
+          "name": "awaddr_i",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "awaddr_i"
+        },
+        {
+          "name": "awvalid_i",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "awvalid_i"
+        },
+        {
+          "name": "wdata_i",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "wdata_i"
+        },
+        {
+          "name": "wvalid_i",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "wvalid_i"
+        },
+        {
+          "name": "wstrb_i",
+          "type": {
+            "width": 4,
+            "signed": false
+          },
+          "port": "wstrb_i"
+        },
+        {
+          "name": "bready_i",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "bready_i"
+        },
+        {
+          "name": "araddr_i",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "araddr_i"
+        },
+        {
+          "name": "arvalid_i",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "arvalid_i"
+        },
+        {
+          "name": "rready_i",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "rready_i"
+        },
+        {
+          "name": "done_i",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "done_i"
+        }
+      ],
+      "adapter": {
+        "name": "sampled-edge",
+        "version": 1,
+        "environment_controls": [],
+        "artifact_controls": [],
+        "monitor_state": []
+      },
+      "clock": "clk",
+      "matching": "ordered",
+      "identifier": null,
+      "max_outstanding": null,
+      "response_deadline": null,
+      "answers_per_transaction": null,
+      "terminal_quiescence": null,
+      "reset_policy": null,
+      "kind": "transaction"
+    },
+    {
+      "name": "out",
+      "direction": "out",
+      "fields": [
+        {
+          "name": "awready_o",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "awready_o"
+        },
+        {
+          "name": "wready_o",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "wready_o"
+        },
+        {
+          "name": "bresp_o",
+          "type": {
+            "width": 2,
+            "signed": false
+          },
+          "port": "bresp_o"
+        },
+        {
+          "name": "bvalid_o",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "bvalid_o"
+        },
+        {
+          "name": "arready_o",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "arready_o"
+        },
+        {
+          "name": "rdata_o",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "rdata_o"
+        },
+        {
+          "name": "rvalid_o",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "rvalid_o"
+        },
+        {
+          "name": "rresp_o",
+          "type": {
+            "width": 2,
+            "signed": false
+          },
+          "port": "rresp_o"
+        },
+        {
+          "name": "beat_o",
+          "type": {
+            "width": 20,
+            "signed": false
+          },
+          "port": "beat_o"
+        },
+        {
+          "name": "start_o",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "start_o"
+        },
+        {
+          "name": "writeback_o",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "writeback_o"
+        }
+      ],
+      "adapter": {
+        "name": "sampled-edge",
+        "version": 1,
+        "environment_controls": [],
+        "artifact_controls": [],
+        "monitor_state": []
+      },
+      "clock": "clk",
+      "matching": "ordered",
+      "identifier": null,
+      "max_outstanding": null,
+      "response_deadline": null,
+      "answers_per_transaction": 1,
+      "terminal_quiescence": null,
+      "reset_policy": null,
+      "kind": "transaction"
+    }
+  ],
+  "clocks": [
+    {
+      "name": "clk",
+      "clock": "clk_i",
+      "edge": "rising",
+      "reset": "rst_n_i",
+      "reset_active_low": true,
+      "reset_hold_cycles": 3,
+      "reset_restores": true
+    }
+  ],
+  "memories": [],
+  "protocol_instances": [
+    {
+      "name": "compute",
+      "endpoints": [
+        "in",
+        "out"
+      ],
+      "mapping": "direct/1"
+    }
+  ],
+  "authority": "task",
+  "source": "Native CVDP clock semantics; batch2115 records source completions",
+  "physical_value_layout": "packed-value/1"
+}

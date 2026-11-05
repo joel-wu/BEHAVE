@@ -1,0 +1,154 @@
+{
+  "version": "task-contract/8",
+  "endpoints": [
+    {
+      "name": "in",
+      "direction": "in",
+      "fields": [
+        {
+          "name": "addr_a",
+          "type": {
+            "width": 13,
+            "signed": false
+          },
+          "port": "addr_a"
+        },
+        {
+          "name": "en_a",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "en_a"
+        },
+        {
+          "name": "be_a",
+          "type": {
+            "width": 4,
+            "signed": false
+          },
+          "port": "be_a"
+        },
+        {
+          "name": "data_in_a",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "data_in_a"
+        },
+        {
+          "name": "addr_b",
+          "type": {
+            "width": 13,
+            "signed": false
+          },
+          "port": "addr_b"
+        },
+        {
+          "name": "en_b",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "en_b"
+        },
+        {
+          "name": "be_b",
+          "type": {
+            "width": 4,
+            "signed": false
+          },
+          "port": "be_b"
+        },
+        {
+          "name": "data_in_b",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "data_in_b"
+        }
+      ],
+      "adapter": {
+        "name": "sampled-edge",
+        "version": 1,
+        "environment_controls": [],
+        "artifact_controls": [],
+        "monitor_state": []
+      },
+      "clock": "clk",
+      "matching": "ordered",
+      "identifier": null,
+      "max_outstanding": null,
+      "response_deadline": null,
+      "answers_per_transaction": null,
+      "terminal_quiescence": null,
+      "reset_policy": null,
+      "kind": "transaction"
+    },
+    {
+      "name": "out",
+      "direction": "out",
+      "fields": [
+        {
+          "name": "data_out_a",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "data_out_a"
+        },
+        {
+          "name": "data_out_b",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "data_out_b"
+        }
+      ],
+      "adapter": {
+        "name": "sampled-edge",
+        "version": 1,
+        "environment_controls": [],
+        "artifact_controls": [],
+        "monitor_state": []
+      },
+      "clock": "clk",
+      "matching": "ordered",
+      "identifier": null,
+      "max_outstanding": null,
+      "response_deadline": null,
+      "answers_per_transaction": 1,
+      "terminal_quiescence": null,
+      "reset_policy": null,
+      "kind": "transaction"
+    }
+  ],
+  "clocks": [
+    {
+      "name": "clk",
+      "clock": "clk",
+      "edge": "rising",
+      "reset": "init_reset",
+      "reset_active_low": false,
+      "reset_hold_cycles": 3,
+      "reset_restores": true
+    }
+  ],
+  "memories": [],
+  "protocol_instances": [
+    {
+      "name": "compute",
+      "endpoints": [
+        "in",
+        "out"
+      ],
+      "mapping": "direct/1"
+    }
+  ],
+  "authority": "task",
+  "source": "CVDP clock restoration with explicit initialization/load completion; batch2129",
+  "physical_value_layout": "packed-value/1"
+}

@@ -1,0 +1,22 @@
+{
+  "id": "ai_ml_integer_repetition_penalty16",
+  "source_kind": "ai_ml",
+  "name": "RepetitionPenalty16",
+  "family": "repetition_penalty16",
+  "tier": 2,
+  "license": "Apache-2.0",
+  "provenance": [
+    {
+      "repository": "https://github.com/huggingface/transformers",
+      "revision": "052e652d6d53c2b26ffde87e039b723949a53493",
+      "license": "Apache-2.0",
+      "file": "src/transformers/generation/logits_process.py",
+      "symbol": "RepetitionPenaltyLogitsProcessor.__call__",
+      "sha256": "167cd938df5536877bda6b89398464834090847d0ff5ebfad8352a4f50876b62",
+      "url": "https://github.com/huggingface/transformers/blob/052e652d6d53c2b26ffde87e039b723949a53493/src/transformers/generation/logits_process.py",
+      "license_file": "data/licenses/huggingface_transformers/LICENSE"
+    }
+  ],
+  "adaptation": "Sign-aware repetition penalty on a 16-token vocabulary, applied once per distinct seen token.\n\nL=min(8,in_length); use only the first L four-bit token slots. For each seen token with signed INT16 score s, output nearest-even(3*s/2) if s<0, otherwise nearest-even(2*s/3), then saturate to INT16. Unseen scores pass through. Return the 16 adjusted lanes and a 16-bit seen mask at bit 256. Repeated occurrences do not compound the penalty. This is Transformers repetition penalty 1.5 specialized to integer score storage; it is not frequency or presence penalty.",
+  "difficulty": "medium"
+}

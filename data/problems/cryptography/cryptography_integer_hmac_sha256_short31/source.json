@@ -1,0 +1,32 @@
+{
+  "id": "cryptography_integer_hmac_sha256_short31",
+  "source_kind": "cryptography",
+  "name": "HMACSHA256Short31",
+  "family": "hmac_sha256_short31",
+  "tier": 2,
+  "license": "Apache-2.0",
+  "provenance": [
+    {
+      "repository": "https://github.com/Mbed-TLS/mbedtls",
+      "revision": "107ea89daaefb9867ea9121002fbbdf926780e98",
+      "license": "Apache-2.0",
+      "file": "library/md.c",
+      "symbol": "mbedtls_md_hmac_starts / update / finish",
+      "sha256": "5ba79d51ff85951cb4001a22b2428568e4bc1072b367222808f3eac1ad91884d",
+      "url": "https://github.com/Mbed-TLS/mbedtls/blob/107ea89daaefb9867ea9121002fbbdf926780e98/library/md.c",
+      "license_file": "data/licenses/Mbed-TLS_mbedtls/LICENSE"
+    },
+    {
+      "repository": "https://github.com/Mbed-TLS/mbedtls",
+      "revision": "107ea89daaefb9867ea9121002fbbdf926780e98",
+      "license": "Apache-2.0",
+      "file": "library/sha256.c",
+      "symbol": "mbedtls_internal_sha256_process / mbedtls_sha256_finish",
+      "sha256": "4f928e5dcc0a2baf08634fc759309a3dbda52bb69ead14ff6c2dccafd8267453",
+      "url": "https://github.com/Mbed-TLS/mbedtls/blob/107ea89daaefb9867ea9121002fbbdf926780e98/library/sha256.c",
+      "license_file": "data/licenses/Mbed-TLS_mbedtls/LICENSE"
+    }
+  ],
+  "adaptation": "Complete HMAC-SHA256 with a 32-byte key and a 0..31 byte message.\n\nByte i occupies bits 8*i; use exactly the first L=in_length message bytes, ignoring the rest. Pad the fixed 32-byte key to 64 bytes with zero as K0. Define ipad[i]=K0[i] xor 0x36 and opad[i]=K0[i] xor 0x5c for all 64 byte positions. Compute SHA256(opad || SHA256(ipad || M)). Both inner and outer hashes include standard SHA256 0x80/zero padding and their full big-endian 64-bit bit lengths. Each has exactly two compression blocks for these lengths. Return the 32 digest bytes, first byte least significant.\n\nSHA256 details: load words big-endian; IV words are 6a09e667,bb67ae85,3c6ef372,a54ff53a,510e527f,9b05688c,1f83d9ab,5be0cd19. W[t]=sigma1(W[t-2])+W[t-7]+sigma0(W[t-15])+W[t-16] mod 2^32, for t=16..63; sigma0=ROTR7 xor ROTR18 xor SHR3, sigma1=ROTR17 xor ROTR19 xor SHR10. For each round T1=h+Sigma1(e)+Ch(e,f,g)+K[t]+W[t], T2=Sigma0(a)+Maj(a,b,c), then (a,b,c,d,e,f,g,h)=(T1+T2,a,b,c,d+T1,e,f,g), all modulo 2^32. Sigma0=ROTR2 xor ROTR13 xor ROTR22; Sigma1=ROTR6 xor ROTR11 xor ROTR25; Ch=(x&y) xor (~x&z); Maj=(x&y) xor (x&z) xor (y&z). Add the final working words into the IV/chaining words after each block. Round constants, in order:\n```\n428a2f98 71374491 b5c0fbcf e9b5dba5 3956c25b 59f111f1 923f82a4 ab1c5ed5\nd807aa98 12835b01 243185be 550c7dc3 72be5d74 80deb1fe 9bdc06a7 c19bf174\ne49b69c1 efbe4786 0fc19dc6 240ca1cc 2de92c6f 4a7484aa 5cb0a9dc 76f988da\n983e5152 a831c66d b00327c8 bf597fc7 c6e00bf3 d5a79147 06ca6351 14292967\n27b70a85 2e1b2138 4d2c6dfc 53380d13 650a7354 766a0abb 81c2c92e 92722c85\na2bfe8a1 a81a664b c24b8b70 c76c51a3 d192e819 d6990624 f40e3585 106aa070\n19a4c116 1e376c08 2748774c 34b0bcb5 391c0cb3 4ed8aa4a 5b9cca4f 682e6ff3\n748f82ee 78a5636f 84c87814 8cc70208 90befffa a4506ceb bef9a3f7 c67178f2\n```",
+  "difficulty": "medium"
+}

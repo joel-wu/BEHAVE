@@ -1,0 +1,22 @@
+{
+  "id": "ai_ml_integer_lora_rank2_linear4",
+  "source_kind": "ai_ml",
+  "name": "LoRARank2Linear4",
+  "family": "lora_rank2_linear4",
+  "tier": 2,
+  "license": "Apache-2.0",
+  "provenance": [
+    {
+      "repository": "https://github.com/huggingface/peft",
+      "revision": "431c0e2d5ca56fa512dc4c96876c4145bb538f62",
+      "license": "Apache-2.0",
+      "file": "src/peft/tuners/lora/layer.py",
+      "symbol": "Linear.forward: result + lora_B(lora_A(dropout(x))) * scaling",
+      "sha256": "4d5d445932c210b665ef5b9065dfa81ffb6e8965e21bdbe65c3b5508d3308ed4",
+      "url": "https://github.com/huggingface/peft/blob/431c0e2d5ca56fa512dc4c96876c4145bb538f62/src/peft/tuners/lora/layer.py",
+      "license_file": "data/licenses/huggingface_peft/LICENSE"
+    }
+  ],
+  "adaptation": "A complete rank-two low-rank adaptation added to a 4x4 base linear layer.\n\nAll input lanes are signed INT8. W is 4x4, A is 2x4, B is 4x2, row-major. Compute y=W*x+B*(A*x) with exact intermediates and return four signed INT32 lanes. LoRA rank r=2 and alpha=2, so alpha/r=1. Bias and dropout are absent. Neither the base path nor the residual may be omitted. This follows PEFT Linear.forward, specialized to integer inputs and one enabled adapter, not adapter training.",
+  "difficulty": "medium"
+}

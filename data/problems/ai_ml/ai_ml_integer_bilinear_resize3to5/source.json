@@ -1,0 +1,22 @@
+{
+  "id": "ai_ml_integer_bilinear_resize3to5",
+  "source_kind": "ai_ml",
+  "name": "BilinearResize3To5",
+  "family": "bilinear_resize3to5",
+  "tier": 2,
+  "license": "Apache-2.0",
+  "provenance": [
+    {
+      "repository": "https://github.com/onnx/onnx",
+      "revision": "57b9c6a4f6eebb09ae1b34cfb632078518f72832",
+      "license": "Apache-2.0",
+      "file": "onnx/reference/ops/op_resize.py",
+      "symbol": "_interpolate_nd; linear, align_corners",
+      "sha256": "edcfc02ebbf62feaea9d755a160f2de37280dd00af27c522abfd533bd0528af2",
+      "url": "https://github.com/onnx/onnx/blob/57b9c6a4f6eebb09ae1b34cfb632078518f72832/onnx/reference/ops/op_resize.py",
+      "license_file": "data/licenses/onnx_onnx/LICENSE"
+    }
+  ],
+  "adaptation": "Resize a row-major 3x3 unsigned-byte image to 5x5 using bilinear interpolation with align_corners=True. Output (h,w) samples input coordinates (h/2,w/2). Clamp the upper neighbor at input index 2. Use exact nonnegative bilinear weights and round only once, at the end, to nearest integer with half upward. Equivalently set i=h//2, j=w//2, a=h%2, b=w%2, i1=min(i+1,2), j1=min(j+1,2); Y[h,w]=floor(((2-a)*(2-b)*X[i,j]+(2-a)*b*X[i,j1]+a*(2-b)*X[i1,j]+a*b*X[i1,j1]+2)/4). The final integer rounding is the declared adaptation of the real-valued Resize operation; there is no intermediate rounding.",
+  "difficulty": "medium"
+}

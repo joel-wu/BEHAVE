@@ -1,0 +1,114 @@
+{
+  "version": "task-contract/8",
+  "endpoints": [
+    {
+      "name": "in",
+      "direction": "in",
+      "fields": [
+        {
+          "name": "load",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "load"
+        },
+        {
+          "name": "a",
+          "type": {
+            "width": 8,
+            "signed": false
+          },
+          "port": "a"
+        },
+        {
+          "name": "b",
+          "type": {
+            "width": 8,
+            "signed": false
+          },
+          "port": "b"
+        }
+      ],
+      "adapter": {
+        "name": "sampled-edge",
+        "version": 1,
+        "environment_controls": [],
+        "artifact_controls": [],
+        "monitor_state": []
+      },
+      "clock": "clk",
+      "matching": "ordered",
+      "identifier": null,
+      "max_outstanding": null,
+      "response_deadline": null,
+      "answers_per_transaction": null,
+      "terminal_quiescence": null,
+      "reset_policy": null,
+      "kind": "transaction"
+    },
+    {
+      "name": "out",
+      "direction": "out",
+      "fields": [
+        {
+          "name": "p",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "p"
+        },
+        {
+          "name": "rdy",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "rdy"
+        }
+      ],
+      "adapter": {
+        "name": "sampled-edge",
+        "version": 1,
+        "environment_controls": [],
+        "artifact_controls": [],
+        "monitor_state": []
+      },
+      "clock": "clk",
+      "matching": "ordered",
+      "identifier": null,
+      "max_outstanding": null,
+      "response_deadline": null,
+      "answers_per_transaction": 1,
+      "terminal_quiescence": null,
+      "reset_policy": null,
+      "kind": "transaction"
+    }
+  ],
+  "clocks": [
+    {
+      "name": "clk",
+      "clock": "clk",
+      "edge": "rising",
+      "reset": "init_reset",
+      "reset_active_low": false,
+      "reset_hold_cycles": 3,
+      "reset_restores": true
+    }
+  ],
+  "memories": [],
+  "protocol_instances": [
+    {
+      "name": "compute",
+      "endpoints": [
+        "in",
+        "out"
+      ],
+      "mapping": "direct/1"
+    }
+  ],
+  "authority": "task",
+  "source": "RTLLM disclosed qualified-clear / operand-load adaptation; batch2131",
+  "physical_value_layout": "packed-value/1"
+}

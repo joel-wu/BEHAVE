@@ -1,0 +1,22 @@
+{
+  "id": "ai_ml_integer_roi_align_q4",
+  "source_kind": "ai_ml",
+  "name": "RoiAlignQ4",
+  "family": "roi_align_q4",
+  "tier": 2,
+  "license": "Apache-2.0",
+  "provenance": [
+    {
+      "repository": "https://github.com/onnx/onnx",
+      "revision": "57b9c6a4f6eebb09ae1b34cfb632078518f72832",
+      "license": "Apache-2.0",
+      "file": "onnx/reference/ops/op_roi_align.py",
+      "symbol": "RoiAlign.roi_align_forward / pre_calc_for_bilinear_interpolate, avg output_half_pixel",
+      "sha256": "c159679ef7e86f5b0bd7839aa72b499e6c156c9ec19d5338cf68be5af0cd7c60",
+      "url": "https://github.com/onnx/onnx/blob/57b9c6a4f6eebb09ae1b34cfb632078518f72832/onnx/reference/ops/op_roi_align.py",
+      "license_file": "data/licenses/onnx_onnx/LICENSE"
+    }
+  ],
+  "adaptation": "Average RoIAlign on an NCHW [1,2,4,4] signed INT8 feature map, with two regions and 2x2 pooled output bins.\n\nEach region has (x1,y1,x2,y2) signed INT8 raw coordinates representing raw/16; regions are packed consecutively. Use ONNX coordinate_transformation_mode=output_half_pixel (no half-pixel subtraction), spatial_scale=1, sampling_ratio=2, mode=avg and batch index zero. Let w=max(x2-x1,1), h=max(y2-y1,1), using real coordinate values. Do not reorder reversed endpoints: malformed or zero-size intervals start at (x1,y1) and have extent at least one. For bin (by,bx) in {0,1}^2 and samples (sy,sx) in {0,1}^2, sample px=x1+(bx+(sx+1/2)/2)*w/2 and py=y1+(by+(sy+1/2)/2)*h/2. If px<-1 or px>4 or py<-1 or py>4, the sample is zero. Otherwise clamp px,py to [0,3] and bilinearly interpolate the four neighboring pixels (the last row/column may be used twice). This [-1,4] boundary rule differs from GridSample zero padding. Average all four exact samples, including zero samples. Output [2,2,2,2] is region/channel/bin_y/bin_x order, sixteen signed INT16 lanes in units 1/256, rounding once at the final bin value to nearest with ties away from zero. No per-sample rounding or integer RoI quantization is allowed. This is an exact rational/fixed-point specialization, not an assertion about source floating-point rounding for arbitrary shapes.",
+  "difficulty": "medium"
+}

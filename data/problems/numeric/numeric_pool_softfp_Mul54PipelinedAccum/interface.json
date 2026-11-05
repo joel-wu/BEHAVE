@@ -1,0 +1,140 @@
+{
+  "version": "task-contract/16",
+  "endpoints": [
+    {
+      "name": "in",
+      "direction": "in",
+      "fields": [
+        {
+          "name": "in_a_s0",
+          "type": {
+            "width": 54,
+            "signed": false
+          },
+          "port": "in_a_s0"
+        },
+        {
+          "name": "in_b_s0",
+          "type": {
+            "width": 54,
+            "signed": false
+          },
+          "port": "in_b_s0"
+        },
+        {
+          "name": "in_c_s2",
+          "type": {
+            "width": 105,
+            "signed": false
+          },
+          "port": "in_c_s2"
+        },
+        {
+          "name": "in_latch_a_s0",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "in_latch_a_s0"
+        },
+        {
+          "name": "in_latch_b_s0",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "in_latch_b_s0"
+        },
+        {
+          "name": "in_val_s0",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "in_val_s0"
+        }
+      ],
+      "adapter": {
+        "name": "ready-valid",
+        "version": 1,
+        "environment_controls": [
+          "in_valid"
+        ],
+        "artifact_controls": [
+          "in_ready"
+        ],
+        "monitor_state": [
+          "outstanding",
+          "stall_cycles"
+        ]
+      },
+      "clock": "clk",
+      "matching": "ordered",
+      "identifier": null,
+      "max_outstanding": null,
+      "response_deadline": null,
+      "answers_per_transaction": null,
+      "terminal_quiescence": null,
+      "reset_policy": null,
+      "kind": "transaction"
+    },
+    {
+      "name": "out",
+      "direction": "out",
+      "fields": [
+        {
+          "name": "out_result_s3",
+          "type": {
+            "width": 105,
+            "signed": false
+          },
+          "port": "out_result_s3"
+        }
+      ],
+      "adapter": {
+        "name": "ready-valid",
+        "version": 1,
+        "environment_controls": [
+          "out_ready"
+        ],
+        "artifact_controls": [
+          "out_valid"
+        ],
+        "monitor_state": [
+          "outstanding",
+          "stall_cycles"
+        ]
+      },
+      "clock": "clk",
+      "matching": "ordered",
+      "identifier": null,
+      "max_outstanding": null,
+      "response_deadline": null,
+      "answers_per_transaction": null,
+      "terminal_quiescence": null,
+      "reset_policy": null,
+      "kind": "transaction"
+    }
+  ],
+  "clocks": [
+    {
+      "name": "clk",
+      "clock": "clk",
+      "edge": "rising",
+      "reset": "rst",
+      "reset_active_low": false,
+      "reset_hold_cycles": 3,
+      "reset_restores": null
+    }
+  ],
+  "memories": [],
+  "protocol_instances": [],
+  "observation_goals": [],
+  "transaction_monitors": [],
+  "latency_goals": [],
+  "operation_rules": [],
+  "source_read_rules": [],
+  "authority": "task",
+  "source": "declared by numeric_pool_softfp_Mul54PipelinedAccum",
+  "physical_value_layout": "packed-value/1"
+}

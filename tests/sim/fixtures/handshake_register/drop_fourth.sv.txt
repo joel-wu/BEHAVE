@@ -1,0 +1,33 @@
+// Deliberate negative candidate: the fourth accepted request never completes.
+module handshake_register (
+    input logic clk,
+    input logic rst,
+    input logic in_valid,
+    output logic in_ready,
+    input logic in_d,
+    output logic out_valid,
+    input logic out_ready,
+    output logic out_q
+);
+    logic busy;
+    logic [2:0] accepted_count;
+    wire input_accepted = in_valid & in_ready;
+    wire output_consumed = out_valid & out_ready;
+
+    assign in_ready = ~busy | output_consumed;
+    assign out_valid = busy && accepted_count != 3'd4;
+
+    always_ff @(posedge clk or posedge rst) begin
+        if (rst) begin
+            busy <= 1'b0;
+            out_q <= 1'b0;
+            accepted_count <= 3'd0;
+        end else if (input_accepted) begin
+            out_q <= in_d;
+            busy <= 1'b1;
+            accepted_count <= accepted_count + 3'd1;
+        end else if (output_consumed) begin
+            busy <= 1'b0;
+        end
+    end
+endmodule

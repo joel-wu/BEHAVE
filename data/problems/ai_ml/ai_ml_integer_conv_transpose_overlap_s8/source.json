@@ -1,0 +1,32 @@
+{
+  "id": "ai_ml_integer_conv_transpose_overlap_s8",
+  "source_kind": "ai_ml",
+  "name": "ConvTransposeOverlapS8",
+  "family": "conv_transpose_overlap_s8",
+  "tier": 2,
+  "license": "Apache-2.0",
+  "provenance": [
+    {
+      "repository": "https://github.com/onnx/onnx",
+      "revision": "57b9c6a4f6eebb09ae1b34cfb632078518f72832",
+      "license": "Apache-2.0",
+      "file": "onnx/reference/ops/op_conv_transpose.py",
+      "symbol": "ConvTranspose._run group=1",
+      "sha256": "451df2256e62fba128d9586c855d6f1deec1820c838a11ddc8c94bb578afecf4",
+      "url": "https://github.com/onnx/onnx/blob/57b9c6a4f6eebb09ae1b34cfb632078518f72832/onnx/reference/ops/op_conv_transpose.py",
+      "license_file": "data/licenses/onnx_onnx/LICENSE"
+    },
+    {
+      "repository": "https://github.com/onnx/onnx",
+      "revision": "57b9c6a4f6eebb09ae1b34cfb632078518f72832",
+      "license": "Apache-2.0",
+      "file": "onnx/reference/ops/op_col2im.py",
+      "symbol": "col2im_naive_implementation",
+      "sha256": "7a7acf794b1203c59b7bec29caaabf4d95734c98ae99b94d18f532f6035d8d2e",
+      "url": "https://github.com/onnx/onnx/blob/57b9c6a4f6eebb09ae1b34cfb632078518f72832/onnx/reference/ops/op_col2im.py",
+      "license_file": "data/licenses/onnx_onnx/LICENSE"
+    }
+  ],
+  "adaptation": "Two-input/two-output-channel signed transposed convolution. Input X is NCHW [1,2,2,2] INT8, weights W are [2,2,3,3] INT8 indexed [input_channel,output_channel,kh,kw], and B is two INT16 biases. Stride is 2 in both axes; dilation is 1; padding and output_padding are zero; groups=1. Output Y is NCHW [1,2,5,5], all fifty signed INT32 values. Initialize each Y[c,y,x] to B[c]. Each X[k,h,w] contributes X[k,h,w]*W[k,c,i,j] to Y[c,2*h+i,2*w+j] for every output channel c and kernel index i,j. Overlaps add; kernels are not flipped, and biases are added once, not per contribution. No activation/requantization; all sums fit INT32. This fixed integer specialization retains the source transpose-convolution scatter and channel mixing.",
+  "difficulty": "medium"
+}

@@ -1,0 +1,22 @@
+{
+  "id": "ai_ml_integer_nms4_u8",
+  "source_kind": "ai_ml",
+  "name": "NMS4U8",
+  "family": "nms4_u8",
+  "tier": 2,
+  "license": "Apache-2.0",
+  "provenance": [
+    {
+      "repository": "https://github.com/onnx/onnx",
+      "revision": "57b9c6a4f6eebb09ae1b34cfb632078518f72832",
+      "license": "Apache-2.0",
+      "file": "onnx/reference/ops/op_non_max_suppression.py",
+      "symbol": "NonMaxSuppression._run; suppress_by_iou; BoxInfo.__lt__",
+      "sha256": "f0b089644c93a8fcb8693b0689af3be61ff9ac07b32753777fe012ae84668d8d",
+      "url": "https://github.com/onnx/onnx/blob/57b9c6a4f6eebb09ae1b34cfb632078518f72832/onnx/reference/ops/op_non_max_suppression.py",
+      "license_file": "data/licenses/onnx_onnx/LICENSE"
+    }
+  ],
+  "adaptation": "Perform greedy non-maximum suppression on all four boxes of one image/class. Each box occupies four unsigned bytes [y0,x0,y1,x1] in the low-to-high order; scores are four signed INT8 lanes. Normalize reversed endpoints by min/max on each axis. Process boxes by descending score, breaking ties by lower original index. There is no score cutoff. Keep a box unless an already kept box has IoU strictly greater than in_threshold/255; equality does NOT suppress. Areas use continuous corner coordinates (width=xmax-xmin, no +1); zero-area boxes and zero intersection never suppress. Compare positive areas exactly as 255*intersection > in_threshold*union, without floating-point division. Return up to four selected original indices in selection order, two bits each in bits [7:0]; zero unused index slots. Bits [10:8] contain count. Finite coordinates, exact rational IoU and packed indices specialize the source NMS operation; arbitrary batches/classes, center/width boxes and float32 rounding at the threshold are outside this task.",
+  "difficulty": "challenge"
+}

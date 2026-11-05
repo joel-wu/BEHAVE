@@ -1,0 +1,21 @@
+Authored finite hardware adaptation. Numerical/capacity changes are explicit in spec.md.
+
+https://github.com/onnx/onnx@57b9c6a4f6eebb09ae1b34cfb632078518f72832:onnx/reference/ops/op_dequantize_linear.py
+
+# Copyright (c) ONNX Project Contributors
+
+# SPDX-License-Identifier: Apache-2.0
+
+https://github.com/onnx/onnx@57b9c6a4f6eebb09ae1b34cfb632078518f72832:onnx/reference/ops/op_add.py
+
+# Copyright (c) ONNX Project Contributors
+
+# SPDX-License-Identifier: Apache-2.0
+
+https://github.com/onnx/onnx@57b9c6a4f6eebb09ae1b34cfb632078518f72832:onnx/reference/ops/op_quantize_linear.py
+
+# Copyright (c) ONNX Project Contributors
+
+# SPDX-License-Identifier: Apache-2.0
+
+

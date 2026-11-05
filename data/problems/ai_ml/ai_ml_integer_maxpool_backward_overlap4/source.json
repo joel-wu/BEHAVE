@@ -1,0 +1,22 @@
+{
+  "id": "ai_ml_integer_maxpool_backward_overlap4",
+  "source_kind": "ai_ml",
+  "name": "MaxPoolBackwardOverlap4",
+  "family": "maxpool_backward_overlap4",
+  "tier": 2,
+  "license": "BSD-3-Clause",
+  "provenance": [
+    {
+      "repository": "https://github.com/pytorch/pytorch",
+      "revision": "a8d6afb511a69687bbb2b7e88a3cf67917e1697e",
+      "license": "BSD-3-Clause",
+      "file": "aten/src/ATen/native/cpu/MaxPoolKernel.cpp",
+      "symbol": "cpu_max_pool / cpu_max_pool_backward",
+      "sha256": "496fa66eb0bcbc6866e4ba868c5ff60ba85a3fe09e0fab12f6154fd99fa6d257",
+      "url": "https://github.com/pytorch/pytorch/blob/a8d6afb511a69687bbb2b7e88a3cf67917e1697e/aten/src/ATen/native/cpu/MaxPoolKernel.cpp",
+      "license_file": "data/licenses/pytorch_pytorch/LICENSE"
+    }
+  ],
+  "adaptation": "Backward propagation through overlapping max pooling, including tied maxima and gradient accumulation.\n\nInput X is 4x4 signed INT8, and G is 2x2 signed INT16. Forward windows are 3x3, stride one, no padding. Each window selects its first maximum in row-major order (strict greater updates). Add its G value to that selected input position. Return the full 4x4 signed INT32 gradient, row-major; other positions are zero. Multiple windows may select the same position; their gradients must add, not overwrite.",
+  "difficulty": "medium"
+}

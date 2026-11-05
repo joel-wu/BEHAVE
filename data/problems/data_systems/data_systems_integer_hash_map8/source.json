@@ -1,0 +1,22 @@
+{
+  "id": "data_systems_integer_hash_map8",
+  "source_kind": "data_systems",
+  "name": "HashMap8",
+  "family": "hash_map8",
+  "tier": 2,
+  "license": "MIT",
+  "provenance": [
+    {
+      "repository": "https://github.com/attractivechaos/klib",
+      "revision": "97a0fcb790b43b9e5da8994f4671021fec036f19",
+      "license": "MIT",
+      "file": "khash.h",
+      "symbol": "kh_get/kh_put/kh_del; integer identity hash and triangular probing",
+      "sha256": "4582c7fd4b98f61339ce677bb1daa7a45a53075b112a494a335525c4bda72074",
+      "url": "https://github.com/attractivechaos/klib/blob/97a0fcb790b43b9e5da8994f4671021fec036f19/khash.h",
+      "license_file": "data/licenses/attractivechaos_klib/LICENSE.txt"
+    }
+  ],
+  "adaptation": "An eight-entry persistent unsigned 16-bit key/value map with lookup, insertion/update, deletion and clear.\n\nOperations are 0=GET, 1=PUT, 2=DELETE, 3=CLEAR. All 16-bit keys, including zero, are valid. GET returns the current value or a miss. PUT updates an existing key even when the table is full, or inserts a missing key when fewer than eight live entries exist. A ninth distinct key is rejected with no state change. DELETE removes a present key and returns its old value; missing keys do not change state. CLEAR removes all entries; key/value inputs are then ignored. Output bits 15:0 hold the retrieved/deleted value, or the new value for successful PUT; otherwise zero. Bits 18:16 hold status: 0=GET/DELETE miss, 1=GET hit, 2=inserted, 3=updated, 4=deleted, 5=PUT full, 6=cleared. Bits 22:19 hold the live entry count AFTER the operation. The reference uses khash integer hashing (key & 7), triangular probing and tombstones; physical placement is not observable and another correct map organization is allowed. Fixed capacity and explicit full status replace dynamic allocation/rehashing. Deletion must not hide later colliding keys. State changes once per accepted command, not on output stalls.",
+  "difficulty": "medium"
+}

@@ -1,0 +1,172 @@
+--- a/src/V3GraphPathChecker.cpp
++++ b/src/V3GraphPathChecker.cpp
+@@ -101,7 +101,7 @@
+ }
+ 
+ bool GraphPathChecker::pathExistsInternal(const V3GraphVertex* ap, const V3GraphVertex* bp,
+-                                          unsigned* costp) {
++                                          unsigned* costp, bool reverse) {
+     GraphPCNode* const auserp = static_cast<GraphPCNode*>(ap->userp());
+     const GraphPCNode* const buserp = static_cast<GraphPCNode*>(bp->userp());
+ 
+@@ -119,11 +119,22 @@
+     if (ap == bp) return true;
+ 
+     // Rule out an a->b path based on their CPs
+-    if (auserp->m_cp[GraphWay::REVERSE] < buserp->m_cp[GraphWay::REVERSE] + 1) return false;
+-    if (buserp->m_cp[GraphWay::FORWARD] < auserp->m_cp[GraphWay::FORWARD] + 1) return false;
++    const GraphWay way{reverse ? GraphWay::REVERSE : GraphWay::FORWARD};
++    const GraphWay rev = way.invert();
++    if (auserp->m_cp[rev] < buserp->m_cp[rev] + 1) return false;
++    if (buserp->m_cp[way] < auserp->m_cp[way] + 1) return false;
+ 
+     // Slow path; visit some extended family
+     bool foundPath = false;
++    if (reverse) {
++        for (const V3GraphEdge& edge : ap->inEdges()) {
++            if (!m_edgeFuncp(&edge)) continue;
++            unsigned childCost;
++            if (pathExistsInternal(edge.fromp(), bp, &childCost, true)) foundPath = true;
++            if (costp) *costp += childCost;
++        }
++        return foundPath;
++    }
+     for (const V3GraphEdge& edge : ap->outEdges()) {
+         if (!m_edgeFuncp(&edge)) continue;
+ 
+@@ -144,6 +155,24 @@
+     const V3GraphVertex* fromp = edgep->fromp();
+     const V3GraphVertex* top = edgep->top();
+     incGeneration();
++    // With an unfiltered DAG, either endpoint gives the same alternate-path
++    // query. Start at the smaller adjacency list; shared callees otherwise
++    // rescan their entire fanout for each caller, even when no path exists.
++    if (m_edgeFuncp == V3GraphEdge::followAlwaysTrue) {
++        auto in = top->inEdges().begin();
++        auto out = fromp->outEdges().begin();
++        while (in != top->inEdges().end() && out != fromp->outEdges().end()) {
++            ++in;
++            ++out;
++        }
++        if (in == top->inEdges().end()) {
++            for (const V3GraphEdge& toIn : top->inEdges()) {
++                if (&toIn == edgep) continue;
++                if (pathExistsInternal(toIn.fromp(), fromp, nullptr, true)) return true;
++            }
++            return false;
++        }
++    }
+     for (const V3GraphEdge& fromOut : fromp->outEdges()) {
+         if (&fromOut == edgep) continue;
+         if (pathExistsInternal(fromOut.top(), top)) return true;
+--- a/src/V3GraphPathChecker.h
++++ b/src/V3GraphPathChecker.h
+@@ -52,7 +52,7 @@
+ 
+ private:
+     bool pathExistsInternal(const V3GraphVertex* ap, const V3GraphVertex* bp,
+-                            unsigned* costp = nullptr) VL_MT_DISABLED;
++                            unsigned* costp = nullptr, bool reverse = false) VL_MT_DISABLED;
+     template <GraphWay::en N_Way>
+     void initHalfCriticalPaths(bool checkOnly) VL_MT_DISABLED;
+     void incGeneration() { ++m_generation; }
+--- a/src/V3GraphTest.cpp
++++ b/src/V3GraphTest.cpp
+@@ -21,6 +21,9 @@
+ 
+ #include "V3Global.h"
+ #include "V3Graph.h"
++#include "V3GraphPathChecker.h"
++
++#include <unordered_set>
+ 
+ VL_DEFINE_DEBUG_FUNCTIONS;
+ 
+@@ -296,6 +299,71 @@
+ 
+ //======================================================================
+ 
++// Compare the actual path checker and deletion order with an independent
++// exhaustive walk, including parallel edges and both high-degree directions.
++static bool graphAlternatePath(const V3GraphEdge* excludedp) {
++    const V3GraphVertex* const targetp = excludedp->top();
++    std::vector<const V3GraphVertex*> pending{excludedp->fromp()};
++    std::unordered_set<const V3GraphVertex*> seen;
++    while (!pending.empty()) {
++        const V3GraphVertex* const vertexp = pending.back();
++        pending.pop_back();
++        if (!seen.insert(vertexp).second) continue;
++        for (const V3GraphEdge& edge : vertexp->outEdges()) {
++            if (&edge == excludedp) continue;
++            if (edge.top() == targetp) return true;
++            pending.push_back(edge.top());
++        }
++    }
++    return false;
++}
++
++static void graphPathCheckSelfTest() {
++    uint32_t seed = 754;
++    const auto random = [&]() {
++        seed = seed * 1664525U + 1013904223U;
++        return seed;
++    };
++    for (unsigned trial = 0; trial < 1000; ++trial) {
++        V3Graph graph;
++        std::vector<V3GraphVertex*> vertices;
++        const unsigned size = 2 + random() % 48;
++        for (unsigned i = 0; i < size; ++i) vertices.push_back(new V3GraphVertex{&graph});
++        for (unsigned i = 0; i < size * 4; ++i) {
++            const unsigned a = random() % size;
++            const unsigned b = random() % size;
++            if (a != b) {
++                new V3GraphEdge{&graph, vertices[std::min(a, b)], vertices[std::max(a, b)],
++                                1};
++            }
++        }
++        GraphPathChecker checker{&graph};
++        for (V3GraphVertex& vertex : graph.vertices()) {
++            for (V3GraphEdge* const edgep : vertex.outEdges().unlinkable()) {
++                const bool expected = graphAlternatePath(edgep);
++                UASSERT(checker.isTransitiveEdge(edgep) == expected,
++                            "Transitive-edge query differs from exhaustive walk");
++                if (expected) edgep->unlinkDelete();
++            }
++        }
++    }
++    for (bool reverse : {false, true}) {
++        V3Graph graph;
++        auto* const centerp = new V3GraphVertex{&graph};
++        for (unsigned i = 0; i < 16384; ++i) {
++            auto* const leafp = new V3GraphVertex{&graph};
++            new V3GraphEdge{&graph, reverse ? leafp : centerp, reverse ? centerp : leafp, 1};
++        }
++        GraphPathChecker checker{&graph};
++        for (V3GraphVertex& vertex : graph.vertices()) {
++            for (const V3GraphEdge& edge : vertex.outEdges()) {
++                UASSERT(!checker.isTransitiveEdge(&edge),
++                            "A star edge must not be removed");
++            }
++        }
++    }
++}
++
+ void V3Graph::selfTest() {
+     // Execute all of the tests
+     UINFO(2, __FUNCTION__ << ":");
+@@ -303,4 +371,5 @@
+     { V3GraphTestAcyc{}.run(); }
+     { V3GraphTestVars{}.run(); }
+     { V3GraphTestImport{}.run(); }
++    graphPathCheckSelfTest();
+ }
+--- a/src/V3Options.cpp
++++ b/src/V3Options.cpp
+@@ -1103,6 +1103,7 @@
+     ver += " (behave-condition-effects-2)";
+     ver += " (behave-case-effects-2)";
+     ver += " (behave-dfg-selection-2)";
++    ver += " (behave-graph-path-2)";
+     ver += " rev " + cvtToStr(DTVERSION_rev);
+     return ver;
+ }

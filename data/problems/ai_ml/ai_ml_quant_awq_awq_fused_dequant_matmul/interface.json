@@ -1,0 +1,340 @@
+{
+  "version": "task-contract/16",
+  "endpoints": [
+    {
+      "name": "in",
+      "direction": "in",
+      "fields": [
+        {
+          "name": "in_s0",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_s0"
+        },
+        {
+          "name": "in_s1",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_s1"
+        },
+        {
+          "name": "in_s2",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_s2"
+        },
+        {
+          "name": "in_s3",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_s3"
+        },
+        {
+          "name": "in_w00",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_w00"
+        },
+        {
+          "name": "in_w01",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_w01"
+        },
+        {
+          "name": "in_w02",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_w02"
+        },
+        {
+          "name": "in_w03",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_w03"
+        },
+        {
+          "name": "in_w10",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_w10"
+        },
+        {
+          "name": "in_w11",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_w11"
+        },
+        {
+          "name": "in_w12",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_w12"
+        },
+        {
+          "name": "in_w13",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_w13"
+        },
+        {
+          "name": "in_w20",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_w20"
+        },
+        {
+          "name": "in_w21",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_w21"
+        },
+        {
+          "name": "in_w22",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_w22"
+        },
+        {
+          "name": "in_w23",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_w23"
+        },
+        {
+          "name": "in_w30",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_w30"
+        },
+        {
+          "name": "in_w31",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_w31"
+        },
+        {
+          "name": "in_w32",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_w32"
+        },
+        {
+          "name": "in_w33",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_w33"
+        },
+        {
+          "name": "in_x0",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_x0"
+        },
+        {
+          "name": "in_x1",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_x1"
+        },
+        {
+          "name": "in_x2",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_x2"
+        },
+        {
+          "name": "in_x3",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_x3"
+        }
+      ],
+      "adapter": {
+        "name": "ready-valid",
+        "version": 1,
+        "environment_controls": [
+          "in_valid"
+        ],
+        "artifact_controls": [
+          "in_ready"
+        ],
+        "monitor_state": [
+          "outstanding",
+          "stall_cycles"
+        ]
+      },
+      "clock": "clk",
+      "matching": "ordered",
+      "identifier": null,
+      "max_outstanding": null,
+      "response_deadline": null,
+      "answers_per_transaction": null,
+      "terminal_quiescence": null,
+      "reset_policy": null,
+      "kind": "transaction"
+    },
+    {
+      "name": "out",
+      "direction": "out",
+      "fields": [
+        {
+          "name": "out_error",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "out_error"
+        },
+        {
+          "name": "out_loss",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "out_loss"
+        },
+        {
+          "name": "out_quant_scale",
+          "type": {
+            "width": 128,
+            "signed": false
+          },
+          "port": "out_quant_scale"
+        },
+        {
+          "name": "out_qweight",
+          "type": {
+            "width": 64,
+            "signed": false
+          },
+          "port": "out_qweight"
+        },
+        {
+          "name": "out_y0",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "out_y0"
+        },
+        {
+          "name": "out_y1",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "out_y1"
+        },
+        {
+          "name": "out_y2",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "out_y2"
+        },
+        {
+          "name": "out_y3",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "out_y3"
+        }
+      ],
+      "adapter": {
+        "name": "ready-valid",
+        "version": 1,
+        "environment_controls": [
+          "out_ready"
+        ],
+        "artifact_controls": [
+          "out_valid"
+        ],
+        "monitor_state": [
+          "outstanding",
+          "stall_cycles"
+        ]
+      },
+      "clock": "clk",
+      "matching": "ordered",
+      "identifier": null,
+      "max_outstanding": null,
+      "response_deadline": null,
+      "answers_per_transaction": null,
+      "terminal_quiescence": null,
+      "reset_policy": null,
+      "kind": "transaction"
+    }
+  ],
+  "clocks": [
+    {
+      "name": "clk",
+      "clock": "clk",
+      "edge": "rising",
+      "reset": "rst",
+      "reset_active_low": false,
+      "reset_hold_cycles": 3,
+      "reset_restores": null
+    }
+  ],
+  "memories": [],
+  "protocol_instances": [],
+  "observation_goals": [],
+  "transaction_monitors": [],
+  "latency_goals": [],
+  "operation_rules": [],
+  "source_read_rules": [],
+  "authority": "task",
+  "source": "declared by ai_ml_quant_awq_awq_fused_dequant_matmul",
+  "physical_value_layout": "packed-value/1"
+}

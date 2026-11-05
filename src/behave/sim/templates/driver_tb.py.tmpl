@@ -1,0 +1,11 @@
+"""Thin cocotb entry point; both clock strategies use the same replay loop."""
+from pathlib import Path
+
+import cocotb
+
+from behave.sim.rtl.replay_runtime import replay
+
+
+@cocotb.test()
+async def drive(dut):
+    await replay(dut, Path(__file__).parent, period_ns={period_ns})

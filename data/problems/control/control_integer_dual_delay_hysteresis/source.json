@@ -1,0 +1,32 @@
+{
+  "id": "control_integer_dual_delay_hysteresis",
+  "source_kind": "control",
+  "name": "DualDelayHysteresis",
+  "family": "dual_delay_hysteresis",
+  "tier": 1,
+  "license": "BSD-3-Clause",
+  "provenance": [
+    {
+      "repository": "https://github.com/PX4/PX4-Autopilot",
+      "revision": "99c40407ffd7ac184e2d7b4b293f36f10fe561ef",
+      "license": "BSD-3-Clause",
+      "file": "src/lib/hysteresis/hysteresis.cpp",
+      "symbol": "Hysteresis::set_state_and_update and update",
+      "sha256": "3007ee36d755e9deb77eb44c41de151f28d3e34c6ec42b5e3c5819a31a05c9e0",
+      "url": "https://github.com/PX4/PX4-Autopilot/blob/99c40407ffd7ac184e2d7b4b293f36f10fe561ef/src/lib/hysteresis/hysteresis.cpp",
+      "license_file": "data/licenses/PX4_PX4-Autopilot/LICENSE"
+    },
+    {
+      "repository": "https://github.com/PX4/PX4-Autopilot",
+      "revision": "99c40407ffd7ac184e2d7b4b293f36f10fe561ef",
+      "license": "BSD-3-Clause",
+      "file": "src/lib/hysteresis/hysteresis.h",
+      "symbol": "Hysteresis state and delay API",
+      "sha256": "01624a6a249408a18b9abf23b74e9fd224271ef24b6ed6ec230facdec983192d",
+      "url": "https://github.com/PX4/PX4-Autopilot/blob/99c40407ffd7ac184e2d7b4b293f36f10fe561ef/src/lib/hysteresis/hysteresis.h",
+      "license_file": "data/licenses/PX4_PX4-Autopilot/LICENSE"
+    }
+  ],
+  "adaptation": "Boolean control hysteresis with independent rise/fall confirmation delays and cancellation.\n\nEach accepted request represents one successive logical control tick t=0,1,2,..., not one RTL clock cycle. Rise/fall delays are integer tick counts 0..15. The state starts false. When a request first differs from the current state, start a pending transition at that tick. Repeating the same request does not restart its timer. On every tick, use the currently supplied delay for the transition direction: if elapsed ticks since the pending request began are >= that delay, change state immediately. A request equal to the current state cancels the pending transition. A later opposite request starts a new timer. Delay zero changes state on the first opposite request; delay d requires d+1 consecutive opposite requests when unchanged.\n\nReturn the Boolean state AFTER this tick in out_values[0]. Delay changes while pending apply immediately but do not reset elapsed time. In particular lowering a delay can complete a pending transition on that tick. Only accepted requests advance logical time: idle/stalled hardware cycles have no effect. This is the pinned PX4 Hysteresis(false) API sampled at consecutive integer timestamps, with set_hysteresis_time_from(false,rise) and set_hysteresis_time_from(true,fall) before each set_state_and_update(request,t). It is temporal confirmation, not a threshold comparator or a metastability synchronizer.",
+  "difficulty": "basic"
+}

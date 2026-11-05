@@ -1,0 +1,32 @@
+{
+  "id": "data_systems_integer_bitmap_rank_select128",
+  "source_kind": "data_systems",
+  "name": "BitmapRankSelect128",
+  "family": "bitmap_rank_select128",
+  "tier": 2,
+  "license": "MIT",
+  "provenance": [
+    {
+      "repository": "https://github.com/RoaringBitmap/CRoaring",
+      "revision": "5a40011acaf15de00142bb8675a9a8d619a6dc95",
+      "license": "Apache-2.0 OR MIT",
+      "file": "src/containers/bitset.c",
+      "symbol": "bitset_container_rank and bitset_container_select",
+      "sha256": "47e946b58418a44aba7bb909c96d1db5c1da66c17431262d35e14934c0b384ac",
+      "url": "https://github.com/RoaringBitmap/CRoaring/blob/5a40011acaf15de00142bb8675a9a8d619a6dc95/src/containers/bitset.c",
+      "license_file": "data/licenses/RoaringBitmap_CRoaring/LICENSE"
+    },
+    {
+      "repository": "https://github.com/RoaringBitmap/CRoaring",
+      "revision": "5a40011acaf15de00142bb8675a9a8d619a6dc95",
+      "license": "Apache-2.0 OR MIT",
+      "file": "include/roaring/containers/bitset.h",
+      "symbol": "rank/select contracts",
+      "sha256": "80fa3bab3cdf3dcd111733c6fa4fa8db5a9c621792afb675548a1a856f03d084",
+      "url": "https://github.com/RoaringBitmap/CRoaring/blob/5a40011acaf15de00142bb8675a9a8d619a6dc95/include/roaring/containers/bitset.h",
+      "license_file": "data/licenses/RoaringBitmap_CRoaring/LICENSE"
+    }
+  ],
+  "adaptation": "Inclusive rank and zero-based select on a 128-bit bitmap.\n\nBit i represents member i. Return rank=the number of set bits with index <= in_position; cardinality=the number of all set bits; and select=the index of the in_ordinal-th set bit in ascending order. Ordinal zero selects the first member. When ordinal>=cardinality, return select=0 and valid=0; otherwise valid=1, including when the selected index is zero. Output bits 7:0 hold rank, 15:8 cardinality, 22:16 select, and bit 23 valid. The count fields represent 128 without overflow. This combines CRoaring bitset rank/select semantics on a finite bitmap with start_rank=0; it is not merely a population-count task.",
+  "difficulty": "medium"
+}

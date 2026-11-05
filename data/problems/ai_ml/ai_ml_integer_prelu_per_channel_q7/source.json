@@ -1,0 +1,22 @@
+{
+  "id": "ai_ml_integer_prelu_per_channel_q7",
+  "source_kind": "ai_ml",
+  "name": "PReLUPerChannelQ7",
+  "family": "prelu_per_channel_q7",
+  "tier": 1,
+  "license": "Apache-2.0",
+  "provenance": [
+    {
+      "repository": "https://github.com/onnx/onnx",
+      "revision": "57b9c6a4f6eebb09ae1b34cfb632078518f72832",
+      "license": "Apache-2.0",
+      "file": "onnx/reference/ops/op_prelu.py",
+      "symbol": "PRelu._run",
+      "sha256": "e8ddaefa44a5d1b99d633c4edb2f1622522eb6ab139190530c05714a852defbe",
+      "url": "https://github.com/onnx/onnx/blob/57b9c6a4f6eebb09ae1b34cfb632078518f72832/onnx/reference/ops/op_prelu.py",
+      "license_file": "data/licenses/onnx_onnx/LICENSE"
+    }
+  ],
+  "adaptation": "Apply PReLU to four pixels with four signed INT8 channels each, packed pixel-major. Channel c has its own unsigned 8-bit slope A[c]/128. For X>=0 return X. For X<0, round X*A[c]/128 to nearest integer with ties away from zero, then saturate to [-128,127]. The same four supplied slopes apply to every pixel. This retains PReLU sign selection and channel broadcasting; Q1.7 slopes, signed-byte saturation and explicit rounding replace source floating-point arithmetic.",
+  "difficulty": "basic"
+}

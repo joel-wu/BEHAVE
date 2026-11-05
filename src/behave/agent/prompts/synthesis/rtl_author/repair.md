@@ -1,0 +1,1 @@
+Read .rtl/comparison/report.md and its linked diagnostics with Bash, then repair the previous RTL. These files describe the latest check and remain available throughout this attempt. A missing comparison result is not a mismatch.

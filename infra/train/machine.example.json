@@ -1,0 +1,24 @@
+{
+  "schema": "behave.training-machine/1",
+  "settings": {
+    "model_path": "/path/to/models/qwen27b",
+    "native_python": "/path/to/training-environment/bin/python",
+    "slime_source": "/path/to/slime",
+    "megatron_source": "/path/to/megatron",
+    "kernel_cache": "/tmp/behave-kernel-cache",
+    "workers": 32,
+    "tokenize_workers": 2,
+    "judge_workers": 12,
+    "preparation_workers": 16,
+    "cpu_threads": 8,
+    "build_jobs": 16,
+    "ray_cpus": 12,
+    "endpoint_url": "http://127.0.0.1:31000/v1/chat/completions",
+    "preparation_start_method": "spawn",
+    "process_limit": null,
+    "isolation_startup_slots": null,
+    "checkpoint_retention": {
+      "protected_paths": []
+    }
+  }
+}

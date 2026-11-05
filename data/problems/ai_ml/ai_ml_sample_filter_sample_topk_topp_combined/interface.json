@@ -1,0 +1,268 @@
+{
+  "version": "task-contract/16",
+  "endpoints": [
+    {
+      "name": "in",
+      "direction": "in",
+      "fields": [
+        {
+          "name": "in_min_tokens_to_keep_k",
+          "type": {
+            "width": 4,
+            "signed": false
+          },
+          "port": "in_min_tokens_to_keep_k"
+        },
+        {
+          "name": "in_min_tokens_to_keep_p",
+          "type": {
+            "width": 4,
+            "signed": false
+          },
+          "port": "in_min_tokens_to_keep_p"
+        },
+        {
+          "name": "in_score0",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_score0"
+        },
+        {
+          "name": "in_score1",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_score1"
+        },
+        {
+          "name": "in_score2",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_score2"
+        },
+        {
+          "name": "in_score3",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_score3"
+        },
+        {
+          "name": "in_score4",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_score4"
+        },
+        {
+          "name": "in_score5",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_score5"
+        },
+        {
+          "name": "in_score6",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_score6"
+        },
+        {
+          "name": "in_score7",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_score7"
+        },
+        {
+          "name": "in_temperature",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_temperature"
+        },
+        {
+          "name": "in_top_k",
+          "type": {
+            "width": 4,
+            "signed": false
+          },
+          "port": "in_top_k"
+        },
+        {
+          "name": "in_top_p",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_top_p"
+        }
+      ],
+      "adapter": {
+        "name": "ready-valid",
+        "version": 1,
+        "environment_controls": [
+          "in_valid"
+        ],
+        "artifact_controls": [
+          "in_ready"
+        ],
+        "monitor_state": [
+          "outstanding",
+          "stall_cycles"
+        ]
+      },
+      "clock": "clk",
+      "matching": "ordered",
+      "identifier": null,
+      "max_outstanding": null,
+      "response_deadline": null,
+      "answers_per_transaction": null,
+      "terminal_quiescence": null,
+      "reset_policy": null,
+      "kind": "transaction"
+    },
+    {
+      "name": "out",
+      "direction": "out",
+      "fields": [
+        {
+          "name": "out_error",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "out_error"
+        },
+        {
+          "name": "out_score0",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "out_score0"
+        },
+        {
+          "name": "out_score1",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "out_score1"
+        },
+        {
+          "name": "out_score2",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "out_score2"
+        },
+        {
+          "name": "out_score3",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "out_score3"
+        },
+        {
+          "name": "out_score4",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "out_score4"
+        },
+        {
+          "name": "out_score5",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "out_score5"
+        },
+        {
+          "name": "out_score6",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "out_score6"
+        },
+        {
+          "name": "out_score7",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "out_score7"
+        },
+        {
+          "name": "out_token",
+          "type": {
+            "width": 3,
+            "signed": false
+          },
+          "port": "out_token"
+        }
+      ],
+      "adapter": {
+        "name": "ready-valid",
+        "version": 1,
+        "environment_controls": [
+          "out_ready"
+        ],
+        "artifact_controls": [
+          "out_valid"
+        ],
+        "monitor_state": [
+          "outstanding",
+          "stall_cycles"
+        ]
+      },
+      "clock": "clk",
+      "matching": "ordered",
+      "identifier": null,
+      "max_outstanding": null,
+      "response_deadline": null,
+      "answers_per_transaction": null,
+      "terminal_quiescence": null,
+      "reset_policy": null,
+      "kind": "transaction"
+    }
+  ],
+  "clocks": [
+    {
+      "name": "clk",
+      "clock": "clk",
+      "edge": "rising",
+      "reset": "rst",
+      "reset_active_low": false,
+      "reset_hold_cycles": 3,
+      "reset_restores": null
+    }
+  ],
+  "memories": [],
+  "protocol_instances": [],
+  "observation_goals": [],
+  "transaction_monitors": [],
+  "latency_goals": [],
+  "operation_rules": [],
+  "source_read_rules": [],
+  "authority": "task",
+  "source": "declared by ai_ml_sample_filter_sample_topk_topp_combined",
+  "physical_value_layout": "packed-value/1"
+}

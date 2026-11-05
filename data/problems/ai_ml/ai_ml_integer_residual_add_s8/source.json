@@ -1,0 +1,42 @@
+{
+  "id": "ai_ml_integer_residual_add_s8",
+  "source_kind": "ai_ml",
+  "name": "ProjectionResidualS8",
+  "family": "residual_add_s8",
+  "tier": 2,
+  "license": "Apache-2.0",
+  "provenance": [
+    {
+      "repository": "https://github.com/ARM-software/CMSIS-NN",
+      "revision": "22080c68d040c98139e6cb1549473e3149735f4d",
+      "license": "Apache-2.0",
+      "file": "Source/FullyConnectedFunctions/arm_fully_connected_per_channel_s8.c",
+      "symbol": "arm_fully_connected_per_channel_s8 dense projection dataflow",
+      "sha256": "ddc6f0c00b1bb2f769317abf11c11416289f159f75fdb09aa786c62477e21d9c",
+      "url": "https://github.com/ARM-software/CMSIS-NN/blob/22080c68d040c98139e6cb1549473e3149735f4d/Source/FullyConnectedFunctions/arm_fully_connected_per_channel_s8.c",
+      "license_file": "data/licenses/ARM-software_CMSIS-NN/LICENSE"
+    },
+    {
+      "repository": "https://github.com/ARM-software/CMSIS-NN",
+      "revision": "22080c68d040c98139e6cb1549473e3149735f4d",
+      "license": "Apache-2.0",
+      "file": "Source/BasicMathFunctions/arm_elementwise_add_s8.c",
+      "symbol": "arm_elementwise_add_s8 scalar path",
+      "sha256": "7a5b6da4f9c4a506d6d17e0f8888448069df875adf5590c2bf399c59ee10ad2f",
+      "url": "https://github.com/ARM-software/CMSIS-NN/blob/22080c68d040c98139e6cb1549473e3149735f4d/Source/BasicMathFunctions/arm_elementwise_add_s8.c",
+      "license_file": "data/licenses/ARM-software_CMSIS-NN/LICENSE"
+    },
+    {
+      "repository": "https://github.com/google/gemmlowp",
+      "revision": "16e8662c34917be0065110bfcd9cc27d30f52fdf",
+      "license": "Apache-2.0",
+      "file": "fixedpoint/fixedpoint.h",
+      "symbol": "SaturatingRoundingDoublingHighMul; RoundingDivideByPOT",
+      "sha256": "f1b11e756ba138b42abd2f39095fd4d740a26b10ff1a8c682c2eb4d273658cf6",
+      "url": "https://github.com/google/gemmlowp/blob/16e8662c34917be0065110bfcd9cc27d30f52fdf/fixedpoint/fixedpoint.h",
+      "license_file": "data/licenses/google_gemmlowp/LICENSE"
+    }
+  ],
+  "adaptation": "A quantized four-channel projection-residual block, not elementwise addition alone. X=in_a and the independent skip vector B=in_b each contain four INT8 lanes. W contains sixteen INT8 weights, row-major index 4*i+j; bias contains four INT16 lanes. Input offsets are signed nine-bit additive offsets (not subtracted zero points); in_zero_out is signed INT8. All three multipliers are nonnegative Q0.31 integers; all right shifts are unsigned 0..31 and the common left shift L is 0..7. For output lane i compute P[i]=bias[i]+sum_j(W[i,j]*(X[j]+offset_a)), A[i]=R(H(P[i]*2^L,mult_a),shift_a), S[i]=R(H((B[i]+offset_b)*2^L,mult_b),shift_b), then Y[i]=Clip8(R(H(A[i]+S[i],mult_out),shift_out)+zero_out). Do not combine the two branch roundings or clip a branch before the sum. The exact intermediates fit signed 32 bits. This explicitly composes the CMSIS-NN dense dot-product and two-rounding residual-add dataflows. There is no intermediate INT8 clipping between projection and residual addition; this fused graph is an adaptation, not a claim that a clipped standalone fully-connected call followed by an add is equivalent.\n\nDefine H(a,b) for signed 32-bit a,b as follows: if both equal\n-2^31, H=2^31-1. Otherwise set p=a*b in signed 64-bit precision and\nn=2^30 for p>=0, or n=1-2^30 for p<0; H=trunc_toward_zero((p+n)/2^31).\nDefine R(x,e)=floor(x/2^e)+[r>t], with r=x mod 2^e in [0,2^e),\nt=floor((2^e-1)/2)+[x<0]. This is nearest-integer rounding, ties away\nfrom zero (including e=0 as the identity). These are two separate rounding\nsteps, not a fused division. Clip8 saturates to [-128,127].",
+  "difficulty": "medium"
+}

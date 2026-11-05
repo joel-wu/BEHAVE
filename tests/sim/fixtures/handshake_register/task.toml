@@ -1,0 +1,16 @@
+[endpoint.in]
+kind = "transaction"
+reset_policy = "clears"
+
+[endpoint.out]
+kind = "transaction"
+matching = "ordered"
+answers_per_transaction = 1
+terminal_quiescence = true
+
+[written_by_hand]
+who = "tests/support/scoring_task.py"
+why = "Test-owned 1:1 ready/valid bit register; all semantics are in the adjacent spec."
+
+[clock]
+reset_restores = true

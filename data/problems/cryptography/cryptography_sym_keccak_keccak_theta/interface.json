@@ -1,0 +1,484 @@
+{
+  "version": "task-contract/16",
+  "endpoints": [
+    {
+      "name": "in",
+      "direction": "in",
+      "fields": [
+        {
+          "name": "in_a0",
+          "type": {
+            "width": 64,
+            "signed": false
+          },
+          "port": "in_a0"
+        },
+        {
+          "name": "in_a1",
+          "type": {
+            "width": 64,
+            "signed": false
+          },
+          "port": "in_a1"
+        },
+        {
+          "name": "in_a10",
+          "type": {
+            "width": 64,
+            "signed": false
+          },
+          "port": "in_a10"
+        },
+        {
+          "name": "in_a11",
+          "type": {
+            "width": 64,
+            "signed": false
+          },
+          "port": "in_a11"
+        },
+        {
+          "name": "in_a12",
+          "type": {
+            "width": 64,
+            "signed": false
+          },
+          "port": "in_a12"
+        },
+        {
+          "name": "in_a13",
+          "type": {
+            "width": 64,
+            "signed": false
+          },
+          "port": "in_a13"
+        },
+        {
+          "name": "in_a14",
+          "type": {
+            "width": 64,
+            "signed": false
+          },
+          "port": "in_a14"
+        },
+        {
+          "name": "in_a15",
+          "type": {
+            "width": 64,
+            "signed": false
+          },
+          "port": "in_a15"
+        },
+        {
+          "name": "in_a16",
+          "type": {
+            "width": 64,
+            "signed": false
+          },
+          "port": "in_a16"
+        },
+        {
+          "name": "in_a17",
+          "type": {
+            "width": 64,
+            "signed": false
+          },
+          "port": "in_a17"
+        },
+        {
+          "name": "in_a18",
+          "type": {
+            "width": 64,
+            "signed": false
+          },
+          "port": "in_a18"
+        },
+        {
+          "name": "in_a19",
+          "type": {
+            "width": 64,
+            "signed": false
+          },
+          "port": "in_a19"
+        },
+        {
+          "name": "in_a2",
+          "type": {
+            "width": 64,
+            "signed": false
+          },
+          "port": "in_a2"
+        },
+        {
+          "name": "in_a20",
+          "type": {
+            "width": 64,
+            "signed": false
+          },
+          "port": "in_a20"
+        },
+        {
+          "name": "in_a21",
+          "type": {
+            "width": 64,
+            "signed": false
+          },
+          "port": "in_a21"
+        },
+        {
+          "name": "in_a22",
+          "type": {
+            "width": 64,
+            "signed": false
+          },
+          "port": "in_a22"
+        },
+        {
+          "name": "in_a23",
+          "type": {
+            "width": 64,
+            "signed": false
+          },
+          "port": "in_a23"
+        },
+        {
+          "name": "in_a24",
+          "type": {
+            "width": 64,
+            "signed": false
+          },
+          "port": "in_a24"
+        },
+        {
+          "name": "in_a3",
+          "type": {
+            "width": 64,
+            "signed": false
+          },
+          "port": "in_a3"
+        },
+        {
+          "name": "in_a4",
+          "type": {
+            "width": 64,
+            "signed": false
+          },
+          "port": "in_a4"
+        },
+        {
+          "name": "in_a5",
+          "type": {
+            "width": 64,
+            "signed": false
+          },
+          "port": "in_a5"
+        },
+        {
+          "name": "in_a6",
+          "type": {
+            "width": 64,
+            "signed": false
+          },
+          "port": "in_a6"
+        },
+        {
+          "name": "in_a7",
+          "type": {
+            "width": 64,
+            "signed": false
+          },
+          "port": "in_a7"
+        },
+        {
+          "name": "in_a8",
+          "type": {
+            "width": 64,
+            "signed": false
+          },
+          "port": "in_a8"
+        },
+        {
+          "name": "in_a9",
+          "type": {
+            "width": 64,
+            "signed": false
+          },
+          "port": "in_a9"
+        }
+      ],
+      "adapter": {
+        "name": "ready-valid",
+        "version": 1,
+        "environment_controls": [
+          "in_valid"
+        ],
+        "artifact_controls": [
+          "in_ready"
+        ],
+        "monitor_state": [
+          "outstanding",
+          "stall_cycles"
+        ]
+      },
+      "clock": "clk",
+      "matching": "ordered",
+      "identifier": null,
+      "max_outstanding": null,
+      "response_deadline": null,
+      "answers_per_transaction": null,
+      "terminal_quiescence": null,
+      "reset_policy": null,
+      "kind": "transaction"
+    },
+    {
+      "name": "out",
+      "direction": "out",
+      "fields": [
+        {
+          "name": "out_a0",
+          "type": {
+            "width": 64,
+            "signed": false
+          },
+          "port": "out_a0"
+        },
+        {
+          "name": "out_a1",
+          "type": {
+            "width": 64,
+            "signed": false
+          },
+          "port": "out_a1"
+        },
+        {
+          "name": "out_a10",
+          "type": {
+            "width": 64,
+            "signed": false
+          },
+          "port": "out_a10"
+        },
+        {
+          "name": "out_a11",
+          "type": {
+            "width": 64,
+            "signed": false
+          },
+          "port": "out_a11"
+        },
+        {
+          "name": "out_a12",
+          "type": {
+            "width": 64,
+            "signed": false
+          },
+          "port": "out_a12"
+        },
+        {
+          "name": "out_a13",
+          "type": {
+            "width": 64,
+            "signed": false
+          },
+          "port": "out_a13"
+        },
+        {
+          "name": "out_a14",
+          "type": {
+            "width": 64,
+            "signed": false
+          },
+          "port": "out_a14"
+        },
+        {
+          "name": "out_a15",
+          "type": {
+            "width": 64,
+            "signed": false
+          },
+          "port": "out_a15"
+        },
+        {
+          "name": "out_a16",
+          "type": {
+            "width": 64,
+            "signed": false
+          },
+          "port": "out_a16"
+        },
+        {
+          "name": "out_a17",
+          "type": {
+            "width": 64,
+            "signed": false
+          },
+          "port": "out_a17"
+        },
+        {
+          "name": "out_a18",
+          "type": {
+            "width": 64,
+            "signed": false
+          },
+          "port": "out_a18"
+        },
+        {
+          "name": "out_a19",
+          "type": {
+            "width": 64,
+            "signed": false
+          },
+          "port": "out_a19"
+        },
+        {
+          "name": "out_a2",
+          "type": {
+            "width": 64,
+            "signed": false
+          },
+          "port": "out_a2"
+        },
+        {
+          "name": "out_a20",
+          "type": {
+            "width": 64,
+            "signed": false
+          },
+          "port": "out_a20"
+        },
+        {
+          "name": "out_a21",
+          "type": {
+            "width": 64,
+            "signed": false
+          },
+          "port": "out_a21"
+        },
+        {
+          "name": "out_a22",
+          "type": {
+            "width": 64,
+            "signed": false
+          },
+          "port": "out_a22"
+        },
+        {
+          "name": "out_a23",
+          "type": {
+            "width": 64,
+            "signed": false
+          },
+          "port": "out_a23"
+        },
+        {
+          "name": "out_a24",
+          "type": {
+            "width": 64,
+            "signed": false
+          },
+          "port": "out_a24"
+        },
+        {
+          "name": "out_a3",
+          "type": {
+            "width": 64,
+            "signed": false
+          },
+          "port": "out_a3"
+        },
+        {
+          "name": "out_a4",
+          "type": {
+            "width": 64,
+            "signed": false
+          },
+          "port": "out_a4"
+        },
+        {
+          "name": "out_a5",
+          "type": {
+            "width": 64,
+            "signed": false
+          },
+          "port": "out_a5"
+        },
+        {
+          "name": "out_a6",
+          "type": {
+            "width": 64,
+            "signed": false
+          },
+          "port": "out_a6"
+        },
+        {
+          "name": "out_a7",
+          "type": {
+            "width": 64,
+            "signed": false
+          },
+          "port": "out_a7"
+        },
+        {
+          "name": "out_a8",
+          "type": {
+            "width": 64,
+            "signed": false
+          },
+          "port": "out_a8"
+        },
+        {
+          "name": "out_a9",
+          "type": {
+            "width": 64,
+            "signed": false
+          },
+          "port": "out_a9"
+        }
+      ],
+      "adapter": {
+        "name": "ready-valid",
+        "version": 1,
+        "environment_controls": [
+          "out_ready"
+        ],
+        "artifact_controls": [
+          "out_valid"
+        ],
+        "monitor_state": [
+          "outstanding",
+          "stall_cycles"
+        ]
+      },
+      "clock": "clk",
+      "matching": "ordered",
+      "identifier": null,
+      "max_outstanding": null,
+      "response_deadline": null,
+      "answers_per_transaction": null,
+      "terminal_quiescence": null,
+      "reset_policy": null,
+      "kind": "transaction"
+    }
+  ],
+  "clocks": [
+    {
+      "name": "clk",
+      "clock": "clk",
+      "edge": "rising",
+      "reset": "rst",
+      "reset_active_low": false,
+      "reset_hold_cycles": 3,
+      "reset_restores": null
+    }
+  ],
+  "memories": [],
+  "protocol_instances": [],
+  "observation_goals": [],
+  "transaction_monitors": [],
+  "latency_goals": [],
+  "operation_rules": [],
+  "source_read_rules": [],
+  "authority": "task",
+  "source": "declared by cryptography_sym_keccak_keccak_theta",
+  "physical_value_layout": "packed-value/1"
+}

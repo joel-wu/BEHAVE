@@ -1,0 +1,12 @@
+{
+  "base_settings": "tests/infrastructure/fixtures/synthesis/generation.json",
+  "round_id": "task-study",
+  "study": {"seed_updates": 3, "acquisition_rounds": 5},
+  "generation_only": false,
+  "require_recorded_feedback": true,
+  "generation_target": {"admitted_tasks": 20, "proposal_tasks": 30, "max_batches": 2},
+  "acquired_updates": 3,
+  "raw_updates": 0,
+  "task_configuration": {},
+  "diagnosis_configuration": {}
+}

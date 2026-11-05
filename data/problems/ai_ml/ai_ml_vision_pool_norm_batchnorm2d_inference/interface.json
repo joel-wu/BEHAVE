@@ -1,0 +1,284 @@
+{
+  "version": "task-contract/16",
+  "endpoints": [
+    {
+      "name": "in",
+      "direction": "in",
+      "fields": [
+        {
+          "name": "in_bias0",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_bias0"
+        },
+        {
+          "name": "in_bias1",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_bias1"
+        },
+        {
+          "name": "in_bias2",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_bias2"
+        },
+        {
+          "name": "in_bias3",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_bias3"
+        },
+        {
+          "name": "in_eps",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_eps"
+        },
+        {
+          "name": "in_running_mean0",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_running_mean0"
+        },
+        {
+          "name": "in_running_mean1",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_running_mean1"
+        },
+        {
+          "name": "in_running_mean2",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_running_mean2"
+        },
+        {
+          "name": "in_running_mean3",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_running_mean3"
+        },
+        {
+          "name": "in_running_var0",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_running_var0"
+        },
+        {
+          "name": "in_running_var1",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_running_var1"
+        },
+        {
+          "name": "in_running_var2",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_running_var2"
+        },
+        {
+          "name": "in_running_var3",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_running_var3"
+        },
+        {
+          "name": "in_weight0",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_weight0"
+        },
+        {
+          "name": "in_weight1",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_weight1"
+        },
+        {
+          "name": "in_weight2",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_weight2"
+        },
+        {
+          "name": "in_weight3",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_weight3"
+        },
+        {
+          "name": "in_x0",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_x0"
+        },
+        {
+          "name": "in_x1",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_x1"
+        },
+        {
+          "name": "in_x2",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_x2"
+        },
+        {
+          "name": "in_x3",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_x3"
+        }
+      ],
+      "adapter": {
+        "name": "ready-valid",
+        "version": 1,
+        "environment_controls": [
+          "in_valid"
+        ],
+        "artifact_controls": [
+          "in_ready"
+        ],
+        "monitor_state": [
+          "outstanding",
+          "stall_cycles"
+        ]
+      },
+      "clock": "clk",
+      "matching": "ordered",
+      "identifier": null,
+      "max_outstanding": null,
+      "response_deadline": null,
+      "answers_per_transaction": null,
+      "terminal_quiescence": null,
+      "reset_policy": null,
+      "kind": "transaction"
+    },
+    {
+      "name": "out",
+      "direction": "out",
+      "fields": [
+        {
+          "name": "out_y0",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "out_y0"
+        },
+        {
+          "name": "out_y1",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "out_y1"
+        },
+        {
+          "name": "out_y2",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "out_y2"
+        },
+        {
+          "name": "out_y3",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "out_y3"
+        }
+      ],
+      "adapter": {
+        "name": "ready-valid",
+        "version": 1,
+        "environment_controls": [
+          "out_ready"
+        ],
+        "artifact_controls": [
+          "out_valid"
+        ],
+        "monitor_state": [
+          "outstanding",
+          "stall_cycles"
+        ]
+      },
+      "clock": "clk",
+      "matching": "ordered",
+      "identifier": null,
+      "max_outstanding": null,
+      "response_deadline": null,
+      "answers_per_transaction": null,
+      "terminal_quiescence": null,
+      "reset_policy": null,
+      "kind": "transaction"
+    }
+  ],
+  "clocks": [
+    {
+      "name": "clk",
+      "clock": "clk",
+      "edge": "rising",
+      "reset": "rst",
+      "reset_active_low": false,
+      "reset_hold_cycles": 3,
+      "reset_restores": null
+    }
+  ],
+  "memories": [],
+  "protocol_instances": [],
+  "observation_goals": [],
+  "transaction_monitors": [],
+  "latency_goals": [],
+  "operation_rules": [],
+  "source_read_rules": [],
+  "authority": "task",
+  "source": "declared by ai_ml_vision_pool_norm_batchnorm2d_inference",
+  "physical_value_layout": "packed-value/1"
+}

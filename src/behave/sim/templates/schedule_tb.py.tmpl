@@ -1,0 +1,133 @@
+"""Auto-generated cocotb testbench that runs one `Schedule` and records one `Trace`.
+
+Separate from task-bound replay: this stepper drives exactly the cycles the schedule
+names, samples **every** output
+at **every** cycle, and writes them out. What the numbers mean is the caller's business,
+which is what makes it the other half of `execute(schedule, stepper)` -- the relation is
+one stepper, this is the other, and `Trace.disagreements` is the comparison.
+
+The sampling phase is a parameter here for the same reason it is one there
+(`docs/single_clock_semantics.md` item 1), and the two readings are two different places
+in the cocotb cycle:
+
+    current-state   drive, settle, read, THEN the edge -- the value the design has while
+                    these inputs are being offered, which is what a real testbench samples
+    next-state      drive, the edge, settle, read -- the post-edge state, with the inputs
+                    still at this cycle's values because the next has not been driven
+
+An X on an output is recorded as its bit string rather than resolved to a number. A
+resolved X is a value the design does not have, which is the whole class of defect the
+schedule work exists to remove.
+"""
+import json
+import os
+from pathlib import Path
+
+import cocotb
+from cocotb.clock import Clock
+from cocotb.triggers import NextTimeStep, ReadOnly, RisingEdge
+
+HERE = Path(__file__).parent
+SCHEDULE_PATH = HERE / "schedule.json"
+TRACE_PATH = HERE / "trace.json"
+
+OUTPUT_NAMES = {output_names!r}
+STATE_NAMES = {state_names!r}
+CLOCK_NAME = {clock_name!r}
+PERIOD_NS = {period_ns}
+
+
+#: Names the caller asked for that this design does not expose. Reported, not guessed at.
+MISSING = []
+#: Bit width per name, as this design declares it. The other reader is a synthesised
+#: model, and synthesis narrows a wire whose upper bits nothing reads: the source's
+#: `logic [8:0] recon_sum_next` reaches yosys as an 8-bit wire because only `[7:0]` is
+#: ever read, so the two readers report 73 and 329 for the same cycle and neither is
+#: wrong. Two readers at two widths are not reading the same signal, and the comparison
+#: needs to be able to say that instead of counting the missing carry bit as a defect.
+WIDTHS = {{}}
+
+
+def _sample(dut, names):
+    """The names this design actually has, read at the current phase.
+
+    A name the caller asked for and the simulator does not have is **left out** of the
+    record and collected in `MISSING` instead. It used to be recorded with the value
+    `None`, which read downstream as "the simulator says this register is None" and
+    disagreed with every relation value -- the register audit's first run reported all
+    eight designs differing, and most of the differing names were yosys' own
+    `$auto$async2sync.cc:...` cells, which no simulator has. Absent is the honest record;
+    silently narrowing the comparison is not, so what was dropped is named.
+
+    A value is an int, or its bit string when it carries an X. `.value` on an X raises
+    rather than returning a number, and catching it to substitute 0 would invent exactly
+    the kind of value this whole exercise is about.
+    """
+    out = {{}}
+    for name in names:
+        handle = getattr(dut, name, None)
+        if handle is None:
+            if name not in MISSING:
+                MISSING.append(name)
+            continue
+        raw = handle.value
+        if name not in WIDTHS:
+            try:
+                WIDTHS[name] = len(raw)
+            except TypeError:
+                # An integer-valued handle has no bit length to report. Absent rather
+                # than guessed: a width nobody declared cannot be checked against one.
+                pass
+        try:
+            out[name] = int(raw)
+            continue
+        except Exception:
+            pass
+        # An X reading is its bit string, which is a real value the other side can be
+        # compared against. Anything that is not a bit string is not a scalar signal
+        # reading at all: `mask` in `bert_self_attention` is `logic signed [3:0] mask
+        # [0:3][0:3]`, and this handle hands back an unpacked `Array` of `LogicArray`s
+        # whose repr compared unequal to every number the relation produced. A reader
+        # that cannot give a scalar for a name has not probed that name.
+        text = str(raw)
+        if text and set(text) <= set("01xzXZ-"):
+            out[name] = text
+        elif name not in MISSING:
+            MISSING.append(name)
+    return out
+
+
+@cocotb.test()
+async def run_schedule(dut):
+    schedule = json.loads(SCHEDULE_PATH.read_text())
+    sampling = os.environ.get("BEHAVE_SAMPLING", "current-state")
+
+    cocotb.start_soon(Clock(getattr(dut, CLOCK_NAME), PERIOD_NS, units="ns").start())
+
+    observations = []
+    for cycle in schedule["cycles"]:
+        for name, value in cycle["control"].items():
+            getattr(dut, name).value = value
+        for name, value in cycle["data"].items():
+            getattr(dut, name).value = value
+
+        if sampling == "current-state":
+            await ReadOnly()
+            observations.append({{
+                "outputs": _sample(dut, OUTPUT_NAMES),
+                "state": _sample(dut, STATE_NAMES),
+            }})
+            await RisingEdge(getattr(dut, CLOCK_NAME))
+        else:
+            await RisingEdge(getattr(dut, CLOCK_NAME))
+            await ReadOnly()
+            observations.append({{
+                "outputs": _sample(dut, OUTPUT_NAMES),
+                "state": _sample(dut, STATE_NAMES),
+            }})
+            # ReadOnly forbids writes, so the next cycle cannot be driven from here.
+            await NextTimeStep()
+
+    TRACE_PATH.write_text(json.dumps(
+        {{"sampling": sampling, "observations": observations,
+          "missing": sorted(MISSING), "widths": WIDTHS}}, indent=1))

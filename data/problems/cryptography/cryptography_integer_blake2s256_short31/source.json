@@ -1,0 +1,22 @@
+{
+  "id": "cryptography_integer_blake2s256_short31",
+  "source_kind": "cryptography",
+  "name": "Blake2s256Short31",
+  "family": "blake2s256_short31",
+  "tier": 2,
+  "license": "CC0-1.0",
+  "provenance": [
+    {
+      "repository": "https://github.com/BLAKE2/BLAKE2",
+      "revision": "ed1974ea83433eba7b2d95c5dcd9ac33cb847913",
+      "license": "CC0-1.0",
+      "file": "ref/blake2s-ref.c",
+      "symbol": "blake2s with digest length 32, empty key; init/update/final/compress",
+      "sha256": "645fb0212db0d6e15a1568da210ac3f7123da1ab4330d4fc0e33312d742d569a",
+      "url": "https://github.com/BLAKE2/BLAKE2/blob/ed1974ea83433eba7b2d95c5dcd9ac33cb847913/ref/blake2s-ref.c",
+      "license_file": "data/licenses/BLAKE2_BLAKE2/COPYING"
+    }
+  ],
+  "adaptation": "Complete unkeyed sequential BLAKE2s-256 of a 0–31 byte message.\n\nUse the first L=in_length bytes, byte i at bits 8*i +: 8; later bytes do not affect the digest. Pad to 64 bytes with zeros and load sixteen little-endian 32-bit words m[0..15]. This is NOT SHA-style 0x80/bit-length padding. The output is eight little-endian words, h[i] at bits 32*i +: 32. All additions below wrap modulo 2^32 and ROTR is a 32-bit rotation.\n\nIV=[6a09e667,bb67ae85,3c6ef372,a54ff53a,510e527f,9b05688c,1f83d9ab,5be0cd19] (hex). Initialize h=IV, then h[0] xor=0x01010020 (digest length 32, no key, fanout/depth 1). Initialize v=h followed by IV; xor L into v[12] and 0xffffffff into v[14]. This is the only and final block, including the empty message.\n\nG(a,b,c,d,x,y) updates the selected v words sequentially: a=a+b+x; d=ROTR(d xor a,16); c=c+d; b=ROTR(b xor c,12); a=a+b+y; d=ROTR(d xor a,8); c=c+d; b=ROTR(b xor c,7). For each round r=0..9, execute G on index tuples (0,4,8,12), (1,5,9,13), (2,6,10,14), (3,7,11,15), (0,5,10,15), (1,6,11,12), (2,7,8,13), (3,4,9,14), in that order. Invocation j uses x=m[sigma[r][2*j]], y=m[sigma[r][2*j+1]]. Sigma rows are:\n\n```text\n 0  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15\n14 10  4  8  9 15 13  6  1 12  0  2 11  7  5  3\n11  8 12  0  5  2 15 13 10 14  3  6  7  1  9  4\n 7  9  3  1 13 12 11 14  2  6  5 10  4  0 15  8\n 9  0  5  7  2  4 10 15 14  1 11 12  6  8  3 13\n 2 12  6 10  0 11  8  3  4 13  7  5 15 14  1  9\n12  5  1 15 14 13  4 10  0  7  6  3  9  2  8 11\n13 11  7 14 12  1  3  9  5  0 15  4  8  6  2 10\n 6 15 14  9 11  3  0  8 12  2 13  7  1  4 10  5\n10  2  8  4  7  6  1  5 15 11  9 14  3 12 13  0\n```\n\nFinally set h[i]=h[i] xor v[i] xor v[i+8] for i=0..7, and return all eight words. This is the reference blake2s digest API with output size 32 and no key, salt, personalization, tree hashing or output truncation; not BLAKE2b.",
+  "difficulty": "medium"
+}

@@ -1,0 +1,32 @@
+{
+  "id": "ai_ml_integer_huber_loss_grad8",
+  "source_kind": "ai_ml",
+  "name": "HuberLossGrad8",
+  "family": "huber_loss_grad8",
+  "tier": 2,
+  "license": "BSD-3-Clause",
+  "provenance": [
+    {
+      "repository": "https://github.com/pytorch/pytorch",
+      "revision": "a8d6afb511a69687bbb2b7e88a3cf67917e1697e",
+      "license": "BSD-3-Clause",
+      "file": "aten/src/ATen/native/Loss.cpp",
+      "symbol": "huber_loss / huber_loss_backward",
+      "sha256": "18ad60cedcf303393ed8b6c556318a8ce6a556d32adc98c86f6050a015e9247c",
+      "url": "https://github.com/pytorch/pytorch/blob/a8d6afb511a69687bbb2b7e88a3cf67917e1697e/aten/src/ATen/native/Loss.cpp",
+      "license_file": "data/licenses/pytorch_pytorch/LICENSE"
+    },
+    {
+      "repository": "https://github.com/pytorch/pytorch",
+      "revision": "a8d6afb511a69687bbb2b7e88a3cf67917e1697e",
+      "license": "BSD-3-Clause",
+      "file": "tools/autograd/derivatives.yaml",
+      "symbol": "huber_loss derivative",
+      "sha256": "af95550569859ad5dae95ad7f1ea25cd42521a51f6ffd435a7ec870fe5a26690",
+      "url": "https://github.com/pytorch/pytorch/blob/a8d6afb511a69687bbb2b7e88a3cf67917e1697e/tools/autograd/derivatives.yaml",
+      "license_file": "data/licenses/pytorch_pytorch/LICENSE"
+    }
+  ],
+  "adaptation": "Summed Huber loss and all eight prediction gradients, in exact finite fixed-point form.\n\nPrediction/target are signed INT16 Q8; D=1+delta_minus1 is a positive raw Q8 threshold 1..256. For raw error e=prediction-target, twice-loss raw value is e^2 when |e|<=D, otherwise 2*D*|e|-D^2. Sum these eight UINT32 values without overflow and place the total in output bits 0..31. Its scale is twice the real summed loss times 65536. Prediction gradient raw value is clamp(e,-D,D), representing a Q8 gradient, returned as eight INT16 lanes at 32+16*i. There is no mean reduction. Exactly at |e|=D the formulas agree; target gradients would be negations but are not outputs. This is the ordinary Huber objective, not SmoothL1 rescaled by delta.",
+  "difficulty": "medium"
+}

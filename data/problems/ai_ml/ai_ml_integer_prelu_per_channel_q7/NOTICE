@@ -1,0 +1,4 @@
+Integer/fixed-shape adaptation of the ONNX operation named in source.json.
+Copyright (c) ONNX Project Contributors.
+Modifications: finite packed ports, explicit integer arithmetic, rounding and reset semantics.
+Licensed under Apache-2.0; see LICENSE and the unmodified source artifact.

@@ -1,0 +1,204 @@
+{
+  "version": "task-contract/16",
+  "endpoints": [
+    {
+      "name": "in",
+      "direction": "in",
+      "fields": [
+        {
+          "name": "in_amax",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_amax"
+        },
+        {
+          "name": "in_dmax",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_dmax"
+        },
+        {
+          "name": "in_t",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_t"
+        },
+        {
+          "name": "in_vi",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_vi"
+        },
+        {
+          "name": "in_vmax",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_vmax"
+        },
+        {
+          "name": "in_xf",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_xf"
+        },
+        {
+          "name": "in_xi",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_xi"
+        }
+      ],
+      "adapter": {
+        "name": "ready-valid",
+        "version": 1,
+        "environment_controls": [
+          "in_valid"
+        ],
+        "artifact_controls": [
+          "in_ready"
+        ],
+        "monitor_state": [
+          "outstanding",
+          "stall_cycles"
+        ]
+      },
+      "clock": "clk",
+      "matching": "ordered",
+      "identifier": null,
+      "max_outstanding": null,
+      "response_deadline": null,
+      "answers_per_transaction": null,
+      "terminal_quiescence": null,
+      "reset_policy": null,
+      "kind": "transaction"
+    },
+    {
+      "name": "out",
+      "direction": "out",
+      "fields": [
+        {
+          "name": "out_error",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "out_error"
+        },
+        {
+          "name": "out_ta",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "out_ta"
+        },
+        {
+          "name": "out_td",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "out_td"
+        },
+        {
+          "name": "out_tf",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "out_tf"
+        },
+        {
+          "name": "out_tv",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "out_tv"
+        },
+        {
+          "name": "out_y",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "out_y"
+        },
+        {
+          "name": "out_yd",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "out_yd"
+        },
+        {
+          "name": "out_ydd",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "out_ydd"
+        }
+      ],
+      "adapter": {
+        "name": "ready-valid",
+        "version": 1,
+        "environment_controls": [
+          "out_ready"
+        ],
+        "artifact_controls": [
+          "out_valid"
+        ],
+        "monitor_state": [
+          "outstanding",
+          "stall_cycles"
+        ]
+      },
+      "clock": "clk",
+      "matching": "ordered",
+      "identifier": null,
+      "max_outstanding": null,
+      "response_deadline": null,
+      "answers_per_transaction": null,
+      "terminal_quiescence": null,
+      "reset_policy": null,
+      "kind": "transaction"
+    }
+  ],
+  "clocks": [
+    {
+      "name": "clk",
+      "clock": "clk",
+      "edge": "rising",
+      "reset": "rst",
+      "reset_active_low": false,
+      "reset_hold_cycles": 3,
+      "reset_restores": null
+    }
+  ],
+  "memories": [],
+  "protocol_instances": [],
+  "observation_goals": [],
+  "transaction_monitors": [],
+  "latency_goals": [],
+  "operation_rules": [],
+  "source_read_rules": [],
+  "authority": "task",
+  "source": "declared by control_motion_trapezoidal_motion_profile",
+  "physical_value_layout": "packed-value/1"
+}

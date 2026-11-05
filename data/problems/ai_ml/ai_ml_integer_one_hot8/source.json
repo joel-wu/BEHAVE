@@ -1,0 +1,22 @@
+{
+  "id": "ai_ml_integer_one_hot8",
+  "source_kind": "ai_ml",
+  "name": "OneHot8",
+  "family": "one_hot8",
+  "tier": 1,
+  "license": "Apache-2.0",
+  "provenance": [
+    {
+      "repository": "https://github.com/onnx/onnx",
+      "revision": "57b9c6a4f6eebb09ae1b34cfb632078518f72832",
+      "license": "Apache-2.0",
+      "file": "onnx/reference/ops/op_one_hot.py",
+      "symbol": "OneHot._run; _one_hot",
+      "sha256": "17c7fa00a589d173ef4451ab5c2ce4097e50f0241ba3db3d6d69000ecb7d6007",
+      "url": "https://github.com/onnx/onnx/blob/57b9c6a4f6eebb09ae1b34cfb632078518f72832/onnx/reference/ops/op_one_hot.py",
+      "license_file": "data/licenses/onnx_onnx/LICENSE"
+    }
+  ],
+  "adaptation": "Encode eight labels, each an unsigned 3-bit class index 0..7, as an 8x8 byte matrix. Output byte (i,c), packed at 8*i+c, equals in_on when label i equals c and otherwise in_off. All 64 bytes must be produced; values are arbitrary byte patterns, not restricted to 0 and 1. Depth is 8 and the new class axis is last. Width bounds indices to valid classes; no out-of-range source behavior is used.",
+  "difficulty": "basic"
+}

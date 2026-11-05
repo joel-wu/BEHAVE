@@ -1,0 +1,234 @@
+{
+  "version": "task-contract/8",
+  "endpoints": [
+    {
+      "name": "in",
+      "direction": "in",
+      "fields": [
+        {
+          "name": "s0_valid",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "s0_valid"
+        },
+        {
+          "name": "s0_dest",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "s0_dest"
+        },
+        {
+          "name": "s0_data",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "s0_data"
+        },
+        {
+          "name": "s1_valid",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "s1_valid"
+        },
+        {
+          "name": "s1_dest",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "s1_dest"
+        },
+        {
+          "name": "s1_data",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "s1_data"
+        },
+        {
+          "name": "s2_valid",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "s2_valid"
+        },
+        {
+          "name": "s2_dest",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "s2_dest"
+        },
+        {
+          "name": "s2_data",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "s2_data"
+        },
+        {
+          "name": "m0_ready",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "m0_ready"
+        },
+        {
+          "name": "m1_ready",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "m1_ready"
+        }
+      ],
+      "adapter": {
+        "name": "sampled-edge",
+        "version": 1,
+        "environment_controls": [],
+        "artifact_controls": [],
+        "monitor_state": []
+      },
+      "clock": "clk",
+      "matching": "ordered",
+      "identifier": null,
+      "max_outstanding": null,
+      "response_deadline": null,
+      "answers_per_transaction": null,
+      "terminal_quiescence": null,
+      "reset_policy": null,
+      "kind": "transaction"
+    },
+    {
+      "name": "out",
+      "direction": "out",
+      "fields": [
+        {
+          "name": "s0_ready",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "s0_ready"
+        },
+        {
+          "name": "s1_ready",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "s1_ready"
+        },
+        {
+          "name": "s2_ready",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "s2_ready"
+        },
+        {
+          "name": "m0_valid",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "m0_valid"
+        },
+        {
+          "name": "m0_data",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "m0_data"
+        },
+        {
+          "name": "m0_source",
+          "type": {
+            "width": 2,
+            "signed": false
+          },
+          "port": "m0_source"
+        },
+        {
+          "name": "m1_valid",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "m1_valid"
+        },
+        {
+          "name": "m1_data",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "m1_data"
+        },
+        {
+          "name": "m1_source",
+          "type": {
+            "width": 2,
+            "signed": false
+          },
+          "port": "m1_source"
+        }
+      ],
+      "adapter": {
+        "name": "sampled-edge",
+        "version": 1,
+        "environment_controls": [],
+        "artifact_controls": [],
+        "monitor_state": []
+      },
+      "clock": "clk",
+      "matching": "ordered",
+      "identifier": null,
+      "max_outstanding": null,
+      "response_deadline": null,
+      "answers_per_transaction": 1,
+      "terminal_quiescence": null,
+      "reset_policy": null,
+      "kind": "transaction"
+    }
+  ],
+  "clocks": [
+    {
+      "name": "clk",
+      "clock": "clk",
+      "edge": "rising",
+      "reset": "rst",
+      "reset_active_low": false,
+      "reset_hold_cycles": 3,
+      "reset_restores": null
+    }
+  ],
+  "memories": [],
+  "protocol_instances": [
+    {
+      "name": "compute",
+      "endpoints": [
+        "in",
+        "out"
+      ],
+      "mapping": "direct/1"
+    }
+  ],
+  "authority": "task",
+  "source": "Source-grounded adaptation; see data/SOURCES.csv.",
+  "physical_value_layout": "packed-value/1"
+}

@@ -1,0 +1,13 @@
+BEHAVE AlphaBetaTrackerQ16
+
+Original task specification, fixed-point Behavior model and RTL adaptation:
+Apache-2.0. The upstream FilterPy source excerpt remains under the MIT License.
+
+Algorithm source: FilterPy GHFilter.update
+Copyright (c) 2015 Roger R. Labbe Jr
+Repository: https://github.com/rlabbe/filterpy
+Revision: 3b51149ebcff0401ff1e10bf08ffca7b6bbc4a33
+
+The upstream MIT license is included in data/licenses/rlabbe_filterpy/LICENSE
+(relative to the repository root). See source.json for the pinned upstream
+excerpt, file hashes and changes from the floating-point source.

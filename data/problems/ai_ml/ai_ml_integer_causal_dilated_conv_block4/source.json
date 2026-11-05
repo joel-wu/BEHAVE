@@ -1,0 +1,22 @@
+{
+  "id": "ai_ml_integer_causal_dilated_conv_block4",
+  "source_kind": "ai_ml",
+  "name": "CausalDilatedConvBlock4",
+  "family": "causal_dilated_conv_block4",
+  "tier": 2,
+  "license": "BSD-3-Clause",
+  "provenance": [
+    {
+      "repository": "https://github.com/pytorch/pytorch",
+      "revision": "a8d6afb511a69687bbb2b7e88a3cf67917e1697e",
+      "license": "BSD-3-Clause",
+      "file": "aten/src/ATen/native/NaiveDilatedConvolution.cpp",
+      "symbol": "hvol2col / slow_conv_dilated_all_cpu_template dilation indexing",
+      "sha256": "10479b15c1d0a294660eecc98d030aa0015ffe80a14a5892a87a3bcd1d1c4656",
+      "url": "https://github.com/pytorch/pytorch/blob/a8d6afb511a69687bbb2b7e88a3cf67917e1697e/aten/src/ATen/native/NaiveDilatedConvolution.cpp",
+      "license_file": "data/licenses/pytorch_pytorch/LICENSE"
+    }
+  ],
+  "adaptation": "Streaming block update for a two-channel, dilation-two causal convolution.\n\nHistory holds the four preceding time points, oldest first, each two signed INT8 channels. X holds four new time points in the same time-major layout. Concatenate H then X as S[0..7,0..1]. Weights are signed INT8 in OCK order, dimensions 2x2x3. Output Y[t,o]=sum(c,k) W[o,c,k]*S[t+2*k,c], for t=0..3. Thus k=2 addresses the current sample and k=0 the oldest tap (cross-correlation order). Return eight signed INT32 outputs time-major in low 256 bits, and the new four-point history X in bits 256..319. Feed this returned history to the next block; there is no hidden state, bias or saturation.",
+  "difficulty": "medium"
+}

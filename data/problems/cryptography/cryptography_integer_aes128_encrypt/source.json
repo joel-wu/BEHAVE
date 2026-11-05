@@ -1,0 +1,22 @@
+{
+  "id": "cryptography_integer_aes128_encrypt",
+  "source_kind": "cryptography",
+  "name": "AES128Encrypt",
+  "family": "aes128_encrypt",
+  "tier": 2,
+  "license": "Unlicense",
+  "provenance": [
+    {
+      "repository": "https://github.com/kokke/tiny-AES-c",
+      "revision": "23856752fbd139da0b8ca6e471a13d5bcc99a08d",
+      "license": "Unlicense",
+      "file": "aes.c",
+      "symbol": "KeyExpansion, Cipher, AES_init_ctx, AES_ECB_encrypt",
+      "sha256": "f7f78b44654efd3542b6886923dd05194286807ebcfeb078ea05d21fe901ee9e",
+      "url": "https://github.com/kokke/tiny-AES-c/blob/23856752fbd139da0b8ca6e471a13d5bcc99a08d/aes.c",
+      "license_file": "data/licenses/kokke_tiny-AES-c/unlicense.txt"
+    }
+  ],
+  "adaptation": "Full AES-128 encryption of one block, including all eleven round keys.\n\nKey, plaintext and ciphertext are 16-byte strings; byte i occupies bits 8*i +: 8 (byte 0 is the least-significant byte). State byte 4*c+r is row r, column c. Encrypt with the AES-128 forward cipher, not AES-192/256, a single round, or decryption. All GF(256) multiplication uses x^8+x^4+x^3+x+1. The S-box maps x to the multiplicative inverse z (0 maps to 0), then z xor ROTL8(z,1) xor ROTL8(z,2) xor ROTL8(z,3) xor ROTL8(z,4) xor 0x63. ShiftRows moves row r left by r columns. MixColumns multiplies each column by the circulant matrix with rows [2,3,1,1], [1,2,3,1], [1,1,2,3], [3,1,1,2].\n\nThe first four key words are the input key, in chronological groups of four bytes. For word i=4..43, let T=W[i-1]. If i is divisible by 4, rotate its byte string left one byte, apply the S-box to every byte, and xor Rcon[i/4] into its first byte. Then W[i]=W[i-4] xor T. Rcon[1..10]=01,02,04,08,10,20,40,80,1b,36. Begin by xoring the plaintext with round key 0. Rounds 1..9 perform SubBytes, ShiftRows, MixColumns, AddRoundKey, in that order. Round 10 omits MixColumns. Return the final state bytes in the same column-major order.\n\nThis is the complete AES_init_ctx + AES_ECB_encrypt operation in the selected tiny-AES-c AES-128 configuration. The one-block primitive does not specify a multi-message encryption mode, padding, key management or side-channel guarantees.",
+  "difficulty": "challenge"
+}

@@ -1,0 +1,31 @@
+{
+  "provider": "fireworks",
+  "endpoint": {
+    "schema": "behave.hosted-provider/6",
+    "provider": "fireworks",
+    "model": "YOUR_HOSTED_MODEL",
+    "runtime_revision": "YOUR_PROVIDER_DEPLOYMENT_REVISION",
+    "credential": {
+      "path": "/absolute/path/to/private/provider.env",
+      "key": "FIREWORKS_API_KEY",
+      "revision": "YOUR_CREDENTIAL_REVISION"
+    },
+    "parameters": {},
+    "prices": null,
+    "response_models": [],
+    "spending": null,
+    "billing_tier": null
+  },
+  "attempt": {
+    "max_turns": 60,
+    "max_retries": 3,
+    "request_timeout_seconds": 600,
+    "context_tokens": 131072
+  },
+  "setting": "joint",
+  "workers": 1,
+  "model_workers": 1,
+  "judge_workers": 1,
+  "score_on_submit": false,
+  "output_preview_bytes": 32768
+}

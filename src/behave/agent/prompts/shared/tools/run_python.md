@@ -1,0 +1,1 @@
+Run Python with arguments in `args`, for example `["-c", "from model import M; print(M())"]`. Workspace sources are readable at `/workspace`. The working directory `/work` is temporary and its files are not retained. Returns stdout, stderr and exit status.

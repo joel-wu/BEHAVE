@@ -1,0 +1,166 @@
+{
+  "version": "task-contract/8",
+  "endpoints": [
+    {
+      "name": "r_in",
+      "direction": "in",
+      "fields": [
+        {
+          "name": "r_inc",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "r_inc"
+        }
+      ],
+      "adapter": {
+        "name": "sampled-edge",
+        "version": 1,
+        "environment_controls": [],
+        "artifact_controls": [],
+        "monitor_state": []
+      },
+      "clock": "r",
+      "matching": "ordered",
+      "identifier": null,
+      "max_outstanding": null,
+      "response_deadline": null,
+      "answers_per_transaction": null,
+      "terminal_quiescence": null,
+      "reset_policy": null,
+      "kind": "transaction"
+    },
+    {
+      "name": "r_out",
+      "direction": "out",
+      "fields": [
+        {
+          "name": "r_empty",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "r_empty"
+        },
+        {
+          "name": "r_data",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "r_data"
+        }
+      ],
+      "adapter": {
+        "name": "sampled-edge",
+        "version": 1,
+        "environment_controls": [],
+        "artifact_controls": [],
+        "monitor_state": []
+      },
+      "clock": "r",
+      "matching": "ordered",
+      "identifier": null,
+      "max_outstanding": null,
+      "response_deadline": null,
+      "answers_per_transaction": null,
+      "terminal_quiescence": null,
+      "reset_policy": null,
+      "kind": "transaction"
+    },
+    {
+      "name": "w_in",
+      "direction": "in",
+      "fields": [
+        {
+          "name": "w_inc",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "w_inc"
+        },
+        {
+          "name": "w_data",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "w_data"
+        }
+      ],
+      "adapter": {
+        "name": "sampled-edge",
+        "version": 1,
+        "environment_controls": [],
+        "artifact_controls": [],
+        "monitor_state": []
+      },
+      "clock": "w",
+      "matching": "ordered",
+      "identifier": null,
+      "max_outstanding": null,
+      "response_deadline": null,
+      "answers_per_transaction": null,
+      "terminal_quiescence": null,
+      "reset_policy": null,
+      "kind": "transaction"
+    },
+    {
+      "name": "w_out",
+      "direction": "out",
+      "fields": [
+        {
+          "name": "w_full",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "w_full"
+        }
+      ],
+      "adapter": {
+        "name": "sampled-edge",
+        "version": 1,
+        "environment_controls": [],
+        "artifact_controls": [],
+        "monitor_state": []
+      },
+      "clock": "w",
+      "matching": "ordered",
+      "identifier": null,
+      "max_outstanding": null,
+      "response_deadline": null,
+      "answers_per_transaction": null,
+      "terminal_quiescence": null,
+      "reset_policy": null,
+      "kind": "transaction"
+    }
+  ],
+  "clocks": [
+    {
+      "name": "r",
+      "clock": "r_clk",
+      "edge": "rising",
+      "reset": "r_rst",
+      "reset_active_low": false,
+      "reset_hold_cycles": 3,
+      "reset_restores": true
+    },
+    {
+      "name": "w",
+      "clock": "w_clk",
+      "edge": "rising",
+      "reset": "w_rst",
+      "reset_active_low": false,
+      "reset_hold_cycles": 3,
+      "reset_restores": true
+    }
+  ],
+  "memories": [],
+  "protocol_instances": [],
+  "authority": "task",
+  "source": "CVDP native FIFO clocks; batch2135 records reset and Gray-pointer completion",
+  "physical_value_layout": "packed-value/1"
+}

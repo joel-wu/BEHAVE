@@ -1,0 +1,10 @@
+class Behavior:
+    def __init__(self):
+        pass
+
+    def reset(self):
+        pass
+
+    def process(self, a, b, c, d):
+        out = (a & b) | (c & d)
+        return {"out": out, "out_n": out ^ 1}

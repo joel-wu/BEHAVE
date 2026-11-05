@@ -1,0 +1,372 @@
+{
+  "version": "task-contract/16",
+  "endpoints": [
+    {
+      "name": "in",
+      "direction": "in",
+      "fields": [
+        {
+          "name": "in_lp_quantization",
+          "type": {
+            "width": 5,
+            "signed": false
+          },
+          "port": "in_lp_quantization"
+        },
+        {
+          "name": "in_order",
+          "type": {
+            "width": 5,
+            "signed": false
+          },
+          "port": "in_order"
+        },
+        {
+          "name": "in_qlp_coeff0",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_qlp_coeff0"
+        },
+        {
+          "name": "in_qlp_coeff1",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_qlp_coeff1"
+        },
+        {
+          "name": "in_qlp_coeff10",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_qlp_coeff10"
+        },
+        {
+          "name": "in_qlp_coeff11",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_qlp_coeff11"
+        },
+        {
+          "name": "in_qlp_coeff12",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_qlp_coeff12"
+        },
+        {
+          "name": "in_qlp_coeff13",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_qlp_coeff13"
+        },
+        {
+          "name": "in_qlp_coeff14",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_qlp_coeff14"
+        },
+        {
+          "name": "in_qlp_coeff15",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_qlp_coeff15"
+        },
+        {
+          "name": "in_qlp_coeff2",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_qlp_coeff2"
+        },
+        {
+          "name": "in_qlp_coeff3",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_qlp_coeff3"
+        },
+        {
+          "name": "in_qlp_coeff4",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_qlp_coeff4"
+        },
+        {
+          "name": "in_qlp_coeff5",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_qlp_coeff5"
+        },
+        {
+          "name": "in_qlp_coeff6",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_qlp_coeff6"
+        },
+        {
+          "name": "in_qlp_coeff7",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_qlp_coeff7"
+        },
+        {
+          "name": "in_qlp_coeff8",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_qlp_coeff8"
+        },
+        {
+          "name": "in_qlp_coeff9",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_qlp_coeff9"
+        },
+        {
+          "name": "in_sample",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_sample"
+        },
+        {
+          "name": "in_warmup0",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_warmup0"
+        },
+        {
+          "name": "in_warmup1",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_warmup1"
+        },
+        {
+          "name": "in_warmup10",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_warmup10"
+        },
+        {
+          "name": "in_warmup11",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_warmup11"
+        },
+        {
+          "name": "in_warmup12",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_warmup12"
+        },
+        {
+          "name": "in_warmup13",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_warmup13"
+        },
+        {
+          "name": "in_warmup14",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_warmup14"
+        },
+        {
+          "name": "in_warmup15",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_warmup15"
+        },
+        {
+          "name": "in_warmup2",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_warmup2"
+        },
+        {
+          "name": "in_warmup3",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_warmup3"
+        },
+        {
+          "name": "in_warmup4",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_warmup4"
+        },
+        {
+          "name": "in_warmup5",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_warmup5"
+        },
+        {
+          "name": "in_warmup6",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_warmup6"
+        },
+        {
+          "name": "in_warmup7",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_warmup7"
+        },
+        {
+          "name": "in_warmup8",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_warmup8"
+        },
+        {
+          "name": "in_warmup9",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_warmup9"
+        }
+      ],
+      "adapter": {
+        "name": "ready-valid",
+        "version": 1,
+        "environment_controls": [
+          "in_valid"
+        ],
+        "artifact_controls": [
+          "in_ready"
+        ],
+        "monitor_state": [
+          "outstanding",
+          "stall_cycles"
+        ]
+      },
+      "clock": "clk",
+      "matching": "ordered",
+      "identifier": null,
+      "max_outstanding": null,
+      "response_deadline": null,
+      "answers_per_transaction": null,
+      "terminal_quiescence": null,
+      "reset_policy": null,
+      "kind": "transaction"
+    },
+    {
+      "name": "out",
+      "direction": "out",
+      "fields": [
+        {
+          "name": "out_residual",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "out_residual"
+        }
+      ],
+      "adapter": {
+        "name": "ready-valid",
+        "version": 1,
+        "environment_controls": [
+          "out_ready"
+        ],
+        "artifact_controls": [
+          "out_valid"
+        ],
+        "monitor_state": [
+          "outstanding",
+          "stall_cycles"
+        ]
+      },
+      "clock": "clk",
+      "matching": "ordered",
+      "identifier": null,
+      "max_outstanding": null,
+      "response_deadline": null,
+      "answers_per_transaction": null,
+      "terminal_quiescence": null,
+      "reset_policy": null,
+      "kind": "transaction"
+    }
+  ],
+  "clocks": [
+    {
+      "name": "clk",
+      "clock": "clk",
+      "edge": "rising",
+      "reset": "rst",
+      "reset_active_low": false,
+      "reset_hold_cycles": 3,
+      "reset_restores": null
+    }
+  ],
+  "memories": [],
+  "protocol_instances": [],
+  "observation_goals": [],
+  "transaction_monitors": [],
+  "latency_goals": [],
+  "operation_rules": [],
+  "source_read_rules": [],
+  "authority": "task",
+  "source": "declared by compression_flac_predict_flac_lpc_predictor_order_le16",
+  "physical_value_layout": "packed-value/1"
+}

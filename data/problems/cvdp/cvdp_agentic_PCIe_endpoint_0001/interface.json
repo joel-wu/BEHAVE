@@ -1,0 +1,264 @@
+{
+  "version": "task-contract/8",
+  "endpoints": [
+    {
+      "name": "in",
+      "direction": "in",
+      "fields": [
+        {
+          "name": "clk_level",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "clk_level"
+        },
+        {
+          "name": "reset_n",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "reset_n"
+        },
+        {
+          "name": "pcie_rx_tlp",
+          "type": {
+            "width": 128,
+            "signed": false
+          },
+          "port": "pcie_rx_tlp"
+        },
+        {
+          "name": "pcie_rx_valid",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "pcie_rx_valid"
+        },
+        {
+          "name": "pcie_tx_ready",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "pcie_tx_ready"
+        },
+        {
+          "name": "dma_request",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "dma_request"
+        },
+        {
+          "name": "dma_src",
+          "type": {
+            "width": 64,
+            "signed": false
+          },
+          "port": "dma_src"
+        },
+        {
+          "name": "dma_dst",
+          "type": {
+            "width": 64,
+            "signed": false
+          },
+          "port": "dma_dst"
+        },
+        {
+          "name": "dma_words",
+          "type": {
+            "width": 8,
+            "signed": false
+          },
+          "port": "dma_words"
+        },
+        {
+          "name": "mem_ready",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "mem_ready"
+        },
+        {
+          "name": "mem_rsp_valid",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "mem_rsp_valid"
+        },
+        {
+          "name": "mem_error",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "mem_error"
+        },
+        {
+          "name": "mem_rdata",
+          "type": {
+            "width": 128,
+            "signed": false
+          },
+          "port": "mem_rdata"
+        }
+      ],
+      "adapter": {
+        "name": "combinational-settled",
+        "version": 1,
+        "environment_controls": [],
+        "artifact_controls": [],
+        "monitor_state": []
+      },
+      "clock": null,
+      "matching": "ordered",
+      "identifier": null,
+      "max_outstanding": null,
+      "response_deadline": null,
+      "answers_per_transaction": null,
+      "terminal_quiescence": null,
+      "reset_policy": null,
+      "kind": "transaction"
+    },
+    {
+      "name": "out",
+      "direction": "out",
+      "fields": [
+        {
+          "name": "pcie_rx_ready",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "pcie_rx_ready"
+        },
+        {
+          "name": "pcie_tx_tlp",
+          "type": {
+            "width": 128,
+            "signed": false
+          },
+          "port": "pcie_tx_tlp"
+        },
+        {
+          "name": "pcie_tx_valid",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "pcie_tx_valid"
+        },
+        {
+          "name": "dma_ready",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "dma_ready"
+        },
+        {
+          "name": "dma_complete",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "dma_complete"
+        },
+        {
+          "name": "dma_error",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "dma_error"
+        },
+        {
+          "name": "msix_interrupt",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "msix_interrupt"
+        },
+        {
+          "name": "mem_valid",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "mem_valid"
+        },
+        {
+          "name": "mem_write",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "mem_write"
+        },
+        {
+          "name": "mem_addr",
+          "type": {
+            "width": 64,
+            "signed": false
+          },
+          "port": "mem_addr"
+        },
+        {
+          "name": "mem_wdata",
+          "type": {
+            "width": 128,
+            "signed": false
+          },
+          "port": "mem_wdata"
+        },
+        {
+          "name": "mem_rsp_ready",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "mem_rsp_ready"
+        }
+      ],
+      "adapter": {
+        "name": "combinational-settled",
+        "version": 1,
+        "environment_controls": [],
+        "artifact_controls": [],
+        "monitor_state": []
+      },
+      "clock": null,
+      "matching": "ordered",
+      "identifier": null,
+      "max_outstanding": null,
+      "response_deadline": null,
+      "answers_per_transaction": 1,
+      "terminal_quiescence": null,
+      "reset_policy": null,
+      "kind": "transaction"
+    }
+  ],
+  "clocks": [],
+  "memories": [],
+  "protocol_instances": [
+    {
+      "name": "compute",
+      "endpoints": [
+        "in",
+        "out"
+      ],
+      "mapping": "direct/1"
+    }
+  ],
+  "authority": "task",
+  "source": "Source-native storage with explicit settled phase-level observation and documented startup; batch2150 audit",
+  "physical_value_layout": "packed-value/1"
+}

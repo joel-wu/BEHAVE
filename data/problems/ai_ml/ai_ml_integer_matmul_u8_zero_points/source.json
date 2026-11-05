@@ -1,0 +1,22 @@
+{
+  "id": "ai_ml_integer_matmul_u8_zero_points",
+  "source_kind": "ai_ml",
+  "name": "MatMulU8ZeroPoints",
+  "family": "matmul_u8_zero_points",
+  "tier": 2,
+  "license": "Apache-2.0",
+  "provenance": [
+    {
+      "repository": "https://github.com/onnx/onnx",
+      "revision": "57b9c6a4f6eebb09ae1b34cfb632078518f72832",
+      "license": "Apache-2.0",
+      "file": "onnx/reference/ops/op_matmul_integer.py",
+      "symbol": "MatMulInteger._run",
+      "sha256": "dcae6453e61e0d9915f47051e236522473ba060cd4c029fff348c54659f1ecde",
+      "url": "https://github.com/onnx/onnx/blob/57b9c6a4f6eebb09ae1b34cfb632078518f72832/onnx/reference/ops/op_matmul_integer.py",
+      "license_file": "data/licenses/onnx_onnx/LICENSE"
+    }
+  ],
+  "adaptation": "Compute all six signed INT32 entries C[i,j]=sum(k=0..7,(A[i,k]-Za)*(B[k,j]-Zb)). A is a row-major 2x8 UINT8 matrix, B is row-major 8x3 UINT8, and Za/Zb are supplied scalar UINT8 zero points. The subtractions are signed mathematical integers in [-255,255], not byte subtraction. There is no saturation, bias, scale, requantization or overflow. Output is row-major 2x3, 32 bits per entry. This is ONNX MatMulInteger, not an uncorrected unsigned dot product.",
+  "difficulty": "medium"
+}

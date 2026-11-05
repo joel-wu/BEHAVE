@@ -1,0 +1,122 @@
+{
+  "version": "task-contract/8",
+  "endpoints": [
+    {
+      "name": "in",
+      "direction": "in",
+      "fields": [
+        {
+          "name": "i_addr",
+          "type": {
+            "width": 8,
+            "signed": false
+          },
+          "port": "i_addr"
+        },
+        {
+          "name": "i_data_in",
+          "type": {
+            "width": 8,
+            "signed": false
+          },
+          "port": "i_data_in"
+        },
+        {
+          "name": "i_key_in",
+          "type": {
+            "width": 8,
+            "signed": false
+          },
+          "port": "i_key_in"
+        },
+        {
+          "name": "i_read_write_enable",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "i_read_write_enable"
+        }
+      ],
+      "adapter": {
+        "name": "sampled-edge",
+        "version": 1,
+        "environment_controls": [],
+        "artifact_controls": [],
+        "monitor_state": []
+      },
+      "clock": "i_capture_pulse",
+      "matching": "ordered",
+      "identifier": null,
+      "max_outstanding": null,
+      "response_deadline": null,
+      "answers_per_transaction": null,
+      "terminal_quiescence": null,
+      "reset_policy": null,
+      "kind": "transaction"
+    },
+    {
+      "name": "out",
+      "direction": "out",
+      "fields": [
+        {
+          "name": "o_data_out",
+          "type": {
+            "width": 8,
+            "signed": false
+          },
+          "port": "o_data_out"
+        },
+        {
+          "name": "o_error",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "o_error"
+        }
+      ],
+      "adapter": {
+        "name": "sampled-edge",
+        "version": 1,
+        "environment_controls": [],
+        "artifact_controls": [],
+        "monitor_state": []
+      },
+      "clock": "i_capture_pulse",
+      "matching": "ordered",
+      "identifier": null,
+      "max_outstanding": null,
+      "response_deadline": null,
+      "answers_per_transaction": 1,
+      "terminal_quiescence": null,
+      "reset_policy": null,
+      "kind": "transaction"
+    }
+  ],
+  "clocks": [
+    {
+      "name": "i_capture_pulse",
+      "clock": "i_capture_pulse",
+      "edge": "rising",
+      "reset": "i_reset_bar",
+      "reset_active_low": true,
+      "reset_hold_cycles": 3,
+      "reset_restores": true
+    }
+  ],
+  "memories": [],
+  "protocol_instances": [
+    {
+      "name": "compute",
+      "endpoints": [
+        "in",
+        "out"
+      ],
+      "mapping": "direct/1"
+    }
+  ],
+  "authority": "task",
+  "source": "Native CVDP clock semantics; batch110 records source completions",
+  "physical_value_layout": "packed-value/1"
+}

@@ -1,0 +1,6 @@
+Integer/fixed-capacity adaptation; not the unmodified upstream library.
+Upstream selected files, authors and revisions are identified in source.json.
+The original license/copyright notices are retained in LICENSE and the source archive.
+Selected license for this adaptation: MIT.
+Modifications: explicit finite domains, packed hardware interface and reset semantics.
+https://github.com/attractivechaos/klib@97a0fcb790b43b9e5da8994f4671021fec036f19:khash.h

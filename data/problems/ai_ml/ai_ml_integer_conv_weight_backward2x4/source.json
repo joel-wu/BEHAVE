@@ -1,0 +1,22 @@
+{
+  "id": "ai_ml_integer_conv_weight_backward2x4",
+  "source_kind": "ai_ml",
+  "name": "ConvWeightBackward2x4",
+  "family": "conv_weight_backward2x4",
+  "tier": 2,
+  "license": "BSD-3-Clause",
+  "provenance": [
+    {
+      "repository": "https://github.com/pytorch/pytorch",
+      "revision": "a8d6afb511a69687bbb2b7e88a3cf67917e1697e",
+      "license": "BSD-3-Clause",
+      "file": "aten/src/ATen/native/ConvolutionMM2d.cpp",
+      "symbol": "slow_conv2d_backward_weight_out_cpu_template / slow_conv2d_backward_out_cpu",
+      "sha256": "ffa4376913c8eb0ed8e74e62bb69700ba72189b5882974a184d434c50dc71763",
+      "url": "https://github.com/pytorch/pytorch/blob/a8d6afb511a69687bbb2b7e88a3cf67917e1697e/aten/src/ATen/native/ConvolutionMM2d.cpp",
+      "license_file": "data/licenses/pytorch_pytorch/LICENSE"
+    }
+  ],
+  "adaptation": "Weight and bias gradients for valid 3x3 convolution: one sample, two input and two output channels, 4x4 input, 2x2 output.\n\nX[c,h,w] and upstream G[o,h,w] are signed INT8, flattened CHW. Return dW[o,c,kh,kw]=sum(h,w=0..1) G[o,h,w]*X[c,h+kh,w+kw], flattened OIHW, in 36 signed INT32 lanes. Bits 1152..1183 hold two signed INT16 db[o]=sum G[o,h,w]. There is no batch averaging, stride, padding, quantization or optimizer step. This is the full weight-gradient operator, not forward convolution.",
+  "difficulty": "medium"
+}

@@ -1,0 +1,22 @@
+{
+  "id": "ai_ml_integer_ternary_quant_dense16x4",
+  "source_kind": "ai_ml",
+  "name": "TernaryQuantDense16x4",
+  "family": "ternary_quant_dense16x4",
+  "tier": 2,
+  "license": "MIT",
+  "provenance": [
+    {
+      "repository": "https://github.com/ggml-org/ggml",
+      "revision": "d4716378882593333721eb33f153144b6885caf2",
+      "license": "MIT",
+      "file": "src/ggml-quants.c",
+      "symbol": "quantize_row_tq2_0_ref / dequantize_row_tq2_0",
+      "sha256": "07143d7068936ae46b3c528b2f3d4bbb666e74d88992165716174d243573965d",
+      "url": "https://github.com/ggml-org/ggml/blob/d4716378882593333721eb33f153144b6885caf2/src/ggml-quants.c",
+      "license_file": "data/licenses/ggml-org_ggml/LICENSE"
+    }
+  ],
+  "adaptation": "Per-row absmax ternary quantization followed by dense integer inference, returning quantized weights too.\n\nX has sixteen signed INT8 values. Raw weights are 4x16 signed INT8, row-major. For each row, d=max(abs(w)); q=nearest-away(w/d) in {-1,0,1} if d>0, otherwise q=0. Return y[o]=d*sum(q[o,c]*X[c]) in four signed INT32 lanes at bit 32*o, four unsigned eight-bit scales d at bit 128+8*o, and 64 two-bit codes q+1 at bit 160+2*(16*o+c). Code 3 is never produced. This specializes GGML TQ2 absmax/ternary semantics to blocks of 16 instead of 256, exact integer scales instead of stored FP16, and straightforward row-major packing rather than the GGUF storage ABI. Halfway weights round away from zero.",
+  "difficulty": "medium"
+}

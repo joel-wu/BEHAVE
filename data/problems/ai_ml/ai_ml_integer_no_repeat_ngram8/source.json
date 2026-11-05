@@ -1,0 +1,22 @@
+{
+  "id": "ai_ml_integer_no_repeat_ngram8",
+  "source_kind": "ai_ml",
+  "name": "NoRepeatNGram8",
+  "family": "no_repeat_ngram8",
+  "tier": 2,
+  "license": "Apache-2.0",
+  "provenance": [
+    {
+      "repository": "https://github.com/huggingface/transformers",
+      "revision": "052e652d6d53c2b26ffde87e039b723949a53493",
+      "license": "Apache-2.0",
+      "file": "src/transformers/generation/logits_process.py",
+      "symbol": "_calc_banned_ngram_tokens / NoRepeatNGramLogitsProcessor",
+      "sha256": "167cd938df5536877bda6b89398464834090847d0ff5ebfad8352a4f50876b62",
+      "url": "https://github.com/huggingface/transformers/blob/052e652d6d53c2b26ffde87e039b723949a53493/src/transformers/generation/logits_process.py",
+      "license_file": "data/licenses/huggingface_transformers/LICENSE"
+    }
+  ],
+  "adaptation": "No-repeat n-gram constraint for one bounded decoding history.\n\nHistory is eight four-bit token slots; L=min(8,in_length), n=in_ngram_minus1+1 (1..4). Ban token v exactly if appending v repeats an n-gram already present in history[0:L]. For n=1, ban all seen tokens. If L+1<n, ban none. Return the 16 signed INT16 score lanes unchanged for unbanned tokens and zero for banned tokens; bits 256+v hold the ban mask. The mask is authoritative: zero is not a finite substitute for negative infinity in downstream selection. Unused history slots do not participate.",
+  "difficulty": "medium"
+}

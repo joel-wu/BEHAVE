@@ -1,0 +1,42 @@
+diff --git a/chipmate/cross_verify.py b/chipmate/cross_verify.py
+--- a/chipmate/cross_verify.py
++++ b/chipmate/cross_verify.py
+@@ -162,7 +162,7 @@
+         except subprocess.TimeoutExpired:
+             return None, "sv_compile_timeout"
+         if cp.returncode != 0:
+-            err = (cp.stdout + "\n" + cp.stderr).strip()[:1500]
++            err = (cp.stdout + "\n" + cp.stderr).strip()
+             return None, f"sv_compile_fail: {err}"
+         try:
+             rp = subprocess.run(
+@@ -272,7 +272,7 @@
+         except subprocess.TimeoutExpired:
+             return None, "py_exec_timeout"
+         if cp.returncode != 0:
+-            err = cp.stderr.strip()[:800]
++            err = cp.stderr.strip()
+             return None, f"py_exec_fail: {err}"
+         for line in cp.stdout.splitlines():
+             if line.startswith("PY_RESULTS "):
+@@ -331,7 +331,7 @@
+             total += 1
+             sv_v = sv_row.get(oname)
+             py_v = py_row.get(oname)
+-            if sv_v != py_v:
++            if sv_v is None or py_v is None or sv_v != py_v:
+                 mismatched += 1
+                 if len(mismatches) < 5:
+                     mismatches.append({
+diff --git a/chipmate/inference.py b/chipmate/inference.py
+--- a/chipmate/inference.py
++++ b/chipmate/inference.py
+@@ -172,7 +172,7 @@
+         best_i = -1
+         best_mr = -1.0
+         for i, vr in enumerate(results):
+-            mr = (vr or {}).get("match_rate", -1.0) or -1.0
++            mr = (vr or {}).get("match_rate", -1.0)
+             if mr > best_mr:
+                 best_mr = mr
+                 best_i = i

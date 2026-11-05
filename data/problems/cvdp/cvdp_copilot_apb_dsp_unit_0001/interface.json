@@ -1,0 +1,152 @@
+{
+  "version": "task-contract/8",
+  "endpoints": [
+    {
+      "name": "in",
+      "direction": "in",
+      "fields": [
+        {
+          "name": "pclk_level",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "pclk_level"
+        },
+        {
+          "name": "presetn",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "presetn"
+        },
+        {
+          "name": "pselx",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "pselx"
+        },
+        {
+          "name": "penable",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "penable"
+        },
+        {
+          "name": "pwrite",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "pwrite"
+        },
+        {
+          "name": "paddr",
+          "type": {
+            "width": 10,
+            "signed": false
+          },
+          "port": "paddr"
+        },
+        {
+          "name": "pwdata",
+          "type": {
+            "width": 8,
+            "signed": false
+          },
+          "port": "pwdata"
+        },
+        {
+          "name": "sram_valid",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "sram_valid"
+        }
+      ],
+      "adapter": {
+        "name": "combinational-settled",
+        "version": 1,
+        "environment_controls": [],
+        "artifact_controls": [],
+        "monitor_state": []
+      },
+      "clock": null,
+      "matching": "ordered",
+      "identifier": null,
+      "max_outstanding": null,
+      "response_deadline": null,
+      "answers_per_transaction": null,
+      "terminal_quiescence": null,
+      "reset_policy": null,
+      "kind": "transaction"
+    },
+    {
+      "name": "out",
+      "direction": "out",
+      "fields": [
+        {
+          "name": "pready",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "pready"
+        },
+        {
+          "name": "prdata",
+          "type": {
+            "width": 8,
+            "signed": false
+          },
+          "port": "prdata"
+        },
+        {
+          "name": "pslverr",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "pslverr"
+        }
+      ],
+      "adapter": {
+        "name": "combinational-settled",
+        "version": 1,
+        "environment_controls": [],
+        "artifact_controls": [],
+        "monitor_state": []
+      },
+      "clock": null,
+      "matching": "ordered",
+      "identifier": null,
+      "max_outstanding": null,
+      "response_deadline": null,
+      "answers_per_transaction": 1,
+      "terminal_quiescence": null,
+      "reset_policy": null,
+      "kind": "transaction"
+    }
+  ],
+  "clocks": [],
+  "memories": [],
+  "protocol_instances": [
+    {
+      "name": "compute",
+      "endpoints": [
+        "in",
+        "out"
+      ],
+      "mapping": "direct/1"
+    }
+  ],
+  "authority": "task",
+  "source": "Source-native storage with explicit settled phase-level observation and documented startup; batch2140 audit",
+  "physical_value_layout": "packed-value/1"
+}

@@ -1,0 +1,180 @@
+{
+  "version": "task-contract/16",
+  "endpoints": [
+    {
+      "name": "in",
+      "direction": "in",
+      "fields": [
+        {
+          "name": "in_activation_max",
+          "type": {
+            "width": 16,
+            "signed": true
+          },
+          "port": "in_activation_max"
+        },
+        {
+          "name": "in_activation_min",
+          "type": {
+            "width": 16,
+            "signed": true
+          },
+          "port": "in_activation_min"
+        },
+        {
+          "name": "in_batches",
+          "type": {
+            "width": 2,
+            "signed": false
+          },
+          "port": "in_batches"
+        },
+        {
+          "name": "in_bias",
+          "type": {
+            "width": 256,
+            "signed": false
+          },
+          "port": "in_bias"
+        },
+        {
+          "name": "in_depth",
+          "type": {
+            "width": 4,
+            "signed": false
+          },
+          "port": "in_depth"
+        },
+        {
+          "name": "in_input",
+          "type": {
+            "width": 256,
+            "signed": false
+          },
+          "port": "in_input"
+        },
+        {
+          "name": "in_kernel",
+          "type": {
+            "width": 256,
+            "signed": false
+          },
+          "port": "in_kernel"
+        },
+        {
+          "name": "in_multiplier",
+          "type": {
+            "width": 31,
+            "signed": false
+          },
+          "port": "in_multiplier"
+        },
+        {
+          "name": "in_outputs",
+          "type": {
+            "width": 3,
+            "signed": false
+          },
+          "port": "in_outputs"
+        },
+        {
+          "name": "in_shift",
+          "type": {
+            "width": 6,
+            "signed": true
+          },
+          "port": "in_shift"
+        }
+      ],
+      "adapter": {
+        "name": "ready-valid",
+        "version": 1,
+        "environment_controls": [
+          "in_valid"
+        ],
+        "artifact_controls": [
+          "in_ready"
+        ],
+        "monitor_state": [
+          "outstanding",
+          "stall_cycles"
+        ]
+      },
+      "clock": "clk",
+      "matching": "ordered",
+      "identifier": null,
+      "max_outstanding": null,
+      "response_deadline": null,
+      "answers_per_transaction": null,
+      "terminal_quiescence": null,
+      "reset_policy": null,
+      "kind": "transaction"
+    },
+    {
+      "name": "out",
+      "direction": "out",
+      "fields": [
+        {
+          "name": "out_error",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "out_error"
+        },
+        {
+          "name": "out_output",
+          "type": {
+            "width": 128,
+            "signed": false
+          },
+          "port": "out_output"
+        }
+      ],
+      "adapter": {
+        "name": "ready-valid",
+        "version": 1,
+        "environment_controls": [
+          "out_ready"
+        ],
+        "artifact_controls": [
+          "out_valid"
+        ],
+        "monitor_state": [
+          "outstanding",
+          "stall_cycles"
+        ]
+      },
+      "clock": "clk",
+      "matching": "ordered",
+      "identifier": null,
+      "max_outstanding": null,
+      "response_deadline": null,
+      "answers_per_transaction": null,
+      "terminal_quiescence": null,
+      "reset_policy": null,
+      "kind": "transaction"
+    }
+  ],
+  "clocks": [
+    {
+      "name": "clk",
+      "clock": "clk",
+      "edge": "rising",
+      "reset": "rst",
+      "reset_active_low": false,
+      "reset_hold_cycles": 3,
+      "reset_restores": null
+    }
+  ],
+  "memories": [],
+  "protocol_instances": [],
+  "observation_goals": [],
+  "transaction_monitors": [],
+  "latency_goals": [],
+  "operation_rules": [],
+  "source_read_rules": [],
+  "authority": "task",
+  "source": "declared by signal_processing_cnn_fc_arm_fully_connected_s16",
+  "physical_value_layout": "packed-value/1"
+}

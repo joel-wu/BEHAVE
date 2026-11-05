@@ -1,0 +1,396 @@
+{
+  "version": "task-contract/16",
+  "endpoints": [
+    {
+      "name": "in",
+      "direction": "in",
+      "fields": [
+        {
+          "name": "in_cdir",
+          "type": {
+            "width": 2,
+            "signed": false
+          },
+          "port": "in_cdir"
+        },
+        {
+          "name": "in_dim",
+          "type": {
+            "width": 2,
+            "signed": false
+          },
+          "port": "in_dim"
+        },
+        {
+          "name": "in_fine_imax_x",
+          "type": {
+            "width": 32,
+            "signed": true
+          },
+          "port": "in_fine_imax_x"
+        },
+        {
+          "name": "in_fine_imax_y",
+          "type": {
+            "width": 32,
+            "signed": true
+          },
+          "port": "in_fine_imax_y"
+        },
+        {
+          "name": "in_fine_imax_z",
+          "type": {
+            "width": 32,
+            "signed": true
+          },
+          "port": "in_fine_imax_z"
+        },
+        {
+          "name": "in_fine_imin_x",
+          "type": {
+            "width": 32,
+            "signed": true
+          },
+          "port": "in_fine_imin_x"
+        },
+        {
+          "name": "in_fine_imin_y",
+          "type": {
+            "width": 32,
+            "signed": true
+          },
+          "port": "in_fine_imin_y"
+        },
+        {
+          "name": "in_fine_imin_z",
+          "type": {
+            "width": 32,
+            "signed": true
+          },
+          "port": "in_fine_imin_z"
+        },
+        {
+          "name": "in_index_x",
+          "type": {
+            "width": 32,
+            "signed": true
+          },
+          "port": "in_index_x"
+        },
+        {
+          "name": "in_index_y",
+          "type": {
+            "width": 32,
+            "signed": true
+          },
+          "port": "in_index_y"
+        },
+        {
+          "name": "in_index_z",
+          "type": {
+            "width": 32,
+            "signed": true
+          },
+          "port": "in_index_z"
+        },
+        {
+          "name": "in_p_stored_as_transpose",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "in_p_stored_as_transpose"
+        },
+        {
+          "name": "in_stride_x",
+          "type": {
+            "width": 32,
+            "signed": true
+          },
+          "port": "in_stride_x"
+        },
+        {
+          "name": "in_stride_y",
+          "type": {
+            "width": 32,
+            "signed": true
+          },
+          "port": "in_stride_y"
+        },
+        {
+          "name": "in_stride_z",
+          "type": {
+            "width": 32,
+            "signed": true
+          },
+          "port": "in_stride_z"
+        }
+      ],
+      "adapter": {
+        "name": "ready-valid",
+        "version": 1,
+        "environment_controls": [
+          "in_valid"
+        ],
+        "artifact_controls": [
+          "in_ready"
+        ],
+        "monitor_state": [
+          "outstanding",
+          "stall_cycles"
+        ]
+      },
+      "clock": "clk",
+      "matching": "ordered",
+      "identifier": null,
+      "max_outstanding": null,
+      "response_deadline": null,
+      "answers_per_transaction": null,
+      "terminal_quiescence": null,
+      "reset_policy": null,
+      "kind": "transaction"
+    },
+    {
+      "name": "out",
+      "direction": "out",
+      "fields": [
+        {
+          "name": "out_recv_imax_x",
+          "type": {
+            "width": 32,
+            "signed": true
+          },
+          "port": "out_recv_imax_x"
+        },
+        {
+          "name": "out_recv_imax_y",
+          "type": {
+            "width": 32,
+            "signed": true
+          },
+          "port": "out_recv_imax_y"
+        },
+        {
+          "name": "out_recv_imax_z",
+          "type": {
+            "width": 32,
+            "signed": true
+          },
+          "port": "out_recv_imax_z"
+        },
+        {
+          "name": "out_recv_imin_x",
+          "type": {
+            "width": 32,
+            "signed": true
+          },
+          "port": "out_recv_imin_x"
+        },
+        {
+          "name": "out_recv_imin_y",
+          "type": {
+            "width": 32,
+            "signed": true
+          },
+          "port": "out_recv_imin_y"
+        },
+        {
+          "name": "out_recv_imin_z",
+          "type": {
+            "width": 32,
+            "signed": true
+          },
+          "port": "out_recv_imin_z"
+        },
+        {
+          "name": "out_recvr_imax_x",
+          "type": {
+            "width": 32,
+            "signed": true
+          },
+          "port": "out_recvr_imax_x"
+        },
+        {
+          "name": "out_recvr_imax_y",
+          "type": {
+            "width": 32,
+            "signed": true
+          },
+          "port": "out_recvr_imax_y"
+        },
+        {
+          "name": "out_recvr_imax_z",
+          "type": {
+            "width": 32,
+            "signed": true
+          },
+          "port": "out_recvr_imax_z"
+        },
+        {
+          "name": "out_recvr_imin_x",
+          "type": {
+            "width": 32,
+            "signed": true
+          },
+          "port": "out_recvr_imin_x"
+        },
+        {
+          "name": "out_recvr_imin_y",
+          "type": {
+            "width": 32,
+            "signed": true
+          },
+          "port": "out_recvr_imin_y"
+        },
+        {
+          "name": "out_recvr_imin_z",
+          "type": {
+            "width": 32,
+            "signed": true
+          },
+          "port": "out_recvr_imin_z"
+        },
+        {
+          "name": "out_send_imax_x",
+          "type": {
+            "width": 32,
+            "signed": true
+          },
+          "port": "out_send_imax_x"
+        },
+        {
+          "name": "out_send_imax_y",
+          "type": {
+            "width": 32,
+            "signed": true
+          },
+          "port": "out_send_imax_y"
+        },
+        {
+          "name": "out_send_imax_z",
+          "type": {
+            "width": 32,
+            "signed": true
+          },
+          "port": "out_send_imax_z"
+        },
+        {
+          "name": "out_send_imin_x",
+          "type": {
+            "width": 32,
+            "signed": true
+          },
+          "port": "out_send_imin_x"
+        },
+        {
+          "name": "out_send_imin_y",
+          "type": {
+            "width": 32,
+            "signed": true
+          },
+          "port": "out_send_imin_y"
+        },
+        {
+          "name": "out_send_imin_z",
+          "type": {
+            "width": 32,
+            "signed": true
+          },
+          "port": "out_send_imin_z"
+        },
+        {
+          "name": "out_sendr_imax_x",
+          "type": {
+            "width": 32,
+            "signed": true
+          },
+          "port": "out_sendr_imax_x"
+        },
+        {
+          "name": "out_sendr_imax_y",
+          "type": {
+            "width": 32,
+            "signed": true
+          },
+          "port": "out_sendr_imax_y"
+        },
+        {
+          "name": "out_sendr_imax_z",
+          "type": {
+            "width": 32,
+            "signed": true
+          },
+          "port": "out_sendr_imax_z"
+        },
+        {
+          "name": "out_sendr_imin_x",
+          "type": {
+            "width": 32,
+            "signed": true
+          },
+          "port": "out_sendr_imin_x"
+        },
+        {
+          "name": "out_sendr_imin_y",
+          "type": {
+            "width": 32,
+            "signed": true
+          },
+          "port": "out_sendr_imin_y"
+        },
+        {
+          "name": "out_sendr_imin_z",
+          "type": {
+            "width": 32,
+            "signed": true
+          },
+          "port": "out_sendr_imin_z"
+        }
+      ],
+      "adapter": {
+        "name": "ready-valid",
+        "version": 1,
+        "environment_controls": [
+          "out_ready"
+        ],
+        "artifact_controls": [
+          "out_valid"
+        ],
+        "monitor_state": [
+          "outstanding",
+          "stall_cycles"
+        ]
+      },
+      "clock": "clk",
+      "matching": "ordered",
+      "identifier": null,
+      "max_outstanding": null,
+      "response_deadline": null,
+      "answers_per_transaction": null,
+      "terminal_quiescence": null,
+      "reset_policy": null,
+      "kind": "transaction"
+    }
+  ],
+  "clocks": [
+    {
+      "name": "clk",
+      "clock": "clk",
+      "edge": "rising",
+      "reset": "rst",
+      "reset_active_low": false,
+      "reset_hold_cycles": 3,
+      "reset_restores": null
+    }
+  ],
+  "memories": [],
+  "protocol_instances": [],
+  "observation_goals": [],
+  "transaction_monitors": [],
+  "latency_goals": [],
+  "operation_rules": [],
+  "source_read_rules": [],
+  "authority": "task",
+  "source": "declared by numeric_pool_stencil_pde_semi",
+  "physical_value_layout": "packed-value/1"
+}

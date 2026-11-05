@@ -1,0 +1,9 @@
+Finite integer hardware adaptation; modified from the selected source operations.
+Dimensions, packing, boundary/state semantics and selected build branches are stated in spec.md.
+Source-file notices follow; no upstream endorsement is implied.
+
+https://github.com/veeresht/CommPy@9aecd7c598e1b3b868fd9d8a1d04e207b39487ad:commpy/channelcoding/convcode.py
+
+# Authors: CommPy contributors
+# License: BSD 3-Clause
+

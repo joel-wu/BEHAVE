@@ -1,0 +1,28 @@
+diff --git a/include/slang/analysis/DataFlowAnalysis.h b/include/slang/analysis/DataFlowAnalysis.h
+--- a/include/slang/analysis/DataFlowAnalysis.h
++++ b/include/slang/analysis/DataFlowAnalysis.h
+@@ -471,3 +471,8 @@
+     void finishExpr(const Expression&) { sequenceChecker.clear(); }
+ 
++    // Optional CRTP observation of a read under the compiler's current flow
++    // state. The default analysis is unchanged; clients can qualify entry data.
++    void noteRead(const ValuePath&) {}
++    bool recordsDefiniteWrite(const ValuePath&) const { return true; }
++
+     // Override the CRTP hooks from AbstractFlowAnalysis to suppress rvalue
+@@ -552,3 +557,4 @@
+     SmallVector<const Statement*, 2> activeImplicitRegions;
+ 
++protected:
+     void visitLValue(const Expression& expr) {
+@@ -627,3 +633,4 @@
+-        currState.assigned[index].unionWith(bounds, {}, bitMapAllocator);
++        if (static_cast<TDerived*>(this)->recordsDefiniteWrite(path))
++            currState.assigned[index].unionWith(bounds, {}, bitMapAllocator);
+ 
+         auto& lspMap = lvalues[index].assigned;
+@@ -652,3 +659,4 @@
+     else if (!inAssertionActionBlock && !inTimingControlExpr) {
++        static_cast<TDerived*>(this)->noteRead(path);
+         rvalues[&symbol].unionWith(bounds, {}, bitMapAllocator);
+         for (auto region : activeImplicitRegions)

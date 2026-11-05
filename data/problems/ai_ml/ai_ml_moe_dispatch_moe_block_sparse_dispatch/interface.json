@@ -1,0 +1,188 @@
+{
+  "version": "task-contract/16",
+  "endpoints": [
+    {
+      "name": "in",
+      "direction": "in",
+      "fields": [
+        {
+          "name": "in_top_experts",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_top_experts"
+        }
+      ],
+      "adapter": {
+        "name": "ready-valid",
+        "version": 1,
+        "environment_controls": [
+          "in_valid"
+        ],
+        "artifact_controls": [
+          "in_ready"
+        ],
+        "monitor_state": [
+          "outstanding",
+          "stall_cycles"
+        ]
+      },
+      "clock": "clk",
+      "matching": "ordered",
+      "identifier": null,
+      "max_outstanding": null,
+      "response_deadline": null,
+      "answers_per_transaction": null,
+      "terminal_quiescence": null,
+      "reset_policy": null,
+      "kind": "transaction"
+    },
+    {
+      "name": "out",
+      "direction": "out",
+      "fields": [
+        {
+          "name": "out_bin_ids",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "out_bin_ids"
+        },
+        {
+          "name": "out_bins",
+          "type": {
+            "width": 20,
+            "signed": false
+          },
+          "port": "out_bins"
+        },
+        {
+          "name": "out_block_offsets_t",
+          "type": {
+            "width": 24,
+            "signed": false
+          },
+          "port": "out_block_offsets_t"
+        },
+        {
+          "name": "out_block_rows",
+          "type": {
+            "width": 3,
+            "signed": false
+          },
+          "port": "out_block_rows"
+        },
+        {
+          "name": "out_column_indices",
+          "type": {
+            "width": 24,
+            "signed": false
+          },
+          "port": "out_column_indices"
+        },
+        {
+          "name": "out_column_indices_t",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "out_column_indices_t"
+        },
+        {
+          "name": "out_indices",
+          "type": {
+            "width": 64,
+            "signed": false
+          },
+          "port": "out_indices"
+        },
+        {
+          "name": "out_offsets",
+          "type": {
+            "width": 20,
+            "signed": false
+          },
+          "port": "out_offsets"
+        },
+        {
+          "name": "out_offsets_t",
+          "type": {
+            "width": 36,
+            "signed": false
+          },
+          "port": "out_offsets_t"
+        },
+        {
+          "name": "out_padded_bins",
+          "type": {
+            "width": 40,
+            "signed": false
+          },
+          "port": "out_padded_bins"
+        },
+        {
+          "name": "out_row_indices",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "out_row_indices"
+        },
+        {
+          "name": "out_tokens_per_expert",
+          "type": {
+            "width": 20,
+            "signed": false
+          },
+          "port": "out_tokens_per_expert"
+        }
+      ],
+      "adapter": {
+        "name": "ready-valid",
+        "version": 1,
+        "environment_controls": [
+          "out_ready"
+        ],
+        "artifact_controls": [
+          "out_valid"
+        ],
+        "monitor_state": [
+          "outstanding",
+          "stall_cycles"
+        ]
+      },
+      "clock": "clk",
+      "matching": "ordered",
+      "identifier": null,
+      "max_outstanding": null,
+      "response_deadline": null,
+      "answers_per_transaction": null,
+      "terminal_quiescence": null,
+      "reset_policy": null,
+      "kind": "transaction"
+    }
+  ],
+  "clocks": [
+    {
+      "name": "clk",
+      "clock": "clk",
+      "edge": "rising",
+      "reset": "rst",
+      "reset_active_low": false,
+      "reset_hold_cycles": 3,
+      "reset_restores": null
+    }
+  ],
+  "memories": [],
+  "protocol_instances": [],
+  "observation_goals": [],
+  "transaction_monitors": [],
+  "latency_goals": [],
+  "operation_rules": [],
+  "source_read_rules": [],
+  "authority": "task",
+  "source": "declared by ai_ml_moe_dispatch_moe_block_sparse_dispatch",
+  "physical_value_layout": "packed-value/1"
+}

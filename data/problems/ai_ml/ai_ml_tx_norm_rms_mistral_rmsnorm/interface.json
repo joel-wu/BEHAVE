@@ -1,0 +1,276 @@
+{
+  "version": "task-contract/16",
+  "endpoints": [
+    {
+      "name": "in",
+      "direction": "in",
+      "fields": [
+        {
+          "name": "in_hidden_0",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_hidden_0"
+        },
+        {
+          "name": "in_hidden_1",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_hidden_1"
+        },
+        {
+          "name": "in_hidden_2",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_hidden_2"
+        },
+        {
+          "name": "in_hidden_3",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_hidden_3"
+        },
+        {
+          "name": "in_hidden_4",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_hidden_4"
+        },
+        {
+          "name": "in_hidden_5",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_hidden_5"
+        },
+        {
+          "name": "in_hidden_6",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_hidden_6"
+        },
+        {
+          "name": "in_hidden_7",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_hidden_7"
+        },
+        {
+          "name": "in_weight_0",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_weight_0"
+        },
+        {
+          "name": "in_weight_1",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_weight_1"
+        },
+        {
+          "name": "in_weight_2",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_weight_2"
+        },
+        {
+          "name": "in_weight_3",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_weight_3"
+        },
+        {
+          "name": "in_weight_4",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_weight_4"
+        },
+        {
+          "name": "in_weight_5",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_weight_5"
+        },
+        {
+          "name": "in_weight_6",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_weight_6"
+        },
+        {
+          "name": "in_weight_7",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_weight_7"
+        }
+      ],
+      "adapter": {
+        "name": "ready-valid",
+        "version": 1,
+        "environment_controls": [
+          "in_valid"
+        ],
+        "artifact_controls": [
+          "in_ready"
+        ],
+        "monitor_state": [
+          "outstanding",
+          "stall_cycles"
+        ]
+      },
+      "clock": "clk",
+      "matching": "ordered",
+      "identifier": null,
+      "max_outstanding": null,
+      "response_deadline": null,
+      "answers_per_transaction": null,
+      "terminal_quiescence": null,
+      "reset_policy": null,
+      "kind": "transaction"
+    },
+    {
+      "name": "out",
+      "direction": "out",
+      "fields": [
+        {
+          "name": "out_hidden_0",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "out_hidden_0"
+        },
+        {
+          "name": "out_hidden_1",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "out_hidden_1"
+        },
+        {
+          "name": "out_hidden_2",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "out_hidden_2"
+        },
+        {
+          "name": "out_hidden_3",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "out_hidden_3"
+        },
+        {
+          "name": "out_hidden_4",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "out_hidden_4"
+        },
+        {
+          "name": "out_hidden_5",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "out_hidden_5"
+        },
+        {
+          "name": "out_hidden_6",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "out_hidden_6"
+        },
+        {
+          "name": "out_hidden_7",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "out_hidden_7"
+        }
+      ],
+      "adapter": {
+        "name": "ready-valid",
+        "version": 1,
+        "environment_controls": [
+          "out_ready"
+        ],
+        "artifact_controls": [
+          "out_valid"
+        ],
+        "monitor_state": [
+          "outstanding",
+          "stall_cycles"
+        ]
+      },
+      "clock": "clk",
+      "matching": "ordered",
+      "identifier": null,
+      "max_outstanding": null,
+      "response_deadline": null,
+      "answers_per_transaction": null,
+      "terminal_quiescence": null,
+      "reset_policy": null,
+      "kind": "transaction"
+    }
+  ],
+  "clocks": [
+    {
+      "name": "clk",
+      "clock": "clk",
+      "edge": "rising",
+      "reset": "rst",
+      "reset_active_low": false,
+      "reset_hold_cycles": 3,
+      "reset_restores": null
+    }
+  ],
+  "memories": [],
+  "protocol_instances": [],
+  "observation_goals": [],
+  "transaction_monitors": [],
+  "latency_goals": [],
+  "operation_rules": [],
+  "source_read_rules": [],
+  "authority": "task",
+  "source": "declared by ai_ml_tx_norm_rms_mistral_rmsnorm",
+  "physical_value_layout": "packed-value/1"
+}

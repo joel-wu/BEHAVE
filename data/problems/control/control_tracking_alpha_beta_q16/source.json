@@ -1,0 +1,24 @@
+{
+  "id": "control_tracking_alpha_beta_q16",
+  "source_kind": "control",
+  "name": "AlphaBetaTrackerQ16",
+  "family": "alpha_beta_tracking",
+  "tier": 2,
+  "difficulty": "intermediate",
+  "license": "Apache-2.0",
+  "provenance": [
+    {
+      "repository": "https://github.com/rlabbe/filterpy",
+      "revision": "3b51149ebcff0401ff1e10bf08ffca7b6bbc4a33",
+      "license": "MIT",
+      "file": "filterpy/gh/gh_filter.py",
+      "symbol": "GHFilter.update",
+      "sha256": "4d06fb43585a20bc1155b49c0c11aac36c898102f902377f372a12aa2818cad5",
+      "url": "https://github.com/rlabbe/filterpy/blob/3b51149ebcff0401ff1e10bf08ffca7b6bbc4a33/filterpy/gh/gh_filter.py#L363-L377",
+      "excerpt": "selected unchanged excerpt, lines 363-377",
+      "excerpt_sha256": "485ef6f9e3f7f6a4200597ebc2302fb3191e887945ed285a3cf025357b4ff487",
+      "license_file": "data/licenses/rlabbe_filterpy/LICENSE"
+    }
+  ],
+  "adaptation": "Scalar constant-velocity g-h prediction/correction at dt=1. Position, velocity and measurement use signed 32-bit raw values with 16 fractional bits. Per-sample unsigned gains have 15 fractional bits. Corrections floor independently; only the final state updates saturate. Ready/valid transaction framing and reset cancellation are explicit hardware adaptations. The task does not implement covariance estimation, vectorized filtering or variable elapsed time."
+}

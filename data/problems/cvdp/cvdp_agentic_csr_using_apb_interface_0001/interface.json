@@ -1,0 +1,178 @@
+{
+  "version": "task-contract/8",
+  "endpoints": [
+    {
+      "name": "in",
+      "direction": "in",
+      "fields": [
+        {
+          "name": "pselx",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "pselx"
+        },
+        {
+          "name": "penable",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "penable"
+        },
+        {
+          "name": "pwrite",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "pwrite"
+        },
+        {
+          "name": "paddr",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "paddr"
+        },
+        {
+          "name": "pwdata",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "pwdata"
+        },
+        {
+          "name": "overflow_is_set",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "overflow_is_set"
+        },
+        {
+          "name": "sign_is_set",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "sign_is_set"
+        },
+        {
+          "name": "parity_is_set",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "parity_is_set"
+        },
+        {
+          "name": "zero_is_set",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "zero_is_set"
+        }
+      ],
+      "adapter": {
+        "name": "sampled-edge",
+        "version": 1,
+        "environment_controls": [],
+        "artifact_controls": [],
+        "monitor_state": []
+      },
+      "clock": "clk",
+      "matching": "ordered",
+      "identifier": null,
+      "max_outstanding": null,
+      "response_deadline": null,
+      "answers_per_transaction": null,
+      "terminal_quiescence": null,
+      "reset_policy": null,
+      "kind": "transaction"
+    },
+    {
+      "name": "out",
+      "direction": "out",
+      "fields": [
+        {
+          "name": "prdata",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "prdata"
+        },
+        {
+          "name": "pready",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "pready"
+        },
+        {
+          "name": "pslverr",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "pslverr"
+        },
+        {
+          "name": "debug_state",
+          "type": {
+            "width": 2,
+            "signed": false
+          },
+          "port": "debug_state"
+        }
+      ],
+      "adapter": {
+        "name": "sampled-edge",
+        "version": 1,
+        "environment_controls": [],
+        "artifact_controls": [],
+        "monitor_state": []
+      },
+      "clock": "clk",
+      "matching": "ordered",
+      "identifier": null,
+      "max_outstanding": null,
+      "response_deadline": null,
+      "answers_per_transaction": 1,
+      "terminal_quiescence": null,
+      "reset_policy": null,
+      "kind": "transaction"
+    }
+  ],
+  "clocks": [
+    {
+      "name": "clk",
+      "clock": "clk",
+      "edge": "rising",
+      "reset": "rst",
+      "reset_active_low": false,
+      "reset_hold_cycles": 3,
+      "reset_restores": true
+    }
+  ],
+  "memories": [],
+  "protocol_instances": [
+    {
+      "name": "compute",
+      "endpoints": [
+        "in",
+        "out"
+      ],
+      "mapping": "direct/1"
+    }
+  ],
+  "authority": "task",
+  "source": "Native CVDP clock semantics; batch2115 records source completions",
+  "physical_value_layout": "packed-value/1"
+}

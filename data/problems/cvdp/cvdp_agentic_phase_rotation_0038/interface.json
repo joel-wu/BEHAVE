@@ -1,0 +1,146 @@
+{
+  "version": "task-contract/8",
+  "endpoints": [
+    {
+      "name": "in",
+      "direction": "in",
+      "fields": [
+        {
+          "name": "i_enable",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "i_enable"
+        },
+        {
+          "name": "i_subsampling",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "i_subsampling"
+        },
+        {
+          "name": "i_valid",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "i_valid"
+        },
+        {
+          "name": "i_calc_valid",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "i_calc_valid"
+        },
+        {
+          "name": "i_calc_fail",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "i_calc_fail"
+        },
+        {
+          "name": "i_wait",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "i_wait"
+        }
+      ],
+      "adapter": {
+        "name": "sampled-edge",
+        "version": 1,
+        "environment_controls": [],
+        "artifact_controls": [],
+        "monitor_state": []
+      },
+      "clock": "clk",
+      "matching": "ordered",
+      "identifier": null,
+      "max_outstanding": null,
+      "response_deadline": null,
+      "answers_per_transaction": null,
+      "terminal_quiescence": null,
+      "reset_policy": null,
+      "kind": "transaction"
+    },
+    {
+      "name": "out",
+      "direction": "out",
+      "fields": [
+        {
+          "name": "o_subsampling",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "o_subsampling"
+        },
+        {
+          "name": "o_valid",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "o_valid"
+        },
+        {
+          "name": "o_start_calc",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "o_start_calc"
+        }
+      ],
+      "adapter": {
+        "name": "sampled-edge",
+        "version": 1,
+        "environment_controls": [],
+        "artifact_controls": [],
+        "monitor_state": []
+      },
+      "clock": "clk",
+      "matching": "ordered",
+      "identifier": null,
+      "max_outstanding": null,
+      "response_deadline": null,
+      "answers_per_transaction": 1,
+      "terminal_quiescence": null,
+      "reset_policy": null,
+      "kind": "transaction"
+    }
+  ],
+  "clocks": [
+    {
+      "name": "clk",
+      "clock": "clk",
+      "edge": "rising",
+      "reset": "rst_async_n",
+      "reset_active_low": true,
+      "reset_hold_cycles": 3,
+      "reset_restores": true
+    }
+  ],
+  "memories": [],
+  "protocol_instances": [
+    {
+      "name": "compute",
+      "endpoints": [
+        "in",
+        "out"
+      ],
+      "mapping": "direct/1"
+    }
+  ],
+  "authority": "task",
+  "source": "Native CVDP clock semantics; batch106 records source completions",
+  "physical_value_layout": "packed-value/1"
+}

@@ -1,0 +1,32 @@
+{
+  "id": "ai_ml_integer_lif_delayed_bank4",
+  "source_kind": "ai_ml",
+  "name": "LIFDelayedBank4",
+  "family": "lif_delayed_bank4",
+  "tier": 2,
+  "license": "MIT",
+  "provenance": [
+    {
+      "repository": "https://github.com/jeshraghian/snntorch",
+      "revision": "f5cb74654bc274736165dd2cd7455144c95588d4",
+      "license": "MIT",
+      "file": "snntorch/_neurons/leaky.py",
+      "symbol": "Leaky.forward/_base_sub, reset_delay=True",
+      "sha256": "5b2ceacb5dc66843a111dc8724d74ac9a8283dd3569966a06c2e5108071dd43c",
+      "url": "https://github.com/jeshraghian/snntorch/blob/f5cb74654bc274736165dd2cd7455144c95588d4/snntorch/_neurons/leaky.py",
+      "license_file": "data/licenses/jeshraghian_snntorch/LICENSE"
+    },
+    {
+      "repository": "https://github.com/jeshraghian/snntorch",
+      "revision": "f5cb74654bc274736165dd2cd7455144c95588d4",
+      "license": "MIT",
+      "file": "snntorch/_neurons/neurons.py",
+      "symbol": "SpikingNeuron.fire/mem_reset",
+      "sha256": "94b7ada54f5f9bc1a442ea754293b6cb3cad244006e87af24a69a61487da54a0",
+      "url": "https://github.com/jeshraghian/snntorch/blob/f5cb74654bc274736165dd2cd7455144c95588d4/snntorch/_neurons/neurons.py",
+      "license_file": "data/licenses/jeshraghian_snntorch/LICENSE"
+    }
+  ],
+  "adaptation": "Four independent leaky integrate-and-fire neurons with signed INT16 persistent membrane M[i] (units 1/256), initially zero. Every accepted input supplies four signed INT16 currents I, four unsigned beta bytes B representing B/256, and four unsigned 16-bit thresholds T=max(1,threshold_lane). Read old membranes, or zeros if in_clear=1. For each lane, old_spike=1 iff old M>T (strict, using this request's threshold). Let L=round_nearest_ties_away(B*M/256). Compute U=clip(L+I-old_spike*T,-32768,32767). Store U and emit a spike iff U>T. A spike therefore subtracts a threshold on the NEXT accepted step, not this one; at most one threshold is subtracted per step, even for a large membrane. There is no refractory period or clock-driven leak. Output bits 63:0 hold four stored membranes; bits 67:64 hold the four spikes. This preserves snnTorch Leaky's default delayed subtract-reset order. Fixed-point leak rounding, finite saturation, packed four lanes and positive-threshold normalization are declared adaptations, not floating-point bit identity. All parameters are per-request; in_clear discards old membranes before integrating the supplied currents.",
+  "difficulty": "challenge"
+}

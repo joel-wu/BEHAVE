@@ -1,0 +1,11 @@
+diff --git a/src/mage/rtl_editor.py b/src/mage/rtl_editor.py
+--- a/src/mage/rtl_editor.py
++++ b/src/mage/rtl_editor.py
+@@ -60,7 +60,6 @@
+ 5. DO NOT close quotes at last line before the inline comment. It would break the json syntax.
+     If quote is closed before the comment, just don't add the comment.
+ 6. Do not try to modify the testbench. Only modify the RTL code.
+-    Also do not try to change or define RefModule. There is RefModule defined elsewhere.
+ 7. Always try modify RTL code as long as simulation mismatch exists, even if you think the code is correct.
+     SHOW RESPECT TO THE SIMULATION RESULT.
+ 8. Declare all ports as logic; use wire or reg for signals inside the block.

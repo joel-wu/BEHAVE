@@ -1,0 +1,22 @@
+{
+  "id": "ai_ml_integer_embedding_gather8x4",
+  "source_kind": "ai_ml",
+  "name": "EmbeddingGather8x4",
+  "family": "embedding_gather8x4",
+  "tier": 1,
+  "license": "Apache-2.0",
+  "provenance": [
+    {
+      "repository": "https://github.com/onnx/onnx",
+      "revision": "57b9c6a4f6eebb09ae1b34cfb632078518f72832",
+      "license": "Apache-2.0",
+      "file": "onnx/reference/ops/op_gather.py",
+      "symbol": "Gather._run",
+      "sha256": "6c4b4fd457c06869cf0e52e5b2ccbefecab47f955e04858f137595b7ac9ed4f0",
+      "url": "https://github.com/onnx/onnx/blob/57b9c6a4f6eebb09ae1b34cfb632078518f72832/onnx/reference/ops/op_gather.py",
+      "license_file": "data/licenses/onnx_onnx/LICENSE"
+    }
+  ],
+  "adaptation": "Table T has eight rows of four eight-bit elements, flattened index 4*r+c. Four unsigned three-bit indices are packed at 3*i. Output has four rows: Y[i,c]=T[index[i],c], packed at 8*(4*i+c). Preserve request order and duplicates; every index 0..7 is legal. Table is supplied per transaction.",
+  "difficulty": "basic"
+}

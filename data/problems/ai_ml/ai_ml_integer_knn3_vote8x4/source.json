@@ -1,0 +1,22 @@
+{
+  "id": "ai_ml_integer_knn3_vote8x4",
+  "source_kind": "ai_ml",
+  "name": "KNN3Vote8x4",
+  "family": "knn3_vote8x4",
+  "tier": 2,
+  "license": "BSD-3-Clause",
+  "provenance": [
+    {
+      "repository": "https://github.com/scikit-learn/scikit-learn",
+      "revision": "156ef141f3b270edb06c8ae9af37c55253c0aabe",
+      "license": "BSD-3-Clause",
+      "file": "sklearn/neighbors/_classification.py",
+      "symbol": "KNeighborsClassifier.predict uniform vote",
+      "sha256": "29383765ac37881b6b509c3532aac25f3a695437a7dcd0b741f25bbabed32a39",
+      "url": "https://github.com/scikit-learn/scikit-learn/blob/156ef141f3b270edb06c8ae9af37c55253c0aabe/sklearn/neighbors/_classification.py",
+      "license_file": "data/licenses/scikit-learn_scikit-learn/COPYING"
+    }
+  ],
+  "adaptation": "Masked three-nearest-neighbor classification of eight four-dimensional INT8 points.\n\nUse exact squared Euclidean distance to the signed INT8 query. Only points selected by mask participate. Select min(3,active_count) neighbors by increasing distance, ties by smaller original point index. Labels are unsigned two-bit classes 0..3. Uniform votes choose the greatest count, ties by smaller class label. Return three three-bit neighbor indices at 3*j, count at bits 9..10, four three-bit vote counts at 11+3*c, winning label at bits 23..24, and three unsigned 18-bit squared distances at 25+18*j. Unused slots are zero. An empty mask returns all zero, including count zero (not a valid zero-neighbor classification). This specializes sklearn KNeighborsClassifier uniform voting and makes equal-distance ordering deterministic.",
+  "difficulty": "medium"
+}

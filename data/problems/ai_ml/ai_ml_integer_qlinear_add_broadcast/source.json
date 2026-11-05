@@ -1,0 +1,42 @@
+{
+  "id": "ai_ml_integer_qlinear_add_broadcast",
+  "source_kind": "ai_ml",
+  "name": "QLinearAddBroadcast",
+  "family": "qlinear_add_broadcast",
+  "tier": 2,
+  "license": "Apache-2.0",
+  "provenance": [
+    {
+      "repository": "https://github.com/onnx/onnx",
+      "revision": "57b9c6a4f6eebb09ae1b34cfb632078518f72832",
+      "license": "Apache-2.0",
+      "file": "onnx/reference/ops/op_dequantize_linear.py",
+      "symbol": "DequantizeLinear",
+      "sha256": "ad39a5e9de6ebd3cfdd24445a46a4b83354b759a229823e13889354ad469f98a",
+      "url": "https://github.com/onnx/onnx/blob/57b9c6a4f6eebb09ae1b34cfb632078518f72832/onnx/reference/ops/op_dequantize_linear.py",
+      "license_file": "data/licenses/onnx_onnx/LICENSE"
+    },
+    {
+      "repository": "https://github.com/onnx/onnx",
+      "revision": "57b9c6a4f6eebb09ae1b34cfb632078518f72832",
+      "license": "Apache-2.0",
+      "file": "onnx/reference/ops/op_add.py",
+      "symbol": "Add",
+      "sha256": "f0386134ea282d937e8873d6f309583887d72320fce1e39ac21b990d57eeef4a",
+      "url": "https://github.com/onnx/onnx/blob/57b9c6a4f6eebb09ae1b34cfb632078518f72832/onnx/reference/ops/op_add.py",
+      "license_file": "data/licenses/onnx_onnx/LICENSE"
+    },
+    {
+      "repository": "https://github.com/onnx/onnx",
+      "revision": "57b9c6a4f6eebb09ae1b34cfb632078518f72832",
+      "license": "Apache-2.0",
+      "file": "onnx/reference/ops/op_quantize_linear.py",
+      "symbol": "_CommonQuantizeLinear._run",
+      "sha256": "42eabf34755f89ffdedd53e08f73df569b6f66723ba60673c1fa7a4d9e316b05",
+      "url": "https://github.com/onnx/onnx/blob/57b9c6a4f6eebb09ae1b34cfb632078518f72832/onnx/reference/ops/op_quantize_linear.py",
+      "license_file": "data/licenses/onnx_onnx/LICENSE"
+    }
+  ],
+  "adaptation": "Affine quantized add with channel-vector broadcasting over a [2,4] tensor.\n\nAll values and zero-points are signed INT8. RNE(x/2^e) rounds to the nearest integer, ties to the even integer, before adding the output zero-point; Clip8 saturates to [-128,127]. There is no intermediate saturation or double rounding. A has shape [2,4], B shape [4]. Dequantized A=(a-za)/2^shift_a and B=(b-zb)/2^shift_b. Output scale is one and output shape is [2,4]; its value is Clip8(RNE(A + B)+zy). The three zero points are independently supplied; shifts range 0..7. B[c] is reused by both rows. This is DequantizeLinear → Add → QuantizeLinear with exact dyadic scales.",
+  "difficulty": "medium"
+}

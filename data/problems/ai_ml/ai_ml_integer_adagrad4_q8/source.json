@@ -1,0 +1,22 @@
+{
+  "id": "ai_ml_integer_adagrad4_q8",
+  "source_kind": "ai_ml",
+  "name": "Adagrad4Q8",
+  "family": "adagrad4_q8",
+  "tier": 2,
+  "license": "BSD-3-Clause",
+  "provenance": [
+    {
+      "repository": "https://github.com/pytorch/pytorch",
+      "revision": "a8d6afb511a69687bbb2b7e88a3cf67917e1697e",
+      "license": "BSD-3-Clause",
+      "file": "torch/optim/adagrad.py",
+      "symbol": "_single_tensor_adagrad",
+      "sha256": "a7598eceb01eb0718c9c8678d416372b4f95e0ee136b63eea431c73cfdc683c2",
+      "url": "https://github.com/pytorch/pytorch/blob/a8d6afb511a69687bbb2b7e88a3cf67917e1697e/torch/optim/adagrad.py",
+      "license_file": "data/licenses/pytorch_pytorch/LICENSE"
+    }
+  ],
+  "adaptation": "One four-parameter Adagrad update with an observable squared-gradient accumulator.\n\nRNE is nearest integer with ties to even. Clip16 saturates to [-32768,32767]. All state is explicitly passed in and returned, not hidden between requests. p and g are signed INT16 Q8. v is unsigned INT32 in units 1/65536. Compute vnew=min(2^32-1,v+g*g), d=floor(sqrt(vnew))+1, delta=RNE(16*g/d), pnew=Clip16(p-delta). Output pnew[4] as INT16 at bits 0..63, then vnew[4] as UINT32 at 64+32*i. The learning rate is 1/16 and epsilon is 1/256. Integer-root flooring and saturating accumulator storage are explicit hardware adaptations. No weight decay, learning-rate decay or sparse-gradient duplicate coalescing is required.",
+  "difficulty": "medium"
+}

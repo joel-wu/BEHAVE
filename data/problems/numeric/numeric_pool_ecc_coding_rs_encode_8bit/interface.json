@@ -1,0 +1,196 @@
+{
+  "version": "task-contract/16",
+  "endpoints": [
+    {
+      "name": "in",
+      "direction": "in",
+      "fields": [
+        {
+          "name": "in_original_count",
+          "type": {
+            "width": 4,
+            "signed": false
+          },
+          "port": "in_original_count"
+        },
+        {
+          "name": "in_original_data0",
+          "type": {
+            "width": 512,
+            "signed": false
+          },
+          "port": "in_original_data0"
+        },
+        {
+          "name": "in_original_data1",
+          "type": {
+            "width": 512,
+            "signed": false
+          },
+          "port": "in_original_data1"
+        },
+        {
+          "name": "in_original_data2",
+          "type": {
+            "width": 512,
+            "signed": false
+          },
+          "port": "in_original_data2"
+        },
+        {
+          "name": "in_original_data3",
+          "type": {
+            "width": 512,
+            "signed": false
+          },
+          "port": "in_original_data3"
+        },
+        {
+          "name": "in_original_data4",
+          "type": {
+            "width": 512,
+            "signed": false
+          },
+          "port": "in_original_data4"
+        },
+        {
+          "name": "in_original_data5",
+          "type": {
+            "width": 512,
+            "signed": false
+          },
+          "port": "in_original_data5"
+        },
+        {
+          "name": "in_original_data6",
+          "type": {
+            "width": 512,
+            "signed": false
+          },
+          "port": "in_original_data6"
+        },
+        {
+          "name": "in_original_data7",
+          "type": {
+            "width": 512,
+            "signed": false
+          },
+          "port": "in_original_data7"
+        },
+        {
+          "name": "in_present_mask",
+          "type": {
+            "width": 8,
+            "signed": false
+          },
+          "port": "in_present_mask"
+        },
+        {
+          "name": "in_recovery_data",
+          "type": {
+            "width": 512,
+            "signed": false
+          },
+          "port": "in_recovery_data"
+        }
+      ],
+      "adapter": {
+        "name": "ready-valid",
+        "version": 1,
+        "environment_controls": [
+          "in_valid"
+        ],
+        "artifact_controls": [
+          "in_ready"
+        ],
+        "monitor_state": [
+          "outstanding",
+          "stall_cycles"
+        ]
+      },
+      "clock": "clk",
+      "matching": "ordered",
+      "identifier": null,
+      "max_outstanding": null,
+      "response_deadline": null,
+      "answers_per_transaction": null,
+      "terminal_quiescence": null,
+      "reset_policy": null,
+      "kind": "transaction"
+    },
+    {
+      "name": "out",
+      "direction": "out",
+      "fields": [
+        {
+          "name": "out_missing_index",
+          "type": {
+            "width": 3,
+            "signed": false
+          },
+          "port": "out_missing_index"
+        },
+        {
+          "name": "out_recovered_data",
+          "type": {
+            "width": 512,
+            "signed": false
+          },
+          "port": "out_recovered_data"
+        },
+        {
+          "name": "out_status",
+          "type": {
+            "width": 3,
+            "signed": false
+          },
+          "port": "out_status"
+        }
+      ],
+      "adapter": {
+        "name": "ready-valid",
+        "version": 1,
+        "environment_controls": [
+          "out_ready"
+        ],
+        "artifact_controls": [
+          "out_valid"
+        ],
+        "monitor_state": [
+          "outstanding",
+          "stall_cycles"
+        ]
+      },
+      "clock": "clk",
+      "matching": "ordered",
+      "identifier": null,
+      "max_outstanding": null,
+      "response_deadline": null,
+      "answers_per_transaction": null,
+      "terminal_quiescence": null,
+      "reset_policy": null,
+      "kind": "transaction"
+    }
+  ],
+  "clocks": [
+    {
+      "name": "clk",
+      "clock": "clk",
+      "edge": "rising",
+      "reset": "rst",
+      "reset_active_low": false,
+      "reset_hold_cycles": 3,
+      "reset_restores": null
+    }
+  ],
+  "memories": [],
+  "protocol_instances": [],
+  "observation_goals": [],
+  "transaction_monitors": [],
+  "latency_goals": [],
+  "operation_rules": [],
+  "source_read_rules": [],
+  "authority": "task",
+  "source": "declared by numeric_pool_ecc_coding_rs_encode_8bit",
+  "physical_value_layout": "packed-value/1"
+}

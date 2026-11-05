@@ -1,0 +1,22 @@
+{
+  "id": "ai_ml_integer_max_unpool8",
+  "source_kind": "ai_ml",
+  "name": "MaxUnpool8",
+  "family": "max_unpool8",
+  "tier": 1,
+  "license": "Apache-2.0",
+  "provenance": [
+    {
+      "repository": "https://github.com/onnx/onnx",
+      "revision": "57b9c6a4f6eebb09ae1b34cfb632078518f72832",
+      "license": "Apache-2.0",
+      "file": "onnx/reference/ops/op_max_unpool.py",
+      "symbol": "MaxUnpool._run",
+      "sha256": "b9e09279183dc5b7dee3c0717b398cb98d7579dddcf44844999140e74520d7d1",
+      "url": "https://github.com/onnx/onnx/blob/57b9c6a4f6eebb09ae1b34cfb632078518f72832/onnx/reference/ops/op_max_unpool.py",
+      "license_file": "data/licenses/onnx_onnx/LICENSE"
+    }
+  ],
+  "adaptation": "Unpool eight byte values into sixteen byte positions. Input value i occupies byte i and its unsigned output index occupies nibble i. Begin with sixteen zeros, then write input values in index order i=0..7 to their requested positions. For repeated destinations the LAST input wins, matching the archived reference loop as an explicit deterministic extension where portable MaxUnpool collision ordering is not assumed. Unwritten positions stay zero. This is assignment, not sum or maximum.",
+  "difficulty": "basic"
+}

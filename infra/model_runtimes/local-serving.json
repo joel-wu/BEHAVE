@@ -1,0 +1,40 @@
+{
+  "schema": "behave.local-serving-bindings/3",
+  "provenance": "Serving profile with example installation paths. Configure paths before use.",
+  "shared": {
+    "model_path": "/path/to/models/qwen27b/snapshots/1d4bf0f2ff6012fd82039f2fa52739d0dd7c60c0",
+    "model_revision": "1d4bf0f2ff6012fd82039f2fa52739d0dd7c60c0",
+    "served_model": "behave-qwen3.8-27b",
+    "reasoning_parser": "qwen3",
+    "cuda_root": "/usr/local/cuda-13.1",
+    "tensor_parallel": 8,
+    "context_length": 8192,
+    "port": 31000,
+    "startup_seconds": 900,
+    "lifetime_seconds": 1500,
+    "log_bytes": 33554432,
+    "seed": 17,
+    "cleanup_seconds": 60,
+    "enforce_eager": false
+  },
+  "runtimes": {
+    "sglang": {
+      "python": "/path/to/sglang-environment/bin/python",
+      "package_version": "0.5.18",
+      "torch_version": "2.13.0",
+      "tool_parser": "qwen3_coder"
+    },
+    "vllm": {
+      "python": "/path/to/vllm-environment/bin/python",
+      "package_version": "0.28.0",
+      "torch_version": "2.13.0+cu130",
+      "tool_parser": "qwen3_xml"
+    }
+  },
+  "headers": {
+    "path": "/path/to/libpython3.12-dev_3.12.3-1ubuntu0.13_amd64.deb",
+    "sha256": "7f7941cb968b86454b1d064574e35a9e216f2cfd2f95c5e04cf81a6f5f78f1b2",
+    "size": 5681866,
+    "include_paths": ["usr/include/python3.12", "usr/include"]
+  }
+}

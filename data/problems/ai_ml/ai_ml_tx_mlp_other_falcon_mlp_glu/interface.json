@@ -1,0 +1,468 @@
+{
+  "version": "task-contract/16",
+  "endpoints": [
+    {
+      "name": "in",
+      "direction": "in",
+      "fields": [
+        {
+          "name": "in_down_b_0",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_down_b_0"
+        },
+        {
+          "name": "in_down_b_1",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_down_b_1"
+        },
+        {
+          "name": "in_down_b_2",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_down_b_2"
+        },
+        {
+          "name": "in_down_b_3",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_down_b_3"
+        },
+        {
+          "name": "in_down_w_0_0",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_down_w_0_0"
+        },
+        {
+          "name": "in_down_w_0_1",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_down_w_0_1"
+        },
+        {
+          "name": "in_down_w_0_2",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_down_w_0_2"
+        },
+        {
+          "name": "in_down_w_0_3",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_down_w_0_3"
+        },
+        {
+          "name": "in_down_w_1_0",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_down_w_1_0"
+        },
+        {
+          "name": "in_down_w_1_1",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_down_w_1_1"
+        },
+        {
+          "name": "in_down_w_1_2",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_down_w_1_2"
+        },
+        {
+          "name": "in_down_w_1_3",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_down_w_1_3"
+        },
+        {
+          "name": "in_down_w_2_0",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_down_w_2_0"
+        },
+        {
+          "name": "in_down_w_2_1",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_down_w_2_1"
+        },
+        {
+          "name": "in_down_w_2_2",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_down_w_2_2"
+        },
+        {
+          "name": "in_down_w_2_3",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_down_w_2_3"
+        },
+        {
+          "name": "in_down_w_3_0",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_down_w_3_0"
+        },
+        {
+          "name": "in_down_w_3_1",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_down_w_3_1"
+        },
+        {
+          "name": "in_down_w_3_2",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_down_w_3_2"
+        },
+        {
+          "name": "in_down_w_3_3",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_down_w_3_3"
+        },
+        {
+          "name": "in_up_b_0",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_up_b_0"
+        },
+        {
+          "name": "in_up_b_1",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_up_b_1"
+        },
+        {
+          "name": "in_up_b_2",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_up_b_2"
+        },
+        {
+          "name": "in_up_b_3",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_up_b_3"
+        },
+        {
+          "name": "in_up_w_0_0",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_up_w_0_0"
+        },
+        {
+          "name": "in_up_w_0_1",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_up_w_0_1"
+        },
+        {
+          "name": "in_up_w_0_2",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_up_w_0_2"
+        },
+        {
+          "name": "in_up_w_0_3",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_up_w_0_3"
+        },
+        {
+          "name": "in_up_w_1_0",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_up_w_1_0"
+        },
+        {
+          "name": "in_up_w_1_1",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_up_w_1_1"
+        },
+        {
+          "name": "in_up_w_1_2",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_up_w_1_2"
+        },
+        {
+          "name": "in_up_w_1_3",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_up_w_1_3"
+        },
+        {
+          "name": "in_up_w_2_0",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_up_w_2_0"
+        },
+        {
+          "name": "in_up_w_2_1",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_up_w_2_1"
+        },
+        {
+          "name": "in_up_w_2_2",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_up_w_2_2"
+        },
+        {
+          "name": "in_up_w_2_3",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_up_w_2_3"
+        },
+        {
+          "name": "in_up_w_3_0",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_up_w_3_0"
+        },
+        {
+          "name": "in_up_w_3_1",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_up_w_3_1"
+        },
+        {
+          "name": "in_up_w_3_2",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_up_w_3_2"
+        },
+        {
+          "name": "in_up_w_3_3",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_up_w_3_3"
+        },
+        {
+          "name": "in_x_0",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_x_0"
+        },
+        {
+          "name": "in_x_1",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_x_1"
+        },
+        {
+          "name": "in_x_2",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_x_2"
+        },
+        {
+          "name": "in_x_3",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_x_3"
+        }
+      ],
+      "adapter": {
+        "name": "ready-valid",
+        "version": 1,
+        "environment_controls": [
+          "in_valid"
+        ],
+        "artifact_controls": [
+          "in_ready"
+        ],
+        "monitor_state": [
+          "outstanding",
+          "stall_cycles"
+        ]
+      },
+      "clock": "clk",
+      "matching": "ordered",
+      "identifier": null,
+      "max_outstanding": null,
+      "response_deadline": null,
+      "answers_per_transaction": null,
+      "terminal_quiescence": null,
+      "reset_policy": null,
+      "kind": "transaction"
+    },
+    {
+      "name": "out",
+      "direction": "out",
+      "fields": [
+        {
+          "name": "out_y_0",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "out_y_0"
+        },
+        {
+          "name": "out_y_1",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "out_y_1"
+        },
+        {
+          "name": "out_y_2",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "out_y_2"
+        },
+        {
+          "name": "out_y_3",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "out_y_3"
+        }
+      ],
+      "adapter": {
+        "name": "ready-valid",
+        "version": 1,
+        "environment_controls": [
+          "out_ready"
+        ],
+        "artifact_controls": [
+          "out_valid"
+        ],
+        "monitor_state": [
+          "outstanding",
+          "stall_cycles"
+        ]
+      },
+      "clock": "clk",
+      "matching": "ordered",
+      "identifier": null,
+      "max_outstanding": null,
+      "response_deadline": null,
+      "answers_per_transaction": null,
+      "terminal_quiescence": null,
+      "reset_policy": null,
+      "kind": "transaction"
+    }
+  ],
+  "clocks": [
+    {
+      "name": "clk",
+      "clock": "clk",
+      "edge": "rising",
+      "reset": "rst",
+      "reset_active_low": false,
+      "reset_hold_cycles": 3,
+      "reset_restores": null
+    }
+  ],
+  "memories": [],
+  "protocol_instances": [],
+  "observation_goals": [],
+  "transaction_monitors": [],
+  "latency_goals": [],
+  "operation_rules": [],
+  "source_read_rules": [],
+  "authority": "task",
+  "source": "declared by ai_ml_tx_mlp_other_falcon_mlp_glu",
+  "physical_value_layout": "packed-value/1"
+}

@@ -1,0 +1,2 @@
+Derived from snnTorch by Jason K. Eshraghian (MIT).
+Modifications: four packed neurons, explicit integer rounding/saturation and transaction-clocked reset semantics.

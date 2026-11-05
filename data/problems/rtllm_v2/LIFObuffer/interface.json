@@ -1,0 +1,130 @@
+{
+  "version": "task-contract/8",
+  "endpoints": [
+    {
+      "name": "in",
+      "direction": "in",
+      "fields": [
+        {
+          "name": "dataIn",
+          "type": {
+            "width": 4,
+            "signed": false
+          },
+          "port": "dataIn"
+        },
+        {
+          "name": "RW",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "RW"
+        },
+        {
+          "name": "EN",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "EN"
+        },
+        {
+          "name": "clear",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "clear"
+        }
+      ],
+      "adapter": {
+        "name": "sampled-edge",
+        "version": 1,
+        "environment_controls": [],
+        "artifact_controls": [],
+        "monitor_state": []
+      },
+      "clock": "Clk",
+      "matching": "ordered",
+      "identifier": null,
+      "max_outstanding": null,
+      "response_deadline": null,
+      "answers_per_transaction": null,
+      "terminal_quiescence": null,
+      "reset_policy": null,
+      "kind": "transaction"
+    },
+    {
+      "name": "out",
+      "direction": "out",
+      "fields": [
+        {
+          "name": "EMPTY",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "EMPTY"
+        },
+        {
+          "name": "FULL",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "FULL"
+        },
+        {
+          "name": "dataOut",
+          "type": {
+            "width": 4,
+            "signed": false
+          },
+          "port": "dataOut"
+        }
+      ],
+      "adapter": {
+        "name": "sampled-edge",
+        "version": 1,
+        "environment_controls": [],
+        "artifact_controls": [],
+        "monitor_state": []
+      },
+      "clock": "Clk",
+      "matching": "ordered",
+      "identifier": null,
+      "max_outstanding": null,
+      "response_deadline": null,
+      "answers_per_transaction": 1,
+      "terminal_quiescence": null,
+      "reset_policy": null,
+      "kind": "transaction"
+    }
+  ],
+  "clocks": [
+    {
+      "name": "Clk",
+      "clock": "Clk",
+      "edge": "rising",
+      "reset": "init_reset",
+      "reset_active_low": false,
+      "reset_hold_cycles": 3,
+      "reset_restores": true
+    }
+  ],
+  "memories": [],
+  "protocol_instances": [
+    {
+      "name": "compute",
+      "endpoints": [
+        "in",
+        "out"
+      ],
+      "mapping": "direct/1"
+    }
+  ],
+  "authority": "task",
+  "source": "RTLLM disclosed qualified-clear / operand-load adaptation; batch2131",
+  "physical_value_layout": "packed-value/1"
+}

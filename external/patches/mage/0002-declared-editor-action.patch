@@ -1,0 +1,15 @@
+diff --git a/src/mage/rtl_editor.py b/src/mage/rtl_editor.py
+--- a/src/mage/rtl_editor.py
++++ b/src/mage/rtl_editor.py
+@@ -357,7 +357,10 @@ class RTLEditor:
+ 
+     def run_action(self, action_input: ActionInput) -> Dict[str, Any]:
+         logger.info(f"Action input: {action_input}")
+-        action = getattr(self, action_input.command)
++        actions = {"replace_content_by_matching": self.replace_content_by_matching}
++        if action_input.command not in actions:
++            return {"is_action_executed": False, "error_msg": "Unknown action. Use replace_content_by_matching."}
++        action = actions[action_input.command]
+         action_output = action(**action_input.args)
+         logger.info(f"Action output: {action_output}")
+         return action_output

@@ -1,0 +1,46 @@
+--- a/src/V3Life.cpp
++++ b/src/V3Life.cpp
+@@ -359,16 +359,16 @@
+-    void visit(AstNodeIf* nodep) override {
++    void branch(AstNode* nodep, AstNodeExpr* condp, AstNode* thensp, AstNode* elsesp) {
+         UINFO(4, "   IF " << nodep);
+         // Condition is part of PREVIOUS block
+-        iterateAndNextNull(nodep->condp());
++        iterateAndNextNull(condp);
+         LifeBlock* const ifLifep = new LifeBlock{m_lifep, m_statep};
+         LifeBlock* const elseLifep = new LifeBlock{m_lifep, m_statep};
+         {
+             VL_RESTORER(m_lifep);
+             m_lifep = ifLifep;
+-            iterateAndNextNull(nodep->thensp());
++            iterateAndNextNull(thensp);
+         }
+         {
+             VL_RESTORER(m_lifep);
+             m_lifep = elseLifep;
+-            iterateAndNextNull(nodep->elsesp());
++            iterateAndNextNull(elsesp);
+         }
+@@ -382,6 +382,22 @@
+         VL_DO_DANGLING(delete elseLifep, elseLifep);
+         UINFO(4, "   if-done " << nodep);
+     }
++    void visit(AstNodeIf* nodep) override {
++        branch(nodep, nodep->condp(), nodep->thensp(), nodep->elsesp());
++    }
++    void visit(AstCond* nodep) override {
++        // Conditional expression arms are control flow, not sequential stores.
++        branch(nodep, nodep->condp(), nodep->thenp(), nodep->elsep());
++    }
++    void visit(AstLogAnd* nodep) override {
++        // A skipped RHS cannot overwrite an earlier assignment on every path.
++        if (nodep->rhsp()->isPure()) iterateChildren(nodep);
++        else branch(nodep, nodep->lhsp(), nodep->rhsp(), nullptr);
++    }
++    void visit(AstLogOr* nodep) override {
++        if (nodep->rhsp()->isPure()) iterateChildren(nodep);
++        else branch(nodep, nodep->lhsp(), nullptr, nodep->rhsp());
++    }
+     void visit(AstLoop* nodep) override {
+         // Similar problem to AstJumpBlock, don't optimize loop bodies - most are unrolled
+         UASSERT_OBJ(!nodep->contsp(), nodep, "'contsp' only used before LinkJump");

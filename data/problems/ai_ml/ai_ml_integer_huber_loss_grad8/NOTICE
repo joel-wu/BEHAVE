@@ -1,0 +1,287 @@
+Authored finite hardware adaptation. Numerical/capacity changes are explicit in spec.md.
+
+https://github.com/pytorch/pytorch@a8d6afb511a69687bbb2b7e88a3cf67917e1697e:aten/src/ATen/native/Loss.cpp
+
+#define TORCH_ASSERT_ONLY_METHOD_OPERATORS
+#include <ATen/core/Tensor.h>
+#include <ATen/core/Reduction.h>
+#include <ATen/Dispatch.h>
+#include <ATen/TensorIterator.h>
+#include <ATen/TensorMeta.h>
+#include <ATen/TensorOperators.h>
+#include <ATen/native/BinaryOps.h>
+#include <ATen/native/PointwiseOps.h>
+#include <ATen/native/cpu/Loops.h>
+#include <c10/util/Exception.h>
+#include <ATen/TensorSubclassLikeUtils.h>
+
+#ifndef AT_PER_OPERATOR_HEADERS
+#include <ATen/Functions.h>
+#include <ATen/NativeFunctions.h>
+#else
+#include <ATen/ops/binary_cross_entropy_backward_native.h>
+#include <ATen/ops/binary_cross_entropy_native.h>
+#include <ATen/ops/binary_cross_entropy_with_logits_native.h>
+#include <ATen/ops/clamp_min.h>
+#include <ATen/ops/cosine_embedding_loss_native.h>
+#include <ATen/ops/empty.h>
+#include <ATen/ops/empty_like.h>
+#include <ATen/ops/exp.h>
+#include <ATen/ops/hinge_embedding_loss_native.h>
+#include <ATen/ops/huber_loss_backward.h>
+#include <ATen/ops/huber_loss_backward_native.h>
+#include <ATen/ops/huber_loss_native.h>
+#include <ATen/ops/kl_div_native.h>
+#include <ATen/ops/l1_loss_native.h>
+#include <ATen/ops/log.h>
+#include <ATen/ops/log_sigmoid.h>
+#include <ATen/ops/margin_ranking_loss_native.h>
+#include <ATen/ops/mean.h>
+#include <ATen/ops/min.h>
+#include <ATen/ops/mse_loss_backward.h>
+#include <ATen/ops/mse_loss_backward_native.h>
+#include <ATen/ops/mse_loss_meta.h>
+#include <ATen/ops/mse_loss_native.h>
+#include <ATen/ops/mul.h>
+#include <ATen/ops/neg.h>
+#include <ATen/ops/pairwise_distance.h>
+#include <ATen/ops/poisson_nll_loss_native.h>
+#include <ATen/ops/smooth_l1_loss_backward.h>
+#include <ATen/ops/smooth_l1_loss_backward_native.h>
+#include <ATen/ops/smooth_l1_loss_meta.h>
+#include <ATen/ops/smooth_l1_loss_native.h>
+#include <ATen/ops/soft_margin_loss.h>
+#include <ATen/ops/soft_margin_loss_backward.h>
+#include <ATen/ops/soft_margin_loss_backward_native.h>
+#include <ATen/ops/soft_margin_loss_native.h>
+#include <ATen/ops/squeeze.h>
+#include <ATen/ops/sum.h>
+#include <ATen/ops/triplet_margin_loss_native.h>
+#include <ATen/ops/where.h>
+#include <ATen/ops/xlogy.h>
+#include <ATen/ops/zeros_like.h>
+#endif
+
+
+https://github.com/pytorch/pytorch@a8d6afb511a69687bbb2b7e88a3cf67917e1697e:tools/autograd/derivatives.yaml
+
+# Defines derivative formulas and Python signatures of methods on Variable
+#
+# Note about possibly confusing nomenclature: An 'output gradient' is the
+# gradient of an output of a forward function. Output gradients are used as
+# the inputs to backward functions. `grads` is a vector of output gradients,
+# and `grad == grads[0]`, in all the derivative formulas in this file.
+# An 'input gradient' is the gradient of an input to a forward function.
+# Input gradients are the outputs of backward functions, corresponding to the
+# input names included in the derivative formulas defined in this file.
+# Also, every time we talk computing "gradient" we actually mean computing
+# the vector jacobian product using the given 'output gradient' as the vector.
+#
+# Each entry consists of:
+#   - A 'name', which specifies the ATen name of the function you
+#     are defining derivatives for, and an argument specification.
+#   - An optional 'dispatch' entry which can be used to specify
+#     per-autograd dispatch key derivatives. If this entry is not
+#     specified, then the gradient entries will be taken as the
+#     default gradients (i.e. registered for every backward dispatch
+#     key). (see _test_autograd_multiple_dispatch for an example
+#     of how to register separate derivates for different dispatch keys).
+#     The list of allowed dispatch keys (in addition to 'Default' which
+#     represents the Autograd alias key) is torchgen/model.py:AUTOGRAD_KEYS.
+#   - One or more gradients entries, mapping differentiable input
+#     names to a formula specifying how to compute its gradient.
+#     Note that a single gradient entry can specify the gradient
+#     formula for multiple input names, by specifying a key
+#     "input1, input2" (see atan2 for an example).
+#   - An argument can be flagged as 'non_differentiable'.
+#   - Optional entry with key 'output_differentiability' and value a list of the
+#     same length as the number of outputs from the forward function. The list
+#     should contain only booleans, specifying whether each of the output Tensor
+#     is differentiable.
+#     If it is not specified for a function that returns multiple elements but
+#     uses `grad` instead of `grads[idx]`, then all but the first output will
+#     be marked as non-differentiable.
+#     If None of the output is differentiable, you can also add the function
+#     name to `gen_variable_type.py`'s `DONT_REQUIRE_DERIVATIVE` list.
+#
+# There are two cases for Tensor and TensorList arguments here:
+#   - If that argument is differentiable, in the sense that a gradient with respect
+#     to that argument could exist. You should either:
+#       - Specify the formula for that gradient
+#       - Specify not_implemented("function_name") as a formula to say that this is not
+#         implemented yet (but might be in the future and the user can request that on an issue)
+#   - If that argument is not differentiable, because it is not a floating point dtype or the
+#     function is not differentiable with respect to that argument  for
+#     example. You should either:
+#       - Do not specify any formula for this argument
+#       - Specify explicitly that this argument is "non_differentiable". Note that in this case,
+#         we trust you that this argument will never have requires_grad=True and it will be silently
+#         ignored if it does.
+#
+# If a function has out-of-place and in-place variants, then the derivative
+# definition for the in-place variant is optional. It will default to the
+# definition for the out-of-place variant. Note that _out variants are never
+# differentiable.
+#
+# Gradient expressions are standard C++ expressions operating on ATen
+# variables.  In a gradient expression, the following variables/functions
+# are in scope:
+#
+#   - 'grad', the gradient of the output (often spelled grad_output
+#     in Python) which we are going to left-multiply.
+#
+#     When a function returns multiple *differentiable* outputs,
+#     you can refer to the gradients of each outputs using 'grads',
+#     e.g., 'grads[0]', 'grads[1]'.
+#
+#     When a function returns multiple *differentiable* outputs that
+#     are named, you can refer to the gradients of each outputs using
+#     'grad_{name}', e.g., 'grad_x', 'grad_y'.
+#
+#     When a function returns *one* differentiable output (the
+#     first output) and some more nondifferentiable outputs,
+#     you MUST refer to the gradient of the differentiable output with
+#     'grad' (this case is special-cased in our code generation).
+#
+#     Note that the number of differentiable outputs can be modified by the
+#     'output_differentiability' entry (see above).
+#
+#     Across a differentiable function's derivatives set, it is not
+#     permitted to mix the use of "grad", "grads", and
+#     "grad_{name}". You must be consistent for that differentiable
+#     function.
+#
+#   - Any of the input arguments, tensor or non-tensor, including
+#     argument names that only appear in Declarations.yaml, e.g. 'output'.
+#
+#   - 'result', representing the result of evaluating the forward
+#     expression for ATen native function declarations. If the forward
+#     expression outputs a tuple, use 'resultX' instead to access the
+#     X-th entry
+#
+#   - 'grad_input_mask', a std::array<bool, n>, specifies which input
+#     gradients are actually needed.  For example, in the entry
+#     `input0, input1: foo(grad_input_mask)`, `grad_input_mask` is a size
+#     two array, where `grad_input_mask[0]` is true if `input0` requires
+#     grad, and `grad_input_mask[1]` is true if `input1` requires grad.
+#
+#     (NB: if your function computes gradient for a list of tensors,
+#     the `grad_input_mask` will only have a single entry for the list
+#     specifying if either zero or at least one tensor from the list requires
+#     grad.  If we want to support more fine-grained signalling,
+#     we'll need some alternate variable which is not a std::array)
+#
+#   - 'retain_variables', a bool which is true if a user has specified
+#     that saved variables should be retained in case the backwards is
+#     run again later.  This allows an optimization where we can
+#     destroy saved buffers if we know variables are not going to be retained,
+#     e.g., it is used by _cudnn_rnn
+#
+#   - `wrap_opt_if`, is a 2-argument function that accepts a tensor
+#     variable and a boolean condition that dictates whether to save that
+#     variable in a graph. The result of this function is `c10::optional<Tensor>`,
+#     and it is `::std::nullopt` when the condition evalutes to `false`,
+#     otherwise it is the variable wrapped in `c10::optional<Tensor>`.
+#     For example, wrap_opt_if(var_0, grad_input_mask[1] || grad_input_mask[2])
+#     would mean that `var_0` is saved as long as the second (grad_input_mask[1])
+#     or the third (grad_input_mask[2]) argument requires gradients.
+#     Another interpretation of this expression would read as `var_0` is needed
+#     in the backward computation of the second or the third argument.
+#     NOTE: the usage of `var_i.requires_grad()` in the conditional expression
+#     is not supported, use `grad_input_mask[i]` instead.
+#     NOTE: `wrap_opt_if` could be used to prevent saving redundant variables
+#     with multi-output backward formulas.
+#     See https://github.com/pytorch/pytorch/issues/97575 for more details
+#     on the issue.
+#
+# If you need a complex expression, e.g., with local variables,
+# write a _backward function in torch/csrc/autograd/FunctionsManual.cpp
+# and invoke it from here.  By the way, go read
+# https://github.com/zdevito/ATen/issues/163; this describes an
+# important hazard that occurs when porting backwards from Python to C++
+#
+# Double backwards gradient expressions can be somewhat confusing;
+# the most important thing to remember is: (1) you need to define a
+# derivative formula for every input, including inputs named things
+# like 'grad_output', and (2) the gradient to multiply with is always
+# called 'grad' (even though it really is a grad-grad).
+#
+# You can also add forward derivative definition by defining a formula for
+# a returned value (in general "result" if the name is not specified). This
+# formula works the same way as the backward one and advanced implementations
+# should also be placed in the FunctionsManual file.
+# This formula should compute a single Jacobian vector product using the (primal)
+# value of the argument "foo_p", its forward grad "foo_t" and the result of the
+# function as "result".
+# Note that the forward derivative can be automatically generated in two cases:
+#     - if your function is linear (NOT affine or multi-linear), then you can
+#       specify so by just using the string "auto_linear" for the formula.
+#     - if your function is applied element wise (and has a single input), you
+#       can specify so by just using the string "auto_element_wise" for the formula.
+#
+# Note that to avoid unpacking overhead, functions taking TensorList as inputs
+# will always have their forward grad formula called. This function is responsible
+# to check if any computation is needed and should return an undefined Tensor when
+# there is nothing to do. You can check "cat_forward" for a full example.
+#
+# NB: There are a number of gradient definitions in here which are bogus
+# (implemented using zeros_like).  These gradients are (hopefully) not
+# used by our frontend.  You MUST check the frontend code; search for
+# OpName.apply to see if it's still using a legacy Python style API.
+#
+# Note: Returning views.
+# The following cases exist:
+#     - If a function returns no view, it can have arbitrary outputs.
+#     - If a function return at least one Tensor that is a differentiable view
+#       of one of its input:
+#         - If there is only one differentiable output, this Tensor is marked as a
+#           differentiable view. (alias or transpose for example)
+#         - If there are more than one differentiable output, by default all the views are
+#           marked as differentiable views and created with allow_rebase_history=false.
+#           Meaning that any inplace operation on it will raise an error. (unbind for example)
+#
+#  Notes about undefined output gradients:
+#     All backward functions must support all combinations of undefined output
+#     gradient Tensors, where `grad[i].defined() == false`. Depending on the
+#     number of input and output grads your derivative formula uses, code
+#     generation may automatically add some level of undefined grad support,
+#     according to these three cases:
+#
+#       * 1 input grad and 1 output grad:
+#           Complete undefined grad support is automatically added, so you
+#           shouldn't have to think about it, unless there is a bug in the code
+#           generation.
+#
+#       * 1 input grad and multiple output grads:
+#           Undefined grad support is automatically added ONLY in the case where
+#           all output grads are undefined. You will have to add explicit support
+#           for cases where a subset of output grads is undefined.
+#
+#       * multiple input grads:
+#           No automatic support, so you will need to add it.
+#
+#     If your derivative formula uses more than one output grad, it is usually
+#     preferable to add undefined grad support in the backward function itself
+#     (if you're using one), rather than in the derivative formula in this file.
+#
+#     Undefined Tensors are created with the default constructor `at::Tensor()`.
+#     It is an efficient way to represent a Tensor filled with zeros because
+#     the Tensor holds no sizing information and no Storage data is allocated.
+#     But consequentially, Tensor operations cannot be performed on them.
+#     Therefore, your backward function should treat an undefined output grad as
+#     a zero, and it needs to be a special case.
+#
+#     If all output grads are undefined, then it should be correct for the
+#     backward function to return undefined input grads. Since we use the chain
+#     rule, output grads equal to zero should result in input grads equal to zero,
+#     unless there is some rare special case.
+#
+#     If a subset of output grads is undefined, then it may be acceptable for
+#     the backward function to return undefined input grads--it depends on the
+#     specific function, so you'll have to determine that yourself. If returning
+#     an undefined Tensor is correct for a given input grad, it is also logically
+#     correct to return a defined grad full of zeros, but that would not be
+#     preferable since it would be less efficient.
+#
+# NB: The parameter names here MUST be consistent with the parameter names
+# in native_functions.yaml

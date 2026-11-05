@@ -1,0 +1,114 @@
+{
+  "version": "task-contract/7",
+  "endpoints": [
+    {
+      "name": "in",
+      "direction": "in",
+      "fields": [
+        {
+          "name": "fetch",
+          "type": {
+            "width": 2,
+            "signed": false
+          },
+          "port": "fetch"
+        },
+        {
+          "name": "data",
+          "type": {
+            "width": 8,
+            "signed": false
+          },
+          "port": "data"
+        }
+      ],
+      "adapter": {
+        "name": "sampled-edge",
+        "version": 1,
+        "environment_controls": [],
+        "artifact_controls": [],
+        "monitor_state": []
+      },
+      "clock": "clk",
+      "matching": "ordered",
+      "identifier": null,
+      "max_outstanding": null,
+      "response_deadline": null,
+      "answers_per_transaction": null,
+      "terminal_quiescence": null,
+      "reset_policy": "clears",
+      "kind": "transaction"
+    },
+    {
+      "name": "out",
+      "direction": "out",
+      "fields": [
+        {
+          "name": "ins",
+          "type": {
+            "width": 3,
+            "signed": false
+          },
+          "port": "ins"
+        },
+        {
+          "name": "ad1",
+          "type": {
+            "width": 5,
+            "signed": false
+          },
+          "port": "ad1"
+        },
+        {
+          "name": "ad2",
+          "type": {
+            "width": 8,
+            "signed": false
+          },
+          "port": "ad2"
+        }
+      ],
+      "adapter": {
+        "name": "sampled-edge",
+        "version": 1,
+        "environment_controls": [],
+        "artifact_controls": [],
+        "monitor_state": []
+      },
+      "clock": "clk",
+      "matching": "ordered",
+      "identifier": null,
+      "max_outstanding": null,
+      "response_deadline": null,
+      "answers_per_transaction": 1,
+      "terminal_quiescence": null,
+      "reset_policy": "clears",
+      "kind": "transaction"
+    }
+  ],
+  "clocks": [
+    {
+      "name": "clk",
+      "clock": "clk",
+      "edge": "rising",
+      "reset": "rst",
+      "reset_active_low": true,
+      "reset_hold_cycles": 3,
+      "reset_restores": null
+    }
+  ],
+  "memories": [],
+  "protocol_instances": [
+    {
+      "name": "compute",
+      "endpoints": [
+        "in",
+        "out"
+      ],
+      "mapping": "direct/1"
+    }
+  ],
+  "authority": "task",
+  "source": "RTLLM native restoration: instr_reg",
+  "physical_value_layout": "packed-value/1"
+}

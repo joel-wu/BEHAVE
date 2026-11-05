@@ -1,0 +1,36 @@
+Authored finite hardware adaptation. Numerical/capacity changes are explicit in spec.md.
+
+https://github.com/Mbed-TLS/mbedtls@107ea89daaefb9867ea9121002fbbdf926780e98:library/chachapoly.c
+
+/**
+ * \file chachapoly.c
+ *
+ * \brief ChaCha20-Poly1305 AEAD construction based on RFC 7539.
+ *
+ *  Copyright The Mbed TLS Contributors
+ *  SPDX-License-Identifier: Apache-2.0 OR GPL-2.0-or-later
+ */
+
+https://github.com/Mbed-TLS/mbedtls@107ea89daaefb9867ea9121002fbbdf926780e98:library/chacha20.c
+
+/**
+ * \file chacha20.c
+ *
+ * \brief ChaCha20 cipher.
+ *
+ * \author Daniel King <damaki.gh@gmail.com>
+ *
+ *  Copyright The Mbed TLS Contributors
+ *  SPDX-License-Identifier: Apache-2.0 OR GPL-2.0-or-later
+ */
+
+https://github.com/Mbed-TLS/mbedtls@107ea89daaefb9867ea9121002fbbdf926780e98:library/poly1305.c
+
+/**
+ * \file poly1305.c
+ *
+ * \brief Poly1305 authentication algorithm.
+ *
+ *  Copyright The Mbed TLS Contributors
+ *  SPDX-License-Identifier: Apache-2.0 OR GPL-2.0-or-later
+ */

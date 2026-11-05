@@ -1,0 +1,240 @@
+{
+  "version": "task-contract/8",
+  "endpoints": [
+    {
+      "name": "in",
+      "direction": "in",
+      "fields": [
+        {
+          "name": "clk_i_level",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "clk_i_level"
+        },
+        {
+          "name": "rst_i",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "rst_i"
+        },
+        {
+          "name": "cyc_i",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "cyc_i"
+        },
+        {
+          "name": "stb_i",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "stb_i"
+        },
+        {
+          "name": "sel_i",
+          "type": {
+            "width": 4,
+            "signed": false
+          },
+          "port": "sel_i"
+        },
+        {
+          "name": "we_i",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "we_i"
+        },
+        {
+          "name": "addr_i",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "addr_i"
+        },
+        {
+          "name": "data_i",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "data_i"
+        },
+        {
+          "name": "hclk_level",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "hclk_level"
+        },
+        {
+          "name": "hreset_n",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "hreset_n"
+        },
+        {
+          "name": "hrdata",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "hrdata"
+        },
+        {
+          "name": "hresp",
+          "type": {
+            "width": 2,
+            "signed": false
+          },
+          "port": "hresp"
+        },
+        {
+          "name": "hready",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "hready"
+        }
+      ],
+      "adapter": {
+        "name": "combinational-settled",
+        "version": 1,
+        "environment_controls": [],
+        "artifact_controls": [],
+        "monitor_state": []
+      },
+      "clock": null,
+      "matching": "ordered",
+      "identifier": null,
+      "max_outstanding": null,
+      "response_deadline": null,
+      "answers_per_transaction": null,
+      "terminal_quiescence": null,
+      "reset_policy": null,
+      "kind": "transaction"
+    },
+    {
+      "name": "out",
+      "direction": "out",
+      "fields": [
+        {
+          "name": "data_o",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "data_o"
+        },
+        {
+          "name": "ack_o",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "ack_o"
+        },
+        {
+          "name": "err_o",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "err_o"
+        },
+        {
+          "name": "htrans",
+          "type": {
+            "width": 2,
+            "signed": false
+          },
+          "port": "htrans"
+        },
+        {
+          "name": "hsize",
+          "type": {
+            "width": 3,
+            "signed": false
+          },
+          "port": "hsize"
+        },
+        {
+          "name": "hburst",
+          "type": {
+            "width": 3,
+            "signed": false
+          },
+          "port": "hburst"
+        },
+        {
+          "name": "hwrite",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "hwrite"
+        },
+        {
+          "name": "haddr",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "haddr"
+        },
+        {
+          "name": "hwdata",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "hwdata"
+        }
+      ],
+      "adapter": {
+        "name": "combinational-settled",
+        "version": 1,
+        "environment_controls": [],
+        "artifact_controls": [],
+        "monitor_state": []
+      },
+      "clock": null,
+      "matching": "ordered",
+      "identifier": null,
+      "max_outstanding": null,
+      "response_deadline": null,
+      "answers_per_transaction": 1,
+      "terminal_quiescence": null,
+      "reset_policy": null,
+      "kind": "transaction"
+    }
+  ],
+  "clocks": [],
+  "memories": [],
+  "protocol_instances": [
+    {
+      "name": "compute",
+      "endpoints": [
+        "in",
+        "out"
+      ],
+      "mapping": "direct/1"
+    }
+  ],
+  "authority": "task",
+  "source": "Source-native storage with explicit settled phase-level observation and documented startup; batch2145 audit",
+  "physical_value_layout": "packed-value/1"
+}

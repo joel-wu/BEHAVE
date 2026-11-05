@@ -1,0 +1,56 @@
+{
+  "schema": "behave.ppa-study/1",
+  "task": "ai_ml_ssm_deltanet_gated_deltanet_step",
+  "workloads": [
+    {
+      "name": "recurrent_sequence8",
+      "generator": "gated_deltanet",
+      "tokens": 16,
+      "sequence_tokens": 8
+    }
+  ],
+  "measurement": {
+    "mapping": {
+      "driving_cell": "sky130_fd_sc_hd__buf_2"
+    },
+    "power": {
+      "input_activity": 0.1,
+      "input_duty": 0.5
+    },
+    "timing": {
+      "clock": "clk",
+      "period_ns": 20,
+      "uncertainty_ns": 0.2,
+      "input_delay_ns": 0.5,
+      "output_delay_ns": 0.5,
+      "input_transition_ns": 0.1,
+      "output_load_pf": 0.01
+    },
+    "targets_ns": [
+      1310720
+    ],
+    "service_seconds": 600,
+    "eda_budget": {
+      "synthesis_seconds": 900,
+      "timing_seconds": 180,
+      "power_seconds": 180,
+      "overhead_seconds": 180
+    },
+    "sat_resource_sharing": false,
+    "aggregation": "maximum",
+    "stage": "mapped-synthesis-ideal-interconnect-sta",
+    "initial_rtl": null
+  },
+  "search": {
+    "replicates": 1,
+    "parallelism": 1,
+    "turns": 60,
+    "request_seconds": null,
+    "replicate_seconds": 14400,
+    "final_seconds": 14400
+  },
+  "checks": {
+    "baseline_cases": 4,
+    "sequence_length": 16
+  }
+}

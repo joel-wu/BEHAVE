@@ -1,0 +1,14 @@
+Authored finite hardware adaptation. Numerical/capacity changes are explicit in spec.md.
+
+https://github.com/scikit-learn/scikit-learn@156ef141f3b270edb06c8ae9af37c55253c0aabe:sklearn/neighbors/_classification.py
+
+"""Nearest Neighbor Classification"""
+
+
+# Authors: Jake Vanderplas <vanderplas@astro.washington.edu>
+#          Fabian Pedregosa <fabian.pedregosa@inria.fr>
+#          Alexandre Gramfort <alexandre.gramfort@inria.fr>
+#          Sparseness support by Lars Buitinck
+#          Multi-output support by Arnaud Joly <a.joly@ulg.ac.be>
+#
+# License: BSD 3 clause (C) INRIA, University of Amsterdam

@@ -1,0 +1,84 @@
+# Virtual environment; reconstructed from uv.lock.
+.venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+.hypothesis/
+
+# Runtime-only provider credentials; never task inputs or published artifacts.
+/.secrets/
+
+# Run outputs, checkpoints, logs and caches.
+work/
+# Root paths may be directories or symlinks to site storage.
+/work
+/results
+/build/
+/dist/
+/prepared-eval/
+/my-eval.json
+/receipts/
+/.coverage
+/.coverage.*
+/htmlcov/
+
+# Generated submission bundles, not source or dataset-release manifests.
+/submission
+/*_Supplementary*.zip
+
+# Root-level Verilator/STA scratch files, not native frontend source.
+/obj_dir/
+/ast.json
+/.history_sta
+
+# Unreviewed task-construction work is not the released dataset.
+/data/pending/
+
+# Task-local run outputs, not dataset sources.
+data/**/cosim_report.json
+data/**/equiv_report.json
+data/**/pipeline_log.json
+
+# Local diagnostic scripts.
+scratch/
+
+# Simulation residue that may appear inside a problem directory when a run is
+# executed in place rather than in a temporary copy.
+data/**/sim_build/
+data/**/coverage.dat
+data/**/results.xml
+data/**/replay_tb.py
+data/**/rtl.smt2
+data/**/Makefile
+
+# Optional third-party checkouts, installed separately from the Python package.
+external/slime/
+external/sglang/
+external/Megatron-LM/
+external/apex/
+external/chipmate/
+external/mage/
+# Local self-link used by old deployment paths; never a release dependency.
+/external/external
+
+# Independently versioned Overleaf checkout.
+/paper/
+
+# EDA toolchain, installed by scripts/setup_eda.sh (directory or link to a shared install).
+external/oss-cad-suite
+external/*.tgz
+external/*.tar.gz
+# Independently pinned PPA tools and libraries (directories or links to a shared install); installers retain source receipts.
+/external/ppa-pilot
+/external/ppa-activity
+/external/ppa-netlist-repair
+/external/chipmate
+/external/mage
+
+# Editor and operating system artifacts.
+.DS_Store
+*.swp
+/.vscode/
+*.log

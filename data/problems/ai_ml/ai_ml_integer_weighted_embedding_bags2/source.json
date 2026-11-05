@@ -1,0 +1,22 @@
+{
+  "id": "ai_ml_integer_weighted_embedding_bags2",
+  "source_kind": "ai_ml",
+  "name": "WeightedEmbeddingBags2",
+  "family": "weighted_embedding_bags2",
+  "tier": 2,
+  "license": "BSD-3-Clause",
+  "provenance": [
+    {
+      "repository": "https://github.com/pytorch/pytorch",
+      "revision": "a8d6afb511a69687bbb2b7e88a3cf67917e1697e",
+      "license": "BSD-3-Clause",
+      "file": "aten/src/ATen/native/EmbeddingBag.cpp",
+      "symbol": "embedding_bag_cpu_impl sum/per_sample_weights path",
+      "sha256": "a53a12ce5d8743a374116c863e532c3abf2a960b34e54d54070c7c93ce062e3c",
+      "url": "https://github.com/pytorch/pytorch/blob/a8d6afb511a69687bbb2b7e88a3cf67917e1697e/aten/src/ATen/native/EmbeddingBag.cpp",
+      "license_file": "data/licenses/pytorch_pytorch/LICENSE"
+    }
+  ],
+  "adaptation": "Weighted embedding-bag sums with repeated indices and independent variable-length bags.\n\nThe table has eight rows of four signed INT8 values. There are two bags, each with four stored slots. Each slot has a three-bit row index and a signed INT8 integer sample weight. Length b is min(4, the three-bit field at 3*b). Only its leading slots participate. Return sum_j weight[b,j]*table[index[b,j],c] in eight signed INT32 lanes, index 4*b+c. Repeated indices contribute repeatedly; empty bags produce zero. This specializes EmbeddingBag sum with per_sample_weights; lengths encode fixed-capacity offsets, not mean/max mode.",
+  "difficulty": "medium"
+}

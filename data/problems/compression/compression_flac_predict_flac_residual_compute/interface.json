@@ -1,0 +1,380 @@
+{
+  "version": "task-contract/16",
+  "endpoints": [
+    {
+      "name": "in",
+      "direction": "in",
+      "fields": [
+        {
+          "name": "in_lp_quantization",
+          "type": {
+            "width": 6,
+            "signed": false
+          },
+          "port": "in_lp_quantization"
+        },
+        {
+          "name": "in_order",
+          "type": {
+            "width": 6,
+            "signed": false
+          },
+          "port": "in_order"
+        },
+        {
+          "name": "in_qlp_coeff_0",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_qlp_coeff_0"
+        },
+        {
+          "name": "in_qlp_coeff_1",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_qlp_coeff_1"
+        },
+        {
+          "name": "in_qlp_coeff_10",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_qlp_coeff_10"
+        },
+        {
+          "name": "in_qlp_coeff_11",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_qlp_coeff_11"
+        },
+        {
+          "name": "in_qlp_coeff_12",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_qlp_coeff_12"
+        },
+        {
+          "name": "in_qlp_coeff_13",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_qlp_coeff_13"
+        },
+        {
+          "name": "in_qlp_coeff_14",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_qlp_coeff_14"
+        },
+        {
+          "name": "in_qlp_coeff_15",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_qlp_coeff_15"
+        },
+        {
+          "name": "in_qlp_coeff_16",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_qlp_coeff_16"
+        },
+        {
+          "name": "in_qlp_coeff_17",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_qlp_coeff_17"
+        },
+        {
+          "name": "in_qlp_coeff_18",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_qlp_coeff_18"
+        },
+        {
+          "name": "in_qlp_coeff_19",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_qlp_coeff_19"
+        },
+        {
+          "name": "in_qlp_coeff_2",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_qlp_coeff_2"
+        },
+        {
+          "name": "in_qlp_coeff_20",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_qlp_coeff_20"
+        },
+        {
+          "name": "in_qlp_coeff_21",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_qlp_coeff_21"
+        },
+        {
+          "name": "in_qlp_coeff_22",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_qlp_coeff_22"
+        },
+        {
+          "name": "in_qlp_coeff_23",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_qlp_coeff_23"
+        },
+        {
+          "name": "in_qlp_coeff_24",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_qlp_coeff_24"
+        },
+        {
+          "name": "in_qlp_coeff_25",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_qlp_coeff_25"
+        },
+        {
+          "name": "in_qlp_coeff_26",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_qlp_coeff_26"
+        },
+        {
+          "name": "in_qlp_coeff_27",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_qlp_coeff_27"
+        },
+        {
+          "name": "in_qlp_coeff_28",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_qlp_coeff_28"
+        },
+        {
+          "name": "in_qlp_coeff_29",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_qlp_coeff_29"
+        },
+        {
+          "name": "in_qlp_coeff_3",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_qlp_coeff_3"
+        },
+        {
+          "name": "in_qlp_coeff_30",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_qlp_coeff_30"
+        },
+        {
+          "name": "in_qlp_coeff_31",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_qlp_coeff_31"
+        },
+        {
+          "name": "in_qlp_coeff_4",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_qlp_coeff_4"
+        },
+        {
+          "name": "in_qlp_coeff_5",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_qlp_coeff_5"
+        },
+        {
+          "name": "in_qlp_coeff_6",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_qlp_coeff_6"
+        },
+        {
+          "name": "in_qlp_coeff_7",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_qlp_coeff_7"
+        },
+        {
+          "name": "in_qlp_coeff_8",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_qlp_coeff_8"
+        },
+        {
+          "name": "in_qlp_coeff_9",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_qlp_coeff_9"
+        },
+        {
+          "name": "in_sample",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_sample"
+        }
+      ],
+      "adapter": {
+        "name": "ready-valid",
+        "version": 1,
+        "environment_controls": [
+          "in_valid"
+        ],
+        "artifact_controls": [
+          "in_ready"
+        ],
+        "monitor_state": [
+          "outstanding",
+          "stall_cycles"
+        ]
+      },
+      "clock": "clk",
+      "matching": "ordered",
+      "identifier": null,
+      "max_outstanding": null,
+      "response_deadline": null,
+      "answers_per_transaction": null,
+      "terminal_quiescence": null,
+      "reset_policy": null,
+      "kind": "transaction"
+    },
+    {
+      "name": "out",
+      "direction": "out",
+      "fields": [
+        {
+          "name": "out_error",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "out_error"
+        },
+        {
+          "name": "out_residual",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "out_residual"
+        }
+      ],
+      "adapter": {
+        "name": "ready-valid",
+        "version": 1,
+        "environment_controls": [
+          "out_ready"
+        ],
+        "artifact_controls": [
+          "out_valid"
+        ],
+        "monitor_state": [
+          "outstanding",
+          "stall_cycles"
+        ]
+      },
+      "clock": "clk",
+      "matching": "ordered",
+      "identifier": null,
+      "max_outstanding": null,
+      "response_deadline": null,
+      "answers_per_transaction": null,
+      "terminal_quiescence": null,
+      "reset_policy": null,
+      "kind": "transaction"
+    }
+  ],
+  "clocks": [
+    {
+      "name": "clk",
+      "clock": "clk",
+      "edge": "rising",
+      "reset": "rst",
+      "reset_active_low": false,
+      "reset_hold_cycles": 3,
+      "reset_restores": null
+    }
+  ],
+  "memories": [],
+  "protocol_instances": [],
+  "observation_goals": [],
+  "transaction_monitors": [],
+  "latency_goals": [],
+  "operation_rules": [],
+  "source_read_rules": [],
+  "authority": "task",
+  "source": "declared by compression_flac_predict_flac_residual_compute",
+  "physical_value_layout": "packed-value/1"
+}

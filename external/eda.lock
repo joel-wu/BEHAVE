@@ -1,0 +1,4 @@
+# Resolved by scripts/setup_eda.sh. Commit this file so that other hosts install
+# the same toolchain versions.
+release = "2026-07-31"
+arch = "linux-x64"

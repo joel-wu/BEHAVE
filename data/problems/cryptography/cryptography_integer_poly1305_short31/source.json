@@ -1,0 +1,22 @@
+{
+  "id": "cryptography_integer_poly1305_short31",
+  "source_kind": "cryptography",
+  "name": "Poly1305Short31",
+  "family": "poly1305_short31",
+  "tier": 2,
+  "license": "BSD-2-Clause",
+  "provenance": [
+    {
+      "repository": "https://github.com/LoupVaillant/Monocypher",
+      "revision": "0d85f98c9d9b0227e42cf795cb527dff372b40a4",
+      "license": "BSD-2-Clause",
+      "file": "src/monocypher.c",
+      "symbol": "crypto_poly1305, init/update/final and poly_blocks",
+      "sha256": "02174117935699d418443c75a558a287deb06ef8cf7c1adced61d9047d2f323d",
+      "url": "https://github.com/LoupVaillant/Monocypher/blob/0d85f98c9d9b0227e42cf795cb527dff372b40a4/src/monocypher.c",
+      "license_file": "data/licenses/LoupVaillant_Monocypher/LICENCE.md"
+    }
+  ],
+  "adaptation": "Complete Poly1305 one-time authentication tag for a 0–31 byte message.\n\nByte i of each key/message/tag string occupies bits 8*i +: 8. Use only the first L=in_length message bytes; later bytes have no effect. Let r be the low 128 key bits AND 0x0ffffffc0ffffffc0ffffffc0fffffff, and s the high 128 key bits. Begin h=0. Split the L bytes into consecutive nonempty chunks of at most 16 bytes. For each chunk of n bytes, interpret those bytes little-endian as m, append the single bit 2^(8*n), and set h=((h+m+2^(8*n))*r) mod (2^130-5). All arithmetic before reduction is exact. Return (h+s) mod 2^128.\n\nFor L=0 there are no chunks and the tag is s. A 16-byte chunk includes bit 128; a partial chunk includes the bit immediately after its last byte, not bit 128. Apply clamping even to arbitrary unmasked key patterns, and add s only once at the end. This is Monocypher crypto_poly1305 restricted to this message capacity, not a lazy accumulator or tag preview. One-time key management and constant-time implementation are outside this functional benchmark; key reuse is not endorsed.",
+  "difficulty": "medium"
+}

@@ -1,0 +1,22 @@
+{
+  "id": "ai_ml_integer_nonzero_coordinates3x4",
+  "source_kind": "ai_ml",
+  "name": "NonZeroCoordinates3x4",
+  "family": "nonzero_coordinates3x4",
+  "tier": 1,
+  "license": "Apache-2.0",
+  "provenance": [
+    {
+      "repository": "https://github.com/onnx/onnx",
+      "revision": "57b9c6a4f6eebb09ae1b34cfb632078518f72832",
+      "license": "Apache-2.0",
+      "file": "onnx/reference/ops/op_non_zero.py",
+      "symbol": "NonZero._run",
+      "sha256": "2787afb71ef6eca59be801ccdf4bafa827299901c1f94c34d3a1d519df6c1fc5",
+      "url": "https://github.com/onnx/onnx/blob/57b9c6a4f6eebb09ae1b34cfb632078518f72832/onnx/reference/ops/op_non_zero.py",
+      "license_file": "data/licenses/onnx_onnx/LICENSE"
+    }
+  ],
+  "adaptation": "Compact all nonzero coordinates of a row-major [3,4] byte tensor.\n\nScan increasing row, then column; zero bytes are excluded and every nonzero bit pattern is included. Let n be the number found. The result reserves twelve unsigned two-bit row slots at bit 2*i, then twelve two-bit column slots at bit 24+2*i, then unsigned count n at bits 48..51. Slots i>=n are zero. This fixed-capacity representation of ONNX NonZero preserves its [2,n] axis-first coordinate layout. Coordinates, not flattened indices or values, are returned; empty input returns zero.",
+  "difficulty": "basic"
+}

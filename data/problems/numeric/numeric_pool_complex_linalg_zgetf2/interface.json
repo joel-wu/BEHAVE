@@ -1,0 +1,636 @@
+{
+  "version": "task-contract/16",
+  "endpoints": [
+    {
+      "name": "in",
+      "direction": "in",
+      "fields": [
+        {
+          "name": "in_a00_im",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_a00_im"
+        },
+        {
+          "name": "in_a00_re",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_a00_re"
+        },
+        {
+          "name": "in_a01_im",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_a01_im"
+        },
+        {
+          "name": "in_a01_re",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_a01_re"
+        },
+        {
+          "name": "in_a02_im",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_a02_im"
+        },
+        {
+          "name": "in_a02_re",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_a02_re"
+        },
+        {
+          "name": "in_a03_im",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_a03_im"
+        },
+        {
+          "name": "in_a03_re",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_a03_re"
+        },
+        {
+          "name": "in_a10_im",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_a10_im"
+        },
+        {
+          "name": "in_a10_re",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_a10_re"
+        },
+        {
+          "name": "in_a11_im",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_a11_im"
+        },
+        {
+          "name": "in_a11_re",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_a11_re"
+        },
+        {
+          "name": "in_a12_im",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_a12_im"
+        },
+        {
+          "name": "in_a12_re",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_a12_re"
+        },
+        {
+          "name": "in_a13_im",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_a13_im"
+        },
+        {
+          "name": "in_a13_re",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_a13_re"
+        },
+        {
+          "name": "in_a20_im",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_a20_im"
+        },
+        {
+          "name": "in_a20_re",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_a20_re"
+        },
+        {
+          "name": "in_a21_im",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_a21_im"
+        },
+        {
+          "name": "in_a21_re",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_a21_re"
+        },
+        {
+          "name": "in_a22_im",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_a22_im"
+        },
+        {
+          "name": "in_a22_re",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_a22_re"
+        },
+        {
+          "name": "in_a23_im",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_a23_im"
+        },
+        {
+          "name": "in_a23_re",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_a23_re"
+        },
+        {
+          "name": "in_a30_im",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_a30_im"
+        },
+        {
+          "name": "in_a30_re",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_a30_re"
+        },
+        {
+          "name": "in_a31_im",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_a31_im"
+        },
+        {
+          "name": "in_a31_re",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_a31_re"
+        },
+        {
+          "name": "in_a32_im",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_a32_im"
+        },
+        {
+          "name": "in_a32_re",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_a32_re"
+        },
+        {
+          "name": "in_a33_im",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_a33_im"
+        },
+        {
+          "name": "in_a33_re",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_a33_re"
+        }
+      ],
+      "adapter": {
+        "name": "ready-valid",
+        "version": 1,
+        "environment_controls": [
+          "in_valid"
+        ],
+        "artifact_controls": [
+          "in_ready"
+        ],
+        "monitor_state": [
+          "outstanding",
+          "stall_cycles"
+        ]
+      },
+      "clock": "clk",
+      "matching": "ordered",
+      "identifier": null,
+      "max_outstanding": null,
+      "response_deadline": null,
+      "answers_per_transaction": null,
+      "terminal_quiescence": null,
+      "reset_policy": null,
+      "kind": "transaction"
+    },
+    {
+      "name": "out",
+      "direction": "out",
+      "fields": [
+        {
+          "name": "out_a00_im",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "out_a00_im"
+        },
+        {
+          "name": "out_a00_re",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "out_a00_re"
+        },
+        {
+          "name": "out_a01_im",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "out_a01_im"
+        },
+        {
+          "name": "out_a01_re",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "out_a01_re"
+        },
+        {
+          "name": "out_a02_im",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "out_a02_im"
+        },
+        {
+          "name": "out_a02_re",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "out_a02_re"
+        },
+        {
+          "name": "out_a03_im",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "out_a03_im"
+        },
+        {
+          "name": "out_a03_re",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "out_a03_re"
+        },
+        {
+          "name": "out_a10_im",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "out_a10_im"
+        },
+        {
+          "name": "out_a10_re",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "out_a10_re"
+        },
+        {
+          "name": "out_a11_im",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "out_a11_im"
+        },
+        {
+          "name": "out_a11_re",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "out_a11_re"
+        },
+        {
+          "name": "out_a12_im",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "out_a12_im"
+        },
+        {
+          "name": "out_a12_re",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "out_a12_re"
+        },
+        {
+          "name": "out_a13_im",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "out_a13_im"
+        },
+        {
+          "name": "out_a13_re",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "out_a13_re"
+        },
+        {
+          "name": "out_a20_im",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "out_a20_im"
+        },
+        {
+          "name": "out_a20_re",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "out_a20_re"
+        },
+        {
+          "name": "out_a21_im",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "out_a21_im"
+        },
+        {
+          "name": "out_a21_re",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "out_a21_re"
+        },
+        {
+          "name": "out_a22_im",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "out_a22_im"
+        },
+        {
+          "name": "out_a22_re",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "out_a22_re"
+        },
+        {
+          "name": "out_a23_im",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "out_a23_im"
+        },
+        {
+          "name": "out_a23_re",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "out_a23_re"
+        },
+        {
+          "name": "out_a30_im",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "out_a30_im"
+        },
+        {
+          "name": "out_a30_re",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "out_a30_re"
+        },
+        {
+          "name": "out_a31_im",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "out_a31_im"
+        },
+        {
+          "name": "out_a31_re",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "out_a31_re"
+        },
+        {
+          "name": "out_a32_im",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "out_a32_im"
+        },
+        {
+          "name": "out_a32_re",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "out_a32_re"
+        },
+        {
+          "name": "out_a33_im",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "out_a33_im"
+        },
+        {
+          "name": "out_a33_re",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "out_a33_re"
+        },
+        {
+          "name": "out_info",
+          "type": {
+            "width": 3,
+            "signed": false
+          },
+          "port": "out_info"
+        },
+        {
+          "name": "out_ipiv0",
+          "type": {
+            "width": 2,
+            "signed": false
+          },
+          "port": "out_ipiv0"
+        },
+        {
+          "name": "out_ipiv1",
+          "type": {
+            "width": 2,
+            "signed": false
+          },
+          "port": "out_ipiv1"
+        },
+        {
+          "name": "out_ipiv2",
+          "type": {
+            "width": 2,
+            "signed": false
+          },
+          "port": "out_ipiv2"
+        },
+        {
+          "name": "out_ipiv3",
+          "type": {
+            "width": 2,
+            "signed": false
+          },
+          "port": "out_ipiv3"
+        }
+      ],
+      "adapter": {
+        "name": "ready-valid",
+        "version": 1,
+        "environment_controls": [
+          "out_ready"
+        ],
+        "artifact_controls": [
+          "out_valid"
+        ],
+        "monitor_state": [
+          "outstanding",
+          "stall_cycles"
+        ]
+      },
+      "clock": "clk",
+      "matching": "ordered",
+      "identifier": null,
+      "max_outstanding": null,
+      "response_deadline": null,
+      "answers_per_transaction": null,
+      "terminal_quiescence": null,
+      "reset_policy": null,
+      "kind": "transaction"
+    }
+  ],
+  "clocks": [
+    {
+      "name": "clk",
+      "clock": "clk",
+      "edge": "rising",
+      "reset": "rst",
+      "reset_active_low": false,
+      "reset_hold_cycles": 3,
+      "reset_restores": null
+    }
+  ],
+  "memories": [],
+  "protocol_instances": [],
+  "observation_goals": [],
+  "transaction_monitors": [],
+  "latency_goals": [],
+  "operation_rules": [],
+  "source_read_rules": [],
+  "authority": "task",
+  "source": "declared by numeric_pool_complex_linalg_zgetf2",
+  "physical_value_layout": "packed-value/1"
+}

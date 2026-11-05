@@ -1,0 +1,22 @@
+{
+  "id": "numeric_integer_isqrt64_remainder",
+  "source_kind": "numeric",
+  "name": "ISqrt64Remainder",
+  "family": "isqrt64_remainder",
+  "tier": 2,
+  "license": "Unlicense",
+  "provenance": [
+    {
+      "repository": "https://github.com/libtom/libtommath",
+      "revision": "95d80fd8229d05dd6cb4ec88bc8d4f5377ff00ef",
+      "license": "Unlicense",
+      "file": "bn_mp_sqrt.c",
+      "symbol": "mp_sqrt, nonnegative integer result",
+      "sha256": "7b3f4e4f6dcf740f0ab530f906e0fc3434b8620937447b2df17db08e5dcf93be",
+      "url": "https://github.com/libtom/libtommath/blob/95d80fd8229d05dd6cb4ec88bc8d4f5377ff00ef/bn_mp_sqrt.c",
+      "license_file": "data/licenses/libtom_libtommath/LICENSE"
+    }
+  ],
+  "adaptation": "Exact unsigned 64-bit integer square root and remainder.\n\nReturn the unique integers q,r such that n=q*q+r and 0<=r<2*q+1. Thus q=floor(sqrt(n)), not a rounded real square root. Output bits 31:0 contain q, and bits 64:32 contain r. The remainder needs 33 bits: for n=2^64-1, q=2^32-1 and r=2^33-2. Zero returns zero. No host floating point or signed reinterpretation is used. This preserves LibTomMath mp_sqrt on the selected nonnegative domain and adds an explicitly observable remainder. Hardware may use digit recurrence instead of the source Newton iteration; all 64 input bits remain significant.",
+  "difficulty": "medium"
+}

@@ -1,0 +1,146 @@
+{
+  "version": "task-contract/8",
+  "endpoints": [
+    {
+      "name": "in",
+      "direction": "in",
+      "fields": [
+        {
+          "name": "vehicle_entry_sensor",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "vehicle_entry_sensor"
+        },
+        {
+          "name": "vehicle_exit_sensor",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "vehicle_exit_sensor"
+        }
+      ],
+      "adapter": {
+        "name": "sampled-edge",
+        "version": 1,
+        "environment_controls": [],
+        "artifact_controls": [],
+        "monitor_state": []
+      },
+      "clock": "clk",
+      "matching": "ordered",
+      "identifier": null,
+      "max_outstanding": null,
+      "response_deadline": null,
+      "answers_per_transaction": null,
+      "terminal_quiescence": null,
+      "reset_policy": null,
+      "kind": "transaction"
+    },
+    {
+      "name": "out",
+      "direction": "out",
+      "fields": [
+        {
+          "name": "available_spaces",
+          "type": {
+            "width": 4,
+            "signed": false
+          },
+          "port": "available_spaces"
+        },
+        {
+          "name": "count_car",
+          "type": {
+            "width": 4,
+            "signed": false
+          },
+          "port": "count_car"
+        },
+        {
+          "name": "led_status",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "led_status"
+        },
+        {
+          "name": "seven_seg_display_available_tens",
+          "type": {
+            "width": 7,
+            "signed": false
+          },
+          "port": "seven_seg_display_available_tens"
+        },
+        {
+          "name": "seven_seg_display_available_units",
+          "type": {
+            "width": 7,
+            "signed": false
+          },
+          "port": "seven_seg_display_available_units"
+        },
+        {
+          "name": "seven_seg_display_count_tens",
+          "type": {
+            "width": 7,
+            "signed": false
+          },
+          "port": "seven_seg_display_count_tens"
+        },
+        {
+          "name": "seven_seg_display_count_units",
+          "type": {
+            "width": 7,
+            "signed": false
+          },
+          "port": "seven_seg_display_count_units"
+        }
+      ],
+      "adapter": {
+        "name": "sampled-edge",
+        "version": 1,
+        "environment_controls": [],
+        "artifact_controls": [],
+        "monitor_state": []
+      },
+      "clock": "clk",
+      "matching": "ordered",
+      "identifier": null,
+      "max_outstanding": null,
+      "response_deadline": null,
+      "answers_per_transaction": 1,
+      "terminal_quiescence": null,
+      "reset_policy": null,
+      "kind": "transaction"
+    }
+  ],
+  "clocks": [
+    {
+      "name": "clk",
+      "clock": "clk",
+      "edge": "rising",
+      "reset": "reset",
+      "reset_active_low": false,
+      "reset_hold_cycles": 3,
+      "reset_restores": true
+    }
+  ],
+  "memories": [],
+  "protocol_instances": [
+    {
+      "name": "compute",
+      "endpoints": [
+        "in",
+        "out"
+      ],
+      "mapping": "direct/1"
+    }
+  ],
+  "authority": "task",
+  "source": "Original CVDP native control semantics; explicit source completions in batch95 audit",
+  "physical_value_layout": "packed-value/1"
+}

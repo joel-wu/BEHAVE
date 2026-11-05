@@ -1,0 +1,226 @@
+{
+  "version": "task-contract/8",
+  "endpoints": [
+    {
+      "name": "in",
+      "direction": "in",
+      "fields": [
+        {
+          "name": "axi_awaddr",
+          "type": {
+            "width": 8,
+            "signed": false
+          },
+          "port": "axi_awaddr"
+        },
+        {
+          "name": "axi_awvalid",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "axi_awvalid"
+        },
+        {
+          "name": "axi_wdata",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "axi_wdata"
+        },
+        {
+          "name": "axi_wstrb",
+          "type": {
+            "width": 4,
+            "signed": false
+          },
+          "port": "axi_wstrb"
+        },
+        {
+          "name": "axi_wvalid",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "axi_wvalid"
+        },
+        {
+          "name": "axi_bready",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "axi_bready"
+        },
+        {
+          "name": "axi_araddr",
+          "type": {
+            "width": 8,
+            "signed": false
+          },
+          "port": "axi_araddr"
+        },
+        {
+          "name": "axi_arvalid",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "axi_arvalid"
+        },
+        {
+          "name": "axi_rready",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "axi_rready"
+        }
+      ],
+      "adapter": {
+        "name": "sampled-edge",
+        "version": 1,
+        "environment_controls": [],
+        "artifact_controls": [],
+        "monitor_state": []
+      },
+      "clock": "axi_aclk",
+      "matching": "ordered",
+      "identifier": null,
+      "max_outstanding": null,
+      "response_deadline": null,
+      "answers_per_transaction": null,
+      "terminal_quiescence": null,
+      "reset_policy": null,
+      "kind": "transaction"
+    },
+    {
+      "name": "out",
+      "direction": "out",
+      "fields": [
+        {
+          "name": "axi_awready",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "axi_awready"
+        },
+        {
+          "name": "axi_wready",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "axi_wready"
+        },
+        {
+          "name": "axi_bresp",
+          "type": {
+            "width": 2,
+            "signed": false
+          },
+          "port": "axi_bresp"
+        },
+        {
+          "name": "axi_bvalid",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "axi_bvalid"
+        },
+        {
+          "name": "axi_arready",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "axi_arready"
+        },
+        {
+          "name": "axi_rdata",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "axi_rdata"
+        },
+        {
+          "name": "axi_rresp",
+          "type": {
+            "width": 2,
+            "signed": false
+          },
+          "port": "axi_rresp"
+        },
+        {
+          "name": "axi_rvalid",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "axi_rvalid"
+        },
+        {
+          "name": "axi_ap_done",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "axi_ap_done"
+        },
+        {
+          "name": "irq",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "irq"
+        }
+      ],
+      "adapter": {
+        "name": "sampled-edge",
+        "version": 1,
+        "environment_controls": [],
+        "artifact_controls": [],
+        "monitor_state": []
+      },
+      "clock": "axi_aclk",
+      "matching": "ordered",
+      "identifier": null,
+      "max_outstanding": null,
+      "response_deadline": null,
+      "answers_per_transaction": 1,
+      "terminal_quiescence": null,
+      "reset_policy": null,
+      "kind": "transaction"
+    }
+  ],
+  "clocks": [
+    {
+      "name": "axi_aclk",
+      "clock": "axi_aclk",
+      "edge": "rising",
+      "reset": "axi_aresetn",
+      "reset_active_low": true,
+      "reset_hold_cycles": 3,
+      "reset_restores": true
+    }
+  ],
+  "memories": [],
+  "protocol_instances": [
+    {
+      "name": "compute",
+      "endpoints": [
+        "in",
+        "out"
+      ],
+      "mapping": "direct/1"
+    }
+  ],
+  "authority": "task",
+  "source": "Native CVDP clock semantics; batch2123 records source completions",
+  "physical_value_layout": "packed-value/1"
+}

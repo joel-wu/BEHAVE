@@ -1,0 +1,218 @@
+{
+  "version": "task-contract/8",
+  "endpoints": [
+    {
+      "name": "in",
+      "direction": "in",
+      "fields": [
+        {
+          "name": "s_axis_tdata_1",
+          "type": {
+            "width": 8,
+            "signed": false
+          },
+          "port": "s_axis_tdata_1"
+        },
+        {
+          "name": "s_axis_tvalid_1",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "s_axis_tvalid_1"
+        },
+        {
+          "name": "s_axis_tlast_1",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "s_axis_tlast_1"
+        },
+        {
+          "name": "s_axis_tdata_2",
+          "type": {
+            "width": 8,
+            "signed": false
+          },
+          "port": "s_axis_tdata_2"
+        },
+        {
+          "name": "s_axis_tvalid_2",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "s_axis_tvalid_2"
+        },
+        {
+          "name": "s_axis_tlast_2",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "s_axis_tlast_2"
+        },
+        {
+          "name": "s_axis_tdata_3",
+          "type": {
+            "width": 8,
+            "signed": false
+          },
+          "port": "s_axis_tdata_3"
+        },
+        {
+          "name": "s_axis_tvalid_3",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "s_axis_tvalid_3"
+        },
+        {
+          "name": "s_axis_tlast_3",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "s_axis_tlast_3"
+        },
+        {
+          "name": "m_axis_tready",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "m_axis_tready"
+        }
+      ],
+      "adapter": {
+        "name": "sampled-edge",
+        "version": 1,
+        "environment_controls": [],
+        "artifact_controls": [],
+        "monitor_state": []
+      },
+      "clock": "clk",
+      "matching": "ordered",
+      "identifier": null,
+      "max_outstanding": null,
+      "response_deadline": null,
+      "answers_per_transaction": null,
+      "terminal_quiescence": null,
+      "reset_policy": null,
+      "kind": "transaction"
+    },
+    {
+      "name": "out",
+      "direction": "out",
+      "fields": [
+        {
+          "name": "s_axis_tready_1",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "s_axis_tready_1"
+        },
+        {
+          "name": "s_axis_tready_2",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "s_axis_tready_2"
+        },
+        {
+          "name": "s_axis_tready_3",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "s_axis_tready_3"
+        },
+        {
+          "name": "m_axis_tdata",
+          "type": {
+            "width": 8,
+            "signed": false
+          },
+          "port": "m_axis_tdata"
+        },
+        {
+          "name": "m_axis_tvalid",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "m_axis_tvalid"
+        },
+        {
+          "name": "m_axis_tlast",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "m_axis_tlast"
+        },
+        {
+          "name": "m_axis_tuser",
+          "type": {
+            "width": 2,
+            "signed": false
+          },
+          "port": "m_axis_tuser"
+        },
+        {
+          "name": "busy",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "busy"
+        }
+      ],
+      "adapter": {
+        "name": "sampled-edge",
+        "version": 1,
+        "environment_controls": [],
+        "artifact_controls": [],
+        "monitor_state": []
+      },
+      "clock": "clk",
+      "matching": "ordered",
+      "identifier": null,
+      "max_outstanding": null,
+      "response_deadline": null,
+      "answers_per_transaction": 1,
+      "terminal_quiescence": null,
+      "reset_policy": null,
+      "kind": "transaction"
+    }
+  ],
+  "clocks": [
+    {
+      "name": "clk",
+      "clock": "clk",
+      "edge": "rising",
+      "reset": "rst",
+      "reset_active_low": false,
+      "reset_hold_cycles": 3,
+      "reset_restores": true
+    }
+  ],
+  "memories": [],
+  "protocol_instances": [
+    {
+      "name": "compute",
+      "endpoints": [
+        "in",
+        "out"
+      ],
+      "mapping": "direct/1"
+    }
+  ],
+  "authority": "task",
+  "source": "Native CVDP clock semantics; batch2110 records source completions",
+  "physical_value_layout": "packed-value/1"
+}

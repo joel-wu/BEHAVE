@@ -1,0 +1,10 @@
+--- a/source/ast/expressions/ConversionExpression.cpp
++++ b/source/ast/expressions/ConversionExpression.cpp
+@@ -787,6 +787,7 @@
+ }
+ 
+ void ConversionExpression::serializeTo(ASTSerializer& serializer) const {
++    serializer.write("conversionKind", toString(conversionKind));
+     serializer.write("operand", operand());
+ }
+ 

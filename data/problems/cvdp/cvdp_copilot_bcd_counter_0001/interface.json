@@ -1,0 +1,121 @@
+{
+  "version": "task-contract/7",
+  "endpoints": [
+    {
+      "name": "in",
+      "direction": "in",
+      "fields": [],
+      "adapter": {
+        "name": "sampled-edge",
+        "version": 1,
+        "environment_controls": [],
+        "artifact_controls": [],
+        "monitor_state": []
+      },
+      "clock": "clk",
+      "matching": "ordered",
+      "identifier": null,
+      "max_outstanding": null,
+      "response_deadline": null,
+      "answers_per_transaction": null,
+      "terminal_quiescence": null,
+      "reset_policy": null,
+      "kind": "transaction"
+    },
+    {
+      "name": "out",
+      "direction": "out",
+      "fields": [
+        {
+          "name": "ms_hr",
+          "type": {
+            "width": 4,
+            "signed": false
+          },
+          "port": "ms_hr"
+        },
+        {
+          "name": "ls_hr",
+          "type": {
+            "width": 4,
+            "signed": false
+          },
+          "port": "ls_hr"
+        },
+        {
+          "name": "ms_min",
+          "type": {
+            "width": 4,
+            "signed": false
+          },
+          "port": "ms_min"
+        },
+        {
+          "name": "ls_min",
+          "type": {
+            "width": 4,
+            "signed": false
+          },
+          "port": "ls_min"
+        },
+        {
+          "name": "ms_sec",
+          "type": {
+            "width": 4,
+            "signed": false
+          },
+          "port": "ms_sec"
+        },
+        {
+          "name": "ls_sec",
+          "type": {
+            "width": 4,
+            "signed": false
+          },
+          "port": "ls_sec"
+        }
+      ],
+      "adapter": {
+        "name": "sampled-edge",
+        "version": 1,
+        "environment_controls": [],
+        "artifact_controls": [],
+        "monitor_state": []
+      },
+      "clock": "clk",
+      "matching": "ordered",
+      "identifier": null,
+      "max_outstanding": null,
+      "response_deadline": null,
+      "answers_per_transaction": 1,
+      "terminal_quiescence": null,
+      "reset_policy": null,
+      "kind": "transaction"
+    }
+  ],
+  "clocks": [
+    {
+      "name": "clk",
+      "clock": "clk",
+      "edge": "rising",
+      "reset": "rst",
+      "reset_active_low": false,
+      "reset_hold_cycles": 3,
+      "reset_restores": true
+    }
+  ],
+  "memories": [],
+  "protocol_instances": [
+    {
+      "name": "compute",
+      "endpoints": [
+        "in",
+        "out"
+      ],
+      "mapping": "direct/1"
+    }
+  ],
+  "authority": "task",
+  "source": "Original CVDP native clock semantics; explicit source completions in batch94 audit",
+  "physical_value_layout": "packed-value/1"
+}

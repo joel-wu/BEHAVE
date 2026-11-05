@@ -1,0 +1,128 @@
+{
+  "version": "task-contract/7",
+  "endpoints": [
+    {
+      "name": "in",
+      "direction": "in",
+      "fields": [
+        {
+          "name": "dfmt_enable",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "dfmt_enable"
+        },
+        {
+          "name": "dfmt_type",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "dfmt_type"
+        },
+        {
+          "name": "dfmt_se",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "dfmt_se"
+        },
+        {
+          "name": "s_axis_data",
+          "type": {
+            "width": 24,
+            "signed": false
+          },
+          "port": "s_axis_data"
+        }
+      ],
+      "adapter": {
+        "name": "ready-valid",
+        "version": 1,
+        "environment_controls": [
+          "s_axis_valid"
+        ],
+        "artifact_controls": [
+          "s_axis_ready"
+        ],
+        "monitor_state": [
+          "outstanding",
+          "stall_cycles"
+        ]
+      },
+      "clock": "clk",
+      "matching": "ordered",
+      "identifier": null,
+      "max_outstanding": null,
+      "response_deadline": null,
+      "answers_per_transaction": null,
+      "terminal_quiescence": null,
+      "reset_policy": "clears",
+      "kind": "transaction"
+    },
+    {
+      "name": "out",
+      "direction": "out",
+      "fields": [
+        {
+          "name": "m_axis_data",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "m_axis_data"
+        }
+      ],
+      "adapter": {
+        "name": "ready-valid",
+        "version": 1,
+        "environment_controls": [
+          "m_axis_ready"
+        ],
+        "artifact_controls": [
+          "m_axis_valid"
+        ],
+        "monitor_state": [
+          "outstanding",
+          "stall_cycles"
+        ]
+      },
+      "clock": "clk",
+      "matching": "ordered",
+      "identifier": null,
+      "max_outstanding": null,
+      "response_deadline": null,
+      "answers_per_transaction": 1,
+      "terminal_quiescence": null,
+      "reset_policy": "clears",
+      "kind": "transaction"
+    }
+  ],
+  "clocks": [
+    {
+      "name": "clk",
+      "clock": "clk",
+      "edge": "rising",
+      "reset": "resetn",
+      "reset_active_low": true,
+      "reset_hold_cycles": 3,
+      "reset_restores": true
+    }
+  ],
+  "memories": [],
+  "protocol_instances": [
+    {
+      "name": "compute",
+      "endpoints": [
+        "in",
+        "out"
+      ],
+      "mapping": "direct/1"
+    }
+  ],
+  "authority": "task",
+  "source": "CVDP original axis_upscale specification, batch93",
+  "physical_value_layout": "packed-value/1"
+}

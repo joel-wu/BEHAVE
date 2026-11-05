@@ -1,0 +1,22 @@
+{
+  "id": "cryptography_integer_siphash24_short15",
+  "source_kind": "cryptography",
+  "name": "SipHash24Short15",
+  "family": "siphash24_short15",
+  "tier": 2,
+  "license": "CC0-1.0",
+  "provenance": [
+    {
+      "repository": "https://github.com/veorq/SipHash",
+      "revision": "32d067603b93b47828700880649198e0bfbbcffa",
+      "license": "CC0-1.0",
+      "file": "siphash.c",
+      "symbol": "siphash with cROUNDS=2, dROUNDS=4, outlen=8",
+      "sha256": "94b6c1f3a24072a8a5afc4fea7fb9e95c5fc2e99657b6b712d991029ffdaa88c",
+      "url": "https://github.com/veorq/SipHash/blob/32d067603b93b47828700880649198e0bfbbcffa/siphash.c",
+      "license_file": "data/licenses/veorq_SipHash/LICENSE_CC0"
+    }
+  ],
+  "adaptation": "Complete 64-bit SipHash-2-4 for a 0–15 byte message and an arbitrary 128-bit key.\n\nAll byte strings are packed byte 0 at the low end. Only the first L=in_length message bytes are used; later bytes have no effect. The key is two little-endian 64-bit words k0,k1. Initialize (v0,v1,v2,v3) by xoring (k0,k1,k0,k1) into (0x736f6d6570736575,0x646f72616e646f6d,0x6c7967656e657261,0x7465646279746573).\n\nA SipRound performs the following sequential updates (all additions modulo 2^64, all rotations on 64 bits): v0+=v1; v1=ROTL(v1,13) xor v0; v0=ROTL(v0,32); v2+=v3; v3=ROTL(v3,16) xor v2; v0+=v3; v3=ROTL(v3,21) xor v0; v2+=v1; v1=ROTL(v1,17) xor v2; v2=ROTL(v2,32). To absorb a word m, xor m into v3, apply TWO SipRounds, then xor m into v0.\n\nIf L>=8, first absorb the first eight bytes as a little-endian word. Always absorb a final word b=(L<<56) OR the remaining L mod 8 bytes, packed at its low end with unused bytes zero. Thus L=8 still absorbs a separate final length word; L=0 absorbs a zero word. Then xor 0xff into v2, apply FOUR SipRounds, and return v0 xor v1 xor v2 xor v3. This is the selected reference siphash(...,outlen=8), not its 128-bit or reduced-round variants. No state persists between requests.",
+  "difficulty": "medium"
+}

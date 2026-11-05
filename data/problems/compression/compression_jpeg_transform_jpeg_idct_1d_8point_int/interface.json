@@ -1,0 +1,276 @@
+{
+  "version": "task-contract/16",
+  "endpoints": [
+    {
+      "name": "in",
+      "direction": "in",
+      "fields": [
+        {
+          "name": "in_coef0",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_coef0"
+        },
+        {
+          "name": "in_coef1",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_coef1"
+        },
+        {
+          "name": "in_coef2",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_coef2"
+        },
+        {
+          "name": "in_coef3",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_coef3"
+        },
+        {
+          "name": "in_coef4",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_coef4"
+        },
+        {
+          "name": "in_coef5",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_coef5"
+        },
+        {
+          "name": "in_coef6",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_coef6"
+        },
+        {
+          "name": "in_coef7",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_coef7"
+        },
+        {
+          "name": "in_quant0",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_quant0"
+        },
+        {
+          "name": "in_quant1",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_quant1"
+        },
+        {
+          "name": "in_quant2",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_quant2"
+        },
+        {
+          "name": "in_quant3",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_quant3"
+        },
+        {
+          "name": "in_quant4",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_quant4"
+        },
+        {
+          "name": "in_quant5",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_quant5"
+        },
+        {
+          "name": "in_quant6",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_quant6"
+        },
+        {
+          "name": "in_quant7",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_quant7"
+        }
+      ],
+      "adapter": {
+        "name": "ready-valid",
+        "version": 1,
+        "environment_controls": [
+          "in_valid"
+        ],
+        "artifact_controls": [
+          "in_ready"
+        ],
+        "monitor_state": [
+          "outstanding",
+          "stall_cycles"
+        ]
+      },
+      "clock": "clk",
+      "matching": "ordered",
+      "identifier": null,
+      "max_outstanding": null,
+      "response_deadline": null,
+      "answers_per_transaction": null,
+      "terminal_quiescence": null,
+      "reset_policy": null,
+      "kind": "transaction"
+    },
+    {
+      "name": "out",
+      "direction": "out",
+      "fields": [
+        {
+          "name": "out_s0",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "out_s0"
+        },
+        {
+          "name": "out_s1",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "out_s1"
+        },
+        {
+          "name": "out_s2",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "out_s2"
+        },
+        {
+          "name": "out_s3",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "out_s3"
+        },
+        {
+          "name": "out_s4",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "out_s4"
+        },
+        {
+          "name": "out_s5",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "out_s5"
+        },
+        {
+          "name": "out_s6",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "out_s6"
+        },
+        {
+          "name": "out_s7",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "out_s7"
+        }
+      ],
+      "adapter": {
+        "name": "ready-valid",
+        "version": 1,
+        "environment_controls": [
+          "out_ready"
+        ],
+        "artifact_controls": [
+          "out_valid"
+        ],
+        "monitor_state": [
+          "outstanding",
+          "stall_cycles"
+        ]
+      },
+      "clock": "clk",
+      "matching": "ordered",
+      "identifier": null,
+      "max_outstanding": null,
+      "response_deadline": null,
+      "answers_per_transaction": null,
+      "terminal_quiescence": null,
+      "reset_policy": null,
+      "kind": "transaction"
+    }
+  ],
+  "clocks": [
+    {
+      "name": "clk",
+      "clock": "clk",
+      "edge": "rising",
+      "reset": "rst",
+      "reset_active_low": false,
+      "reset_hold_cycles": 3,
+      "reset_restores": null
+    }
+  ],
+  "memories": [],
+  "protocol_instances": [],
+  "observation_goals": [],
+  "transaction_monitors": [],
+  "latency_goals": [],
+  "operation_rules": [],
+  "source_read_rules": [],
+  "authority": "task",
+  "source": "declared by compression_jpeg_transform_jpeg_idct_1d_8point_int",
+  "physical_value_layout": "packed-value/1"
+}

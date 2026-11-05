@@ -1,0 +1,22 @@
+{
+  "id": "ai_ml_integer_hard_swish_q8",
+  "source_kind": "ai_ml",
+  "name": "HardSwishQ8",
+  "family": "hard_swish_q8",
+  "tier": 2,
+  "license": "Apache-2.0",
+  "provenance": [
+    {
+      "repository": "https://github.com/onnx/onnx",
+      "revision": "57b9c6a4f6eebb09ae1b34cfb632078518f72832",
+      "license": "Apache-2.0",
+      "file": "onnx/backend/test/case/node/hardswish.py",
+      "symbol": "hardswish",
+      "sha256": "9ceb50c57020a25300fb000837023c2d0a87fd8df01a612d069380e8ae017cd8",
+      "url": "https://github.com/onnx/onnx/blob/57b9c6a4f6eebb09ae1b34cfb632078518f72832/onnx/backend/test/case/node/hardswish.py",
+      "license_file": "data/licenses/onnx_onnx/LICENSE"
+    }
+  ],
+  "adaptation": "Apply hard-swish independently to eight signed INT16 Q8.8 lanes. For a raw lane X set T=min(1536,max(0,X+768)). The output raw integer is nearest(X*T/1536), with exact half values away from zero. Compute the product exactly and round once; do not round the gate first. This is x*clip(x/6+1/2,0,1) in Q8.8. Every output fits signed INT16; there is no wrap or saturation. Values below -3 map to zero, and values above +3 pass through.",
+  "difficulty": "medium"
+}

@@ -1,0 +1,137 @@
+// Judge-owned bounded hit collector. The callback returns no value and has no
+// DUT handles, I/O, allocation or per-activation log. Source callbacks carry
+// a construction-bound scope token; they never inspect or evaluate a DUT signal.
+// Every status fault is sticky for this process: retry cannot erase lost events.
+#include <array>
+#include <cstdint>
+#include <limits>
+#include <mutex>
+// Read anchors preserve native data dependencies. This sink cannot observe a
+// DUT handle, emit a hit, change state, allocate, or perform I/O.
+extern "C" void __behave_native_event_dependency(unsigned char) {}
+#if $has_contexts
+#include <cstring>
+#endif
+
+namespace {
+constexpr uint32_t event_count = $event_count;
+constexpr uint64_t callback_limit = $callback_limit;
+constexpr size_t word_count = event_count ? (event_count + 63) / 64 : 1;
+std::array<uint64_t, word_count> hits{};
+std::mutex gate;
+uint64_t next_sequence = 0, calls = 0;
+bool active = false, finished = false;
+int fault = 0;
+#if $has_contexts
+struct SourceScope { const char* name; uint32_t begin, end; };
+constexpr SourceScope scopes[] = {
+$scope_rows
+};
+constexpr uint32_t scope_count = $scope_count;
+constexpr unsigned source_events[] = {$source_events};
+#endif
+
+int poison(int code) {
+    if (!fault) fault = code;
+    return fault;
+}
+
+void record(unsigned id) {
+    if (fault) return;
+    if (!active || finished) { poison(1); return; }
+    if (id >= event_count) { poison(2); return; }
+    if (calls == callback_limit) { poison(3); return; }
+    ++calls;
+    hits[id / 64] |= uint64_t{1} << (id % 64);
+}
+}
+
+extern "C" const char* behave_native_events_identity_v1() {
+    return "$identity";
+}
+
+extern "C" void __behave_native_event_hit(unsigned id) {
+    std::lock_guard<std::mutex> lock{gate};
+    record(id);
+}
+
+extern "C" unsigned __behave_native_event_scope_id(const char* name) {
+#if $has_contexts
+    if (!name) return std::numeric_limits<unsigned>::max();
+    size_t low = 0, high = scope_count;
+    while (low < high) {
+        const size_t mid = low + (high-low)/2;
+        if (std::strcmp(name, scopes[mid].name) > 0) low = mid+1;
+        else high = mid;
+    }
+    // Unused declaration scopes need no event coordinate. A callback using an
+    // unknown token is rejected below; initialization itself records no event.
+    return low < scope_count && !std::strcmp(name, scopes[low].name)
+        ? static_cast<unsigned>(low) : std::numeric_limits<unsigned>::max();
+#else
+    (void)name;
+    return 0;
+#endif
+}
+
+extern "C" void __behave_native_event_source_hit(unsigned source, unsigned scope) {
+#if $has_contexts
+    std::lock_guard<std::mutex> lock{gate};
+    if (fault) return;
+    if (!active || finished) { poison(1); return; }
+    if (calls == callback_limit) { poison(3); return; }
+    if (scope >= scope_count) { poison(5); return; }
+    // Scope strings are resolved once, not searched on every callback.
+    const auto& owner = scopes[scope];
+    size_t low = owner.begin, high = owner.end;
+    while (low < high) {
+        const size_t mid = low + (high - low) / 2;
+        if (source > source_events[mid]) low = mid + 1;
+        else high = mid;
+    }
+    if (low == owner.end || source != source_events[low]) { poison(5); return; }
+    record(static_cast<unsigned>(low));
+#else
+    (void)scope;
+    __behave_native_event_hit(source);
+#endif
+}
+
+extern "C" int behave_native_events_begin_v1(uint64_t sequence) {
+    std::lock_guard<std::mutex> lock{gate};
+    if (fault) return fault;
+    if (active || finished || sequence != next_sequence
+        || sequence == std::numeric_limits<uint64_t>::max()) return poison(4);
+    hits.fill(0);
+    calls = 0;
+    active = true;
+    return 0;
+}
+
+extern "C" int behave_native_events_end_v1(uint64_t sequence, uint64_t* words,
+                                          uint64_t count, uint64_t* callbacks) {
+    std::lock_guard<std::mutex> lock{gate};
+    if (fault) return fault;
+    if (!active || finished || sequence != next_sequence || !words || !callbacks
+        || count != word_count) return poison(4);
+    for (size_t i = 0; i < word_count; ++i) words[i] = hits[i];
+    *callbacks = calls;
+    active = false;
+    ++next_sequence;
+    return 0;
+}
+
+extern "C" int behave_native_events_checkpoint_v1(uint64_t sequence) {
+    std::lock_guard<std::mutex> lock{gate};
+    if (fault) return fault;
+    if (active || finished || !next_sequence || sequence != next_sequence) return poison(4);
+    return 0;
+}
+
+extern "C" int behave_native_events_finish_v1() {
+    std::lock_guard<std::mutex> lock{gate};
+    if (fault) return fault;
+    if (active || finished || !next_sequence) return poison(4);
+    finished = true;
+    return 0;
+}

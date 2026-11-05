@@ -1,0 +1,188 @@
+{
+  "version": "task-contract/16",
+  "endpoints": [
+    {
+      "name": "in",
+      "direction": "in",
+      "fields": [
+        {
+          "name": "in_all_random",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "in_all_random"
+        },
+        {
+          "name": "in_greedy_token",
+          "type": {
+            "width": 2,
+            "signed": false
+          },
+          "port": "in_greedy_token"
+        },
+        {
+          "name": "in_logit0",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_logit0"
+        },
+        {
+          "name": "in_logit1",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_logit1"
+        },
+        {
+          "name": "in_logit2",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_logit2"
+        },
+        {
+          "name": "in_logit3",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_logit3"
+        },
+        {
+          "name": "in_random_token",
+          "type": {
+            "width": 2,
+            "signed": false
+          },
+          "port": "in_random_token"
+        },
+        {
+          "name": "in_temperature",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_temperature"
+        }
+      ],
+      "adapter": {
+        "name": "ready-valid",
+        "version": 1,
+        "environment_controls": [
+          "in_valid"
+        ],
+        "artifact_controls": [
+          "in_ready"
+        ],
+        "monitor_state": [
+          "outstanding",
+          "stall_cycles"
+        ]
+      },
+      "clock": "clk",
+      "matching": "ordered",
+      "identifier": null,
+      "max_outstanding": null,
+      "response_deadline": null,
+      "answers_per_transaction": null,
+      "terminal_quiescence": null,
+      "reset_policy": null,
+      "kind": "transaction"
+    },
+    {
+      "name": "out",
+      "direction": "out",
+      "fields": [
+        {
+          "name": "out_logit0",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "out_logit0"
+        },
+        {
+          "name": "out_logit1",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "out_logit1"
+        },
+        {
+          "name": "out_logit2",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "out_logit2"
+        },
+        {
+          "name": "out_logit3",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "out_logit3"
+        },
+        {
+          "name": "out_sampled_token",
+          "type": {
+            "width": 2,
+            "signed": false
+          },
+          "port": "out_sampled_token"
+        }
+      ],
+      "adapter": {
+        "name": "ready-valid",
+        "version": 1,
+        "environment_controls": [
+          "out_ready"
+        ],
+        "artifact_controls": [
+          "out_valid"
+        ],
+        "monitor_state": [
+          "outstanding",
+          "stall_cycles"
+        ]
+      },
+      "clock": "clk",
+      "matching": "ordered",
+      "identifier": null,
+      "max_outstanding": null,
+      "response_deadline": null,
+      "answers_per_transaction": null,
+      "terminal_quiescence": null,
+      "reset_policy": null,
+      "kind": "transaction"
+    }
+  ],
+  "clocks": [
+    {
+      "name": "clk",
+      "clock": "clk",
+      "edge": "rising",
+      "reset": "rst",
+      "reset_active_low": false,
+      "reset_hold_cycles": 3,
+      "reset_restores": null
+    }
+  ],
+  "memories": [],
+  "protocol_instances": [],
+  "observation_goals": [],
+  "transaction_monitors": [],
+  "latency_goals": [],
+  "operation_rules": [],
+  "source_read_rules": [],
+  "authority": "task",
+  "source": "declared by ai_ml_sample_modify_sample_temperature_scale",
+  "physical_value_layout": "packed-value/1"
+}

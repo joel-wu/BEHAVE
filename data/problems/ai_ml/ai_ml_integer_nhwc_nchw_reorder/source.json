@@ -1,0 +1,22 @@
+{
+  "id": "ai_ml_integer_nhwc_nchw_reorder",
+  "source_kind": "ai_ml",
+  "name": "NHWCNCHWReorder",
+  "family": "nhwc_nchw_reorder",
+  "tier": 1,
+  "license": "Apache-2.0",
+  "provenance": [
+    {
+      "repository": "https://github.com/onnx/onnx",
+      "revision": "57b9c6a4f6eebb09ae1b34cfb632078518f72832",
+      "license": "Apache-2.0",
+      "file": "onnx/reference/ops/op_transpose.py",
+      "symbol": "Transpose._run",
+      "sha256": "d064de5a0509b0d4e1c5a5d6cea6e30f3980351a992cd20562cefa52c39c2358",
+      "url": "https://github.com/onnx/onnx/blob/57b9c6a4f6eebb09ae1b34cfb632078518f72832/onnx/reference/ops/op_transpose.py",
+      "license_file": "data/licenses/onnx_onnx/LICENSE"
+    }
+  ],
+  "adaptation": "Reorder all 16 eight-bit elements of a tensor with N=1,H=W=2,C=4. With in_reverse=0, input is NHWC, output NCHW: out[4*c+2*h+w]=in[(2*h+w)*4+c]. With in_reverse=1 apply the inverse mapping. Element bits are copied unchanged. This is data movement, not arithmetic.",
+  "difficulty": "basic"
+}

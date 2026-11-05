@@ -1,0 +1,160 @@
+{
+  "version": "task-contract/8",
+  "endpoints": [
+    {
+      "name": "in",
+      "direction": "in",
+      "fields": [
+        {
+          "name": "w_clk_level",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "w_clk_level"
+        },
+        {
+          "name": "r_clk_level",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "r_clk_level"
+        },
+        {
+          "name": "w_reset_level",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "w_reset_level"
+        },
+        {
+          "name": "r_reset_level",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "r_reset_level"
+        },
+        {
+          "name": "push",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "push"
+        },
+        {
+          "name": "pop",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "pop"
+        },
+        {
+          "name": "w_data",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "w_data"
+        }
+      ],
+      "adapter": {
+        "name": "combinational-settled",
+        "version": 1,
+        "environment_controls": [],
+        "artifact_controls": [],
+        "monitor_state": []
+      },
+      "clock": null,
+      "matching": "ordered",
+      "identifier": null,
+      "max_outstanding": null,
+      "response_deadline": null,
+      "answers_per_transaction": null,
+      "terminal_quiescence": null,
+      "reset_policy": null,
+      "kind": "transaction"
+    },
+    {
+      "name": "out",
+      "direction": "out",
+      "fields": [
+        {
+          "name": "r_data",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "r_data"
+        },
+        {
+          "name": "r_empty",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "r_empty"
+        },
+        {
+          "name": "w_full",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "w_full"
+        },
+        {
+          "name": "r_busy",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "r_busy"
+        },
+        {
+          "name": "r_valid",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "r_valid"
+        }
+      ],
+      "adapter": {
+        "name": "combinational-settled",
+        "version": 1,
+        "environment_controls": [],
+        "artifact_controls": [],
+        "monitor_state": []
+      },
+      "clock": null,
+      "matching": "ordered",
+      "identifier": null,
+      "max_outstanding": null,
+      "response_deadline": null,
+      "answers_per_transaction": 1,
+      "terminal_quiescence": null,
+      "reset_policy": null,
+      "kind": "transaction"
+    }
+  ],
+  "clocks": [],
+  "memories": [],
+  "protocol_instances": [
+    {
+      "name": "compute",
+      "endpoints": [
+        "in",
+        "out"
+      ],
+      "mapping": "direct/1"
+    }
+  ],
+  "authority": "task",
+  "source": "Source-native storage with explicit settled phase-level observation and documented startup; batch2148 audit",
+  "physical_value_layout": "packed-value/1"
+}

@@ -1,0 +1,22 @@
+{
+  "id": "ai_ml_integer_gather_nd_batch2",
+  "source_kind": "ai_ml",
+  "name": "GatherNDBatch2",
+  "family": "gather_nd_batch2",
+  "tier": 2,
+  "license": "Apache-2.0",
+  "provenance": [
+    {
+      "repository": "https://github.com/onnx/onnx",
+      "revision": "57b9c6a4f6eebb09ae1b34cfb632078518f72832",
+      "license": "Apache-2.0",
+      "file": "onnx/reference/ops/op_gathernd.py",
+      "symbol": "_gather_nd_impl / batch_dims",
+      "sha256": "ee7ec87abe935157ab3b12f09dd4c20ecf528890e3451b32e963253d8a54c4b6",
+      "url": "https://github.com/onnx/onnx/blob/57b9c6a4f6eebb09ae1b34cfb632078518f72832/onnx/reference/ops/op_gathernd.py",
+      "license_file": "data/licenses/onnx_onnx/LICENSE"
+    }
+  ],
+  "adaptation": "Batched coordinate gather from a [2,4,4,2] tensor of raw bytes.\n\nInput uses row-major indices [batch,row,column,channel]. Indices have shape [2,3,2]: for each batch and each of three requests, two signed three-bit values specify row and column. Every value -4..3 is legal: a negative coordinate adds four, independently for each axis. Return shape [2,3,2], preserving both channels, batch ownership, request order and repeated coordinates. Formally Y[b,q,c]=X[b,wrap(I[b,q,0]),wrap(I[b,q,1]),c]. No coordinate is broadcast across batches. This is ONNX GatherND with batch_dims=1 and two indexed axes; all element bits are preserved.",
+  "difficulty": "medium"
+}

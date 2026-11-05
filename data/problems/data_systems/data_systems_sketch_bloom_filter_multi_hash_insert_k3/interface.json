@@ -1,0 +1,140 @@
+{
+  "version": "task-contract/16",
+  "endpoints": [
+    {
+      "name": "in",
+      "direction": "in",
+      "fields": [
+        {
+          "name": "in_insert",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "in_insert"
+        },
+        {
+          "name": "in_key",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_key"
+        }
+      ],
+      "adapter": {
+        "name": "ready-valid",
+        "version": 1,
+        "environment_controls": [
+          "in_valid"
+        ],
+        "artifact_controls": [
+          "in_ready"
+        ],
+        "monitor_state": [
+          "outstanding",
+          "stall_cycles"
+        ]
+      },
+      "clock": "clk",
+      "matching": "ordered",
+      "identifier": null,
+      "max_outstanding": null,
+      "response_deadline": null,
+      "answers_per_transaction": null,
+      "terminal_quiescence": null,
+      "reset_policy": null,
+      "kind": "transaction"
+    },
+    {
+      "name": "out",
+      "direction": "out",
+      "fields": [
+        {
+          "name": "out_bits",
+          "type": {
+            "width": 1024,
+            "signed": false
+          },
+          "port": "out_bits"
+        },
+        {
+          "name": "out_idx0",
+          "type": {
+            "width": 10,
+            "signed": false
+          },
+          "port": "out_idx0"
+        },
+        {
+          "name": "out_idx1",
+          "type": {
+            "width": 10,
+            "signed": false
+          },
+          "port": "out_idx1"
+        },
+        {
+          "name": "out_idx2",
+          "type": {
+            "width": 10,
+            "signed": false
+          },
+          "port": "out_idx2"
+        },
+        {
+          "name": "out_present",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "out_present"
+        }
+      ],
+      "adapter": {
+        "name": "ready-valid",
+        "version": 1,
+        "environment_controls": [
+          "out_ready"
+        ],
+        "artifact_controls": [
+          "out_valid"
+        ],
+        "monitor_state": [
+          "outstanding",
+          "stall_cycles"
+        ]
+      },
+      "clock": "clk",
+      "matching": "ordered",
+      "identifier": null,
+      "max_outstanding": null,
+      "response_deadline": null,
+      "answers_per_transaction": null,
+      "terminal_quiescence": null,
+      "reset_policy": null,
+      "kind": "transaction"
+    }
+  ],
+  "clocks": [
+    {
+      "name": "clk",
+      "clock": "clk",
+      "edge": "rising",
+      "reset": "rst",
+      "reset_active_low": false,
+      "reset_hold_cycles": 3,
+      "reset_restores": null
+    }
+  ],
+  "memories": [],
+  "protocol_instances": [],
+  "observation_goals": [],
+  "transaction_monitors": [],
+  "latency_goals": [],
+  "operation_rules": [],
+  "source_read_rules": [],
+  "authority": "task",
+  "source": "declared by data_systems_sketch_bloom_filter_multi_hash_insert_k3",
+  "physical_value_layout": "packed-value/1"
+}

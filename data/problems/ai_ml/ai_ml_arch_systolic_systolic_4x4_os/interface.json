@@ -1,0 +1,188 @@
+{
+  "version": "task-contract/16",
+  "endpoints": [
+    {
+      "name": "in",
+      "direction": "in",
+      "fields": [
+        {
+          "name": "in_a",
+          "type": {
+            "width": 64,
+            "signed": false
+          },
+          "port": "in_a"
+        },
+        {
+          "name": "in_b",
+          "type": {
+            "width": 64,
+            "signed": false
+          },
+          "port": "in_b"
+        },
+        {
+          "name": "in_d",
+          "type": {
+            "width": 64,
+            "signed": false
+          },
+          "port": "in_d"
+        },
+        {
+          "name": "in_ids",
+          "type": {
+            "width": 8,
+            "signed": false
+          },
+          "port": "in_ids"
+        },
+        {
+          "name": "in_lanes",
+          "type": {
+            "width": 4,
+            "signed": false
+          },
+          "port": "in_lanes"
+        },
+        {
+          "name": "in_last",
+          "type": {
+            "width": 4,
+            "signed": false
+          },
+          "port": "in_last"
+        },
+        {
+          "name": "in_propagate",
+          "type": {
+            "width": 4,
+            "signed": false
+          },
+          "port": "in_propagate"
+        }
+      ],
+      "adapter": {
+        "name": "ready-valid",
+        "version": 1,
+        "environment_controls": [
+          "in_valid"
+        ],
+        "artifact_controls": [
+          "in_ready"
+        ],
+        "monitor_state": [
+          "outstanding",
+          "stall_cycles"
+        ]
+      },
+      "clock": "clk",
+      "matching": "ordered",
+      "identifier": null,
+      "max_outstanding": null,
+      "response_deadline": null,
+      "answers_per_transaction": null,
+      "terminal_quiescence": null,
+      "reset_policy": null,
+      "kind": "transaction"
+    },
+    {
+      "name": "out",
+      "direction": "out",
+      "fields": [
+        {
+          "name": "out_b",
+          "type": {
+            "width": 64,
+            "signed": false
+          },
+          "port": "out_b"
+        },
+        {
+          "name": "out_c",
+          "type": {
+            "width": 64,
+            "signed": false
+          },
+          "port": "out_c"
+        },
+        {
+          "name": "out_ids",
+          "type": {
+            "width": 8,
+            "signed": false
+          },
+          "port": "out_ids"
+        },
+        {
+          "name": "out_lanes",
+          "type": {
+            "width": 4,
+            "signed": false
+          },
+          "port": "out_lanes"
+        },
+        {
+          "name": "out_last",
+          "type": {
+            "width": 4,
+            "signed": false
+          },
+          "port": "out_last"
+        },
+        {
+          "name": "out_propagate",
+          "type": {
+            "width": 4,
+            "signed": false
+          },
+          "port": "out_propagate"
+        }
+      ],
+      "adapter": {
+        "name": "ready-valid",
+        "version": 1,
+        "environment_controls": [
+          "out_ready"
+        ],
+        "artifact_controls": [
+          "out_valid"
+        ],
+        "monitor_state": [
+          "outstanding",
+          "stall_cycles"
+        ]
+      },
+      "clock": "clk",
+      "matching": "ordered",
+      "identifier": null,
+      "max_outstanding": null,
+      "response_deadline": null,
+      "answers_per_transaction": null,
+      "terminal_quiescence": null,
+      "reset_policy": null,
+      "kind": "transaction"
+    }
+  ],
+  "clocks": [
+    {
+      "name": "clk",
+      "clock": "clk",
+      "edge": "rising",
+      "reset": "rst",
+      "reset_active_low": false,
+      "reset_hold_cycles": 3,
+      "reset_restores": null
+    }
+  ],
+  "memories": [],
+  "protocol_instances": [],
+  "observation_goals": [],
+  "transaction_monitors": [],
+  "latency_goals": [],
+  "operation_rules": [],
+  "source_read_rules": [],
+  "authority": "task",
+  "source": "declared by ai_ml_arch_systolic_systolic_4x4_os",
+  "physical_value_layout": "packed-value/1"
+}

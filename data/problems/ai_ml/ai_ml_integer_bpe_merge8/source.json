@@ -1,0 +1,22 @@
+{
+  "id": "ai_ml_integer_bpe_merge8",
+  "source_kind": "ai_ml",
+  "name": "BPEMerge8",
+  "family": "bpe_merge8",
+  "tier": 2,
+  "license": "Apache-2.0",
+  "provenance": [
+    {
+      "repository": "https://github.com/huggingface/tokenizers",
+      "revision": "b63262a481495453011bf7a3b27995d6611dfae7",
+      "license": "Apache-2.0",
+      "file": "tokenizers/src/models/bpe/word.rs",
+      "symbol": "Merge::cmp / Word::merge_all",
+      "sha256": "90c8014d1691eed20abb99cd385777344e6c556443a0005647af795aee7f43c3",
+      "url": "https://github.com/huggingface/tokenizers/blob/b63262a481495453011bf7a3b27995d6611dfae7/tokenizers/src/models/bpe/word.rs",
+      "license_file": "data/licenses/huggingface_tokenizers/LICENSE"
+    }
+  ],
+  "adaptation": "Complete bounded byte-pair merge loop on eight token slots and eight ranked merge rules.\n\nL=min(8,in_length); tokens are unsigned four-bit vocabulary IDs. Rule r is a 12-bit word left | (right<<4) | (replacement<<8), active iff its mask bit is set. Lower r means higher priority. Repeatedly select an adjacent matching pair by smallest rule index, then leftmost position; replace it and compact the sequence. Stop when no rule matches or only one token remains (at most seven merges). Duplicate pair definitions use the first active rule. Return up to eight four-bit tokens, zero padded, Lout at bits 32..35 and number of merges at 36..38. No dropout, byte pretokenization or text normalization is included. This is the complete Word.merge_all core with deterministic rank/position ordering.",
+  "difficulty": "challenge"
+}

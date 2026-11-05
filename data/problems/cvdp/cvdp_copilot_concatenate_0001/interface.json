@@ -1,0 +1,210 @@
+{
+  "version": "task-contract/8",
+  "endpoints": [
+    {
+      "name": "in",
+      "direction": "in",
+      "fields": [
+        {
+          "name": "i_enable",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "i_enable"
+        },
+        {
+          "name": "i_clear",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "i_clear"
+        },
+        {
+          "name": "i_ack",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "i_ack"
+        },
+        {
+          "name": "i_fault",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "i_fault"
+        },
+        {
+          "name": "i_vector_1",
+          "type": {
+            "width": 5,
+            "signed": false
+          },
+          "port": "i_vector_1"
+        },
+        {
+          "name": "i_vector_2",
+          "type": {
+            "width": 5,
+            "signed": false
+          },
+          "port": "i_vector_2"
+        },
+        {
+          "name": "i_vector_3",
+          "type": {
+            "width": 5,
+            "signed": false
+          },
+          "port": "i_vector_3"
+        },
+        {
+          "name": "i_vector_4",
+          "type": {
+            "width": 5,
+            "signed": false
+          },
+          "port": "i_vector_4"
+        },
+        {
+          "name": "i_vector_5",
+          "type": {
+            "width": 5,
+            "signed": false
+          },
+          "port": "i_vector_5"
+        },
+        {
+          "name": "i_vector_6",
+          "type": {
+            "width": 5,
+            "signed": false
+          },
+          "port": "i_vector_6"
+        }
+      ],
+      "adapter": {
+        "name": "sampled-edge",
+        "version": 1,
+        "environment_controls": [],
+        "artifact_controls": [],
+        "monitor_state": []
+      },
+      "clock": "i",
+      "matching": "ordered",
+      "identifier": null,
+      "max_outstanding": null,
+      "response_deadline": null,
+      "answers_per_transaction": null,
+      "terminal_quiescence": null,
+      "reset_policy": null,
+      "kind": "transaction"
+    },
+    {
+      "name": "out",
+      "direction": "out",
+      "fields": [
+        {
+          "name": "o_ready",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "o_ready"
+        },
+        {
+          "name": "o_error",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "o_error"
+        },
+        {
+          "name": "o_fsm_status",
+          "type": {
+            "width": 2,
+            "signed": false
+          },
+          "port": "o_fsm_status"
+        },
+        {
+          "name": "o_vector_1",
+          "type": {
+            "width": 8,
+            "signed": false
+          },
+          "port": "o_vector_1"
+        },
+        {
+          "name": "o_vector_2",
+          "type": {
+            "width": 8,
+            "signed": false
+          },
+          "port": "o_vector_2"
+        },
+        {
+          "name": "o_vector_3",
+          "type": {
+            "width": 8,
+            "signed": false
+          },
+          "port": "o_vector_3"
+        },
+        {
+          "name": "o_vector_4",
+          "type": {
+            "width": 8,
+            "signed": false
+          },
+          "port": "o_vector_4"
+        }
+      ],
+      "adapter": {
+        "name": "sampled-edge",
+        "version": 1,
+        "environment_controls": [],
+        "artifact_controls": [],
+        "monitor_state": []
+      },
+      "clock": "i",
+      "matching": "ordered",
+      "identifier": null,
+      "max_outstanding": null,
+      "response_deadline": null,
+      "answers_per_transaction": 1,
+      "terminal_quiescence": null,
+      "reset_policy": null,
+      "kind": "transaction"
+    }
+  ],
+  "clocks": [
+    {
+      "name": "i",
+      "clock": "i_clk",
+      "edge": "rising",
+      "reset": "i_rst_n",
+      "reset_active_low": true,
+      "reset_hold_cycles": 3,
+      "reset_restores": true
+    }
+  ],
+  "memories": [],
+  "protocol_instances": [
+    {
+      "name": "compute",
+      "endpoints": [
+        "in",
+        "out"
+      ],
+      "mapping": "direct/1"
+    }
+  ],
+  "authority": "task",
+  "source": "Original CVDP native control semantics; explicit source completions in batch95 audit",
+  "physical_value_layout": "packed-value/1"
+}

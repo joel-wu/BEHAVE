@@ -1,0 +1,1 @@
+Delete one workspace file.

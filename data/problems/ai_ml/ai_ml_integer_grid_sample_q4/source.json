@@ -1,0 +1,22 @@
+{
+  "id": "ai_ml_integer_grid_sample_q4",
+  "source_kind": "ai_ml",
+  "name": "GridSampleQ4",
+  "family": "grid_sample_q4",
+  "tier": 2,
+  "license": "Apache-2.0",
+  "provenance": [
+    {
+      "repository": "https://github.com/onnx/onnx",
+      "revision": "57b9c6a4f6eebb09ae1b34cfb632078518f72832",
+      "license": "Apache-2.0",
+      "file": "onnx/reference/ops/op_grid_sample.py",
+      "symbol": "GridSample coordinate denormalization and linear interpolation, zeros/border",
+      "sha256": "876e1efdb6ea6653558077ffefe40a72d5bbad7cd95bb84e74cdad7f906b2059",
+      "url": "https://github.com/onnx/onnx/blob/57b9c6a4f6eebb09ae1b34cfb632078518f72832/onnx/reference/ops/op_grid_sample.py",
+      "license_file": "data/licenses/onnx_onnx/LICENSE"
+    }
+  ],
+  "adaptation": "Bilinear sampling of an NCHW [1,2,3,3] signed INT8 feature map using four independent grid points.\n\nGrid is [1,2,2,2]: each point is (gx,gy), each coordinate a signed INT8 raw value representing raw/16. Input feature values are integers, not normalized bytes. Output is NCHW [1,2,2,2], eight signed INT16 lanes representing sampled values in units 1/256. For a coordinate g=raw/16, if in_align_corners=1 use p=(g+1)*(3-1)/2; otherwise p=((g+1)*3-1)/2. Compute px from gx and py from gy. Set ix=floor(px), iy=floor(py), fx=px-ix, fy=py-iy. The four samples at (iy,ix),(iy,ix+1),(iy+1,ix),(iy+1,ix+1) have weights (1-fy)*(1-fx),(1-fy)*fx,fy*(1-fx),fy*fx. If in_border=0, every individually out-of-range neighbor contributes zero. If in_border=1, clamp each neighbor index independently to [0,2] before reading. Return 256 times the exact weighted sum, rounded once to nearest integer with ties away from zero. Do not round between the horizontal and vertical interpolations; do not truncate negative coordinates toward zero. All output lanes fit signed INT16. This specializes ONNX linear GridSample to two dimensions, zeros/border padding and exact finite fixed-point coordinates; cubic, nearest and reflection modes are outside this task.",
+  "difficulty": "medium"
+}

@@ -1,0 +1,32 @@
+{
+  "id": "ai_ml_integer_fully_connected_s8_16x4",
+  "source_kind": "ai_ml",
+  "name": "FullyConnectedS8_16x4",
+  "family": "fully_connected_s8_16x4",
+  "tier": 2,
+  "license": "Apache-2.0",
+  "provenance": [
+    {
+      "repository": "https://github.com/ARM-software/CMSIS-NN",
+      "revision": "22080c68d040c98139e6cb1549473e3149735f4d",
+      "license": "Apache-2.0",
+      "file": "Source/FullyConnectedFunctions/arm_fully_connected_per_channel_s8.c",
+      "symbol": "arm_fully_connected_per_channel_s8",
+      "sha256": "ddc6f0c00b1bb2f769317abf11c11416289f159f75fdb09aa786c62477e21d9c",
+      "url": "https://github.com/ARM-software/CMSIS-NN/blob/22080c68d040c98139e6cb1549473e3149735f4d/Source/FullyConnectedFunctions/arm_fully_connected_per_channel_s8.c",
+      "license_file": "data/licenses/ARM-software_CMSIS-NN/LICENSE"
+    },
+    {
+      "repository": "https://github.com/google/gemmlowp",
+      "revision": "16e8662c34917be0065110bfcd9cc27d30f52fdf",
+      "license": "Apache-2.0",
+      "file": "fixedpoint/fixedpoint.h",
+      "symbol": "SaturatingRoundingDoublingHighMul + RoundingDivideByPOT",
+      "sha256": "f1b11e756ba138b42abd2f39095fd4d740a26b10ff1a8c682c2eb4d273658cf6",
+      "url": "https://github.com/google/gemmlowp/blob/16e8662c34917be0065110bfcd9cc27d30f52fdf/fixedpoint/fixedpoint.h",
+      "license_file": "data/licenses/google_gemmlowp/LICENSE"
+    }
+  ],
+  "adaptation": "Input is 16 signed INT8 activations. Weights are four rows of 16 signed INT8 values, index 16*r+c. Bias is four INT16 lanes. Compute all four INT32 accumulators a[r]=bias[r]+sum(c=0..15,w[r,c]*x[c]). Multiplier r is unsigned 31-bit at bit 31*r; shift r is unsigned four-bit at bit 4*r. Return four INT8 outputs Clip8(R(H(a[r],mult[r]),shift[r])+zero), zero is signed INT8. Bias/input bounds guarantee no accumulator overflow. Weights are symmetric (weight zero point zero), input offset zero; activation clamp is the entire INT8 range. A bounded per-channel integer layer, not the original library's arbitrary-shape API.\n\nDefine H(a,b) for signed 32-bit a,b as follows: if both equal\n-2^31, H=2^31-1. Otherwise set p=a*b in signed 64-bit precision and\nn=2^30 for p>=0, or n=1-2^30 for p<0; H=trunc_toward_zero((p+n)/2^31).\nDefine R(x,e)=floor(x/2^e)+[r>t], with r=x mod 2^e in [0,2^e),\nt=floor((2^e-1)/2)+[x<0]. This is nearest-integer rounding, ties away\nfrom zero (including e=0 as the identity). These are two separate rounding\nsteps, not a fused division. Clip8 saturates to [-128,127].",
+  "difficulty": "medium"
+}

@@ -1,0 +1,33 @@
+--- a/src/V3SchedAcyclic.cpp
++++ b/src/V3SchedAcyclic.cpp
+@@ -159,14 +159,18 @@
+                 AstVarScope* const vscp = refp->varScopep();
+                 SchedAcyclicVarVertex* const vvtxp = getVarVertex(vscp);
+                 // We want to cut the narrowest signals
+                 const int weight = vscp->width() / 8 + 1;
++                // A read/write reference consumes the incoming value before
++                // this occurrence writes it. Match V3OrderGraphBuilder: only
++                // an EARLIER write in this process can suppress the read edge.
++                const bool prevGen = vscp->user2();
+                 // If written, add logic -> var edge
+                 if (refp->access().isWriteOrRW() && !refp->varp()->ignoreSchedWrite()
+                     && !vscp->user2SetOnce())
+                     addEdge(lvtxp, vvtxp, weight, true);
+                 // If read, add var -> logic edge
+                 // Note: Use same heuristic as ordering does to ignore written variables
+                 // TODO: Use live variable analysis.
+-                if (refp->access().isReadOrRW() && !vscp->user3SetOnce() && !vscp->user2()
++                if (refp->access().isReadOrRW() && !vscp->user3SetOnce() && !prevGen
+                     && !forceReadEdgeIgnores.count(vscp))
+                     addEdge(vvtxp, lvtxp, weight, true);
+             });
+--- a/src/V3Options.cpp
++++ b/src/V3Options.cpp
+@@ -1110,6 +1110,7 @@
+     ver += " (behave-call-effects-2)";
+     ver += " (behave-helper-nba-1)";
+     ver += " (behave-case-failures-3)";
++    ver += " (behave-schedule-refs-1)";
+     ver += " rev " + cvtToStr(DTVERSION_rev);
+     return ver;
+ }

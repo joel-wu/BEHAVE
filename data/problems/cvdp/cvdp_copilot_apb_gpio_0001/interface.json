@@ -1,0 +1,178 @@
+{
+  "version": "task-contract/8",
+  "endpoints": [
+    {
+      "name": "in",
+      "direction": "in",
+      "fields": [
+        {
+          "name": "psel",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "psel"
+        },
+        {
+          "name": "paddr",
+          "type": {
+            "width": 6,
+            "signed": false
+          },
+          "port": "paddr"
+        },
+        {
+          "name": "penable",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "penable"
+        },
+        {
+          "name": "pwrite",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "pwrite"
+        },
+        {
+          "name": "pwdata",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "pwdata"
+        },
+        {
+          "name": "gpio_in",
+          "type": {
+            "width": 8,
+            "signed": false
+          },
+          "port": "gpio_in"
+        }
+      ],
+      "adapter": {
+        "name": "sampled-edge",
+        "version": 1,
+        "environment_controls": [],
+        "artifact_controls": [],
+        "monitor_state": []
+      },
+      "clock": "pclk",
+      "matching": "ordered",
+      "identifier": null,
+      "max_outstanding": null,
+      "response_deadline": null,
+      "answers_per_transaction": null,
+      "terminal_quiescence": null,
+      "reset_policy": null,
+      "kind": "transaction"
+    },
+    {
+      "name": "out",
+      "direction": "out",
+      "fields": [
+        {
+          "name": "prdata",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "prdata"
+        },
+        {
+          "name": "pready",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "pready"
+        },
+        {
+          "name": "pslverr",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "pslverr"
+        },
+        {
+          "name": "gpio_out",
+          "type": {
+            "width": 8,
+            "signed": false
+          },
+          "port": "gpio_out"
+        },
+        {
+          "name": "gpio_enable",
+          "type": {
+            "width": 8,
+            "signed": false
+          },
+          "port": "gpio_enable"
+        },
+        {
+          "name": "gpio_int",
+          "type": {
+            "width": 8,
+            "signed": false
+          },
+          "port": "gpio_int"
+        },
+        {
+          "name": "comb_int",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "comb_int"
+        }
+      ],
+      "adapter": {
+        "name": "sampled-edge",
+        "version": 1,
+        "environment_controls": [],
+        "artifact_controls": [],
+        "monitor_state": []
+      },
+      "clock": "pclk",
+      "matching": "ordered",
+      "identifier": null,
+      "max_outstanding": null,
+      "response_deadline": null,
+      "answers_per_transaction": 1,
+      "terminal_quiescence": null,
+      "reset_policy": null,
+      "kind": "transaction"
+    }
+  ],
+  "clocks": [
+    {
+      "name": "pclk",
+      "clock": "pclk",
+      "edge": "rising",
+      "reset": "preset_n",
+      "reset_active_low": true,
+      "reset_hold_cycles": 3,
+      "reset_restores": true
+    }
+  ],
+  "memories": [],
+  "protocol_instances": [
+    {
+      "name": "compute",
+      "endpoints": [
+        "in",
+        "out"
+      ],
+      "mapping": "direct/1"
+    }
+  ],
+  "authority": "task",
+  "source": "Native CVDP clock semantics; batch107 records source completions",
+  "physical_value_layout": "packed-value/1"
+}

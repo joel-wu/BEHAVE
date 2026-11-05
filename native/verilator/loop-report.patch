@@ -1,0 +1,152 @@
+--- a/src/V3GraphAlg.cpp
++++ b/src/V3GraphAlg.cpp
+@@ -30,6 +30,7 @@
+ #include <list>
+ #include <map>
+ #include <numeric>
++#include <unordered_map>
+ #include <vector>
+ 
+ VL_DEFINE_DEBUG_FUNCTIONS;
+@@ -359,17 +360,16 @@
+ //######################################################################
+ //######################################################################
+ // Algorithms - report loops
+-// Changes user()
++// Query-local visitation; reporting does not clear or change graph users.
+ 
+ class GraphAlgRLoops final : GraphAlg<> {
+     std::vector<V3GraphVertex*> m_callTrace;  // List of everything we hit processing so far
+     std::vector<string> m_msgs;  // Output messages
++    std::unordered_map<const V3GraphVertex*, unsigned> m_seen;
+     bool m_done = false;  // Exit algorithm
+ 
+     void main(V3GraphVertex* vertexp) {
+-        // Vertex::m_user begin: 1 indicates processing, 2 indicates completed
+-        // Clear existing ranks
+-        m_graphp->userClearVertices();
++        // 1 indicates processing, 2 completed. Unvisited vertices need no work.
+         m_callTrace.reserve(100);
+         vertexIterate(vertexp, 0);
+     }
+@@ -383,18 +383,18 @@
+         while (m_callTrace.size() <= currentRank) m_callTrace.push_back(vertexp);
+         m_callTrace[currentRank++] = vertexp;
+ 
+-        if (vertexp->user() == 1) {
++        if (m_seen[vertexp] == 1) {
+             for (unsigned i = 0; i < currentRank; i++)
+                 m_msgs.emplace_back(m_graphp->loopsVertexCb(m_callTrace[i]));
+             m_done = true;
+             return;
+         }
+-        if (vertexp->user() == 2) return;  // Already processed it
+-        vertexp->user(1);
++        if (m_seen[vertexp] == 2) return;  // Already processed it
++        m_seen[vertexp] = 1;
+         for (V3GraphEdge& edge : vertexp->outEdges()) {
+             if (followEdge(&edge)) vertexIterate(edge.top(), currentRank);
+         }
+-        vertexp->user(2);
++        m_seen[vertexp] = 2;
+     }
+ 
+ public:
+--- a/src/V3GraphTest.cpp
++++ b/src/V3GraphTest.cpp
+@@ -364,6 +364,79 @@
+     }
+ }
+ 
++class GraphLoopReportTest final : public V3Graph {
++public:
++    string loopsVertexCb(V3GraphVertex* vtxp) override { return vtxp->name() + "\n"; }
++};
++
++static void graphLoopReportSelfTest() {
++    uint32_t seed = 937;
++    const auto random = [&]() {
++        seed = seed * 1664525U + 1013904223U;
++        return seed;
++    };
++    const V3EdgeFuncP filters[] = {
++        V3GraphEdge::followAlwaysTrue,
++        [](const V3GraphEdge* edgep) { return edgep->weight() > 1; }
++    };
++    for (unsigned trial = 0; trial < 1000; ++trial) {
++        GraphLoopReportTest graph;
++        std::vector<V3GraphVertex*> vertices;
++        const unsigned count = 2 + random() % 32;
++        for (unsigned i = 0; i < count; ++i) {
++            auto* const vp = new V3GraphTestVertex{&graph, std::to_string(i)};
++            vp->user(17);
++            vertices.push_back(vp);
++        }
++        for (unsigned i = 0; i < count * 3; ++i) {
++            const unsigned a = random() % count;
++            const unsigned b = random() % count;
++            new V3GraphEdge{&graph, vertices[a], vertices[b], int(random() % 3)};
++        }
++        for (V3EdgeFuncP filter : filters) {
++            for (V3GraphVertex* startp : vertices) {
++                std::unordered_set<V3GraphVertex*> active, completed;
++                std::vector<V3GraphVertex*> path;
++                const auto walk = [&](auto&& self, V3GraphVertex* vp) -> bool {
++                    path.push_back(vp);
++                    if (active.count(vp)) return true;
++                    if (!completed.count(vp)) {
++                        active.insert(vp);
++                        for (const V3GraphEdge& edge : vp->outEdges()) {
++                            if (edge.weight() && filter(&edge) && self(self, edge.top())) return true;
++                        }
++                        active.erase(vp);
++                        completed.insert(vp);
++                    }
++                    path.pop_back();
++                    return false;
++                };
++                walk(walk, startp);
++                std::string expected;
++                for (V3GraphVertex* vp : path) expected += graph.loopsVertexCb(vp);
++                UASSERT(graph.reportLoops(filter, startp) == expected,
++                        "Loop diagnostic differs from independent DFS");
++                for (V3GraphVertex* vp : vertices) {
++                    UASSERT(vp->user() == 17, "Loop reporting changed graph user state");
++                }
++            }
++        }
++    }
++    // Numerous unrelated components must not require a full clear per report.
++    GraphLoopReportTest graph;
++    std::vector<V3GraphVertex*> vertices;
++    for (unsigned i = 0; i < 16384; ++i) {
++        auto* const vp = new V3GraphTestVertex{&graph, std::to_string(i)};
++        new V3GraphEdge{&graph, vp, vp, 1};
++        vertices.push_back(vp);
++    }
++    for (V3GraphVertex* vp : vertices) {
++        const auto entry = graph.loopsVertexCb(vp);
++        UASSERT(graph.reportLoops(V3GraphEdge::followAlwaysTrue, vp) == entry + entry,
++                "A self-loop must retain both endpoints");
++    }
++}
++
+ void V3Graph::selfTest() {
+     // Execute all of the tests
+     UINFO(2, __FUNCTION__ << ":");
+@@ -372,4 +445,5 @@
+     { V3GraphTestVars{}.run(); }
+     { V3GraphTestImport{}.run(); }
+     graphPathCheckSelfTest();
++    graphLoopReportSelfTest();
+ }
+--- a/src/V3Options.cpp
++++ b/src/V3Options.cpp
+@@ -1104,6 +1104,7 @@
+     ver += " (behave-case-effects-2)";
+     ver += " (behave-dfg-selection-2)";
+     ver += " (behave-graph-path-2)";
++    ver += " (behave-loop-report-1)";
+     ver += " rev " + cvtToStr(DTVERSION_rev);
+     return ver;
+ }

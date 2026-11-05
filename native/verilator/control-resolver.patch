@@ -1,0 +1,56 @@
+--- a/src/V3Control.cpp
++++ b/src/V3Control.cpp
+@@ -39,6 +39,8 @@
+     mutable V3Mutex m_mutex;  // protects members
+     // Pattern strings (wildcard, or simple name) to entities
+     std::map<const std::string, T> m_mapPatterns VL_GUARDED_BY(m_mutex);
++    // Literal names use direct lookup; only actual wildcards need a scan.
++    std::set<std::string> m_wildcardPatterns VL_GUARDED_BY(m_mutex);
+     // Resolved strings to converged entities - nullptr, iff none of the patterns applies
+     std::map<const std::string, std::unique_ptr<T>> m_mapResolved VL_GUARDED_BY(m_mutex);
+ 
+@@ -55,6 +57,7 @@
+         // well.
+         m_mapResolved.clear();
+         for (const auto& itr : other.m_mapPatterns) m_mapPatterns[itr.first].update(itr.second);
++        m_wildcardPatterns.insert(other.m_wildcardPatterns.begin(), other.m_wildcardPatterns.end());
+     }
+ 
+     // Access and create a pattern entry
+@@ -62,6 +65,7 @@
+         const V3LockGuard lock{m_mutex};
+         // We might be adding a new entry under this, so clear the cache.
+         m_mapResolved.clear();
++        if (name.find_first_of("*?") != string::npos) m_wildcardPatterns.insert(name);
+         return m_mapPatterns[name];
+     }
+     // Access an entity and resolve patterns that match it
+@@ -72,13 +76,23 @@
+         std::unique_ptr<T>& entryr = pair.first->second;
+         // Resolve entry when first requested, cache the result
+         if (pair.second) {
+-            // Inserted: update the entity with all matches in the patterns
+-            for (const auto& patEnt : m_mapPatterns) {
+-                if (VString::wildmatch(name, patEnt.first)) {
+-                    if (!entryr) entryr.reset(new T{});
+-                    entryr->update(patEnt.second);
++            // Merge in the original lexical pattern order, including the
++            // literal entry. Attribute precedence must not change.
++            const auto merge = [&](const T& value) {
++                if (!entryr) entryr.reset(new T{});
++                entryr->update(value);
++            };
++            const auto exact = m_mapPatterns.find(name);
++            bool pendingExact = exact != m_mapPatterns.end()
++                                && name.find_first_of("*?") == string::npos;
++            for (const auto& pattern : m_wildcardPatterns) {
++                if (pendingExact && name < pattern) {
++                    merge(exact->second);
++                    pendingExact = false;
+                 }
++                if (VString::wildmatch(name, pattern)) merge(m_mapPatterns.at(pattern));
+             }
++            if (pendingExact) merge(exact->second);
+             // Perform final actions that needed all updates completed
+             if (entryr) entryr->updateFinalize();
+         }

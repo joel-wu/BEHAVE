@@ -1,0 +1,64 @@
+Authored finite hardware adaptation. Numerical/capacity changes are explicit in spec.md.
+
+https://github.com/scikit-learn/scikit-learn@156ef141f3b270edb06c8ae9af37c55253c0aabe:sklearn/tree/_tree.pyx
+
+# Authors: Gilles Louppe <g.louppe@gmail.com>
+#          Peter Prettenhofer <peter.prettenhofer@gmail.com>
+#          Brian Holt <bdholt1@gmail.com>
+#          Noel Dawe <noel@dawe.me>
+#          Satrajit Gosh <satrajit.ghosh@gmail.com>
+#          Lars Buitinck
+#          Arnaud Joly <arnaud.v.joly@gmail.com>
+#          Joel Nothman <joel.nothman@gmail.com>
+#          Fares Hedayati <fares.hedayati@gmail.com>
+#          Jacob Schreiber <jmschreiber91@gmail.com>
+#          Nelson Liu <nelson@nelsonliu.me>
+#
+# License: BSD 3 clause
+
+
+https://github.com/scikit-learn/scikit-learn@156ef141f3b270edb06c8ae9af37c55253c0aabe:sklearn/ensemble/_forest.py
+
+"""
+Forest of trees-based ensemble methods.
+
+Those methods include random forests and extremely randomized trees.
+
+The module structure is the following:
+
+- The ``BaseForest`` base class implements a common ``fit`` method for all
+  the estimators in the module. The ``fit`` method of the base ``Forest``
+  class calls the ``fit`` method of each sub-estimator on random samples
+  (with replacement, a.k.a. bootstrap) of the training set.
+
+  The init of the sub-estimator is further delegated to the
+  ``BaseEnsemble`` constructor.
+
+- The ``ForestClassifier`` and ``ForestRegressor`` base classes further
+  implement the prediction logic by computing an average of the predicted
+  outcomes of the sub-estimators.
+
+- The ``RandomForestClassifier`` and ``RandomForestRegressor`` derived
+  classes provide the user with concrete implementations of
+  the forest ensemble method using classical, deterministic
+  ``DecisionTreeClassifier`` and ``DecisionTreeRegressor`` as
+  sub-estimator implementations.
+
+- The ``ExtraTreesClassifier`` and ``ExtraTreesRegressor`` derived
+  classes provide the user with concrete implementations of the
+  forest ensemble method using the extremely randomized trees
+  ``ExtraTreeClassifier`` and ``ExtraTreeRegressor`` as
+  sub-estimator implementations.
+
+Single and multi-output problems are both handled.
+"""
+
+
+# Authors: Gilles Louppe <g.louppe@gmail.com>
+#          Brian Holt <bdholt1@gmail.com>
+#          Joly Arnaud <arnaud.v.joly@gmail.com>
+#          Fares Hedayati <fares.hedayati@gmail.com>
+#
+# License: BSD 3 clause
+
+

@@ -1,0 +1,20 @@
+{
+  "schema": "behave.ppa-experiment/9",
+  "mapping": {"driving_cell": "sky130_fd_sc_hd__buf_2"},
+  "power": {"input_activity": 0.1, "input_duty": 0.5},
+  "timing": {
+    "clock": "clk", "period_ns": 20.0, "uncertainty_ns": 0.1,
+    "input_delay_ns": 0.2, "output_delay_ns": 0.2,
+    "input_transition_ns": 0.1, "output_load_pf": 0.01
+  },
+  "workloads": [{
+    "name": "identity_stream", "inputs": [[3], [7], [11], [19]],
+    "reset_cycles": 3
+  }],
+  "targets_ns": [100.0, 200.0],
+  "service_seconds": 600,
+  "eda_budget": {"synthesis_seconds": 120, "timing_seconds": 60, "power_seconds": 60, "overhead_seconds": 60},
+  "sat_resource_sharing": true,
+  "aggregation": "maximum", "stage": "mapped-synthesis-ideal-interconnect-sta",
+  "initial_rtl": null
+}

@@ -1,0 +1,8 @@
+{
+  "schema": "behave.local-chat/5",
+  "url": "http://127.0.0.1:30000/v1/chat/completions",
+  "model": "YOUR_SERVED_MODEL",
+  "runtime_revision": "YOUR_WEIGHTS_AND_SERVER_REVISION",
+  "parameters": {"temperature": 1.0, "top_p": 0.95, "top_k": 20, "seed": 17},
+  "prices": null
+}

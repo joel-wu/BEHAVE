@@ -1,0 +1,22 @@
+{
+  "id": "ai_ml_integer_average_pool2d_s8",
+  "source_kind": "ai_ml",
+  "name": "AveragePool2DS8",
+  "family": "average_pool2d_s8",
+  "tier": 1,
+  "license": "Apache-2.0",
+  "provenance": [
+    {
+      "repository": "https://github.com/onnx/onnx",
+      "revision": "57b9c6a4f6eebb09ae1b34cfb632078518f72832",
+      "license": "Apache-2.0",
+      "file": "onnx/reference/ops/op_average_pool.py",
+      "symbol": "AveragePool",
+      "sha256": "5b47ff56917e4313b63a066dbd87c2a59852e8f0e7d6547cddaea9d27043e346",
+      "url": "https://github.com/onnx/onnx/blob/57b9c6a4f6eebb09ae1b34cfb632078518f72832/onnx/reference/ops/op_average_pool.py",
+      "license_file": "data/licenses/onnx_onnx/LICENSE"
+    }
+  ],
+  "adaptation": "Input X is signed INT8 NHWC [1,4,4,2], packed index (4*h+w)*2+c. Output Y is NHWC [1,2,2,2], packed index (2*h+w)*2+c. Each output uses exactly X[2*h+i,2*w+j,c] for i,j in {0,1}; no padding. Sum all four in an exact integer, divide by four, round nearest with ties away from zero. This INT8 rounding is an explicit adaptation of real-valued average pooling.",
+  "difficulty": "basic"
+}

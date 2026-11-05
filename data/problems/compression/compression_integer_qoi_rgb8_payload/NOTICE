@@ -1,0 +1,6 @@
+Integer/fixed-capacity adaptation; not the unmodified upstream library.
+Upstream selected files, authors and revisions are identified in source.json.
+The original license/copyright notices are retained in LICENSE and the source archive.
+Selected license for this adaptation: MIT.
+Modifications: explicit finite domains, packed hardware interface and reset semantics.
+https://github.com/phoboslab/qoi@97bacc86a9c4abf5a2d452102dc26546c4c670b9:qoi.h

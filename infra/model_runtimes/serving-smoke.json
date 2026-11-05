@@ -1,0 +1,30 @@
+{
+  "job": {
+    "cpus": 32,
+    "schedule_wait_seconds": 15,
+    "preparation_seconds": 120,
+    "archive_seconds": 60
+  },
+  "tool_parameters": {
+    "max_tokens": 1024,
+    "temperature": 0,
+    "seed": 17,
+    "chat_template_kwargs": {"enable_thinking": false}
+  },
+  "scored_parameters": {
+    "max_tokens": 2048,
+    "temperature": 0,
+    "seed": 17,
+    "chat_template_kwargs": {"enable_thinking": false}
+  },
+  "tool_attempt": {
+    "max_turns": 6,
+    "max_retries": 1,
+    "request_timeout_seconds": 90
+  },
+  "scored_attempt": {
+    "max_turns": 8,
+    "max_retries": 1,
+    "request_timeout_seconds": 90
+  }
+}

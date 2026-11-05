@@ -1,0 +1,124 @@
+--- a/src/V3AstNodes.cpp
++++ b/src/V3AstNodes.cpp
+@@ -95,6 +95,15 @@
+     AstNodeFTask* const taskp = this->taskp();
+     // Unlinked yet, so treat as impure
+     if (!taskp) return false;
++    // A locally pure body can still write its caller through output, inout
++    // or non-const ref arguments. Do not drop or repeat such a call while
++    // simplifying its surrounding expression. The return variable is not
++    // an externally visible argument; const ref reads do not cause writes.
++    for (AstNode* stmtp = taskp->stmtsp(); stmtp; stmtp = stmtp->nextp()) {
++        if (const AstVar* const portp = VN_CAST(stmtp, Var)) {
++            if (portp->isIO() && portp->isWritable() && !portp->isFuncReturn()) return false;
++        }
++    }
+     // First compute the purity of arguments
+     for (AstArg* argp = this->argsp(); argp; argp = VN_AS(argp->nextp(), Arg)) {
+         if (!argp->isPure()) return false;
+--- a/src/V3LiftExpr.cpp
++++ b/src/V3LiftExpr.cpp
+@@ -80,6 +80,7 @@
+ #include "V3FileLine.h"
+ #include "V3Inst.h"
+ #include "V3Stats.h"
++#include "V3Task.h"
+ 
+ VL_DEFINE_DEBUG_FUNCTIONS;
+ 
+@@ -100,6 +101,7 @@
+     AstNode* m_newStmtps = nullptr;
+     // Expressions in some special locations need not, or should not be lifted
+     AstNodeExpr* m_doNotLiftp = nullptr;
++    std::unordered_set<const AstArg*> m_copyArgs;  // Evaluated by V3Task's copy assignments
+     size_t m_nTmps = 0;  // Sequence numbers for temporary variables
+     // Statistics
+     VDouble0 m_statLiftedExprs;
+@@ -224,6 +226,9 @@
+     }
+     void visit(AstAlias* nodep) override {}
+     void visit(AstArg* nodep) override {
++        // Output lvalues execute on return. Inout lvalues additionally execute
++        // on entry. Lifting either here would evaluate both before the call.
++        if (m_copyArgs.count(nodep)) return;
+         // Lift argument expressions
+         iterateChildren(nodep);
+     }
+@@ -290,6 +295,14 @@
+     void visit(AstNodeFTaskRef* nodep) override {
+         if (!m_lift) return;
+ 
++        VL_RESTORER_CLEAR(m_copyArgs);
++        for (const auto& connection : V3Task::taskConnects(
++                 nodep, nodep->taskp()->stmtsp(), nullptr, false)) {
++            const AstVar* const portp = connection.first;
++            if (portp->isWritable() && !portp->isRef()) {
++                m_copyArgs.insert(connection.second);
++            }
++        }
+         iterateChildren(nodep);
+ 
+         // Do not lift if already in normal form
+--- a/src/V3Task.cpp
++++ b/src/V3Task.cpp
+@@ -265,6 +265,9 @@
+                 }
+             }
+         }
++        // Copy-out selectors remain expressions until their return-time
++        // assignments are built, so include their helpers in the call graph.
++        iterateChildren(nodep);
+     }
+     void visit(AstNodeFTask* nodep) override {
+         UINFO(9, "  TASK " << nodep);
+@@ -526,7 +529,9 @@
+             if (outPinp->width() < portp->width()) {
+                 postRhsp = new AstSel{pinp->fileline(), postRhsp, 0, pinp->width()};
+             } else {  // pin width > port width
+-                if (pinp->isSigned() && postRhsp->isSigned()) {
++                // Copy-back is an assignment: extend the formal's sign,
++                // irrespective of the actual destination's signedness.
++                if (postRhsp->isSigned()) {
+                     postRhsp = new AstExtendS{pinp->fileline(), postRhsp};
+                 } else {
+                     postRhsp = new AstExtend{pinp->fileline(), postRhsp};
+@@ -628,14 +633,14 @@
+                     pushDeletep(pinp);  // Cloned by connectPortMakeInAssign
+                 }
+                 // Put input assignment in FRONT of all other statements
+-                AstAssign* const preassp = connectPortMakeInAssign(pinp, newvscp, true);
++                AstAssign* const preassp = connectPortMakeInAssign(pinp, newvscp, false);
+                 if (AstNode* const afterp = beginp->nextp()) {
+                     afterp->unlinkFrBackWithNext();
+                     AstNode::addNext<AstNode, AstNode>(preassp, afterp);
+                 }
+                 beginp->addNext(preassp);
+ 
+-                AstAssign* const postassp = connectPortMakeOutAssign(portp, pinp, newvscp, true);
++                AstAssign* const postassp = connectPortMakeOutAssign(portp, pinp, newvscp, false);
+                 beginp->addNext(postassp);
+                 // if (debug() >= 9) beginp->dumpTreeAndNext(cout, "-pinrsize-out- ");
+             } else if (portp->isWritable()) {
+@@ -1651,6 +1656,12 @@
+             ++m_statInlines;
+         }
+ 
++        // Copy selectors now belong to the actual entry/return assignments.
++        // Lower their nested calls only after relinking all outer formals:
++        // nested inlining reuses user2 and must not erase an unfinished map.
++        // Each inout copy owns a distinct expression, hence distinct effects.
++        iterateAndNextNull(beginp);
++
+         if (VN_IS(nodep, New)) {  // New not legal as while() condition
+             insertBeforeStmt(nodep, beginp);
+             UASSERT_OBJ(cnewp, nodep, "didn't create cnew for new");
+--- a/src/V3Options.cpp
++++ b/src/V3Options.cpp
+@@ -1105,6 +1105,7 @@
+     ver += " (behave-dfg-selection-2)";
+     ver += " (behave-graph-path-2)";
+     ver += " (behave-loop-report-1)";
++    ver += " (behave-call-effects-2)";
+     ver += " rev " + cvtToStr(DTVERSION_rev);
+     return ver;
+ }

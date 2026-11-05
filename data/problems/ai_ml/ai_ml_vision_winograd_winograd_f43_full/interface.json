@@ -1,0 +1,572 @@
+{
+  "version": "task-contract/16",
+  "endpoints": [
+    {
+      "name": "in",
+      "direction": "in",
+      "fields": [
+        {
+          "name": "in_d00",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_d00"
+        },
+        {
+          "name": "in_d01",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_d01"
+        },
+        {
+          "name": "in_d02",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_d02"
+        },
+        {
+          "name": "in_d03",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_d03"
+        },
+        {
+          "name": "in_d04",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_d04"
+        },
+        {
+          "name": "in_d05",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_d05"
+        },
+        {
+          "name": "in_d10",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_d10"
+        },
+        {
+          "name": "in_d11",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_d11"
+        },
+        {
+          "name": "in_d12",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_d12"
+        },
+        {
+          "name": "in_d13",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_d13"
+        },
+        {
+          "name": "in_d14",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_d14"
+        },
+        {
+          "name": "in_d15",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_d15"
+        },
+        {
+          "name": "in_d20",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_d20"
+        },
+        {
+          "name": "in_d21",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_d21"
+        },
+        {
+          "name": "in_d22",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_d22"
+        },
+        {
+          "name": "in_d23",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_d23"
+        },
+        {
+          "name": "in_d24",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_d24"
+        },
+        {
+          "name": "in_d25",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_d25"
+        },
+        {
+          "name": "in_d30",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_d30"
+        },
+        {
+          "name": "in_d31",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_d31"
+        },
+        {
+          "name": "in_d32",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_d32"
+        },
+        {
+          "name": "in_d33",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_d33"
+        },
+        {
+          "name": "in_d34",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_d34"
+        },
+        {
+          "name": "in_d35",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_d35"
+        },
+        {
+          "name": "in_d40",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_d40"
+        },
+        {
+          "name": "in_d41",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_d41"
+        },
+        {
+          "name": "in_d42",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_d42"
+        },
+        {
+          "name": "in_d43",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_d43"
+        },
+        {
+          "name": "in_d44",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_d44"
+        },
+        {
+          "name": "in_d45",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_d45"
+        },
+        {
+          "name": "in_d50",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_d50"
+        },
+        {
+          "name": "in_d51",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_d51"
+        },
+        {
+          "name": "in_d52",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_d52"
+        },
+        {
+          "name": "in_d53",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_d53"
+        },
+        {
+          "name": "in_d54",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_d54"
+        },
+        {
+          "name": "in_d55",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_d55"
+        },
+        {
+          "name": "in_g00",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_g00"
+        },
+        {
+          "name": "in_g01",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_g01"
+        },
+        {
+          "name": "in_g02",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_g02"
+        },
+        {
+          "name": "in_g10",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_g10"
+        },
+        {
+          "name": "in_g11",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_g11"
+        },
+        {
+          "name": "in_g12",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_g12"
+        },
+        {
+          "name": "in_g20",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_g20"
+        },
+        {
+          "name": "in_g21",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_g21"
+        },
+        {
+          "name": "in_g22",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_g22"
+        }
+      ],
+      "adapter": {
+        "name": "ready-valid",
+        "version": 1,
+        "environment_controls": [
+          "in_valid"
+        ],
+        "artifact_controls": [
+          "in_ready"
+        ],
+        "monitor_state": [
+          "outstanding",
+          "stall_cycles"
+        ]
+      },
+      "clock": "clk",
+      "matching": "ordered",
+      "identifier": null,
+      "max_outstanding": null,
+      "response_deadline": null,
+      "answers_per_transaction": null,
+      "terminal_quiescence": null,
+      "reset_policy": null,
+      "kind": "transaction"
+    },
+    {
+      "name": "out",
+      "direction": "out",
+      "fields": [
+        {
+          "name": "out_y00",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "out_y00"
+        },
+        {
+          "name": "out_y01",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "out_y01"
+        },
+        {
+          "name": "out_y02",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "out_y02"
+        },
+        {
+          "name": "out_y03",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "out_y03"
+        },
+        {
+          "name": "out_y10",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "out_y10"
+        },
+        {
+          "name": "out_y11",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "out_y11"
+        },
+        {
+          "name": "out_y12",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "out_y12"
+        },
+        {
+          "name": "out_y13",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "out_y13"
+        },
+        {
+          "name": "out_y20",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "out_y20"
+        },
+        {
+          "name": "out_y21",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "out_y21"
+        },
+        {
+          "name": "out_y22",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "out_y22"
+        },
+        {
+          "name": "out_y23",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "out_y23"
+        },
+        {
+          "name": "out_y30",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "out_y30"
+        },
+        {
+          "name": "out_y31",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "out_y31"
+        },
+        {
+          "name": "out_y32",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "out_y32"
+        },
+        {
+          "name": "out_y33",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "out_y33"
+        }
+      ],
+      "adapter": {
+        "name": "ready-valid",
+        "version": 1,
+        "environment_controls": [
+          "out_ready"
+        ],
+        "artifact_controls": [
+          "out_valid"
+        ],
+        "monitor_state": [
+          "outstanding",
+          "stall_cycles"
+        ]
+      },
+      "clock": "clk",
+      "matching": "ordered",
+      "identifier": null,
+      "max_outstanding": null,
+      "response_deadline": null,
+      "answers_per_transaction": null,
+      "terminal_quiescence": null,
+      "reset_policy": null,
+      "kind": "transaction"
+    }
+  ],
+  "clocks": [
+    {
+      "name": "clk",
+      "clock": "clk",
+      "edge": "rising",
+      "reset": "rst",
+      "reset_active_low": false,
+      "reset_hold_cycles": 3,
+      "reset_restores": null
+    }
+  ],
+  "memories": [],
+  "protocol_instances": [],
+  "observation_goals": [],
+  "transaction_monitors": [],
+  "latency_goals": [],
+  "operation_rules": [],
+  "source_read_rules": [],
+  "authority": "task",
+  "source": "declared by ai_ml_vision_winograd_winograd_f43_full",
+  "physical_value_layout": "packed-value/1"
+}

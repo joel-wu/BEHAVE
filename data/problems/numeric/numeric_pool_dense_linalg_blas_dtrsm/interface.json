@@ -1,0 +1,220 @@
+{
+  "version": "task-contract/16",
+  "endpoints": [
+    {
+      "name": "in",
+      "direction": "in",
+      "fields": [
+        {
+          "name": "in_a00",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_a00"
+        },
+        {
+          "name": "in_a01",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_a01"
+        },
+        {
+          "name": "in_a10",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_a10"
+        },
+        {
+          "name": "in_a11",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_a11"
+        },
+        {
+          "name": "in_alpha",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_alpha"
+        },
+        {
+          "name": "in_b00",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_b00"
+        },
+        {
+          "name": "in_b01",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_b01"
+        },
+        {
+          "name": "in_b10",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_b10"
+        },
+        {
+          "name": "in_b11",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_b11"
+        },
+        {
+          "name": "in_diag",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "in_diag"
+        },
+        {
+          "name": "in_side",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "in_side"
+        },
+        {
+          "name": "in_transa",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "in_transa"
+        },
+        {
+          "name": "in_uplo",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "in_uplo"
+        }
+      ],
+      "adapter": {
+        "name": "ready-valid",
+        "version": 1,
+        "environment_controls": [
+          "in_valid"
+        ],
+        "artifact_controls": [
+          "in_ready"
+        ],
+        "monitor_state": [
+          "outstanding",
+          "stall_cycles"
+        ]
+      },
+      "clock": "clk",
+      "matching": "ordered",
+      "identifier": null,
+      "max_outstanding": null,
+      "response_deadline": null,
+      "answers_per_transaction": null,
+      "terminal_quiescence": null,
+      "reset_policy": null,
+      "kind": "transaction"
+    },
+    {
+      "name": "out",
+      "direction": "out",
+      "fields": [
+        {
+          "name": "out_b00",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "out_b00"
+        },
+        {
+          "name": "out_b01",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "out_b01"
+        },
+        {
+          "name": "out_b10",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "out_b10"
+        },
+        {
+          "name": "out_b11",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "out_b11"
+        }
+      ],
+      "adapter": {
+        "name": "ready-valid",
+        "version": 1,
+        "environment_controls": [
+          "out_ready"
+        ],
+        "artifact_controls": [
+          "out_valid"
+        ],
+        "monitor_state": [
+          "outstanding",
+          "stall_cycles"
+        ]
+      },
+      "clock": "clk",
+      "matching": "ordered",
+      "identifier": null,
+      "max_outstanding": null,
+      "response_deadline": null,
+      "answers_per_transaction": null,
+      "terminal_quiescence": null,
+      "reset_policy": null,
+      "kind": "transaction"
+    }
+  ],
+  "clocks": [
+    {
+      "name": "clk",
+      "clock": "clk",
+      "edge": "rising",
+      "reset": "rst",
+      "reset_active_low": false,
+      "reset_hold_cycles": 3,
+      "reset_restores": null
+    }
+  ],
+  "memories": [],
+  "protocol_instances": [],
+  "observation_goals": [],
+  "transaction_monitors": [],
+  "latency_goals": [],
+  "operation_rules": [],
+  "source_read_rules": [],
+  "authority": "task",
+  "source": "declared by numeric_pool_dense_linalg_blas_dtrsm",
+  "physical_value_layout": "packed-value/1"
+}

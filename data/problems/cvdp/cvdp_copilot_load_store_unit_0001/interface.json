@@ -1,0 +1,210 @@
+{
+  "version": "task-contract/8",
+  "endpoints": [
+    {
+      "name": "in",
+      "direction": "in",
+      "fields": [
+        {
+          "name": "dmem_gnt_i",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "dmem_gnt_i"
+        },
+        {
+          "name": "dmem_rvalid_i",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "dmem_rvalid_i"
+        },
+        {
+          "name": "dmem_rsp_rdata_i",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "dmem_rsp_rdata_i"
+        },
+        {
+          "name": "ex_if_req_i",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "ex_if_req_i"
+        },
+        {
+          "name": "ex_if_we_i",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "ex_if_we_i"
+        },
+        {
+          "name": "ex_if_type_i",
+          "type": {
+            "width": 2,
+            "signed": false
+          },
+          "port": "ex_if_type_i"
+        },
+        {
+          "name": "ex_if_wdata_i",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "ex_if_wdata_i"
+        },
+        {
+          "name": "ex_if_addr_base_i",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "ex_if_addr_base_i"
+        },
+        {
+          "name": "ex_if_addr_offset_i",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "ex_if_addr_offset_i"
+        }
+      ],
+      "adapter": {
+        "name": "sampled-edge",
+        "version": 1,
+        "environment_controls": [],
+        "artifact_controls": [],
+        "monitor_state": []
+      },
+      "clock": "clk",
+      "matching": "ordered",
+      "identifier": null,
+      "max_outstanding": null,
+      "response_deadline": null,
+      "answers_per_transaction": null,
+      "terminal_quiescence": null,
+      "reset_policy": null,
+      "kind": "transaction"
+    },
+    {
+      "name": "out",
+      "direction": "out",
+      "fields": [
+        {
+          "name": "dmem_req_o",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "dmem_req_o"
+        },
+        {
+          "name": "dmem_req_addr_o",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "dmem_req_addr_o"
+        },
+        {
+          "name": "dmem_req_we_o",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "dmem_req_we_o"
+        },
+        {
+          "name": "dmem_req_be_o",
+          "type": {
+            "width": 4,
+            "signed": false
+          },
+          "port": "dmem_req_be_o"
+        },
+        {
+          "name": "dmem_req_wdata_o",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "dmem_req_wdata_o"
+        },
+        {
+          "name": "ex_if_ready_o",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "ex_if_ready_o"
+        },
+        {
+          "name": "wb_if_rdata_o",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "wb_if_rdata_o"
+        },
+        {
+          "name": "wb_if_rvalid_o",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "wb_if_rvalid_o"
+        }
+      ],
+      "adapter": {
+        "name": "sampled-edge",
+        "version": 1,
+        "environment_controls": [],
+        "artifact_controls": [],
+        "monitor_state": []
+      },
+      "clock": "clk",
+      "matching": "ordered",
+      "identifier": null,
+      "max_outstanding": null,
+      "response_deadline": null,
+      "answers_per_transaction": 1,
+      "terminal_quiescence": null,
+      "reset_policy": null,
+      "kind": "transaction"
+    }
+  ],
+  "clocks": [
+    {
+      "name": "clk",
+      "clock": "clk",
+      "edge": "rising",
+      "reset": "rst_n",
+      "reset_active_low": true,
+      "reset_hold_cycles": 3,
+      "reset_restores": true
+    }
+  ],
+  "memories": [],
+  "protocol_instances": [
+    {
+      "name": "compute",
+      "endpoints": [
+        "in",
+        "out"
+      ],
+      "mapping": "direct/1"
+    }
+  ],
+  "authority": "task",
+  "source": "Native CVDP clock semantics; batch2118 records source completions",
+  "physical_value_layout": "packed-value/1"
+}

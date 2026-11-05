@@ -1,0 +1,196 @@
+{
+  "version": "task-contract/16",
+  "endpoints": [
+    {
+      "name": "in",
+      "direction": "in",
+      "fields": [
+        {
+          "name": "in_cat_begin",
+          "type": {
+            "width": 4,
+            "signed": false
+          },
+          "port": "in_cat_begin"
+        },
+        {
+          "name": "in_cat_size",
+          "type": {
+            "width": 4,
+            "signed": false
+          },
+          "port": "in_cat_size"
+        },
+        {
+          "name": "in_cat_words",
+          "type": {
+            "width": 256,
+            "signed": false
+          },
+          "port": "in_cat_words"
+        },
+        {
+          "name": "in_default_child",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_default_child"
+        },
+        {
+          "name": "in_fvalue",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_fvalue"
+        },
+        {
+          "name": "in_has_categorical",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "in_has_categorical"
+        },
+        {
+          "name": "in_has_missing",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "in_has_missing"
+        },
+        {
+          "name": "in_is_missing",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "in_is_missing"
+        },
+        {
+          "name": "in_left_child",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_left_child"
+        },
+        {
+          "name": "in_node_is_categorical",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "in_node_is_categorical"
+        },
+        {
+          "name": "in_split_cond",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_split_cond"
+        }
+      ],
+      "adapter": {
+        "name": "ready-valid",
+        "version": 1,
+        "environment_controls": [
+          "in_valid"
+        ],
+        "artifact_controls": [
+          "in_ready"
+        ],
+        "monitor_state": [
+          "outstanding",
+          "stall_cycles"
+        ]
+      },
+      "clock": "clk",
+      "matching": "ordered",
+      "identifier": null,
+      "max_outstanding": null,
+      "response_deadline": null,
+      "answers_per_transaction": null,
+      "terminal_quiescence": null,
+      "reset_policy": null,
+      "kind": "transaction"
+    },
+    {
+      "name": "out",
+      "direction": "out",
+      "fields": [
+        {
+          "name": "out_decision",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "out_decision"
+        },
+        {
+          "name": "out_error",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "out_error"
+        },
+        {
+          "name": "out_next_node",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "out_next_node"
+        }
+      ],
+      "adapter": {
+        "name": "ready-valid",
+        "version": 1,
+        "environment_controls": [
+          "out_ready"
+        ],
+        "artifact_controls": [
+          "out_valid"
+        ],
+        "monitor_state": [
+          "outstanding",
+          "stall_cycles"
+        ]
+      },
+      "clock": "clk",
+      "matching": "ordered",
+      "identifier": null,
+      "max_outstanding": null,
+      "response_deadline": null,
+      "answers_per_transaction": null,
+      "terminal_quiescence": null,
+      "reset_policy": null,
+      "kind": "transaction"
+    }
+  ],
+  "clocks": [
+    {
+      "name": "clk",
+      "clock": "clk",
+      "edge": "rising",
+      "reset": "rst",
+      "reset_active_low": false,
+      "reset_hold_cycles": 3,
+      "reset_restores": null
+    }
+  ],
+  "memories": [],
+  "protocol_instances": [],
+  "observation_goals": [],
+  "transaction_monitors": [],
+  "latency_goals": [],
+  "operation_rules": [],
+  "source_read_rules": [],
+  "authority": "task",
+  "source": "declared by data_systems_gbdt_xgb_tree_node_eval",
+  "physical_value_layout": "packed-value/1"
+}

@@ -1,0 +1,22 @@
+{
+  "id": "cryptography_integer_sha3_256_short31",
+  "source_kind": "cryptography",
+  "name": "SHA3_256Short31",
+  "family": "sha3_256_short31",
+  "tier": 2,
+  "license": "Apache-2.0",
+  "provenance": [
+    {
+      "repository": "https://github.com/Mbed-TLS/mbedtls",
+      "revision": "107ea89daaefb9867ea9121002fbbdf926780e98",
+      "license": "Apache-2.0",
+      "file": "library/sha3.c",
+      "symbol": "mbedtls_sha3_update / mbedtls_sha3_finish / keccak_f1600",
+      "sha256": "466adf0180fd971413a6ff120bae953e4b52f9e8bd6c93a155d3d05c6816b692",
+      "url": "https://github.com/Mbed-TLS/mbedtls/blob/107ea89daaefb9867ea9121002fbbdf926780e98/library/sha3.c",
+      "license_file": "data/licenses/Mbed-TLS_mbedtls/LICENSE"
+    }
+  ],
+  "adaptation": "Complete SHA3-256 of a 0..31 byte message: absorb, SHA3 domain separation, Keccak-f[1600] and squeeze.\n\nMessage byte i is bits 8*i; L=in_length, later bytes ignored. Rate is 136 bytes, capacity 512 bits. Start with zero 25-lane state; xor the L bytes into the rate, then xor 0x06 into byte L and 0x80 into byte 135. Apply all 24 Keccak-f rounds and return the first 32 state bytes. State lane x+5*y is little-endian 64-bit. This is SHA3-256, not legacy Keccak-256 (which has different padding), SHAKE or a raw permutation.\n\nRound: C[x]=xor_y A[x,y]; D[x]=C[x-1] xor ROTL64(C[x+1],1); A[x,y]^=D[x]. Then B[y,(2*x+3*y) mod 5]=ROTL64(A[x,y],rho[x+5*y]). Set A[x,y]=B[x,y] xor ((~B[x+1,y]) & B[x+2,y]); xor RC[r] into A[0,0]. All x/y indices wrap modulo five, and lanes modulo 2^64. rho by lane index:\n```\n[0, 1, 62, 28, 27, 36, 44, 6, 55, 20, 3, 10, 43, 25, 39, 41, 45, 15, 21, 8, 18, 2, 61, 56, 14]\n```\nRC values in round order:\n```\n0000000000000001\n0000000000008082\n800000000000808a\n8000000080008000\n000000000000808b\n0000000080000001\n8000000080008081\n8000000000008009\n000000000000008a\n0000000000000088\n0000000080008009\n000000008000000a\n000000008000808b\n800000000000008b\n8000000000008089\n8000000000008003\n8000000000008002\n8000000000000080\n000000000000800a\n800000008000000a\n8000000080008081\n8000000000008080\n0000000080000001\n8000000080008008\n```",
+  "difficulty": "medium"
+}

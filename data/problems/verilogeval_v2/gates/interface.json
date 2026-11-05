@@ -1,0 +1,136 @@
+{
+  "version": "task-contract/8",
+  "endpoints": [
+    {
+      "name": "in",
+      "direction": "in",
+      "fields": [
+        {
+          "name": "a",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "a"
+        },
+        {
+          "name": "b",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "b"
+        }
+      ],
+      "adapter": {
+        "name": "combinational-settled",
+        "version": 1,
+        "environment_controls": [],
+        "artifact_controls": [],
+        "monitor_state": []
+      },
+      "clock": null,
+      "matching": "ordered",
+      "identifier": null,
+      "max_outstanding": null,
+      "response_deadline": null,
+      "answers_per_transaction": null,
+      "terminal_quiescence": null,
+      "reset_policy": null,
+      "kind": "transaction"
+    },
+    {
+      "name": "out",
+      "direction": "out",
+      "fields": [
+        {
+          "name": "out_and",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "out_and"
+        },
+        {
+          "name": "out_or",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "out_or"
+        },
+        {
+          "name": "out_xor",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "out_xor"
+        },
+        {
+          "name": "out_nand",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "out_nand"
+        },
+        {
+          "name": "out_nor",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "out_nor"
+        },
+        {
+          "name": "out_xnor",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "out_xnor"
+        },
+        {
+          "name": "out_anotb",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "out_anotb"
+        }
+      ],
+      "adapter": {
+        "name": "combinational-settled",
+        "version": 1,
+        "environment_controls": [],
+        "artifact_controls": [],
+        "monitor_state": []
+      },
+      "clock": null,
+      "matching": "ordered",
+      "identifier": null,
+      "max_outstanding": null,
+      "response_deadline": null,
+      "answers_per_transaction": 1,
+      "terminal_quiescence": null,
+      "reset_policy": null,
+      "kind": "transaction"
+    }
+  ],
+  "clocks": [],
+  "memories": [],
+  "protocol_instances": [
+    {
+      "name": "compute",
+      "endpoints": [
+        "in",
+        "out"
+      ],
+      "mapping": "direct/1"
+    }
+  ],
+  "authority": "task",
+  "source": "VerilogEval native combinational interface; original material archived in batch97",
+  "physical_value_layout": "packed-value/1"
+}

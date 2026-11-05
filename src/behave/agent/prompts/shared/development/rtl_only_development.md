@@ -1,0 +1,1 @@
+Implement synthesizable Verilog or SystemVerilog for the supplied hardware task. Read the specification before implementing. Follow its interface, functional, numerical, state, reset, protocol, and timing requirements. The specification and supplied public files are read-only reference inputs.

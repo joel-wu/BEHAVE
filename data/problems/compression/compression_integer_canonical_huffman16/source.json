@@ -1,0 +1,32 @@
+{
+  "id": "compression_integer_canonical_huffman16",
+  "source_kind": "compression",
+  "name": "CanonicalHuffman16",
+  "family": "canonical_huffman16",
+  "tier": 2,
+  "license": "Zlib",
+  "provenance": [
+    {
+      "repository": "https://github.com/madler/zlib",
+      "revision": "51b7f2abdade71cd9bb0e7a373ef2610ec6f9daf",
+      "license": "Zlib",
+      "file": "trees.c",
+      "symbol": "gen_codes and bi_reverse",
+      "sha256": "f63c68c16c05fcd196050529d1a0e7657960e4136b9987d90a6ac3e58a964b0f",
+      "url": "https://github.com/madler/zlib/blob/51b7f2abdade71cd9bb0e7a373ef2610ec6f9daf/trees.c",
+      "license_file": "data/licenses/madler_zlib/LICENSE"
+    },
+    {
+      "repository": "https://github.com/madler/zlib",
+      "revision": "51b7f2abdade71cd9bb0e7a373ef2610ec6f9daf",
+      "license": "Zlib",
+      "file": "inftrees.c",
+      "symbol": "inflate_table oversubscription check",
+      "sha256": "5d4f335221d2dc76f17abd2577d92c2d7baf68fa6d7f23373b360830493d1563",
+      "url": "https://github.com/madler/zlib/blob/51b7f2abdade71cd9bb0e7a373ef2610ec6f9daf/inftrees.c",
+      "license_file": "data/licenses/madler_zlib/LICENSE"
+    }
+  ],
+  "adaptation": "Construct canonical prefix codes for sixteen symbols, emitting DEFLATE-style least-significant-bit-first codes.\n\nInput symbol i has a four-bit code length L[i]. Zero disables a symbol; valid nonzero lengths are 1..8. Reject if any length exceeds 8 or if sum_i(2^-L[i]) over enabled symbols exceeds one (oversubscription). Incomplete prefix trees and the empty tree are allowed; this is a generic code generator, not a complete DEFLATE block validator. Sort enabled symbols by (length,symbol index). In this order assign the shortest first code zero, increment after each symbol and left-shift when moving to a longer code length. Reverse exactly L[i] bits of each assigned canonical code; return it in byte lane i with upper unused bits zero. Disabled symbols have code byte zero. Output bits 127:0 hold all code bytes; bit 128 is invalid. On any rejection return all code bytes zero and invalid=1. Otherwise invalid=0. This retains zlib gen_codes/bi_reverse and the oversubscription check, with a fixed small alphabet and explicit acceptance of incomplete/empty trees. It does not build a Huffman tree from frequencies.",
+  "difficulty": "medium"
+}

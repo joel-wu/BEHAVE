@@ -1,0 +1,500 @@
+diff --git a/src/mage/agent.py b/src/mage/agent.py
+--- a/src/mage/agent.py
++++ b/src/mage/agent.py
+@@ -65,7 +65,7 @@
+         """
+         Run a single instance of the benchmark
+         Return value:
+-        - is_pass: bool, whether the instance passes the golden testbench
++        - is_pass: bool, whether the instance passes its development testbench
+         - rtl_code: str, the generated RTL code
+         """
+         assert self.tb_gen
+@@ -79,6 +79,9 @@
+         if not self.golden_tb_path:
+             logger.info("No golden testbench provided")
+         testbench, interface = self.tb_gen.chat(spec)
++        if not testbench or not interface:
++            logger.warning("No usable initial testbench response")
++            return False, ""
+         logger.info("Initial tb:")
+         logger.info(testbench)
+         logger.info("Initial if:")
+@@ -102,6 +105,8 @@
+ 
+         tb_need_fix = True
+         rtl_need_fix = True
++        is_sim_pass = False
++        sim_mismatch_cnt = None
+         sim_log = ""
+         for i in range(self.sim_max_retry):
+             # run simulation judge, overwrite is_sim_pass
+@@ -112,7 +117,11 @@
+                 break
+             self.sim_judge.reset()
+             tb_need_fix = self.sim_judge.chat(spec, sim_log, rtl_code, testbench)
++            if tb_need_fix is None:
++                return False, rtl_code
+             if tb_need_fix:
++                if i + 1 == self.sim_max_retry:
++                    break
+                 self.tb_gen.reset()
+                 if i == 0:
+                     self.tb_gen.gen_display_queue = False
+@@ -120,21 +129,25 @@
+                 else:
+                     self.tb_gen.set_failed_trial(sim_log, rtl_code, testbench)
+ 
+-                testbench, _ = self.tb_gen.chat(spec)
++                next_testbench, next_interface = self.tb_gen.chat(spec)
++                if not next_testbench or not next_interface:
++                    logger.warning("No usable revised testbench response; retaining RTL")
++                    return False, rtl_code
++                testbench, interface = next_testbench, next_interface
+                 self.write_output(testbench, "tb.sv")
++                self.write_output(interface, "if.sv")
+                 logger.info("Revised tb:")
+                 logger.info(testbench)
+             else:
+                 break
+ 
+-        assert not tb_need_fix, f"tb_need_fix should be False. sim_log: {sim_log}"
+-
+-        candidates_info: List[Tuple[str, int, str]] = []
++        if tb_need_fix:
++            logger.warning(f"Testbench repair exhausted; retaining RTL. sim_log: {sim_log}")
++            return False, rtl_code
++
++        candidates_info: List[Tuple[str, int | None, str]] = []
+         if rtl_need_fix:
+             # Candidates Generation
+-            assert (
+-                sim_mismatch_cnt > 0
+-            ), f"rtl_need_fix should be True only when sim_mismatch_cnt > 0. sim_log: {sim_log}"
+             self.rtl_gen.reset()
+             candidates = [
+                 self.rtl_gen.chat(
+@@ -166,6 +179,7 @@
+                     self.sim_reviewer.review()
+                 )
+                 if is_sim_pass_candidate:
++                    is_sim_pass = True
+                     rtl_code = rtl_code_candidate
+                     sim_mismatch_cnt = sim_mismatch_cnt_candidate
+                     sim_log = sim_log_candidate
+@@ -175,7 +189,8 @@
+                     (rtl_code_candidate, sim_mismatch_cnt_candidate, sim_log_candidate)
+                 )
+ 
+-        candidates_info.sort(key=lambda x: x[1])
++        # An incomplete simulation must not outrank a measured mismatch count.
++        candidates_info.sort(key=lambda x: (x[1] is None, x[1] or 0))
+         candidates_info_unique_sign = set()
+         candidates_info_unique = []
+         for candidate in candidates_info:
+@@ -184,6 +199,10 @@
+                 candidates_info_unique.append(candidate)
+ 
+         if rtl_need_fix:
++            if not candidates_info_unique:
++                logger.warning("No usable RTL candidates; retaining initial RTL")
++                self.write_output(rtl_code, "rtl.sv")
++                return False, rtl_code
+             # Editor iteration
+             for i in range(self.rtl_selected_candidates):
+                 logger.info(
+@@ -205,6 +224,7 @@
+                     break
+ 
+         if not is_sim_pass:  # Run if keep failing before last try
++            self.write_output(rtl_code, "rtl.sv")
+             is_sim_pass, _, _ = self.sim_reviewer.review()
+ 
+         return is_sim_pass, rtl_code
+diff --git a/src/mage/sim_reviewer.py b/src/mage/sim_reviewer.py
+--- a/src/mage/sim_reviewer.py
++++ b/src/mage/sim_reviewer.py
+@@ -24,33 +24,23 @@
+ def check_syntax(rtl_path: str) -> Tuple[bool, str]:
+     cmd = f"iverilog -t null -Wall -Winfloop -Wno-timescale -g2012 -o /dev/null {rtl_path}"
+     is_pass, sim_output = run_bash_command(cmd, timeout=60)
+-    sim_output_obj = CommandResult.model_validate_json(sim_output)
+-    is_pass = (
+-        is_pass
+-        and "syntax error" not in sim_output_obj.stdout
+-        and (
+-            sim_output_obj.stderr == ""
+-            or stderr_all_lines_benign(sim_output_obj.stderr)
+-        )
+-    )
++    # The compiler exit status owns syntax success. Warnings remain feedback.
+     logger.info(f"Syntax check is_pass: {is_pass}, \noutput: {sim_output}")
+     return is_pass, sim_output
+ 
+ 
+-def sim_review_mismatch_cnt(stdout: str) -> int:
+-    mismatch_cnt = 0
++def sim_review_mismatch_cnt(stdout: str) -> int | None:
+     if "SIMULATION FAILED" in stdout:
+-        re_str = r"SIMULATION FAILED - (\d*) MISMATCHES DETECTED"
++        re_str = r"SIMULATION FAILED - (\d+) MISMATCHES DETECTED"
+         m = re.search(re_str, stdout)
+-        assert m is not None, f"Failed to parse mismatch count from: {stdout}"
+-        mismatch_cnt = int(m.group(1))
+-    return mismatch_cnt
++        return int(m.group(1)) if m is not None else None
++    return 0 if "SIMULATION PASSED" in stdout else None
+ 
+ 
+ def sim_review(
+     output_path_per_run: str,
+     golden_rtl_path: str | None = None,
+-) -> Tuple[bool, int, str]:
++) -> Tuple[bool, int | None, str]:
+     rtl_path = f"{output_path_per_run}/rtl.sv"
+     vvp_name = f"{output_path_per_run}/sim_output.vvp"
+     tb_path = f"{output_path_per_run}/tb.sv"
+@@ -58,20 +48,17 @@
+         golden_rtl_path = ""
+     if os.path.isfile(vvp_name):
+         os.remove(vvp_name)
+-    cmd = "iverilog -Wall -Winfloop -Wno-timescale -g2012 -o {} {} {} {}; vvp -n {}".format(
++    cmd = "iverilog -Wall -Winfloop -Wno-timescale -g2012 -o {} {} {} {} && vvp -n {}".format(
+         vvp_name, tb_path, rtl_path, golden_rtl_path, vvp_name
+     )
+     is_pass, sim_output = run_bash_command(cmd, timeout=60)
+     sim_output_obj = CommandResult.model_validate_json(sim_output)
++    mismatch_cnt = sim_review_mismatch_cnt(sim_output_obj.stdout) if is_pass else None
+     is_pass = (
+         is_pass
+         and "SIMULATION PASSED" in sim_output_obj.stdout
+-        and (
+-            sim_output_obj.stderr == ""
+-            or stderr_all_lines_benign(sim_output_obj.stderr)
+-        )
++        and "SIMULATION FAILED" not in sim_output_obj.stdout
+     )
+-    mismatch_cnt = sim_review_mismatch_cnt(sim_output_obj.stdout)
+     logger.info(
+         f"Simulation is_pass: {is_pass}, mismatch_cnt: {mismatch_cnt}\noutput: {sim_output}"
+     )
+@@ -88,7 +75,7 @@
+         self.output_path_per_run = output_path_per_run
+         self.golden_rtl_path = golden_rtl_path
+ 
+-    def review(self) -> Tuple[bool, int, str]:
++    def review(self) -> Tuple[bool, int | None, str]:
+         return sim_review(
+             self.output_path_per_run,
+             self.golden_rtl_path,
+diff --git a/src/mage/rtl_editor.py b/src/mage/rtl_editor.py
+--- a/src/mage/rtl_editor.py
++++ b/src/mage/rtl_editor.py
+@@ -3,7 +3,7 @@
+ from typing import Any, Dict, List, Tuple
+ 
+ from behave.pipelines.mage_transport import ChatMessage, ChatResponse, MessageRole
+-from pydantic import BaseModel
++from pydantic import BaseModel, ValidationError
+ 
+ from .log_utils import get_logger
+ from .prompts import ORDER_PROMPT
+@@ -151,10 +151,9 @@
+                 "is_syntax_pass": False,
+                 "is_sim_pass": False,
+                 "error_msg": syntax_output,
+-                "sim_mismatch_cnt": 0,
++                "sim_mismatch_cnt": None,
+             }
+         is_sim_pass, sim_mismatch_cnt, sim_output = self.sim_reviewer.review()
+-        assert isinstance(sim_mismatch_cnt, int)
+         return {
+             "is_syntax_pass": True,
+             "is_sim_pass": is_sim_pass,
+@@ -184,6 +183,10 @@
+             self.write_rtl(old_file_content)
+             return ret
+         sim_mismatch_cnt = ret["sim_mismatch_cnt"]
++        if sim_mismatch_cnt is None:
++            self.write_rtl(old_file_content)
++            ret["error_msg"] += " Simulation did not complete with a mismatch count. Action not executed."
++            return ret
+         if (
+             self.last_mismatch_cnt is not None
+             and sim_mismatch_cnt > self.last_mismatch_cnt
+@@ -213,7 +216,7 @@
+             )
+             self.last_mismatch_cnt = ret["sim_mismatch_cnt"]
+             ret["is_action_executed"] = True
+-            if self.last_mismatch_cnt == 0:
++            if ret["is_sim_pass"]:
+                 self.is_done = True
+ 
+         return ret
+@@ -343,15 +346,7 @@
+         ]
+ 
+     def parse_output(self, response: ChatResponse) -> RTLEditorStepOutput:
+-        output_json_obj: Dict = json.loads(response.message.content, strict=False)
+-        action_input = output_json_obj["action_input"]
+-        command = action_input["command"]
+-
+-        args = action_input["args"]
+-        return RTLEditorStepOutput(
+-            reasoning=output_json_obj["reasoning"],
+-            action_input=ActionInput(command=command, args=args),
+-        )
++        return RTLEditorStepOutput.model_validate(json.loads(response.message.content, strict=False))
+ 
+     def run_action(self, action_input: ActionInput) -> Dict[str, Any]:
+         logger.info(f"Action input: {action_input}")
+@@ -359,6 +354,13 @@
+         if action_input.command not in actions:
+             return {"is_action_executed": False, "error_msg": "Unknown action. Use replace_content_by_matching."}
+         action = actions[action_input.command]
++        try:
++            signature(action).bind(**action_input.args)
++        except TypeError as exc:
++            return {"is_action_executed": False, "error_msg": f"Invalid action arguments: {exc}"}
++        for name, value in action_input.args.items():
++            if not isinstance(value, str):
++                return {"is_action_executed": False, "error_msg": f"{name} must be a string."}
+         action_output = action(**action_input.args)
+         logger.info(f"Action output: {action_output}")
+         return action_output
+@@ -378,7 +380,7 @@
+         spec: str,
+         output_dir_per_run: str,
+         sim_failed_log: str,
+-        sim_mismatch_cnt: int,
++        sim_mismatch_cnt: int | None,
+     ) -> Tuple[bool, str]:
+         # 1. Initialize the history
+         # 2. Generate the initial prompt messages (with functool information)
+@@ -411,8 +413,12 @@
+                 + self.get_order_prompt_messages()
+             )
+             new_contents = [response.message]
+-            action_input = self.parse_output(response).action_input
+-            action_output = self.run_action(action_input)
++            try:
++                action_input = self.parse_output(response).action_input
++            except (json.JSONDecodeError, ValidationError) as exc:
++                action_output = {"is_action_executed": False, "error_msg": f"Invalid editor response: {exc}"}
++            else:
++                action_output = self.run_action(action_input)
+             if self.is_done:
+                 is_pass = True
+                 break
+diff --git a/src/mage/rtl_generator.py b/src/mage/rtl_generator.py
+--- a/src/mage/rtl_generator.py
++++ b/src/mage/rtl_generator.py
+@@ -2,7 +2,7 @@
+ from typing import Dict, List, Tuple
+ 
+ from behave.pipelines.mage_transport import ChatMessage, ChatResponse, MessageRole
+-from pydantic import BaseModel
++from pydantic import BaseModel, ValidationError
+ 
+ from .log_utils import get_logger
+ from .prompts import FAILED_TRIAL_PROMPT, ORDER_PROMPT, RTL_4_SHOT_EXAMPLES
+@@ -203,14 +203,7 @@
+         ]
+ 
+     def parse_output(self, response: ChatResponse) -> RTLOutputFormat:
+-        try:
+-            output_json_obj: Dict = json.loads(response.message.content, strict=False)
+-            ret = RTLOutputFormat(
+-                reasoning=output_json_obj["reasoning"], module=output_json_obj["module"]
+-            )
+-        except json.decoder.JSONDecodeError as e:
+-            ret = RTLOutputFormat(reasoning=f"Json Decode Error: {str(e)}", module="")
+-        return ret
++        return RTLOutputFormat.model_validate(json.loads(response.message.content, strict=False))
+ 
+     def chat(
+         self,
+@@ -227,12 +220,15 @@
+         self.generated_tb = testbench
+         self.generated_if = interface
+         self.history.extend(self.get_init_prompt_messages(input_spec))
++        syntax_correct, rtl_code = False, ""
+         for _ in range(self.max_trials):
+             response = self.generate(self.history + self.get_order_prompt_messages())
+-            resp_obj = self.parse_output(response)
+-            if resp_obj.reasoning.startswith("Json Decode Error"):
+-                logger.info(
+-                    f"RTL generation Error: {resp_obj.reasoning}, drop this response"
++            self.history.append(response.message)
++            try:
++                resp_obj = self.parse_output(response)
++            except (json.JSONDecodeError, ValidationError) as exc:
++                self.history.extend(
++                    self.get_format_error_prompt_messages(f"Invalid RTL response: {exc}", rtl_code)
+                 )
+                 continue
+             rtl_code = resp_obj.module
+@@ -242,8 +238,7 @@
+             if syntax_correct:
+                 break
+             self.history.extend(
+-                [response.message]
+-                + self.get_format_error_prompt_messages(syntax_output, rtl_code)
++                self.get_format_error_prompt_messages(syntax_output, rtl_code)
+             )
+         return (syntax_correct, rtl_code)
+ 
+@@ -271,12 +266,18 @@
+         logger.info(f"gen_candidates init input message: {messages[0]}")
+         init_responses = self.batch_generate(messages)
+         for i, response in enumerate(init_responses):
+-            rtl_code = self.parse_output(response).module
+-            candidate_history: List[ChatMessage] = [response.message]
++            rtl_code = ""
++            candidate_history: List[ChatMessage] = []
+             for j in range(self.max_trials):
+-                with open(rtl_path, "w") as f:
+-                    f.write(rtl_code)
+-                syntax_correct, syntax_output = check_syntax(rtl_path=rtl_path)
++                candidate_history.append(response.message)
++                try:
++                    rtl_code = self.parse_output(response).module
++                except (json.JSONDecodeError, ValidationError) as exc:
++                    syntax_correct, syntax_output = False, f"Invalid RTL response: {exc}"
++                else:
++                    with open(rtl_path, "w") as f:
++                        f.write(rtl_code)
++                    syntax_correct, syntax_output = check_syntax(rtl_path=rtl_path)
+                 ret[i] = (syntax_correct, rtl_code)
+                 logger.info(
+                     f"Candidate {i + 1} / {candidates_num} trial {j + 1} / {self.max_trials} syntax_correct: {syntax_correct}"
+@@ -293,7 +294,6 @@
+                         + candidate_history
+                         + self.get_order_prompt_messages()
+                     )
+-                    rtl_code = self.parse_output(response).module
+         return ret
+ 
+     def ablation_chat(self, input_spec: str, rtl_path: str) -> Tuple[bool, str]:
+@@ -304,11 +304,18 @@
+         self.generated_tb = None
+         self.generated_if = None
+         self.history.extend(self.get_init_prompt_messages(input_spec))
++        syntax_correct, rtl_code = False, ""
+         for _ in range(self.max_trials):
+             # Don't add order message into history, to save token
+             response = self.generate(self.history + self.get_order_prompt_messages())
+             self.history.append(response.message)
+-            rtl_code = self.parse_output(response).module
++            try:
++                rtl_code = self.parse_output(response).module
++            except (json.JSONDecodeError, ValidationError) as exc:
++                self.history.extend(
++                    self.get_format_error_prompt_messages(f"Invalid RTL response: {exc}", rtl_code)
++                )
++                continue
+             with open(rtl_path, "w") as f:
+                 f.write(rtl_code)
+             syntax_correct, syntax_output = check_syntax(rtl_path=rtl_path)
+diff --git a/src/mage/tb_generator.py b/src/mage/tb_generator.py
+--- a/src/mage/tb_generator.py
++++ b/src/mage/tb_generator.py
+@@ -2,7 +2,7 @@
+ from typing import Dict, List, Tuple
+ 
+ from behave.pipelines.mage_transport import ChatMessage, ChatResponse, MessageRole
+-from pydantic import BaseModel
++from pydantic import BaseModel, ValidationError
+ 
+ from .log_utils import get_logger
+ from .prompts import FAILED_TRIAL_PROMPT, ORDER_PROMPT, TB_4_SHOT_EXAMPLES
+@@ -277,20 +277,7 @@
+         return [order_prompt_message]
+ 
+     def parse_output(self, response: ChatResponse) -> TBOutputFormat:
+-        try:
+-            output_json_obj: Dict = json.loads(response.message.content, strict=False)
+-            ret = TBOutputFormat(
+-                reasoning=output_json_obj["reasoning"],
+-                interface=output_json_obj["interface"],
+-                testbench=output_json_obj["testbench"],
+-            )
+-        except json.decoder.JSONDecodeError as e:
+-            ret = TBOutputFormat(
+-                reasoning=f"Json Decode Error: {str(e)}",
+-                interface="",
+-                testbench="",
+-            )
+-        return ret
++        return TBOutputFormat.model_validate(json.loads(response.message.content, strict=False))
+ 
+     def chat(self, input_spec: str) -> Tuple[str, str]:
+         if isinstance(self.token_counter, TokenCounterCached):
+@@ -300,13 +287,12 @@
+         self.history.extend(self.get_init_prompt_messages(input_spec))
+         for _ in range(self.json_decode_max_trial):
+             response = self.generate(self.history + self.get_order_prompt_messages())
+-            resp_obj = self.parse_output(response)
+-            if not resp_obj.reasoning.startswith("Json Decode Error"):
+-                break
+-            error_msg = ChatMessage(role=MessageRole.USER, content=resp_obj.reasoning)
+-            self.history.extend([response.message, error_msg])
+-        if resp_obj.reasoning.startswith("Json Decode Error"):
+-            raise ValueError(
+-                f"Json Decode Error when decoding: {response.message.content}"
+-            )
+-        return (resp_obj.testbench, resp_obj.interface)
++            try:
++                resp_obj = self.parse_output(response)
++            except (json.JSONDecodeError, ValidationError) as exc:
++                error_msg = ChatMessage(role=MessageRole.USER, content=f"Invalid TB response: {exc}")
++                self.history.extend([response.message, error_msg])
++            else:
++                return (resp_obj.testbench, resp_obj.interface)
++        logger.warning("TB response format retries exhausted")
++        return "", ""
+diff --git a/src/mage/sim_judge.py b/src/mage/sim_judge.py
+--- a/src/mage/sim_judge.py
++++ b/src/mage/sim_judge.py
+@@ -2,7 +2,7 @@
+ from typing import Dict, List
+ 
+ from behave.pipelines.mage_transport import ChatMessage, ChatResponse, MessageRole
+-from pydantic import BaseModel
++from pydantic import BaseModel, ValidationError
+ 
+ from .log_utils import get_logger
+ from .prompts import ORDER_PROMPT
+@@ -104,11 +104,7 @@
+         ]
+ 
+     def parse_output(self, response: ChatResponse) -> TBOutputFormat:
+-        output_json_obj: Dict = json.loads(response.message.content, strict=False)
+-        return TBOutputFormat(
+-            reasoning=output_json_obj["reasoning"],
+-            tb_needs_fix=output_json_obj["tb_needs_fix"],
+-        )
++        return TBOutputFormat.model_validate(json.loads(response.message.content, strict=False))
+ 
+     def chat(
+         self,
+@@ -116,7 +112,7 @@
+         failed_sim_log: str,
+         failed_rtl: str,
+         failed_testbench: str,
+-    ) -> bool:
++    ) -> bool | None:
+         if isinstance(self.token_counter, TokenCounterCached):
+             self.token_counter.set_enable_cache(False)
+         self.history = []
+@@ -128,5 +124,9 @@
+         )
+         self.history.extend(self.get_order_prompt_messages())
+         response = self.generate(self.history)
+-        resp_obj = self.parse_output(response)
++        try:
++            resp_obj = self.parse_output(response)
++        except (json.JSONDecodeError, ValidationError) as exc:
++            logger.warning(f"Invalid SimJudge response: {exc}")
++            return None
+         return resp_obj.tb_needs_fix

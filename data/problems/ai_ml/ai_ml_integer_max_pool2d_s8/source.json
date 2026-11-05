@@ -1,0 +1,22 @@
+{
+  "id": "ai_ml_integer_max_pool2d_s8",
+  "source_kind": "ai_ml",
+  "name": "MaxPool2DS8",
+  "family": "max_pool2d_s8",
+  "tier": 1,
+  "license": "Apache-2.0",
+  "provenance": [
+    {
+      "repository": "https://github.com/onnx/onnx",
+      "revision": "57b9c6a4f6eebb09ae1b34cfb632078518f72832",
+      "license": "Apache-2.0",
+      "file": "onnx/reference/ops/op_max_pool.py",
+      "symbol": "MaxPool",
+      "sha256": "9214e151c84099c1956fb59f4a9f08eec80fd14530a41e4574824d1ede2508b1",
+      "url": "https://github.com/onnx/onnx/blob/57b9c6a4f6eebb09ae1b34cfb632078518f72832/onnx/reference/ops/op_max_pool.py",
+      "license_file": "data/licenses/onnx_onnx/LICENSE"
+    }
+  ],
+  "adaptation": "Input X is signed INT8 NHWC [1,4,4,2], packed index (4*h+w)*2+c. Output Y is NHWC [1,2,2,2], packed index (2*h+w)*2+c. Each output uses exactly X[2*h+i,2*w+j,c] for i,j in {0,1}; no padding. Take the maximum of all four signed values.",
+  "difficulty": "basic"
+}

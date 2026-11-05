@@ -1,0 +1,22 @@
+{
+  "id": "ai_ml_integer_histogram_gini_split8",
+  "source_kind": "ai_ml",
+  "name": "HistogramGiniSplit8",
+  "family": "histogram_gini_split8",
+  "tier": 2,
+  "license": "BSD-3-Clause",
+  "provenance": [
+    {
+      "repository": "https://github.com/scikit-learn/scikit-learn",
+      "revision": "156ef141f3b270edb06c8ae9af37c55253c0aabe",
+      "license": "BSD-3-Clause",
+      "file": "sklearn/tree/_criterion.pyx",
+      "symbol": "Gini.node_impurity / children_impurity",
+      "sha256": "370a14021481028bd23b7dc3483e2114a5eb09563ef48e64da979347f37816dc",
+      "url": "https://github.com/scikit-learn/scikit-learn/blob/156ef141f3b270edb06c8ae9af37c55253c0aabe/sklearn/tree/_criterion.pyx",
+      "license_file": "data/licenses/scikit-learn_scikit-learn/COPYING"
+    }
+  ],
+  "adaptation": "Choose the exact minimum weighted-Gini split of an eight-bin two-class histogram.\n\nInput has unsigned four-bit counts count[bin,class], flattened 2*bin+class. Consider thresholds t=0..6: bins <=t go left and the rest right. Discard splits with an empty side. Let L0,L1,R0,R1 be class counts, l=L0+L1, r=R0+R1, N=l+r. Weighted impurity is Num/Den, where Den=N*l*r and Num=Den-(L0^2+L1^2)*r-(R0^2+R1^2)*l. Compare exact fractions without floating point; equal impurity chooses smaller t. Return threshold bits 0..2, valid bit 3, four unsigned eight-bit counts L0,L1,R0,R1 at bits 4,12,20,28, then Num in bits 36..59 and Den in bits 60..83. Do not reduce the returned fraction. If no legal split exists, return zero. This is the Gini classification criterion applied to all boundaries of a supplied histogram.",
+  "difficulty": "medium"
+}

@@ -1,0 +1,1108 @@
+{
+  "version": "task-contract/16",
+  "endpoints": [
+    {
+      "name": "in",
+      "direction": "in",
+      "fields": [
+        {
+          "name": "in_coeff_0",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_coeff_0"
+        },
+        {
+          "name": "in_coeff_1",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_coeff_1"
+        },
+        {
+          "name": "in_coeff_10",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_coeff_10"
+        },
+        {
+          "name": "in_coeff_11",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_coeff_11"
+        },
+        {
+          "name": "in_coeff_12",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_coeff_12"
+        },
+        {
+          "name": "in_coeff_13",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_coeff_13"
+        },
+        {
+          "name": "in_coeff_14",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_coeff_14"
+        },
+        {
+          "name": "in_coeff_15",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_coeff_15"
+        },
+        {
+          "name": "in_coeff_16",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_coeff_16"
+        },
+        {
+          "name": "in_coeff_17",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_coeff_17"
+        },
+        {
+          "name": "in_coeff_18",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_coeff_18"
+        },
+        {
+          "name": "in_coeff_19",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_coeff_19"
+        },
+        {
+          "name": "in_coeff_2",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_coeff_2"
+        },
+        {
+          "name": "in_coeff_20",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_coeff_20"
+        },
+        {
+          "name": "in_coeff_21",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_coeff_21"
+        },
+        {
+          "name": "in_coeff_22",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_coeff_22"
+        },
+        {
+          "name": "in_coeff_23",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_coeff_23"
+        },
+        {
+          "name": "in_coeff_24",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_coeff_24"
+        },
+        {
+          "name": "in_coeff_25",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_coeff_25"
+        },
+        {
+          "name": "in_coeff_26",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_coeff_26"
+        },
+        {
+          "name": "in_coeff_27",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_coeff_27"
+        },
+        {
+          "name": "in_coeff_28",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_coeff_28"
+        },
+        {
+          "name": "in_coeff_29",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_coeff_29"
+        },
+        {
+          "name": "in_coeff_3",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_coeff_3"
+        },
+        {
+          "name": "in_coeff_30",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_coeff_30"
+        },
+        {
+          "name": "in_coeff_31",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_coeff_31"
+        },
+        {
+          "name": "in_coeff_32",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_coeff_32"
+        },
+        {
+          "name": "in_coeff_33",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_coeff_33"
+        },
+        {
+          "name": "in_coeff_34",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_coeff_34"
+        },
+        {
+          "name": "in_coeff_35",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_coeff_35"
+        },
+        {
+          "name": "in_coeff_36",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_coeff_36"
+        },
+        {
+          "name": "in_coeff_37",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_coeff_37"
+        },
+        {
+          "name": "in_coeff_38",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_coeff_38"
+        },
+        {
+          "name": "in_coeff_39",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_coeff_39"
+        },
+        {
+          "name": "in_coeff_4",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_coeff_4"
+        },
+        {
+          "name": "in_coeff_40",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_coeff_40"
+        },
+        {
+          "name": "in_coeff_41",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_coeff_41"
+        },
+        {
+          "name": "in_coeff_42",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_coeff_42"
+        },
+        {
+          "name": "in_coeff_43",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_coeff_43"
+        },
+        {
+          "name": "in_coeff_44",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_coeff_44"
+        },
+        {
+          "name": "in_coeff_45",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_coeff_45"
+        },
+        {
+          "name": "in_coeff_46",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_coeff_46"
+        },
+        {
+          "name": "in_coeff_47",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_coeff_47"
+        },
+        {
+          "name": "in_coeff_48",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_coeff_48"
+        },
+        {
+          "name": "in_coeff_49",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_coeff_49"
+        },
+        {
+          "name": "in_coeff_5",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_coeff_5"
+        },
+        {
+          "name": "in_coeff_50",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_coeff_50"
+        },
+        {
+          "name": "in_coeff_51",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_coeff_51"
+        },
+        {
+          "name": "in_coeff_52",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_coeff_52"
+        },
+        {
+          "name": "in_coeff_53",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_coeff_53"
+        },
+        {
+          "name": "in_coeff_54",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_coeff_54"
+        },
+        {
+          "name": "in_coeff_55",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_coeff_55"
+        },
+        {
+          "name": "in_coeff_56",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_coeff_56"
+        },
+        {
+          "name": "in_coeff_57",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_coeff_57"
+        },
+        {
+          "name": "in_coeff_58",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_coeff_58"
+        },
+        {
+          "name": "in_coeff_59",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_coeff_59"
+        },
+        {
+          "name": "in_coeff_6",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_coeff_6"
+        },
+        {
+          "name": "in_coeff_60",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_coeff_60"
+        },
+        {
+          "name": "in_coeff_61",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_coeff_61"
+        },
+        {
+          "name": "in_coeff_62",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_coeff_62"
+        },
+        {
+          "name": "in_coeff_63",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_coeff_63"
+        },
+        {
+          "name": "in_coeff_7",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_coeff_7"
+        },
+        {
+          "name": "in_coeff_8",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_coeff_8"
+        },
+        {
+          "name": "in_coeff_9",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "in_coeff_9"
+        }
+      ],
+      "adapter": {
+        "name": "ready-valid",
+        "version": 1,
+        "environment_controls": [
+          "in_valid"
+        ],
+        "artifact_controls": [
+          "in_ready"
+        ],
+        "monitor_state": [
+          "outstanding",
+          "stall_cycles"
+        ]
+      },
+      "clock": "clk",
+      "matching": "ordered",
+      "identifier": null,
+      "max_outstanding": null,
+      "response_deadline": null,
+      "answers_per_transaction": null,
+      "terminal_quiescence": null,
+      "reset_policy": null,
+      "kind": "transaction"
+    },
+    {
+      "name": "out",
+      "direction": "out",
+      "fields": [
+        {
+          "name": "out_coeff_0",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "out_coeff_0"
+        },
+        {
+          "name": "out_coeff_1",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "out_coeff_1"
+        },
+        {
+          "name": "out_coeff_10",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "out_coeff_10"
+        },
+        {
+          "name": "out_coeff_11",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "out_coeff_11"
+        },
+        {
+          "name": "out_coeff_12",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "out_coeff_12"
+        },
+        {
+          "name": "out_coeff_13",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "out_coeff_13"
+        },
+        {
+          "name": "out_coeff_14",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "out_coeff_14"
+        },
+        {
+          "name": "out_coeff_15",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "out_coeff_15"
+        },
+        {
+          "name": "out_coeff_16",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "out_coeff_16"
+        },
+        {
+          "name": "out_coeff_17",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "out_coeff_17"
+        },
+        {
+          "name": "out_coeff_18",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "out_coeff_18"
+        },
+        {
+          "name": "out_coeff_19",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "out_coeff_19"
+        },
+        {
+          "name": "out_coeff_2",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "out_coeff_2"
+        },
+        {
+          "name": "out_coeff_20",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "out_coeff_20"
+        },
+        {
+          "name": "out_coeff_21",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "out_coeff_21"
+        },
+        {
+          "name": "out_coeff_22",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "out_coeff_22"
+        },
+        {
+          "name": "out_coeff_23",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "out_coeff_23"
+        },
+        {
+          "name": "out_coeff_24",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "out_coeff_24"
+        },
+        {
+          "name": "out_coeff_25",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "out_coeff_25"
+        },
+        {
+          "name": "out_coeff_26",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "out_coeff_26"
+        },
+        {
+          "name": "out_coeff_27",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "out_coeff_27"
+        },
+        {
+          "name": "out_coeff_28",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "out_coeff_28"
+        },
+        {
+          "name": "out_coeff_29",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "out_coeff_29"
+        },
+        {
+          "name": "out_coeff_3",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "out_coeff_3"
+        },
+        {
+          "name": "out_coeff_30",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "out_coeff_30"
+        },
+        {
+          "name": "out_coeff_31",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "out_coeff_31"
+        },
+        {
+          "name": "out_coeff_32",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "out_coeff_32"
+        },
+        {
+          "name": "out_coeff_33",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "out_coeff_33"
+        },
+        {
+          "name": "out_coeff_34",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "out_coeff_34"
+        },
+        {
+          "name": "out_coeff_35",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "out_coeff_35"
+        },
+        {
+          "name": "out_coeff_36",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "out_coeff_36"
+        },
+        {
+          "name": "out_coeff_37",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "out_coeff_37"
+        },
+        {
+          "name": "out_coeff_38",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "out_coeff_38"
+        },
+        {
+          "name": "out_coeff_39",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "out_coeff_39"
+        },
+        {
+          "name": "out_coeff_4",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "out_coeff_4"
+        },
+        {
+          "name": "out_coeff_40",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "out_coeff_40"
+        },
+        {
+          "name": "out_coeff_41",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "out_coeff_41"
+        },
+        {
+          "name": "out_coeff_42",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "out_coeff_42"
+        },
+        {
+          "name": "out_coeff_43",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "out_coeff_43"
+        },
+        {
+          "name": "out_coeff_44",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "out_coeff_44"
+        },
+        {
+          "name": "out_coeff_45",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "out_coeff_45"
+        },
+        {
+          "name": "out_coeff_46",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "out_coeff_46"
+        },
+        {
+          "name": "out_coeff_47",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "out_coeff_47"
+        },
+        {
+          "name": "out_coeff_48",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "out_coeff_48"
+        },
+        {
+          "name": "out_coeff_49",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "out_coeff_49"
+        },
+        {
+          "name": "out_coeff_5",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "out_coeff_5"
+        },
+        {
+          "name": "out_coeff_50",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "out_coeff_50"
+        },
+        {
+          "name": "out_coeff_51",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "out_coeff_51"
+        },
+        {
+          "name": "out_coeff_52",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "out_coeff_52"
+        },
+        {
+          "name": "out_coeff_53",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "out_coeff_53"
+        },
+        {
+          "name": "out_coeff_54",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "out_coeff_54"
+        },
+        {
+          "name": "out_coeff_55",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "out_coeff_55"
+        },
+        {
+          "name": "out_coeff_56",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "out_coeff_56"
+        },
+        {
+          "name": "out_coeff_57",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "out_coeff_57"
+        },
+        {
+          "name": "out_coeff_58",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "out_coeff_58"
+        },
+        {
+          "name": "out_coeff_59",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "out_coeff_59"
+        },
+        {
+          "name": "out_coeff_6",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "out_coeff_6"
+        },
+        {
+          "name": "out_coeff_60",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "out_coeff_60"
+        },
+        {
+          "name": "out_coeff_61",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "out_coeff_61"
+        },
+        {
+          "name": "out_coeff_62",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "out_coeff_62"
+        },
+        {
+          "name": "out_coeff_63",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "out_coeff_63"
+        },
+        {
+          "name": "out_coeff_7",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "out_coeff_7"
+        },
+        {
+          "name": "out_coeff_8",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "out_coeff_8"
+        },
+        {
+          "name": "out_coeff_9",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "out_coeff_9"
+        }
+      ],
+      "adapter": {
+        "name": "ready-valid",
+        "version": 1,
+        "environment_controls": [
+          "out_ready"
+        ],
+        "artifact_controls": [
+          "out_valid"
+        ],
+        "monitor_state": [
+          "outstanding",
+          "stall_cycles"
+        ]
+      },
+      "clock": "clk",
+      "matching": "ordered",
+      "identifier": null,
+      "max_outstanding": null,
+      "response_deadline": null,
+      "answers_per_transaction": null,
+      "terminal_quiescence": null,
+      "reset_policy": null,
+      "kind": "transaction"
+    }
+  ],
+  "clocks": [
+    {
+      "name": "clk",
+      "clock": "clk",
+      "edge": "rising",
+      "reset": "rst",
+      "reset_active_low": false,
+      "reset_hold_cycles": 3,
+      "reset_restores": null
+    }
+  ],
+  "memories": [],
+  "protocol_instances": [],
+  "observation_goals": [],
+  "transaction_monitors": [],
+  "latency_goals": [],
+  "operation_rules": [],
+  "source_read_rules": [],
+  "authority": "task",
+  "source": "declared by compression_jpeg_transform_jpeg_zigzag_scan",
+  "physical_value_layout": "packed-value/1"
+}

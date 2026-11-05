@@ -1,0 +1,5 @@
+Authored finite hardware adaptation. Numerical/capacity changes are explicit in spec.md.
+
+https://github.com/pytorch/pytorch@a8d6afb511a69687bbb2b7e88a3cf67917e1697e:torch/optim/sgd.py
+
+# mypy: allow-untyped-defs

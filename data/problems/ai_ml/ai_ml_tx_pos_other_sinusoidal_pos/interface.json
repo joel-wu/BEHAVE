@@ -1,0 +1,228 @@
+{
+  "version": "task-contract/16",
+  "endpoints": [
+    {
+      "name": "in",
+      "direction": "in",
+      "fields": [
+        {
+          "name": "in_channels",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_channels"
+        },
+        {
+          "name": "in_position",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_position"
+        }
+      ],
+      "adapter": {
+        "name": "ready-valid",
+        "version": 1,
+        "environment_controls": [
+          "in_valid"
+        ],
+        "artifact_controls": [
+          "in_ready"
+        ],
+        "monitor_state": [
+          "outstanding",
+          "stall_cycles"
+        ]
+      },
+      "clock": "clk",
+      "matching": "ordered",
+      "identifier": null,
+      "max_outstanding": null,
+      "response_deadline": null,
+      "answers_per_transaction": null,
+      "terminal_quiescence": null,
+      "reset_policy": null,
+      "kind": "transaction"
+    },
+    {
+      "name": "out",
+      "direction": "out",
+      "fields": [
+        {
+          "name": "out_e0",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "out_e0"
+        },
+        {
+          "name": "out_e1",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "out_e1"
+        },
+        {
+          "name": "out_e10",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "out_e10"
+        },
+        {
+          "name": "out_e11",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "out_e11"
+        },
+        {
+          "name": "out_e12",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "out_e12"
+        },
+        {
+          "name": "out_e13",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "out_e13"
+        },
+        {
+          "name": "out_e14",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "out_e14"
+        },
+        {
+          "name": "out_e15",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "out_e15"
+        },
+        {
+          "name": "out_e2",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "out_e2"
+        },
+        {
+          "name": "out_e3",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "out_e3"
+        },
+        {
+          "name": "out_e4",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "out_e4"
+        },
+        {
+          "name": "out_e5",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "out_e5"
+        },
+        {
+          "name": "out_e6",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "out_e6"
+        },
+        {
+          "name": "out_e7",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "out_e7"
+        },
+        {
+          "name": "out_e8",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "out_e8"
+        },
+        {
+          "name": "out_e9",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "out_e9"
+        }
+      ],
+      "adapter": {
+        "name": "ready-valid",
+        "version": 1,
+        "environment_controls": [
+          "out_ready"
+        ],
+        "artifact_controls": [
+          "out_valid"
+        ],
+        "monitor_state": [
+          "outstanding",
+          "stall_cycles"
+        ]
+      },
+      "clock": "clk",
+      "matching": "ordered",
+      "identifier": null,
+      "max_outstanding": null,
+      "response_deadline": null,
+      "answers_per_transaction": null,
+      "terminal_quiescence": null,
+      "reset_policy": null,
+      "kind": "transaction"
+    }
+  ],
+  "clocks": [
+    {
+      "name": "clk",
+      "clock": "clk",
+      "edge": "rising",
+      "reset": "rst",
+      "reset_active_low": false,
+      "reset_hold_cycles": 3,
+      "reset_restores": null
+    }
+  ],
+  "memories": [],
+  "protocol_instances": [],
+  "observation_goals": [],
+  "transaction_monitors": [],
+  "latency_goals": [],
+  "operation_rules": [],
+  "source_read_rules": [],
+  "authority": "task",
+  "source": "declared by ai_ml_tx_pos_other_sinusoidal_pos",
+  "physical_value_layout": "packed-value/1"
+}

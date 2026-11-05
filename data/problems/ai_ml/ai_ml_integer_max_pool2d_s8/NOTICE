@@ -1,0 +1,7 @@
+Integer/fixed-shape adaptations of the source operations listed in source.json.
+Modifications: finite dimensions, packed hardware ports, explicit numeric and reset semantics.
+Source copyrights (as applicable to the selected files):
+Copyright (c) ONNX Project Contributors.
+Copyright 2015 The Gemmlowp Authors. All Rights Reserved.
+Copyright 2010-2024 Arm Limited and/or its affiliates.
+Licensed under the Apache License, Version 2.0; see LICENSE.

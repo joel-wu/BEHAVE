@@ -1,0 +1,119 @@
+{
+  "solver/system": {
+    "values": {},
+    "sha256": "0c11744aa724418d5ef89e009da8bbab3e3f89c3175df7fa84bdd364eba1d184"
+  },
+  "solver/user": {
+    "values": {
+      "task_message": "测试/task_message ${literal} $cost {braces}\n"
+    },
+    "sha256": "88c079e80faa45afdd9cc4e5e6011bef1c5f6f1fb83839d97b8bc0a6cd54fbe4"
+  },
+  "task_author/system": {
+    "values": {},
+    "sha256": "adeb877087d6fad499f5c260d09fd6a7f8cca9b3f47c9b2c7fe5f875af960f87"
+  },
+  "task_author/user": {
+    "values": {
+      "task_id": "测试/task_id ${literal} $cost {braces}\n",
+      "feedback": "测试/feedback ${literal} $cost {braces}\n"
+    },
+    "sha256": "81489903e45f2fb1ae49227a6e3714c245a27910902d72f90b24e7b56e34b26e"
+  },
+  "spec_reader/system": {
+    "values": {},
+    "sha256": "b24f37dbaa6478ab2f68cad000b25b16830d9019974cc403fea8b54e56199cc6"
+  },
+  "spec_reader/user": {
+    "values": {
+      "spec_path": "测试/spec_path ${literal} $cost {braces}\n",
+      "contract_path": "测试/contract_path ${literal} $cost {braces}\n"
+    },
+    "sha256": "eb9ebd06156f011bfcaba4c8609835a4a7c7407393c6e300785c122b61413879"
+  },
+  "rtl_author/system": {
+    "values": {},
+    "sha256": "0baa5a1752d33cacf74c7f6d4907e1ac5b54494e138ef30c34bcb33c4f1556b3"
+  },
+  "rtl_author/repair": {
+    "values": {},
+    "sha256": "0b7f7e7ea9aa7422cef3802e7c2d530572644968fd2f069188a067c8b5e8d5f8"
+  },
+  "rtl_author/first": {
+    "values": {},
+    "sha256": "69a3a1c9577898b60be0f804d62b026353a88128c55d92aa59fc5a869f8f61ab"
+  },
+  "rtl_author/user": {
+    "values": {
+      "next_step": "测试/next_step ${literal} $cost {braces}\n"
+    },
+    "sha256": "56820aee254d5fff80f0af85766f9fc4a37021e64dc0ad8bbbd24af5f590006d"
+  },
+  "scope_author/system": {
+    "values": {},
+    "sha256": "338e10c8a3525f3c24b976ae22d5808a4836efb3f034c9a3db6cf27a1cefe470"
+  },
+  "scope_author/user": {
+    "values": {},
+    "sha256": "f9355af20bab2536931a615550107248720843b80d11694ddebad13967a5a735"
+  },
+  "scope_reviewer/system": {
+    "values": {},
+    "sha256": "479bcb2aaaf91b8afcbf94132fe3f59cd218aab4d1a5d1eced83c40f10c7144c"
+  },
+  "scope_reviewer/user": {
+    "values": {},
+    "sha256": "92e3ccfb98d4dc85638d366c229d69926bd342c907f12bcb5c1419ab09ae7770"
+  },
+  "source_reviewer/system": {
+    "values": {},
+    "sha256": "1ec2ebe5757d9f53f614e27035cdc97ac6a7cb7a6e2475beac4c086f60e29396"
+  },
+  "source_reviewer/user": {
+    "values": {},
+    "sha256": "6af7cf416039a6bb859e4cd6b5ef78a29a4afee60e95302abe9bbaab14917df7"
+  },
+  "source_selector/system": {
+    "values": {},
+    "sha256": "ab254ebaf0207eb4d08a5c0eb31b0682fe0317b3e4a1ddce44249f0d09f90609"
+  },
+  "source_selector/user": {
+    "values": {},
+    "sha256": "096ceddc9c83b428fa8639420830e49dcb67765f64d1c2c3b431334c4e906950"
+  },
+  "source_discoverer/system": {
+    "values": {
+      "guidance": "测试/guidance ${literal} $cost {braces}\n"
+    },
+    "sha256": "038ed5fe929f7d148aabcc3e0d66018c4aebd8cb12abb61e7b8d5808c5b76f47"
+  },
+  "source_discoverer/user": {
+    "values": {
+      "inputs_json": "测试/inputs_json ${literal} $cost {braces}\n"
+    },
+    "sha256": "44bf5d0b5d84d7b69233fa5133415774eda5a7bb9f4080fbba5f188c0392f22e"
+  },
+  "ppa/system": {
+    "values": {
+      "instructions": "测试/instructions ${literal} $cost {braces}\n"
+    },
+    "sha256": "e90c3b754046df583e9d652192d07d9c69bafd0a3e85b9c61009eba70f72dbf9"
+  },
+  "ppa/user": {
+    "values": {
+      "experiment": "测试/experiment ${literal} $cost {braces}\n",
+      "technology": "测试/technology ${literal} $cost {braces}\n",
+      "spec_path": "测试/spec_path ${literal} $cost {braces}\n",
+      "contract_path": "测试/contract_path ${literal} $cost {braces}\n"
+    },
+    "sha256": "fc5b9c60afd721e27a47c2ce4bc4cb01c8215b793d9428210148b2fc49c940e1"
+  },
+  "fixtures/serving_smoke": {
+    "values": {},
+    "sha256": "ee862312b122af84724d0992fcf4c5b693b2d2785791196b3bd90faea4edb1cc"
+  },
+  "runtime/output_limit": {
+    "values": {},
+    "sha256": "c7fa0a8183ad4a330bf37a971103aee32d86af7b216cea110cbc677dadfe2962"
+  }
+}

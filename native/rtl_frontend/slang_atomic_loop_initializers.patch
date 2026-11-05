@@ -1,0 +1,68 @@
+diff --git a/include/slang/analysis/AnalysisOptions.h b/include/slang/analysis/AnalysisOptions.h
+--- a/include/slang/analysis/AnalysisOptions.h
++++ b/include/slang/analysis/AnalysisOptions.h
+@@ -78,4 +78,9 @@
+     InlineCombTaskCalls = 1 << 9,
++
++    /// A client analyzing one non-suspending activation may unroll a static
++    /// counter initialized by the for header. Not enabled for general HDL
++    /// analysis, where another process can modify static storage during waits.
++    UnrollStaticLoopInitializers = 1 << 10,
+ };
+-SLANG_BITMASK(AnalysisFlags, InlineCombTaskCalls)
++SLANG_BITMASK(AnalysisFlags, UnrollStaticLoopInitializers)
+ 
+diff --git a/source/analysis/AbstractFlowAnalysis.cpp b/source/analysis/AbstractFlowAnalysis.cpp
+--- a/source/analysis/AbstractFlowAnalysis.cpp
++++ b/source/analysis/AbstractFlowAnalysis.cpp
+@@ -34,7 +34,10 @@
+     SmallSet<const Symbol*, 2> vars;
+     bool modified = false;
++    bool inspectCalls;
++    SmallSet<const SubroutineSymbol*, 4> visited;
+ 
+     LoopModifiesVarsVisitor(
+-        const SmallVector<std::pair<ConstantValue*, const VariableSymbol*>>& iterVars) {
++        const SmallVector<std::pair<ConstantValue*, const VariableSymbol*>>& iterVars,
++        bool inspectCalls) : inspectCalls(inspectCalls) {
+         vars.reserve(iterVars.size());
+         for (auto& [_, var] : iterVars)
+@@ -62,2 +65,26 @@
+ 
++    void handle(const CallExpression& expr) {
++        if (modified)
++            return;
++        visitDefault(expr);
++        if (!inspectCalls || expr.isSystemCall() || expr.thisClass())
++            return;
++        const auto* callee = std::get<const SubroutineSymbol*>(expr.subroutine);
++        const auto args = expr.arguments();
++        const auto formals = callee->getArguments();
++        for (size_t i = 0; i < args.size(); ++i) {
++            if (formals[i]->direction == ArgumentDirection::In)
++                continue;
++            auto arg = args[i];
++            if (auto assign = arg->as_if<AssignmentExpression>();
++                assign && assign->isLValueArg())
++                arg = &assign->left();
++            checkTarget(*arg);
++            if (modified)
++                return;
++        }
++        if (!modified && visited.insert(callee).second)
++            callee->getBody().visit(*this);
++    }
++
+ private:
+@@ -107,3 +107,4 @@
+                 if (auto var = nve->symbol.as_if<VariableSymbol>();
+-                    var && var->lifetime == VariableLifetime::Automatic) {
++                    var && (var->lifetime == VariableLifetime::Automatic ||
++                            options.flags.has(AnalysisFlags::UnrollStaticLoopInitializers))) {
+                     if (auto cv = assign->right().eval(evalContext)) {
+@@ -121,3 +146,4 @@
+     auto loopModifiesVars = [&] {
+-        LoopModifiesVarsVisitor modifiesVarsVisitor(iterVars);
++        LoopModifiesVarsVisitor modifiesVarsVisitor(iterVars,
++            options.flags.has(AnalysisFlags::UnrollStaticLoopInitializers));
+         stmt.body.visit(modifiesVarsVisitor);

@@ -1,0 +1,38 @@
+UDivRem32 — BEHAVE task adaptation (2026)
+
+New spec, Behavior and RTL contributions: Apache-2.0 (LICENSE).
+Upstream basis: https://github.com/libtom/libtommath
+Revision: 95d80fd8229d05dd6cb4ec88bc8d4f5377ff00ef
+Selected file: bn_mp_div.c
+Selected symbol: mp_div; unsigned nonzero-divisor domain
+Upstream terms: Unlicense (SOURCE_LICENSE.txt).
+The upstream notice and license remain applicable to upstream material.
+
+Unsigned 32-bit quotient and remainder, preserving mp_div on nonzero divisors. Unlike the source MP_VAL error, divisor zero returns quotient 0xffffffff and the original dividend as remainder. Packed ready/valid records and reset are BEHAVE adaptations; no cycle correspondence to the C implementation is claimed.
+
+                          The LibTom license
+
+This is free and unencumbered software released into the public domain.
+
+Anyone is free to copy, modify, publish, use, compile, sell, or
+distribute this software, either in source code form or as a compiled
+binary, for any purpose, commercial or non-commercial, and by any
+means.
+
+In jurisdictions that recognize copyright laws, the author or authors
+of this software dedicate any and all copyright interest in the
+software to the public domain. We make this dedication for the benefit
+of the public at large and to the detriment of our heirs and
+successors. We intend this dedication to be an overt act of
+relinquishment in perpetuity of all present and future rights to this
+software under copyright law.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+IN NO EVENT SHALL THE AUTHORS BE LIABLE FOR ANY CLAIM, DAMAGES OR
+OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
+ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+OTHER DEALINGS IN THE SOFTWARE.
+
+For more information, please refer to <http://unlicense.org/>

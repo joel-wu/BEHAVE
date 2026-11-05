@@ -1,0 +1,38 @@
+diff --git a/chipmate/inference.py b/chipmate/inference.py
+index 3f84c6c..a12cf57 100644
+--- a/chipmate/inference.py
++++ b/chipmate/inference.py
+@@ -77,14 +77,14 @@ class MultiAgentResult:
+ 
+ 
+ def _verify_pair(ref_sv: str, v_code: str, p_code: str,
+-                 num_tests: int, seed: int) -> Dict[str, Any]:
++                 num_tests: int, seed: int, verifier=cross_verify) -> Dict[str, Any]:
+     if v_code.startswith("We can not") or p_code.startswith("We can not"):
+         return {
+             "match_rate": 0.0, "mismatches": [], "sv_error": None,
+             "py_error": None, "num_tests": 0, "has_clk": False,
+             "meta_error": "invalid extracted code",
+         }
+-    return cross_verify(ref_sv, v_code, p_code, num_tests=num_tests, seed=seed)
++    return verifier(ref_sv, v_code, p_code, num_tests=num_tests, seed=seed)
+ 
+ 
+ def run_problem(
+@@ -99,6 +99,7 @@ def run_problem(
+     num_verify_tests: int = DEFAULT_NUM_VERIFY_TESTS,
+     temperature: float = DEFAULT_TEMPERATURE,
+     seed: int = DEFAULT_SEED,
++    verifier=cross_verify,
+ ) -> MultiAgentResult:
+     """Run the multi-agent loop on a single problem.
+ 
+@@ -161,7 +162,7 @@ def run_problem(
+         with ThreadPoolExecutor(max_workers=n) as vpool:
+             futs = {
+                 vpool.submit(_verify_pair, ref_sv, v_codes[i], p_codes[i],
+-                             num_verify_tests, seed + turn): i
++                             num_verify_tests, seed + turn, verifier): i
+                 for i in range(n)
+             }
+             results: List[Optional[Dict[str, Any]]] = [None] * n

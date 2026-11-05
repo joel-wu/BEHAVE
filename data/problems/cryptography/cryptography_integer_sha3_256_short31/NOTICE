@@ -1,0 +1,10 @@
+Authored finite hardware adaptation. Numerical/capacity changes are explicit in spec.md.
+
+https://github.com/Mbed-TLS/mbedtls@107ea89daaefb9867ea9121002fbbdf926780e98:library/sha3.c
+
+/*
+ *  FIPS-202 compliant SHA3 implementation
+ *
+ *  Copyright The Mbed TLS Contributors
+ *  SPDX-License-Identifier: Apache-2.0 OR GPL-2.0-or-later
+ */

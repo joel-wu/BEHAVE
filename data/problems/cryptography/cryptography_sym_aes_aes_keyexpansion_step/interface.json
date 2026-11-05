@@ -1,0 +1,204 @@
+{
+  "version": "task-contract/16",
+  "endpoints": [
+    {
+      "name": "in",
+      "direction": "in",
+      "fields": [
+        {
+          "name": "in_key_words",
+          "type": {
+            "width": 2,
+            "signed": false
+          },
+          "port": "in_key_words"
+        },
+        {
+          "name": "in_rcon_idx",
+          "type": {
+            "width": 4,
+            "signed": false
+          },
+          "port": "in_rcon_idx"
+        },
+        {
+          "name": "in_w0",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_w0"
+        },
+        {
+          "name": "in_w1",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_w1"
+        },
+        {
+          "name": "in_w2",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_w2"
+        },
+        {
+          "name": "in_w3",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_w3"
+        },
+        {
+          "name": "in_w4",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_w4"
+        },
+        {
+          "name": "in_w5",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_w5"
+        },
+        {
+          "name": "in_w6",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_w6"
+        },
+        {
+          "name": "in_w7",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_w7"
+        }
+      ],
+      "adapter": {
+        "name": "ready-valid",
+        "version": 1,
+        "environment_controls": [
+          "in_valid"
+        ],
+        "artifact_controls": [
+          "in_ready"
+        ],
+        "monitor_state": [
+          "outstanding",
+          "stall_cycles"
+        ]
+      },
+      "clock": "clk",
+      "matching": "ordered",
+      "identifier": null,
+      "max_outstanding": null,
+      "response_deadline": null,
+      "answers_per_transaction": null,
+      "terminal_quiescence": null,
+      "reset_policy": null,
+      "kind": "transaction"
+    },
+    {
+      "name": "out",
+      "direction": "out",
+      "fields": [
+        {
+          "name": "out_w0",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "out_w0"
+        },
+        {
+          "name": "out_w1",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "out_w1"
+        },
+        {
+          "name": "out_w2",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "out_w2"
+        },
+        {
+          "name": "out_w3",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "out_w3"
+        },
+        {
+          "name": "out_words_valid",
+          "type": {
+            "width": 3,
+            "signed": false
+          },
+          "port": "out_words_valid"
+        }
+      ],
+      "adapter": {
+        "name": "ready-valid",
+        "version": 1,
+        "environment_controls": [
+          "out_ready"
+        ],
+        "artifact_controls": [
+          "out_valid"
+        ],
+        "monitor_state": [
+          "outstanding",
+          "stall_cycles"
+        ]
+      },
+      "clock": "clk",
+      "matching": "ordered",
+      "identifier": null,
+      "max_outstanding": null,
+      "response_deadline": null,
+      "answers_per_transaction": null,
+      "terminal_quiescence": null,
+      "reset_policy": null,
+      "kind": "transaction"
+    }
+  ],
+  "clocks": [
+    {
+      "name": "clk",
+      "clock": "clk",
+      "edge": "rising",
+      "reset": "rst",
+      "reset_active_low": false,
+      "reset_hold_cycles": 3,
+      "reset_restores": null
+    }
+  ],
+  "memories": [],
+  "protocol_instances": [],
+  "observation_goals": [],
+  "transaction_monitors": [],
+  "latency_goals": [],
+  "operation_rules": [],
+  "source_read_rules": [],
+  "authority": "task",
+  "source": "declared by cryptography_sym_aes_aes_keyexpansion_step",
+  "physical_value_layout": "packed-value/1"
+}

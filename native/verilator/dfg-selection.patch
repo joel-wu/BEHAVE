@@ -1,0 +1,38 @@
+--- a/src/V3DfgSynthesize.cpp
++++ b/src/V3DfgSynthesize.cpp
+@@ -30,6 +30,7 @@
+ 
+ #include <algorithm>
+ #include <iterator>
++#include <unordered_set>
+ 
+ VL_DEFINE_DEBUG_FUNCTIONS;
+ 
+@@ -2024,6 +2024,9 @@
+     }
+ 
+     // Now expand to cover all logic driving the same set of variables and mark
++    // The graph is fixed throughout selection. Once a variable's drivers have
++    // been enqueued, visiting another driver cannot discover any new sibling.
++    std::unordered_set<const DfgVertex*> expanded;
+     worklist.foreach([&](DfgVertex& vtx) {
+         DfgLogic& logic = *vtx.as<DfgLogic>();
+         UASSERT_OBJ(!logic.selectedForSynthesis(), &vtx, "Should not be visited twice");
+@@ -2031,6 +2034,7 @@
+         logic.setSelectedForSynthesis();
+         // Enqueue all other logic driving the same variables as this one
+         logic.foreachSink([&](DfgVertex& sink) {
++            if (!expanded.insert(&sink).second) return false;
+             sink.as<DfgUnresolved>()->foreachSource([&](DfgVertex& sibling) {
+                 DfgLogic& siblingLogic = *sibling.as<DfgLogic>();
+                 if (!siblingLogic.selectedForSynthesis()) worklist.push_front(siblingLogic);
+--- a/src/V3Options.cpp
++++ b/src/V3Options.cpp
+@@ -1102,6 +1102,7 @@
+     string ver = PACKAGE_STRING;
+     ver += " (behave-condition-effects-2)";
+     ver += " (behave-case-effects-2)";
++    ver += " (behave-dfg-selection-2)";
+     ver += " rev " + cvtToStr(DTVERSION_rev);
+     return ver;
+ }

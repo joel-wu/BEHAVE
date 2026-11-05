@@ -1,0 +1,48 @@
+--- a/src/V3Delayed.cpp
++++ b/src/V3Delayed.cpp
+@@ -1252,8 +1252,11 @@
+         nodep->user2p(m_scopep);
+ 
+         // Grab the reference to the target of the NBA, also lift ExprStmt statements on the LHS
+-        VL_RESTORER(m_currNbaLhsRefp);
+-        UASSERT_OBJ(!m_currNbaLhsRefp, nodep, "NBAs should not nest");
++        // An inlined helper in the RHS can schedule another NBA. Its LHS
++        // belongs to that assignment, not the enclosing expression's NBA.
++        // Restore the outer target when returning to its remaining operands.
++        VL_RESTORER(m_currNbaLhsRefp);
++        m_currNbaLhsRefp = nullptr;
+         nodep->lhsp()->foreach([&](AstNode* currp) {
+             // cppcheck-suppress constVariablePointer
+             if (AstExprStmt* const exprp = VN_CAST(currp, ExprStmt)) {
+@@ -1316,10 +1319,11 @@
+-        // Record the NBA for later processing
+-        m_nbas.emplace_back();
+-        NBA& nba = m_nbas.back();
+-        nba.nodep = nodep;
+-        nba.vscp = vscp;
+-
+-        // Record write reference
+-        recordWriteRef(m_currNbaLhsRefp, true);
+-
+-        iterateChildren(nodep);
++        // RHS helper writes execute before the enclosing assignment queues
++        // its value. Lower in that order too: array schemes append commits
++        // in visitation order, so parent-first would reverse last-write wins.
++        recordWriteRef(m_currNbaLhsRefp, true);
++        iterateChildren(nodep);
++
++        // Record the NBA for later processing
++        m_nbas.emplace_back();
++        NBA& nba = m_nbas.back();
++        nba.nodep = nodep;
++        nba.vscp = vscp;
+--- a/src/V3Options.cpp
++++ b/src/V3Options.cpp
+@@ -1106,6 +1106,7 @@
+     ver += " (behave-graph-path-2)";
+     ver += " (behave-loop-report-1)";
+     ver += " (behave-call-effects-2)";
++    ver += " (behave-helper-nba-1)";
+     ver += " rev " + cvtToStr(DTVERSION_rev);
+     return ver;
+ }

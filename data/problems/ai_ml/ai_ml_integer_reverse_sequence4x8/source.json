@@ -1,0 +1,22 @@
+{
+  "id": "ai_ml_integer_reverse_sequence4x8",
+  "source_kind": "ai_ml",
+  "name": "ReverseSequence4x8",
+  "family": "reverse_sequence4x8",
+  "tier": 1,
+  "license": "Apache-2.0",
+  "provenance": [
+    {
+      "repository": "https://github.com/onnx/onnx",
+      "revision": "57b9c6a4f6eebb09ae1b34cfb632078518f72832",
+      "license": "Apache-2.0",
+      "file": "onnx/reference/ops/op_reverse_sequence.py",
+      "symbol": "ReverseSequence._run",
+      "sha256": "3d9cbe2b30e12d56a88710193f3e7f7a8b41e6cbe72bbe6a9a12b409f86d4bf0",
+      "url": "https://github.com/onnx/onnx/blob/57b9c6a4f6eebb09ae1b34cfb632078518f72832/onnx/reference/ops/op_reverse_sequence.py",
+      "license_file": "data/licenses/onnx_onnx/LICENSE"
+    }
+  ],
+  "adaptation": "Reverse variable-length prefixes independently for four sequences of eight two-byte feature vectors.\n\nData shape is [batch=4,time=8,channels=2], row-major. Four unsigned four-bit length fields are supplied. Effective length L[b]=min(in_lengths[b],8). For t<L[b], Y[b,t,c]=X[b,L[b]-1-t,c]; otherwise Y[b,t,c]=X[b,t,c]. Channel pairs never swap internally. Length zero is the identity. The clipping of encoded lengths 9..15 is an explicit total-domain extension of ONNX ReverseSequence; batch_axis=0 and time_axis=1. The pinned reference mishandles zero length; the task follows empty-prefix semantics, not that indexing defect.",
+  "difficulty": "basic"
+}

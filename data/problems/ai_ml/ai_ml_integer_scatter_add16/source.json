@@ -1,0 +1,22 @@
+{
+  "id": "ai_ml_integer_scatter_add16",
+  "source_kind": "ai_ml",
+  "name": "ScatterAdd16",
+  "family": "scatter_add16",
+  "tier": 2,
+  "license": "Apache-2.0",
+  "provenance": [
+    {
+      "repository": "https://github.com/onnx/onnx",
+      "revision": "57b9c6a4f6eebb09ae1b34cfb632078518f72832",
+      "license": "Apache-2.0",
+      "file": "onnx/reference/ops/op_scatter_elements.py",
+      "symbol": "scatter_elements/reduction=add",
+      "sha256": "dbac01190a08e560a1a6a266c3acc3eadb6104ffa46496f412847165a23c62bd",
+      "url": "https://github.com/onnx/onnx/blob/57b9c6a4f6eebb09ae1b34cfb632078518f72832/onnx/reference/ops/op_scatter_elements.py",
+      "license_file": "data/licenses/onnx_onnx/LICENSE"
+    }
+  ],
+  "adaptation": "Start from 16 signed INT16 cells. Apply eight updates, indices unsigned four-bit lanes, updates signed INT16 lanes. Output cell j equals in_data[j]+sum(in_updates[i] for i with index[i]=j), reduced modulo 2^16. All duplicate indices contribute; unaddressed cells are unchanged. Return the entire 16-cell result. INT16 modular overflow is explicit.",
+  "difficulty": "medium"
+}

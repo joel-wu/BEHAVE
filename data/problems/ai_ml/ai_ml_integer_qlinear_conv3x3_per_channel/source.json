@@ -1,0 +1,32 @@
+{
+  "id": "ai_ml_integer_qlinear_conv3x3_per_channel",
+  "source_kind": "ai_ml",
+  "name": "QLinearConv3x3PerChannel",
+  "family": "qlinear_conv3x3_per_channel",
+  "tier": 2,
+  "license": "Apache-2.0",
+  "provenance": [
+    {
+      "repository": "https://github.com/onnx/onnx",
+      "revision": "57b9c6a4f6eebb09ae1b34cfb632078518f72832",
+      "license": "Apache-2.0",
+      "file": "onnx/reference/ops/op_qlinear_conv.py",
+      "symbol": "QLinearConv._run",
+      "sha256": "a5b76f88458142cfb38378b8b362f09581e7baa7be16bf5054bcd15fc642e122",
+      "url": "https://github.com/onnx/onnx/blob/57b9c6a4f6eebb09ae1b34cfb632078518f72832/onnx/reference/ops/op_qlinear_conv.py",
+      "license_file": "data/licenses/onnx_onnx/LICENSE"
+    },
+    {
+      "repository": "https://github.com/onnx/onnx",
+      "revision": "57b9c6a4f6eebb09ae1b34cfb632078518f72832",
+      "license": "Apache-2.0",
+      "file": "onnx/reference/ops/op_conv.py",
+      "symbol": "_conv_implementation",
+      "sha256": "5d84cd4062c5a8d9089382ecfaffb75b3096b0ad54544136702094176746c358",
+      "url": "https://github.com/onnx/onnx/blob/57b9c6a4f6eebb09ae1b34cfb632078518f72832/onnx/reference/ops/op_conv.py",
+      "license_file": "data/licenses/onnx_onnx/LICENSE"
+    }
+  ],
+  "adaptation": "Three-output-channel affine INT8 3x3 convolution with per-channel requantization.\n\nX is NCHW [1,2,4,4]; W is [3,2,3,3], both signed bytes. Bias contains three signed INT16 values. For Y[o,h,w], h,w=0..1, accumulate bias[o]+sum(c,i,j,(X[c,h+i,w+j]-zx)*(W[o,c,i,j]-zw[o])) exactly in INT32. Each zw is signed INT8, and zx is shared. Return Clip8(RNE(acc/2^shift[o])) with nearest-even ties. Output is NCHW [1,3,2,2], twelve signed byte lanes. Per-channel shifts are unsigned four-bit values 0..15; the output zero-point is fixed at zero. No padding, stride one, dilation one, no activation other than final saturation. Unlike a depthwise convolution, every output mixes both input channels. This is QLinearConv with x_scale=y_scale=1 and w_scale[o]=2^-shift[o].",
+  "difficulty": "medium"
+}

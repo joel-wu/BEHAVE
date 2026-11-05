@@ -1,0 +1,31 @@
+{
+  "round_id": "pilot",
+  "training_configuration": "infra/train/qwen27b_acceptance.json",
+  "diagnosis_release": "fixtures/release",
+  "diagnosis_split": "fixtures/seed.txt",
+  "diagnosis_tasks": ["fixture_counter"],
+  "resources": "fixtures/resources",
+  "cpus": 90,
+  "publication_workers": 32,
+  "scratch_root": "/tmp",
+  "diagnosis_configuration": {
+    "samples_per_task": 4,
+    "sampler": {"tasks_per_update": 2, "order": "cycle", "seed": "fixture"},
+    "update_groups": 1,
+    "group_replenishment": null,
+    "curriculum": null
+  },
+  "task_revisions": 3,
+  "require_license_metadata": false,
+  "acquired_updates": 1,
+  "raw_updates": 1,
+  "task_configuration": {
+    "sampler": {"tasks_per_update": 1, "order": "cycle", "seed": "fixture"},
+    "update_groups": 1,
+    "group_replenishment": null,
+    "curriculum": null
+  },
+  "raw_configuration": {
+    "sampler": {"sequences_per_update": 1, "order": "cycle", "seed": "fixture"}
+  }
+}

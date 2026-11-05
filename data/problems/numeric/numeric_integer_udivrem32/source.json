@@ -1,0 +1,24 @@
+{
+  "id": "numeric_integer_udivrem32",
+  "source_kind": "numeric",
+  "name": "UDivRem32",
+  "family": "udivrem32",
+  "tier": 2,
+  "license": "Unlicense",
+  "contribution_license": "Apache-2.0",
+  "provenance": [
+    {
+      "repository": "https://github.com/libtom/libtommath",
+      "revision": "95d80fd8229d05dd6cb4ec88bc8d4f5377ff00ef",
+      "license": "Unlicense",
+      "file": "bn_mp_div.c",
+      "symbol": "mp_div; unsigned nonzero-divisor domain",
+      "url": "https://github.com/libtom/libtommath/blob/95d80fd8229d05dd6cb4ec88bc8d4f5377ff00ef/bn_mp_div.c",
+      "sha256": "455172d78b36283d9117706904f346dbd33313522288e410c573e827873e9cea",
+      "license_file": "data/licenses/libtom_libtommath/LICENSE",
+      "license_sha256": "2fa64b163659f41965c9815882a8296d3d03ff546b76153e11445f9bdecf955a"
+    }
+  ],
+  "adaptation": "Unsigned 32-bit quotient and remainder, preserving mp_div on nonzero divisors. Unlike the source MP_VAL error, divisor zero returns quotient 0xffffffff and the original dividend as remainder. Packed ready/valid records and reset are BEHAVE adaptations; no cycle correspondence to the C implementation is claimed.",
+  "difficulty": "medium"
+}

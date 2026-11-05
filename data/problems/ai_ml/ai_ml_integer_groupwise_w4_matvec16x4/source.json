@@ -1,0 +1,32 @@
+{
+  "id": "ai_ml_integer_groupwise_w4_matvec16x4",
+  "source_kind": "ai_ml",
+  "name": "GroupwiseW4MatVec16x4",
+  "family": "groupwise_w4_matvec16x4",
+  "tier": 2,
+  "license": "Apache-2.0",
+  "provenance": [
+    {
+      "repository": "https://github.com/onnx/onnx",
+      "revision": "57b9c6a4f6eebb09ae1b34cfb632078518f72832",
+      "license": "Apache-2.0",
+      "file": "onnx/reference/ops/op_dequantize_linear.py",
+      "symbol": "blocked scale and zero-point expansion",
+      "sha256": "ad39a5e9de6ebd3cfdd24445a46a4b83354b759a229823e13889354ad469f98a",
+      "url": "https://github.com/onnx/onnx/blob/57b9c6a4f6eebb09ae1b34cfb632078518f72832/onnx/reference/ops/op_dequantize_linear.py",
+      "license_file": "data/licenses/onnx_onnx/LICENSE"
+    },
+    {
+      "repository": "https://github.com/onnx/onnx",
+      "revision": "57b9c6a4f6eebb09ae1b34cfb632078518f72832",
+      "license": "Apache-2.0",
+      "file": "onnx/reference/ops/op_qlinear_matmul.py",
+      "symbol": "QLinearMatMul centered accumulation",
+      "sha256": "5817006bf0f8cd8835dc8b6c61726a4b1f4144925ac2879160e0d46a7f60d892",
+      "url": "https://github.com/onnx/onnx/blob/57b9c6a4f6eebb09ae1b34cfb632078518f72832/onnx/reference/ops/op_qlinear_matmul.py",
+      "license_file": "data/licenses/onnx_onnx/LICENSE"
+    }
+  ],
+  "adaptation": "Blocked-affine INT4 weights times an INT8 activation vector, with four output channels.\n\nX contains 16 signed bytes. W contains [4,16] signed four-bit weights, output-channel major. Each row has four consecutive groups of four weights; zero_w[o,g] is signed INT4 and scale[o,g]=1+unsigned(in_scales[o,g]), so scales are integers 1..16. Both metadata arrays flatten as 4*o+g. Activation zero_x is signed INT8; bias has four signed INT16 lanes. Return four exact INT32 values Y[o]=bias[o]+sum(g,scale[o,g]*sum(k=0..3,(X[4*g+k]-zx)*(W[o,4*g+k]-zw[o,g]))). Do not merge group sums before applying their distinct scales, and do not saturate or wrap intermediate terms. This is blocked DequantizeLinear followed by matrix multiplication, specialized to integer scales; it is not the source floating-point dtype implementation.",
+  "difficulty": "medium"
+}

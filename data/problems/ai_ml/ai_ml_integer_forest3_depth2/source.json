@@ -1,0 +1,32 @@
+{
+  "id": "ai_ml_integer_forest3_depth2",
+  "source_kind": "ai_ml",
+  "name": "Forest3Depth2",
+  "family": "forest3_depth2",
+  "tier": 2,
+  "license": "BSD-3-Clause",
+  "provenance": [
+    {
+      "repository": "https://github.com/scikit-learn/scikit-learn",
+      "revision": "156ef141f3b270edb06c8ae9af37c55253c0aabe",
+      "license": "BSD-3-Clause",
+      "file": "sklearn/tree/_tree.pyx",
+      "symbol": "Tree.apply traversal and missing_go_to_left",
+      "sha256": "efb45b2c98ddd27fadb654df7aa3667e5bc5ca75d0bd741537dccad300212c7d",
+      "url": "https://github.com/scikit-learn/scikit-learn/blob/156ef141f3b270edb06c8ae9af37c55253c0aabe/sklearn/tree/_tree.pyx",
+      "license_file": "data/licenses/scikit-learn_scikit-learn/COPYING"
+    },
+    {
+      "repository": "https://github.com/scikit-learn/scikit-learn",
+      "revision": "156ef141f3b270edb06c8ae9af37c55253c0aabe",
+      "license": "BSD-3-Clause",
+      "file": "sklearn/ensemble/_forest.py",
+      "symbol": "ForestRegressor.predict average over estimators",
+      "sha256": "ba481baf173ba1fd45d3664390ef6abb989f4a91fecb4106536c631d1e77b187",
+      "url": "https://github.com/scikit-learn/scikit-learn/blob/156ef141f3b270edb06c8ae9af37c55253c0aabe/sklearn/ensemble/_forest.py",
+      "license_file": "data/licenses/scikit-learn_scikit-learn/COPYING"
+    }
+  ],
+  "adaptation": "Complete inference through three depth-two regression trees, including missing-feature branches.\n\nFeatures are four signed INT8 values. Each tree has internal nodes root=0, left child=1, right child=2, then leaves 0..3 in left-to-right order. Per internal node supply a two-bit feature index, signed INT8 threshold and one default-left bit; flatten node metadata as 3*tree+node. If the selected feature is marked missing, take the declared default branch, ignoring its payload. Otherwise go left iff feature<=threshold. Leaves are twelve signed INT16 values, index 4*tree+leaf. Return each selected leaf in lanes 0..2, followed by their mean rounded nearest, ties away from zero, in lane 3 (all lanes INT16). This is full tree traversal plus uniform forest aggregation, not a single tree-node test or training procedure.",
+  "difficulty": "medium"
+}

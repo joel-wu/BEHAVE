@@ -1,0 +1,22 @@
+{
+  "id": "signal_processing_integer_viterbi_k3_block8",
+  "source_kind": "signal_processing",
+  "name": "ViterbiK3Block8",
+  "family": "viterbi_k3_block8",
+  "tier": 2,
+  "license": "BSD-3-Clause",
+  "provenance": [
+    {
+      "repository": "https://github.com/veeresht/CommPy",
+      "revision": "9aecd7c598e1b3b868fd9d8a1d04e207b39487ad",
+      "license": "BSD-3-Clause",
+      "file": "commpy/channelcoding/convcode.py",
+      "symbol": "_compute_branch_metrics(hard), _acs_traceback and viterbi_decode",
+      "sha256": "e5d2092c438dbc0aa724e9a2c78b6bdb6de1163900dfb1c37d5e1f610c1ca038",
+      "url": "https://github.com/veeresht/CommPy/blob/9aecd7c598e1b3b868fd9d8a1d04e207b39487ad/commpy/channelcoding/convcode.py",
+      "license_file": "data/licenses/veeresht_CommPy/LICENSE.txt"
+    }
+  ],
+  "adaptation": "Exact hard-decision Viterbi decoding of an eight-bit, rate-1/2 convolutional-code block.\n\nA candidate message is an unsigned byte m. Start the two-bit encoder history h=0. For t=0..7, consume b=(m>>(7-t))&1, set r=(h<<1)|b, emit c0=parity(r&7) and c1=parity(r&5), then set h=r&3. Coded bits c0,c1 occupy positions 2*t and 2*t+1 respectively. Thus message bits are processed MSB-first, while coded pairs are packed earliest-first at the low end. There are no tail bits and no final-state constraint.\n\nDecode the byte whose 16-bit encoding has minimum Hamming distance from in_codeword. If several bytes achieve that distance, choose the numerically smallest byte (lexicographically smallest chronological input sequence). Return that byte in bits 7:0 and its Hamming distance, an unsigned count 0..16, in bits 12:8. Every received word has a result, even when errors cannot be uniquely corrected. Do not force the end history to zero, drop the last decisions, invert polynomial bits or discard ties.\n\nThis specializes CommPy hard-decision add/compare/select decoding to a finite four-state trellis with polynomials 7 and 5. Full-block survivor selection and the explicit lexicographic tie rule replace its configurable sliding traceback and implementation-dependent equal-metric survivor choice. Soft metrics and stream continuation are outside this task; each request starts from history zero.",
+  "difficulty": "medium"
+}

@@ -1,0 +1,172 @@
+{
+  "version": "task-contract/16",
+  "endpoints": [
+    {
+      "name": "in",
+      "direction": "in",
+      "fields": [
+        {
+          "name": "in_dest_init",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "in_dest_init"
+        },
+        {
+          "name": "in_dest_word",
+          "type": {
+            "width": 64,
+            "signed": false
+          },
+          "port": "in_dest_word"
+        },
+        {
+          "name": "in_finalize",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "in_finalize"
+        },
+        {
+          "name": "in_src0_word",
+          "type": {
+            "width": 64,
+            "signed": false
+          },
+          "port": "in_src0_word"
+        },
+        {
+          "name": "in_src1_word",
+          "type": {
+            "width": 64,
+            "signed": false
+          },
+          "port": "in_src1_word"
+        },
+        {
+          "name": "in_src2_word",
+          "type": {
+            "width": 64,
+            "signed": false
+          },
+          "port": "in_src2_word"
+        },
+        {
+          "name": "in_src3_word",
+          "type": {
+            "width": 64,
+            "signed": false
+          },
+          "port": "in_src3_word"
+        },
+        {
+          "name": "in_src_count",
+          "type": {
+            "width": 3,
+            "signed": false
+          },
+          "port": "in_src_count"
+        }
+      ],
+      "adapter": {
+        "name": "ready-valid",
+        "version": 1,
+        "environment_controls": [
+          "in_valid"
+        ],
+        "artifact_controls": [
+          "in_ready"
+        ],
+        "monitor_state": [
+          "outstanding",
+          "stall_cycles"
+        ]
+      },
+      "clock": "clk",
+      "matching": "ordered",
+      "identifier": null,
+      "max_outstanding": null,
+      "response_deadline": null,
+      "answers_per_transaction": null,
+      "terminal_quiescence": null,
+      "reset_policy": null,
+      "kind": "transaction"
+    },
+    {
+      "name": "out",
+      "direction": "out",
+      "fields": [
+        {
+          "name": "out_dest_word",
+          "type": {
+            "width": 64,
+            "signed": false
+          },
+          "port": "out_dest_word"
+        },
+        {
+          "name": "out_waiting_valid",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "out_waiting_valid"
+        },
+        {
+          "name": "out_waiting_word",
+          "type": {
+            "width": 64,
+            "signed": false
+          },
+          "port": "out_waiting_word"
+        }
+      ],
+      "adapter": {
+        "name": "ready-valid",
+        "version": 1,
+        "environment_controls": [
+          "out_ready"
+        ],
+        "artifact_controls": [
+          "out_valid"
+        ],
+        "monitor_state": [
+          "outstanding",
+          "stall_cycles"
+        ]
+      },
+      "clock": "clk",
+      "matching": "ordered",
+      "identifier": null,
+      "max_outstanding": null,
+      "response_deadline": null,
+      "answers_per_transaction": null,
+      "terminal_quiescence": null,
+      "reset_policy": null,
+      "kind": "transaction"
+    }
+  ],
+  "clocks": [
+    {
+      "name": "clk",
+      "clock": "clk",
+      "edge": "rising",
+      "reset": "rst",
+      "reset_active_low": false,
+      "reset_hold_cycles": 3,
+      "reset_restores": null
+    }
+  ],
+  "memories": [],
+  "protocol_instances": [],
+  "observation_goals": [],
+  "transaction_monitors": [],
+  "latency_goals": [],
+  "operation_rules": [],
+  "source_read_rules": [],
+  "authority": "task",
+  "source": "declared by numeric_pool_ecc_coding_gf256_arith",
+  "physical_value_layout": "packed-value/1"
+}

@@ -1,0 +1,22 @@
+{
+  "id": "compression_integer_qoi_rgb8_payload",
+  "source_kind": "compression",
+  "name": "QOIRGB8Payload",
+  "family": "qoi_rgb8_payload",
+  "tier": 2,
+  "license": "MIT",
+  "provenance": [
+    {
+      "repository": "https://github.com/phoboslab/qoi",
+      "revision": "97bacc86a9c4abf5a2d452102dc26546c4c670b9",
+      "license": "MIT",
+      "file": "qoi.h",
+      "symbol": "qoi_encode RGB pixel loop; no header/end marker",
+      "sha256": "7de6fca1a285b1c20d38f2723dec8b774eb9f144edb9710800a95feeea09375a",
+      "url": "https://github.com/phoboslab/qoi/blob/97bacc86a9c4abf5a2d452102dc26546c4c670b9/qoi.h",
+      "license_file": "data/licenses/phoboslab_qoi/LICENSE"
+    }
+  ],
+  "adaptation": "QOI pixel-opcode payload encoding of eight RGB pixels in original order.\n\nEach pixel is three unsigned bytes R,G,B at bits 24*i,24*i+8,24*i+16. Alpha is always 255. Treat each request as a fresh 8x1 RGB image: previous pixel=(0,0,0,255), 64 RGBA cache entries initially all-zero (including alpha), run length zero. Return exactly the qoi_encode pixel payload, excluding the 14-byte image header and 8-byte end marker. Output bits 255:0 contain up to 32 payload bytes in emission order, first byte in bits 7:0; bits 261:256 contain the byte count. Every unused payload byte is zero.\n\nEqual consecutive pixels form RUN: emit 0xc0|(run-1) before a different pixel or at the end; a run-only pixel does not change the cache. For a different pixel first flush a pending run, then compute cache index (3*R+5*G+7*B+11*255) mod 64. On a complete RGBA cache match emit INDEX=index. Otherwise store this pixel at that index and try DIFF, then LUMA, then RGB. Define s8(z)=((z+128) mod 256)-128. Set dr=s8(R-prev_R), dg=s8(G-prev_G), db=s8(B-prev_B), dgr=s8(dr-dg), dgb=s8(db-dg). If dr,dg,db are all in [-2,1], emit 0x40|((dr+2)<<4)|((dg+2)<<2)|(db+2). Otherwise, if dg is in [-32,31] and dgr,dgb are in [-8,7], emit two bytes 0x80|(dg+32), ((dgr+8)<<4)|(dgb+8). Otherwise emit 0xfe,R,G,B. Update previous pixel after each input pixel. Wrapping deltas, opcode priority, cache collisions, run flush and byte count are part of the result. The maximum RUN length 62 cannot be reached in this eight-pixel specialization. This is the upstream QOI RGB encoder payload, not a complete file or a newly chosen RLE scheme.",
+  "difficulty": "medium"
+}

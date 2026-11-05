@@ -1,0 +1,81 @@
+The datapoints in this dataset are licensed under CC BY 4.0 except for code.
+
+
+This dataset incorporates derivative code of various open-source repositories along with original code.
+
+Original code is licensed under Apache License 2.0. The below listed datapoints contain derivative work under the following licenses.
+
+# cvdp_agentic_cic_decimator
+
+Originally from https://github.com/alexforencich/verilog-dsp/blob/master/rtl/cic_decimator.v
+MIT License
+
+# cvdp_agentic_custom_fifo
+
+Originally from https://github.com/lowRISC/ibex/blob/master/rtl/ibex_fetch_fifo.sv
+Apache 2.0 License
+
+# cvdp_agentic_byte_enable_ram
+
+Originally from https://github.com/tsmk94/Taiga/blob/master/core/intel/intel_byte_enable_ram.sv
+Apache 2.0 License
+
+# cvdp_agentic_crypto
+
+Originally from https://github.com/secworks/blake2s
+BSD-2-Claude License
+
+# cvdp_copilot_static_branch_predict
+
+Originally from https://github.com/lowRISC/ibex/blob/master/rtl/ibex_branch_predict.sv
+Apache 2.0 License
+
+# cvdp_copilot_ahb_lite_srom
+
+Originally from https://github.com/chipsalliance/caliptra-rtl/blob/main/src/libs/rtl/caliptra_ahb_srom.sv
+Apache 2.0 License
+
+# cvdp_copilot_vga_controller
+
+Originally from https://vanhunteradams.com/DE1/VGA_Driver/Driver.html
+License not specified
+
+# cvdp_copilot_32_bit_Brent_Kung_PP_adder
+
+Originally from https://github.com/faizaan22/32-bit-Brent-Kung-Adder/blob/main/brent_kung_adder.v
+License not specified
+
+# cvdp_copilot_MSHR
+
+Originally from https://github.com/vortexgpgpu/vortex
+Apache-2.0 License
+
+# cvdp_copilot_leading_zero_cnt
+
+Originally from https://github.com/vortexgpgpu/vortex
+Apache-2.0 License
+
+# cvdp_copilot_load_store_unit
+
+Originally from https://github.com/embecosm/ri5cy
+Apache 2.0 License
+
+# cvdp_copilot_mem_allocator
+
+Originally from https://github.com/vortexgpgpu/vortex
+Apache-2.0 License
+
+# cvdp_copilot_crypto
+
+Originally from https://github.com/secworks/sha1 and https://github.com/secworks/prince
+BSD-2-Claude License
+
+# cvdp_copilot_word_reducer
+
+Originally from https://fpgacpu.ca/fpga/
+MIT License
+
+# cvdp_copilot_word_change_detector
+
+Originally from https://fpgacpu.ca/fpga/
+MIT License

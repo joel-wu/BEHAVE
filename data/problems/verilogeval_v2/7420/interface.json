@@ -1,0 +1,144 @@
+{
+  "version": "task-contract/8",
+  "endpoints": [
+    {
+      "name": "in",
+      "direction": "in",
+      "fields": [
+        {
+          "name": "p1a",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "p1a"
+        },
+        {
+          "name": "p1b",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "p1b"
+        },
+        {
+          "name": "p1c",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "p1c"
+        },
+        {
+          "name": "p1d",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "p1d"
+        },
+        {
+          "name": "p2a",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "p2a"
+        },
+        {
+          "name": "p2b",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "p2b"
+        },
+        {
+          "name": "p2c",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "p2c"
+        },
+        {
+          "name": "p2d",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "p2d"
+        }
+      ],
+      "adapter": {
+        "name": "combinational-settled",
+        "version": 1,
+        "environment_controls": [],
+        "artifact_controls": [],
+        "monitor_state": []
+      },
+      "clock": null,
+      "matching": "ordered",
+      "identifier": null,
+      "max_outstanding": null,
+      "response_deadline": null,
+      "answers_per_transaction": null,
+      "terminal_quiescence": null,
+      "reset_policy": null,
+      "kind": "transaction"
+    },
+    {
+      "name": "out",
+      "direction": "out",
+      "fields": [
+        {
+          "name": "p1y",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "p1y"
+        },
+        {
+          "name": "p2y",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "p2y"
+        }
+      ],
+      "adapter": {
+        "name": "combinational-settled",
+        "version": 1,
+        "environment_controls": [],
+        "artifact_controls": [],
+        "monitor_state": []
+      },
+      "clock": null,
+      "matching": "ordered",
+      "identifier": null,
+      "max_outstanding": null,
+      "response_deadline": null,
+      "answers_per_transaction": 1,
+      "terminal_quiescence": null,
+      "reset_policy": null,
+      "kind": "transaction"
+    }
+  ],
+  "clocks": [],
+  "memories": [],
+  "protocol_instances": [
+    {
+      "name": "compute",
+      "endpoints": [
+        "in",
+        "out"
+      ],
+      "mapping": "direct/1"
+    }
+  ],
+  "authority": "task",
+  "source": "VerilogEval native combinational interface; original material archived in batch97",
+  "physical_value_layout": "packed-value/1"
+}

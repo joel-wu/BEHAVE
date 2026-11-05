@@ -1,0 +1,204 @@
+{
+  "version": "task-contract/16",
+  "endpoints": [
+    {
+      "name": "in",
+      "direction": "in",
+      "fields": [
+        {
+          "name": "in_dA_chunk_cumsum",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_dA_chunk_cumsum"
+        },
+        {
+          "name": "in_first_chunk",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "in_first_chunk"
+        },
+        {
+          "name": "in_has_initstate",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "in_has_initstate"
+        },
+        {
+          "name": "in_has_seq_idx",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "in_has_seq_idx"
+        },
+        {
+          "name": "in_initial_state",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_initial_state"
+        },
+        {
+          "name": "in_last_chunk",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "in_last_chunk"
+        },
+        {
+          "name": "in_prev_seq_idx",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_prev_seq_idx"
+        },
+        {
+          "name": "in_prev_state",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_prev_state"
+        },
+        {
+          "name": "in_seq_idx_new",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_seq_idx_new"
+        },
+        {
+          "name": "in_state_update",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "in_state_update"
+        }
+      ],
+      "adapter": {
+        "name": "ready-valid",
+        "version": 1,
+        "environment_controls": [
+          "in_valid"
+        ],
+        "artifact_controls": [
+          "in_ready"
+        ],
+        "monitor_state": [
+          "outstanding",
+          "stall_cycles"
+        ]
+      },
+      "clock": "clk",
+      "matching": "ordered",
+      "identifier": null,
+      "max_outstanding": null,
+      "response_deadline": null,
+      "answers_per_transaction": null,
+      "terminal_quiescence": null,
+      "reset_policy": null,
+      "kind": "transaction"
+    },
+    {
+      "name": "out",
+      "direction": "out",
+      "fields": [
+        {
+          "name": "out_final_state",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "out_final_state"
+        },
+        {
+          "name": "out_last_chunk",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "out_last_chunk"
+        },
+        {
+          "name": "out_next_prev_seq_idx",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "out_next_prev_seq_idx"
+        },
+        {
+          "name": "out_next_state",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "out_next_state"
+        },
+        {
+          "name": "out_out",
+          "type": {
+            "width": 32,
+            "signed": false
+          },
+          "port": "out_out"
+        }
+      ],
+      "adapter": {
+        "name": "ready-valid",
+        "version": 1,
+        "environment_controls": [
+          "out_ready"
+        ],
+        "artifact_controls": [
+          "out_valid"
+        ],
+        "monitor_state": [
+          "outstanding",
+          "stall_cycles"
+        ]
+      },
+      "clock": "clk",
+      "matching": "ordered",
+      "identifier": null,
+      "max_outstanding": null,
+      "response_deadline": null,
+      "answers_per_transaction": null,
+      "terminal_quiescence": null,
+      "reset_policy": null,
+      "kind": "transaction"
+    }
+  ],
+  "clocks": [
+    {
+      "name": "clk",
+      "clock": "clk",
+      "edge": "rising",
+      "reset": "rst",
+      "reset_active_low": false,
+      "reset_hold_cycles": 3,
+      "reset_restores": null
+    }
+  ],
+  "memories": [],
+  "protocol_instances": [],
+  "observation_goals": [],
+  "transaction_monitors": [],
+  "latency_goals": [],
+  "operation_rules": [],
+  "source_read_rules": [],
+  "authority": "task",
+  "source": "declared by ai_ml_ssm_mamba2_mamba2_state_passing",
+  "physical_value_layout": "packed-value/1"
+}

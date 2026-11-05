@@ -1,0 +1,128 @@
+{
+  "version": "task-contract/8",
+  "endpoints": [
+    {
+      "name": "in",
+      "direction": "in",
+      "fields": [
+        {
+          "name": "sel",
+          "type": {
+            "width": 3,
+            "signed": false
+          },
+          "port": "sel"
+        },
+        {
+          "name": "data0",
+          "type": {
+            "width": 4,
+            "signed": false
+          },
+          "port": "data0"
+        },
+        {
+          "name": "data1",
+          "type": {
+            "width": 4,
+            "signed": false
+          },
+          "port": "data1"
+        },
+        {
+          "name": "data2",
+          "type": {
+            "width": 4,
+            "signed": false
+          },
+          "port": "data2"
+        },
+        {
+          "name": "data3",
+          "type": {
+            "width": 4,
+            "signed": false
+          },
+          "port": "data3"
+        },
+        {
+          "name": "data4",
+          "type": {
+            "width": 4,
+            "signed": false
+          },
+          "port": "data4"
+        },
+        {
+          "name": "data5",
+          "type": {
+            "width": 4,
+            "signed": false
+          },
+          "port": "data5"
+        }
+      ],
+      "adapter": {
+        "name": "combinational-settled",
+        "version": 1,
+        "environment_controls": [],
+        "artifact_controls": [],
+        "monitor_state": []
+      },
+      "clock": null,
+      "matching": "ordered",
+      "identifier": null,
+      "max_outstanding": null,
+      "response_deadline": null,
+      "answers_per_transaction": null,
+      "terminal_quiescence": null,
+      "reset_policy": null,
+      "kind": "transaction"
+    },
+    {
+      "name": "out",
+      "direction": "out",
+      "fields": [
+        {
+          "name": "out",
+          "type": {
+            "width": 4,
+            "signed": false
+          },
+          "port": "out"
+        }
+      ],
+      "adapter": {
+        "name": "combinational-settled",
+        "version": 1,
+        "environment_controls": [],
+        "artifact_controls": [],
+        "monitor_state": []
+      },
+      "clock": null,
+      "matching": "ordered",
+      "identifier": null,
+      "max_outstanding": null,
+      "response_deadline": null,
+      "answers_per_transaction": 1,
+      "terminal_quiescence": null,
+      "reset_policy": null,
+      "kind": "transaction"
+    }
+  ],
+  "clocks": [],
+  "memories": [],
+  "protocol_instances": [
+    {
+      "name": "compute",
+      "endpoints": [
+        "in",
+        "out"
+      ],
+      "mapping": "direct/1"
+    }
+  ],
+  "authority": "task",
+  "source": "VerilogEval native combinational interface; original material archived in batch97",
+  "physical_value_layout": "packed-value/1"
+}

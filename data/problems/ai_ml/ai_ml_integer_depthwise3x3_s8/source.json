@@ -1,0 +1,22 @@
+{
+  "id": "ai_ml_integer_depthwise3x3_s8",
+  "source_kind": "ai_ml",
+  "name": "Depthwise3x3S8",
+  "family": "depthwise3x3_s8",
+  "tier": 2,
+  "license": "Apache-2.0",
+  "provenance": [
+    {
+      "repository": "https://github.com/onnx/onnx",
+      "revision": "57b9c6a4f6eebb09ae1b34cfb632078518f72832",
+      "license": "Apache-2.0",
+      "file": "onnx/reference/ops/op_conv.py",
+      "symbol": "Conv/grouped convolution",
+      "sha256": "5d84cd4062c5a8d9089382ecfaffb75b3096b0ad54544136702094176746c358",
+      "url": "https://github.com/onnx/onnx/blob/57b9c6a4f6eebb09ae1b34cfb632078518f72832/onnx/reference/ops/op_conv.py",
+      "license_file": "data/licenses/onnx_onnx/LICENSE"
+    }
+  ],
+  "adaptation": "X is INT8 NHWC [1,4,4,2], index (4*h+w)*2+c. W has two independent 3x3 signed INT8 kernels, index (3*i+j)*2+c. Bias has two signed INT16 lanes. Y is signed INT32 NHWC [1,2,2,2], index (2*h+w)*2+c. Y[h,w,c]=bias[c]+sum(i=0..2,j=0..2,X[h+i,w+j,c]*W[i,j,c]). Stride one, valid padding, no cross-channel mixing, activation or requantization. All intermediates fit INT32; this is an integer grouped-convolution specialization.",
+  "difficulty": "medium"
+}

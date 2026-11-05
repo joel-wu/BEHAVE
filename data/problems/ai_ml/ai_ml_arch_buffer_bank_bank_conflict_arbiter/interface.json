@@ -1,0 +1,204 @@
+{
+  "version": "task-contract/16",
+  "endpoints": [
+    {
+      "name": "in",
+      "direction": "in",
+      "fields": [
+        {
+          "name": "in_dma_read_bank",
+          "type": {
+            "width": 8,
+            "signed": false
+          },
+          "port": "in_dma_read_bank"
+        },
+        {
+          "name": "in_dma_read_valid",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "in_dma_read_valid"
+        },
+        {
+          "name": "in_dma_write_bank",
+          "type": {
+            "width": 8,
+            "signed": false
+          },
+          "port": "in_dma_write_bank"
+        },
+        {
+          "name": "in_dma_write_valid",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "in_dma_write_valid"
+        },
+        {
+          "name": "in_ex_read_bank",
+          "type": {
+            "width": 8,
+            "signed": false
+          },
+          "port": "in_ex_read_bank"
+        },
+        {
+          "name": "in_ex_read_valid",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "in_ex_read_valid"
+        },
+        {
+          "name": "in_ex_write_bank",
+          "type": {
+            "width": 8,
+            "signed": false
+          },
+          "port": "in_ex_write_bank"
+        },
+        {
+          "name": "in_ex_write_valid",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "in_ex_write_valid"
+        },
+        {
+          "name": "in_single_ported",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "in_single_ported"
+        }
+      ],
+      "adapter": {
+        "name": "ready-valid",
+        "version": 1,
+        "environment_controls": [
+          "in_valid"
+        ],
+        "artifact_controls": [
+          "in_ready"
+        ],
+        "monitor_state": [
+          "outstanding",
+          "stall_cycles"
+        ]
+      },
+      "clock": "clk",
+      "matching": "ordered",
+      "identifier": null,
+      "max_outstanding": null,
+      "response_deadline": null,
+      "answers_per_transaction": null,
+      "terminal_quiescence": null,
+      "reset_policy": null,
+      "kind": "transaction"
+    },
+    {
+      "name": "out",
+      "direction": "out",
+      "fields": [
+        {
+          "name": "out_dma_read_blocked",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "out_dma_read_blocked"
+        },
+        {
+          "name": "out_dma_read_grant",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "out_dma_read_grant"
+        },
+        {
+          "name": "out_dma_write_grant",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "out_dma_write_grant"
+        },
+        {
+          "name": "out_ex_read_blocked",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "out_ex_read_blocked"
+        },
+        {
+          "name": "out_ex_read_grant",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "out_ex_read_grant"
+        },
+        {
+          "name": "out_ex_write_grant",
+          "type": {
+            "width": 1,
+            "signed": false
+          },
+          "port": "out_ex_write_grant"
+        }
+      ],
+      "adapter": {
+        "name": "ready-valid",
+        "version": 1,
+        "environment_controls": [
+          "out_ready"
+        ],
+        "artifact_controls": [
+          "out_valid"
+        ],
+        "monitor_state": [
+          "outstanding",
+          "stall_cycles"
+        ]
+      },
+      "clock": "clk",
+      "matching": "ordered",
+      "identifier": null,
+      "max_outstanding": null,
+      "response_deadline": null,
+      "answers_per_transaction": null,
+      "terminal_quiescence": null,
+      "reset_policy": null,
+      "kind": "transaction"
+    }
+  ],
+  "clocks": [
+    {
+      "name": "clk",
+      "clock": "clk",
+      "edge": "rising",
+      "reset": "rst",
+      "reset_active_low": false,
+      "reset_hold_cycles": 3,
+      "reset_restores": null
+    }
+  ],
+  "memories": [],
+  "protocol_instances": [],
+  "observation_goals": [],
+  "transaction_monitors": [],
+  "latency_goals": [],
+  "operation_rules": [],
+  "source_read_rules": [],
+  "authority": "task",
+  "source": "declared by ai_ml_arch_buffer_bank_bank_conflict_arbiter",
+  "physical_value_layout": "packed-value/1"
+}

@@ -1,0 +1,138 @@
+{
+  "version": "task-contract/16",
+  "endpoints": [
+    {
+      "name": "in",
+      "direction": "in",
+      "fields": [
+        {
+          "name": "in_srcA_base",
+          "type": {
+            "width": 8,
+            "signed": false
+          },
+          "port": "in_srcA_base"
+        },
+        {
+          "name": "in_srcA_len_m1",
+          "type": {
+            "width": 3,
+            "signed": false
+          },
+          "port": "in_srcA_len_m1"
+        },
+        {
+          "name": "in_srcB_base",
+          "type": {
+            "width": 8,
+            "signed": false
+          },
+          "port": "in_srcB_base"
+        },
+        {
+          "name": "in_srcB_len_m1",
+          "type": {
+            "width": 3,
+            "signed": false
+          },
+          "port": "in_srcB_len_m1"
+        }
+      ],
+      "adapter": {
+        "name": "ready-valid",
+        "version": 1,
+        "environment_controls": [
+          "in_valid"
+        ],
+        "artifact_controls": [
+          "in_ready"
+        ],
+        "monitor_state": [
+          "outstanding",
+          "stall_cycles"
+        ]
+      },
+      "clock": "clk",
+      "matching": "ordered",
+      "identifier": null,
+      "max_outstanding": null,
+      "response_deadline": null,
+      "answers_per_transaction": null,
+      "terminal_quiescence": null,
+      "reset_policy": null,
+      "kind": "transaction"
+    },
+    {
+      "name": "out",
+      "direction": "out",
+      "fields": [
+        {
+          "name": "out_data",
+          "type": {
+            "width": 16,
+            "signed": false
+          },
+          "port": "out_data"
+        }
+      ],
+      "adapter": {
+        "name": "ready-valid",
+        "version": 1,
+        "environment_controls": [
+          "out_ready"
+        ],
+        "artifact_controls": [
+          "out_valid"
+        ],
+        "monitor_state": [
+          "outstanding",
+          "stall_cycles"
+        ]
+      },
+      "clock": "clk",
+      "matching": "ordered",
+      "identifier": null,
+      "max_outstanding": null,
+      "response_deadline": null,
+      "answers_per_transaction": null,
+      "terminal_quiescence": null,
+      "reset_policy": null,
+      "kind": "transaction"
+    }
+  ],
+  "clocks": [
+    {
+      "name": "clk",
+      "clock": "clk",
+      "edge": "rising",
+      "reset": "rst",
+      "reset_active_low": false,
+      "reset_hold_cycles": 3,
+      "reset_restores": null
+    }
+  ],
+  "memories": [
+    {
+      "name": "sample",
+      "addr_width": 8,
+      "data_width": 16,
+      "clock": "clk",
+      "ports": [
+        {
+          "id": null,
+          "kind": "r"
+        }
+      ],
+      "protocol": "external-memory/read-first-request-ready-valid-run-latency-one-slot-response/no-write-priority/index-mix-junk/cancel-on-domain-reset/3"
+    }
+  ],
+  "protocol_instances": [],
+  "observation_goals": [],
+  "transaction_monitors": [],
+  "latency_goals": [],
+  "operation_rules": [],
+  "source_read_rules": [],
+  "authority": "task",
+  "source": "declared by numeric_pool_dsp_filter_arm_correlate_q15",
+  "physical_value_layout": "packed-value/1"
+}

@@ -1,0 +1,15 @@
+Authored finite hardware adaptation. Numerical/capacity changes are explicit in spec.md.
+
+https://github.com/scikit-learn/scikit-learn@156ef141f3b270edb06c8ae9af37c55253c0aabe:sklearn/cluster/_k_means_common.pyx
+
+# Author: Peter Prettenhofer <peter.prettenhofer@gmail.com>
+#         Olivier Grisel <olivier.grisel@ensta.org>
+#         Lars Buitinck
+#
+# License: BSD 3 clause
+
+
+https://github.com/scikit-learn/scikit-learn@156ef141f3b270edb06c8ae9af37c55253c0aabe:sklearn/cluster/_k_means_lloyd.pyx
+
+# Licence: BSD 3 clause
+

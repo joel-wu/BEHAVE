@@ -1,0 +1,22 @@
+{
+  "id": "ai_ml_integer_depth_to_space2",
+  "source_kind": "ai_ml",
+  "name": "DepthToSpace2",
+  "family": "depth_to_space2",
+  "tier": 1,
+  "license": "Apache-2.0",
+  "provenance": [
+    {
+      "repository": "https://github.com/onnx/onnx",
+      "revision": "57b9c6a4f6eebb09ae1b34cfb632078518f72832",
+      "license": "Apache-2.0",
+      "file": "onnx/reference/ops/op_depth_to_space.py",
+      "symbol": "DepthToSpace._run",
+      "sha256": "6a1cd6aa25f154f81ad496b586329eabe2938991c4b1f559e8445ab12d33d901",
+      "url": "https://github.com/onnx/onnx/blob/57b9c6a4f6eebb09ae1b34cfb632078518f72832/onnx/reference/ops/op_depth_to_space.py",
+      "license_file": "data/licenses/onnx_onnx/LICENSE"
+    }
+  ],
+  "adaptation": "ONNX DepthToSpace with blocksize=2, mode=DCR. Input is NCHW [1,4,2,2], output [1,1,4,4], each element eight raw bits. For h,w,i,j in {0,1}, out[4*(2*h+i)+2*w+j]=in[4*(2*i+j)+2*h+w]. Preserve every input byte exactly.",
+  "difficulty": "basic"
+}

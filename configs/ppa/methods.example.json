@@ -1,0 +1,11 @@
+{
+  "methods": [
+    {
+      "name": "local-provided",
+      "provider": "local.example.json",
+      "prompt": "../../src/behave/agent/prompts/ppa/objective.md",
+      "behavior_source": "provided",
+      "sim_feedback": true
+    }
+  ]
+}

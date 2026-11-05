@@ -1,0 +1,32 @@
+{
+  "id": "ai_ml_integer_binary_dense16x8",
+  "source_kind": "ai_ml",
+  "name": "BinaryDense16x8",
+  "family": "binary_dense16x8",
+  "tier": 2,
+  "license": "BSD-3-Clause",
+  "provenance": [
+    {
+      "repository": "https://github.com/Xilinx/finn-hlslib",
+      "revision": "cc8db47b59555df8b3993666cf2cfb6b9e57ff5a",
+      "license": "BSD-3-Clause",
+      "file": "interpret.hpp",
+      "symbol": "Binary and XnorMul",
+      "sha256": "73fcc5298ecd58f0d2beeb247a7ad7756ccccde2fc65bd63e0fcc4988b55b7aa",
+      "url": "https://github.com/Xilinx/finn-hlslib/blob/cc8db47b59555df8b3993666cf2cfb6b9e57ff5a/interpret.hpp",
+      "license_file": "data/licenses/Xilinx_finn-hlslib/LICENSE"
+    },
+    {
+      "repository": "https://github.com/Xilinx/finn-hlslib",
+      "revision": "cc8db47b59555df8b3993666cf2cfb6b9e57ff5a",
+      "license": "BSD-3-Clause",
+      "file": "mvau.hpp",
+      "symbol": "Matrix_Vector_Activate_Batch",
+      "sha256": "f30a78656b4c3013a539920060fb915b85460af8553b71e0654e4bd08360e134",
+      "url": "https://github.com/Xilinx/finn-hlslib/blob/cc8db47b59555df8b3993666cf2cfb6b9e57ff5a/mvau.hpp",
+      "license_file": "data/licenses/Xilinx_finn-hlslib/LICENSE"
+    }
+  ],
+  "adaptation": "Eight-neuron bipolar binary dense layer with explicit scores and thresholds.\n\nEach activation/weight bit represents +1 when one and -1 when zero. Weights are [8,16], row-major. Neuron o computes score=sum(k=0..15,X[k]*W[o,k])=2*popcount(X XNOR W[o,:])-16. Return eight signed INT8 score lanes in bits 0..63, and activation bit o at 64+o iff score>=signed_INT8(threshold[o]). Equality activates the neuron; no absolute value or unsigned score comparison is permitted. This specializes FINN bipolar interpretation and matrix-vector accumulation; dynamic weights/thresholds and diagnostic scores are explicit interface adaptations.",
+  "difficulty": "medium"
+}

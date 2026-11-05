@@ -1,0 +1,22 @@
+{
+  "id": "ai_ml_integer_segment_sum_max8x4",
+  "source_kind": "ai_ml",
+  "name": "SegmentSumMax8x4",
+  "family": "segment_sum_max8x4",
+  "tier": 2,
+  "license": "Apache-2.0",
+  "provenance": [
+    {
+      "repository": "https://github.com/onnx/onnx",
+      "revision": "57b9c6a4f6eebb09ae1b34cfb632078518f72832",
+      "license": "Apache-2.0",
+      "file": "onnx/reference/ops/op_scatter_elements.py",
+      "symbol": "scatter_elements add/max reductions",
+      "sha256": "dbac01190a08e560a1a6a266c3acc3eadb6104ffa46496f412847165a23c62bd",
+      "url": "https://github.com/onnx/onnx/blob/57b9c6a4f6eebb09ae1b34cfb632078518f72832/onnx/reference/ops/op_scatter_elements.py",
+      "license_file": "data/licenses/onnx_onnx/LICENSE"
+    }
+  ],
+  "adaptation": "Masked unsorted segment aggregation of eight four-channel signed INT8 records into four segments.\n\nRecord i participates iff mask bit i is one, and its unsigned two-bit segment id selects segment 0..3. For every segment and channel return the exact signed sum (INT16) and signed maximum (INT8), plus record count. No participating record may be overwritten by a duplicate segment id. An empty segment has zero sums, zero maxima and count zero. Each segment occupies 100 output bits: four sum lanes at 100*s+16*c, four maximum lanes at 100*s+64+8*c, and its four-bit count at 100*s+96. Input flattening is 4*i+c. This composes ScatterElements add/max reductions and a count reduction, with explicit masking and empty-segment output rules.",
+  "difficulty": "medium"
+}
